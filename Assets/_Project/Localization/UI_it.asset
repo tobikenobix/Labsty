@@ -1,0 +1,559 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UI_it
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: it
+  m_SharedData: {fileID: 11400000, guid: 2f9d7293f76e6ec43882ebc6deaec43c, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 4365213696
+    m_Localized: 'Ispezione avviata: {0} a disposizione. Trovi tutti i {1} pericoli!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4453294080
+    m_Localized: Calcolo dei risultati in corso...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488384
+    m_Localized: Punti una risposta e prema il grilletto, poi prema A per inviare.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488385
+    m_Localized: Scelta pericolosa, registrata per la revisione di sicurezza. Scelga
+      di nuovo.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488386
+    m_Localized: Registrato come errore. Scelga di nuovo.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488387
+    m_Localized: Invia risposta {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488388
+    m_Localized: Invia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488389
+    m_Localized: Terminare l'ispezione?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488390
+    m_Localized: 'Potrebbe aver tralasciato alcuni pericoli. Quelli non trovati contano
+      come non rilevati.
+
+      Continuare l''ispezione o inviare ora?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488391
+    m_Localized: Inviare ora l'ispezione?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488392
+    m_Localized: Continua
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488393
+    m_Localized: "Risolti <b>{0}/{1}</b>     <color={2}>X comandi  \xB7  Y termina</color>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488394
+    m_Localized: PERICOLOSA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488395
+    m_Localized: Chiudi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488396
+    m_Localized: Comandi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488397
+    m_Localized: '<b>WASD</b> camminare
+
+      <b>Tasto destro premuto</b> guardarsi
+      intorno
+
+      <b>Clic sinistro</b> selezionare
+
+      <b>Enter</b> inviare  
+      <b>Esc</b> chiudere
+
+      <b>H</b> comandi   <b>F</b> terminare'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488398
+    m_Localized: "<b><color={0}>Grilletto</color></b>  selezionare / ispezionare\n<b>Levetta
+      avanti</b>  mirare, rilasciare per teletrasportarsi\n<b>Levetta sx/dx</b> 
+      ruotare di 45\xB0    <b>indietro</b>  girarsi\n<b>A</b>  inviare    <b>B</b> 
+      chiudere\n<b>X</b>  questa scheda    <b>Y / Menu</b>  terminare"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488399
+    m_Localized: ISPEZIONE DI SICUREZZA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488400
+    m_Localized: rimanenti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488401
+    m_Localized: Postazione d'ispezione
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488402
+    m_Localized: Ha finito prima? Invii qui o prema Y / Menu.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488403
+    m_Localized: Termina ispezione
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488404
+    m_Localized: Sembra a posto. Continui l'ispezione.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488405
+    m_Localized: '{0}: sembra a posto.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488406
+    m_Localized: 'Pericolo risolto: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488407
+    m_Localized: Tempo scaduto!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488408
+    m_Localized: Tutti i pericoli risolti!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488409
+    m_Localized: Ispezione inviata
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488410
+    m_Localized: Ottimo! Levetta avanti per teletrasportarsi, sx/dx per ruotare.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488411
+    m_Localized: "Selezionato! In laboratorio, cos\xEC si apre una domanda di sicurezza."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488412
+    m_Localized: Ci siamo. Prema Avvia lab quando vuole.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488413
+    m_Localized: Fatto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488414
+    m_Localized: '<b>Si teletrasporti</b> sull''anello luminoso: spinga una levetta
+      in avanti, punti l''arco sull''anello, rilasci.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488415
+    m_Localized: "<b>Selezioni</b> la tazza di caff\xE8: la punti e prema il grilletto."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488416
+    m_Localized: Avvia lab  (A)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488417
+    m_Localized: Avvia lab
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488418
+    m_Localized: "TUM \xB7 ETH  \u2014  INIZIATIVA SICUREZZA NEI LABORATORI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488419
+    m_Localized: Ispezione di sicurezza
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488420
+    m_Localized: LINGUA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488421
+    m_Localized: PERICOLI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488422
+    m_Localized: Scegli i pericoli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488423
+    m_Localized: PROVA DI 60 SECONDI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488424
+    m_Localized: "In laboratorio: trovi ogni pericolo e scelga l'azione pi\xF9 sicura.
+      Risposta giusta = pericolo eliminato. Risposta sbagliata = registrata come
+      errore."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488425
+    m_Localized: Pericoli nel laboratorio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488426
+    m_Localized: Attivi o disattivi i pericoli, poi scelga quanti collocarne in ogni
+      partita.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488427
+    m_Localized: PERICOLI COLLOCATI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488428
+    m_Localized: OFF
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488429
+    m_Localized: PERICOLI PER PARTITA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488430
+    m_Localized: 'Critico per la sicurezza: per superare la prova serve la risposta
+      corretta.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488431
+    m_Localized: Attiva tutti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488432
+    m_Localized: Almeno un pericolo deve restare attivo.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488433
+    m_Localized: Ogni partita colloca {0} dei {1} pericoli attivi, scelti a caso.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488434
+    m_Localized: "Laboratorio BSL-1 \xB7 {0} pericoli nascosti \xB7 7 minuti"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488435
+    m_Localized: Il controller
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488436
+    m_Localized: 'Prema il <b><color={0}>GRILLETTO</color></b> per selezionare.
+
+      <b>Levetta
+      avanti</b> teletrasporto   <b>sx/dx</b> rotazione
+
+      <b>A</b> conferma  
+      <b>B</b> chiudi   <b>X</b> comandi'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488437
+    m_Localized: 'GRILLETTO
+
+      <size=70%>selezione</size>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488438
+    m_Localized: 'LEVETTA
+
+      <size=70%>teletrasporto / rotazione</size>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488439
+    m_Localized: GRIP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488440
+    m_Localized: "{0} \xB7 SESSIONE {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488441
+    m_Localized: Risultato della valutazione
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488442
+    m_Localized: Revisione di sicurezza richiesta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488443
+    m_Localized: Nuova formazione richiesta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488444
+    m_Localized: Superato
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488445
+    m_Localized: Rilevamento dei pericoli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488446
+    m_Localized: '{0} / {1} punti'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488447
+    m_Localized: Decisioni corrette
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488448
+    m_Localized: "S\xEC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488449
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488450
+    m_Localized: Punteggio numerico
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488451
+    m_Localized: Punteggio minimo raggiunto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488452
+    m_Localized: Rilevamento minimo raggiunto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488453
+    m_Localized: Minimo di decisioni raggiunto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488454
+    m_Localized: Tutti i pericoli critici corretti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488455
+    m_Localized: Nessuna scelta critica non sicura
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488456
+    m_Localized: "La persona valutata ha scelto {0}: {1}. Si tratta di una scelta
+      critica non sicura, perch\xE9 {2}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488457
+    m_Localized: La persona valutata non ha rilevato questo pericolo.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488458
+    m_Localized: Trovato, ma nessuna risposta inviata.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488459
+    m_Localized: La persona valutata ha scelto {0} invece di {1}. {2}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488460
+    m_Localized: '+ altri {0}: vedere le spiegazioni'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488461
+    m_Localized: "Nessun problema: ogni pericolo \xE8 stato trovato e gestito correttamente."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488462
+    m_Localized: "Idoneit\xE0 non ancora raggiunta"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488463
+    m_Localized: "Idoneit\xE0 raggiunta"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488464
+    m_Localized: 'Decisione finale: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488465
+    m_Localized: Rivedi le spiegazioni
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488466
+    m_Localized: Torna alla lobby
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488467
+    m_Localized: Gioca ancora  (A)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488468
+    m_Localized: 'Esportato: {0}  (+ .csv)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488469
+    m_Localized: Nonostante il punteggio di {0}/100, la persona valutata deve ripassare
+      le procedure di {1} e sostenere una nuova valutazione.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488470
+    m_Localized: Con {0}/100 i requisiti minimi non sono stati raggiunti. La persona
+      valutata dovrebbe ripassare le procedure di {1} e sostenere una nuova valutazione.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488471
+    m_Localized: La persona valutata ha dimostrato competenza con {0}/100 e nessun
+      errore critico per la sicurezza.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488472
+    m_Localized: 'Nel feedback va incluso anche il pericolo non rilevato: {0}.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488473
+    m_Localized: 'Nel feedback vanno inclusi anche i pericoli non rilevati: {0}.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488474
+    m_Localized: sicurezza pertinenti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488475
+    m_Localized: ' e '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488476
+    m_Localized: Spiegazioni
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488477
+    m_Localized: senza risposta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488478
+    m_Localized: non rilevato
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488479
+    m_Localized: corretta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488480
+    m_Localized: ha scelto {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488481
+    m_Localized: Chiudi  (B)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488482
+    m_Localized: Nessuna partita
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488483
+    m_Localized: Inizi dalla lobby per giocare nel laboratorio e vedere qui i risultati.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488484
+    m_Localized: Vai alla lobby
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488485
+    m_Localized: "PROTOTIPO \xB7 DATI STATICI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488486
+    m_Localized: Classifica di Basilea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488487
+    m_Localized: "Questa settimana \xB7 Ispezione di sicurezza"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488488
+    m_Localized: Lei
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488489
+    m_Localized: Bilancia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488490
+    m_Localized: Centrifuga
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488491
+    m_Localized: Vetreria pulita
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488492
+    m_Localized: Appendiabiti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488493
+    m_Localized: Armadio per corrosivi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682688
+    m_Localized: Stazione lavaocchi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682689
+    m_Localized: Estintore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682690
+    m_Localized: Cappa chimica
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682691
+    m_Localized: Piastra riscaldante
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682692
+    m_Localized: Quaderno di laboratorio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682693
+    m_Localized: Contenitore rifiuti di laboratorio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682694
+    m_Localized: Flaconi di tampone etichettati
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682695
+    m_Localized: Flacone di soluzione salina etichettato
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682696
+    m_Localized: Portatile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682697
+    m_Localized: Pipette
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682698
+    m_Localized: Contenitore per il riciclo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682699
+    m_Localized: Portaprovette
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682700
+    m_Localized: Lavandino
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

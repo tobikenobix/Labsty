@@ -113,7 +113,7 @@ namespace ChemLab
             if (item.kind != ChemLabInspectable.Kind.Hazard)
             {
                 falseClicks++;
-                ui.Toast(string.IsNullOrEmpty(item.displayName) ? "Looks OK. Keep inspecting." : item.displayName + ": looks OK.");
+                ui.Toast(string.IsNullOrEmpty(item.displayName) ? L10n.T("lab.looksOk") : L10n.T("lab.itemOk", L10n.TOr("decoy." + item.displayName, item.displayName)));
                 return;
             }
 
@@ -168,7 +168,7 @@ namespace ChemLab
                 ChemLabAudio.PlayAt(rec.data.fixSound, obj.transform.position, rec.data.fixSoundSeconds);
                 CloseQuestion();
                 obj.Fix();
-                ui.Toast("Hazard resolved: " + rec.data.title, 2.4f, ChemLabUIKit.Ok);
+                ui.Toast(L10n.T("lab.resolved", rec.data.title), 2.4f, ChemLabUIKit.Ok);
                 ui.UpdateHud();
                 if (records.All(r => r.solved)) StartCoroutine(EndAfter(1.6f));
             }
@@ -233,7 +233,7 @@ namespace ChemLab
 
             if (tick != null) Destroy(tick.gameObject);
             if (timedOut) ChemLabAudio.Alarm(); else ChemLabAudio.Ding();
-            ui.ShowRunEnded(timedOut ? "Time's up!" : records.All(r => r.solved) ? "All hazards resolved!" : "Inspection submitted");
+            ui.ShowRunEnded(timedOut ? L10n.T("lab.timeUp") : records.All(r => r.solved) ? L10n.T("lab.allResolved") : L10n.T("lab.submitted"));
             StartCoroutine(LoadEnd());
         }
 

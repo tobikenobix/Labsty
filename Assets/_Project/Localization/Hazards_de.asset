@@ -1,0 +1,1069 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Hazards_de
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: de
+  m_SharedData: {fileID: 11400000, guid: 080672767c5e81148882c1431d55fcbe, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 1139793920
+    m_Localized: "Willkommen im Labor! Bevor Sie mit Ihrer Forschung beginnen, m\xFCssen
+      Sie eine Sicherheitsinspektion durchf\xFChren. Einige Dinge in diesem Labor
+      sind unsicher. K\xF6nnen Sie sie finden und entscheiden, wie sie zu beheben
+      sind?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931264
+    m_Localized: Blockierter Notausgang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931265
+    m_Localized: Eingang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931266
+    m_Localized: Leicht
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931267
+    m_Localized: Notfallzugang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931268
+    m_Localized: Fluchtwege
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931269
+    m_Localized: "Notausg\xE4nge m\xFCssen jederzeit zu 100 % frei sein. Bringen
+      Sie den Wagen an einen vorgesehenen Abstellplatz, nicht nur zur Seite."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931270
+    m_Localized: ein Notausgang darf niemals blockiert oder teilweise versperrt werden,
+      auch nicht kurzzeitig.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931271
+    m_Localized: "Nicht sicher: Ein Notausgang muss jederzeit vollst\xE4ndig frei
+      sein."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931272
+    m_Localized: Die teilnehmende Person hat nicht bemerkt, dass der Notausgang durch
+      einen Wagen blockiert war.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931273
+    m_Localized: Was sollten Sie mit dem Wagen tun, der den Notausgang blockiert?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931274
+    m_Localized: Den Wagen so weit verschieben, dass eine Person vorbeikommt.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931275
+    m_Localized: "Den Wagen ins Lager bringen, sodass der Ausgang vollst\xE4ndig
+      frei ist."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931276
+    m_Localized: "Den Wagen bis zur n\xE4chsten geplanten Lieferung stehen lassen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931277
+    m_Localized: Ein Warnschild am Wagen anbringen, um andere zu warnen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931278
+    m_Localized: Woran erkennen Sie, dass der Notausgang sicher nutzbar ist?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931279
+    m_Localized: "Das gr\xFCne Notausgangsschild ist gut sichtbar."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931280
+    m_Localized: "Der Wagen ber\xFChrt die Notausgangst\xFCr nicht mehr."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931281
+    m_Localized: "Eine Person kann seitlich durch die T\xFCr gehen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931282
+    m_Localized: "Die T\xFCr und der gesamte Fluchtweg sind frei."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931283
+    m_Localized: Das Team braucht den Wagen in zehn Minuten wieder. Was sollten Sie
+      tun?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931284
+    m_Localized: Ihn an einem vorgesehenen Platz abseits des Ausgangs abstellen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931285
+    m_Localized: "Ihn mit etwas Durchgangsplatz in der N\xE4he des Ausgangs lassen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931286
+    m_Localized: Jemanden bitten, beim Entladen auf den Wagen zu achten.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931287
+    m_Localized: "Ihn vor eine andere Notausgangst\xFCr stellen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931288
+    m_Localized: "Essen und Getr\xE4nke auf dem Labortisch"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931289
+    m_Localized: Hauptlabortisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931290
+    m_Localized: Leicht
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931291
+    m_Localized: Hygiene / Kontamination
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931292
+    m_Localized: PSA & Verhalten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931293
+    m_Localized: Essen und Trinken sind im Labor wegen der Gefahr des Verschluckens
+      und der Kontamination streng verboten.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931294
+    m_Localized: "Nicht sicher: Essen und Getr\xE4nke sind im Labor nie erlaubt."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931295
+    m_Localized: "Die teilnehmende Person hat das Essen und die Getr\xE4nke auf dem
+      Labortisch nicht bemerkt."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931296
+    m_Localized: "Sie bemerken einen Kaffeebecher neben laufenden Laborger\xE4ten.
+      Was sollten Sie tun?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931297
+    m_Localized: Den Becher ans andere Ende des Labortischs stellen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931298
+    m_Localized: "Den Deckel schlie\xDFen und das Experiment wie geplant fortsetzen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931299
+    m_Localized: "Das Getr\xE4nk in einen zugelassenen Bereich au\xDFerhalb des Labors
+      bringen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931300
+    m_Localized: Den Becher bis Arbeitsende in eine Schublade stellen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931301
+    m_Localized: "Jemand aus dem Team m\xF6chte w\xE4hrend eines langen Experiments
+      Kaffee trinken. Was schlagen Sie vor?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931302
+    m_Localized: "Eine Pause machen und in einem zugelassenen Bereich au\xDFerhalb
+      des Labors trinken."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931303
+    m_Localized: Einen auslaufsicheren Becher am Rand des Labortischs verwenden.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931304
+    m_Localized: Jemanden den Becher abseits der Proben halten lassen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931305
+    m_Localized: "Das Getr\xE4nk bis zum Ende des Experiments geschlossen lassen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931306
+    m_Localized: Warum ist ein geschlossener Kaffeebecher im Labor trotzdem ein Sicherheitsproblem?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931307
+    m_Localized: "Der Becher k\xF6nnte das Erkennen von Ger\xE4ten in der N\xE4he
+      erschweren."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931308
+    m_Localized: "Der Beh\xE4lter k\xF6nnte die verf\xFCgbare Arbeitsfl\xE4che verkleinern."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931309
+    m_Localized: "Der Deckel k\xF6nnte die gr\xFCndliche Reinigung des Tischs verhindern."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931310
+    m_Localized: "Essen und Getr\xE4nke k\xF6nnen zu Exposition oder Kontamination
+      f\xFChren."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931311
+    m_Localized: Instabil gestapelte Kartons
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931312
+    m_Localized: Eingang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931313
+    m_Localized: Leicht
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931314
+    m_Localized: "Mechanisch / herabfallende Gegenst\xE4nde"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931315
+    m_Localized: Fluchtwege
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931316
+    m_Localized: "Instabile Stapel k\xF6nnen auf Personen fallen. Bauen Sie sie ab
+      und lagern Sie die Gegenst\xE4nde sicher und niedriger."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931317
+    m_Localized: "Nicht sicher: Instabile Stapel m\xFCssen abgebaut und niedrig gelagert
+      werden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931318
+    m_Localized: Die teilnehmende Person hat den instabilen Kartonstapel am Verkehrsweg
+      nicht bemerkt.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931319
+    m_Localized: "Mehrere Kartons stehen gef\xE4hrlich schief. Was sollten Sie tun?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931320
+    m_Localized: Die Kartons abstapeln und stabil an einem niedrigeren Ort lagern.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931321
+    m_Localized: Die Kartons mit Klebeband und Stretchfolie aneinander sichern.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931322
+    m_Localized: Die oberen Kartons ausrichten und auf der Kiste lassen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931323
+    m_Localized: "Die Kiste n\xE4her an die Wand neben dem Verkehrsweg schieben."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931324
+    m_Localized: Was ist die Hauptgefahr der instabilen Kartons?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931325
+    m_Localized: "Die Kartons k\xF6nnen unterschiedliche Produktetiketten haben."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931326
+    m_Localized: "Die Kiste k\xF6nnte zu viel Lagerfl\xE4che belegen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931327
+    m_Localized: "Die Kartons k\xF6nnten auf Personen im Verkehrsweg fallen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931328
+    m_Localized: "Der Karton l\xE4sst sich m\xF6glicherweise schlecht reinigen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931329
+    m_Localized: Wie sollten Lieferungen gelagert werden, um dieses Problem zu vermeiden?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931330
+    m_Localized: "Leichtere Kartons obenauf legen, ohne die Stabilit\xE4t zu pr\xFCfen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931331
+    m_Localized: Zugelassene Regale nutzen und sichere Stapelgrenzen einhalten.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931332
+    m_Localized: Alle Lieferungen auf Kisten neben genutzten Verkehrswegen lassen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931333
+    m_Localized: "Kartons fest umwickeln, auch wenn sie \xFCber die Kiste hinausragen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931334
+    m_Localized: Laborkittel auf einem Stuhl
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931335
+    m_Localized: Arbeitsbereich
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931336
+    m_Localized: Mittel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931337
+    m_Localized: PSA / Kontamination
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931338
+    m_Localized: PSA & Verhalten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931339
+    m_Localized: "Laborkittel k\xF6nnen kontaminiert sein. Bewahren Sie sie an einem
+      vorgesehenen Haken oder St\xE4nder fern von Sitz- und Arbeitsbereichen auf."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931340
+    m_Localized: "Nicht sicher: Laborkittel geh\xF6ren an den vorgesehenen Kittelst\xE4nder."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931341
+    m_Localized: Die teilnehmende Person hat den auf einem Stuhl liegen gelassenen
+      Laborkittel nicht bemerkt.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931342
+    m_Localized: Wo sollte der Laborkittel nach Gebrauch aufbewahrt werden?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931343
+    m_Localized: Den Kittel zusammenlegen und auf den Labortisch legen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931344
+    m_Localized: "Den Kittel bis zum n\xE4chsten Experiment auf dem Stuhl lassen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931345
+    m_Localized: "Den Kittel in einen Schrank zu pers\xF6nlichen Gegenst\xE4nden
+      legen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931346
+    m_Localized: "Den Kittel am vorgesehenen Aufbewahrungsort f\xFCr PSA aufh\xE4ngen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931347
+    m_Localized: "Was sollten Sie tun, wenn der Laborkittel kontaminiert sein k\xF6nnte?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931348
+    m_Localized: "R\xFCckst\xE4nde absch\xFCtteln und ihn zum Trocknen aufh\xE4ngen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931349
+    m_Localized: Das vorgesehene Sammel- oder Dekontaminationsverfahren befolgen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931350
+    m_Localized: Den Kittel zusammenlegen und in einer privaten Schublade aufbewahren.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931351
+    m_Localized: "Den Kittel wieder tragen, nachdem Sie ihn auf sichtbare Flecken
+      gepr\xFCft haben."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931352
+    m_Localized: "Warum sollten Laborkittel nicht auf gemeinsam genutzten St\xFChlen
+      liegen bleiben?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931353
+    m_Localized: "Sie erschweren das Verschieben der St\xFChle am Labortisch."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931354
+    m_Localized: "Sie verringern die Zahl der Sitzpl\xE4tze f\xFCr andere im Team."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931355
+    m_Localized: "Sie k\xF6nnen Kontamination auf gemeinsam genutzte Fl\xE4chen \xFCbertragen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931356
+    m_Localized: Sie lassen das Labor weniger ordentlich wirken.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931357
+    m_Localized: Falsche Abfalltrennung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931358
+    m_Localized: Arbeitsbereich
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931359
+    m_Localized: Mittel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931360
+    m_Localized: Abfallentsorgung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931361
+    m_Localized: PSA & Verhalten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931362
+    m_Localized: "Laborabfall muss vom Hausm\xFCll getrennt und im vorgesehenen Laborabfallbeh\xE4lter
+      entsorgt werden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931363
+    m_Localized: "Nicht sicher: Benutzte Handschuhe geh\xF6ren in den Laborabfallbeh\xE4lter."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931364
+    m_Localized: "Die teilnehmende Person hat die benutzten Handschuhe im Hausm\xFCll
+      nicht bemerkt."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931365
+    m_Localized: "Benutzte Laborhandschuhe liegen im Hausm\xFCll. Was sollten Sie
+      tun?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931366
+    m_Localized: "Die benutzten Handschuhe mit weiterem normalem B\xFCroabfall abdecken."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931367
+    m_Localized: "Die Verfahren f\xFCr Laborabfall befolgen und den vorgesehenen
+      Beh\xE4lter nutzen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931368
+    m_Localized: "Die Handschuhe in den Recyclingbeh\xE4lter f\xFCr Kunststoffe legen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931369
+    m_Localized: "Die Handschuhe bis zur n\xE4chsten Abfallabholung dort lassen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931370
+    m_Localized: Sie sind unsicher, ob ein Gegenstand besonders entsorgt werden muss.
+      Was sollten Sie tun?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931371
+    m_Localized: Den Gegenstand als normalen Abfall behandeln, wenn er trocken aussieht.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931372
+    m_Localized: "Das Reinigungspersonal bei der Abholung den Beh\xE4lter w\xE4hlen
+      lassen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931373
+    m_Localized: "Den n\xE4chstgelegenen Beh\xE4lter w\xE4hlen, um weiteres Hantieren
+      zu vermeiden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931374
+    m_Localized: "Die Anweisungen f\xFCr Laborabfall pr\xFCfen oder geschultes Personal
+      fragen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931375
+    m_Localized: "Welcher Gegenstand darf normalerweise in den Hausm\xFCll?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931376
+    m_Localized: Eine saubere Snackverpackung aus dem vorgesehenen Pausenraum.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931377
+    m_Localized: Eine benutzte Pipettenspitze von einem aktiven Labortisch.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931378
+    m_Localized: Handschuhe, die nach dem Umgang mit unbekannten Laborchemikalien
+      ausgezogen wurden.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931379
+    m_Localized: "Eine nicht identifizierte Fl\xFCssigkeit aus einer Reagenzienflasche."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931380
+    m_Localized: Unbeschriftete Chemikalienflasche
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931381
+    m_Localized: Hauptlabortisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931382
+    m_Localized: Mittel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931383
+    m_Localized: Chemikalienidentifikation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931384
+    m_Localized: Ordnung & Lagerung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931385
+    m_Localized: "Riechen Sie nie an einer unbekannten Chemikalie und gie\xDFen Sie
+      sie nie weg. Isolieren Sie sie und lassen Sie sie von der Laborleitung/HSE
+      identifizieren, beschriften oder entsorgen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931386
+    m_Localized: "unbekannte Chemikalien d\xFCrfen niemals durch Riechen identifiziert
+      oder in den Ausguss gegossen werden; sie m\xFCssen isoliert und von der HSE
+      identifiziert werden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931387
+    m_Localized: "Nicht sicher: An einer unbekannten Chemikalie nie riechen, sie
+      nie weggie\xDFen oder weiterverwenden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931388
+    m_Localized: Die teilnehmende Person hat die unbeschriftete Chemikalienflasche
+      nicht bemerkt.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931389
+    m_Localized: "Sie finden eine Flasche mit einer unbekannten klaren Fl\xFCssigkeit.
+      Was sollten Sie tun?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931390
+    m_Localized: "Die Flasche \xF6ffnen und ihren Geruch mit bekannten Reagenzien
+      vergleichen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931391
+    m_Localized: Eine kleine Probe mit Indikatorpapier testen, ohne es zu melden.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931392
+    m_Localized: Sie geschlossen lassen, ihre Verwendung verhindern und die Laborleitung
+      informieren.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931393
+    m_Localized: "Ein vorl\xE4ufiges Etikett anhand ihres Lagerorts anbringen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931394
+    m_Localized: "Jemand aus dem Team sagt, die Fl\xFCssigkeit m\xFCsse Wasser sein,
+      weil sie klar ist. Was sollten Sie tun?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931395
+    m_Localized: "Eine kleine Menge zur Pr\xFCfung in den Ausguss gie\xDFen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931396
+    m_Localized: "Eine gesicherte Identifizierung verlangen, bevor jemand die Fl\xFCssigkeit
+      verwendet."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931397
+    m_Localized: "Die Fl\xFCssigkeit nur f\xFCr einfache Reinigungsarbeiten verwenden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931398
+    m_Localized: "Ihr Aussehen mit anderen klaren Fl\xFCssigkeiten vergleichen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931399
+    m_Localized: Was muss geschehen, bevor diese Flasche wieder ins normale Chemikalienlager
+      kommt?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931400
+    m_Localized: "Die Flasche wird \xFCber Nacht in eine Auffangwanne gestellt."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931401
+    m_Localized: "Jemand aus dem Team best\xE4tigt, dass die Fl\xFCssigkeit harmlos
+      aussieht."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931402
+    m_Localized: "Eine vorl\xE4ufige Notiz kennzeichnet den Inhalt als unbekannt."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931403
+    m_Localized: "Die Chemikalie wird nach den Laborvorschriften ordnungsgem\xE4\xDF
+      identifiziert und beschriftet."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931404
+    m_Localized: "Fehlende PSA und Kopfh\xF6rer"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931405
+    m_Localized: Hauptlabortisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931406
+    m_Localized: Mittel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931407
+    m_Localized: PSA / Aufmerksamkeit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931408
+    m_Localized: PSA & Verhalten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931409
+    m_Localized: "Tragen Sie die vorgeschriebene Schutzbrille und nehmen Sie Kopfh\xF6rer
+      ab, damit Sie Alarme und andere Personen h\xF6ren."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931410
+    m_Localized: "Nicht sicher: Tragen Sie eine Schutzbrille und halten Sie Ihre
+      Ohren f\xFCr Alarme frei."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931411
+    m_Localized: "Die teilnehmende Person hat die ungenutzte Schutzbrille und die
+      Kopfh\xF6rer am Labortisch nicht bemerkt."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931412
+    m_Localized: "Sie sehen eine Schutzbrille und Kopfh\xF6rer neben einem aktiven
+      Arbeitsplatz. Was sollten Sie tun?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931413
+    m_Localized: "Die vorgeschriebene Schutzbrille tragen und die Kopfh\xF6rer abnehmen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931414
+    m_Localized: "Die Kopfh\xF6rer aufbehalten, aber bei der Arbeit eine normale
+      Brille tragen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931415
+    m_Localized: Die Schutzbrille nur beim Umgang mit sichtbaren Chemikalien tragen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931416
+    m_Localized: "Die Kopfh\xF6rer leiser stellen und die Schutzbrille in der N\xE4he
+      liegen lassen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931417
+    m_Localized: Sie tragen bereits eine Korrekturbrille. Was ist der geeignete Augenschutz?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931418
+    m_Localized: "Eine normale Brille tragen, wenn ihre Gl\xE4ser dick genug sind."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931419
+    m_Localized: Einen Gesichtsschutz statt einer Schutzbrille verwenden.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931420
+    m_Localized: "Eine zugelassene Schutzbrille mit Korrektur oder eine geeignete
+      \xDCberbrille verwenden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931421
+    m_Localized: "Weiter vom Labortisch entfernt arbeiten, um die Augen nicht zu
+      gef\xE4hrden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931422
+    m_Localized: "Warum sollten Kopfh\xF6rer bei aktiver Laborarbeit abgenommen werden?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931423
+    m_Localized: "Kopfh\xF6rer d\xFCrfen nur bei T\xE4tigkeiten mit geringem Risiko
+      verwendet werden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931424
+    m_Localized: "Sie k\xF6nnen verhindern, dass Sie Alarme oder andere Personen
+      h\xF6ren."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931425
+    m_Localized: "Sie k\xF6nnen Laborcomputer in der N\xE4he st\xF6ren."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931426
+    m_Localized: "Kopfh\xF6rer k\xF6nnen bei langen Experimenten unbequem werden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931427
+    m_Localized: "Besch\xE4digtes Stromkabel"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931428
+    m_Localized: "Ger\xE4tebereich"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931429
+    m_Localized: Sehr schwer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931430
+    m_Localized: Elektrische Sicherheit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931431
+    m_Localized: Ordnung & Lagerung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931432
+    m_Localized: "Besch\xE4digte Kabel bergen Stromschlag- und Brandgefahr. Ziehen
+      Sie den Stecker, kennzeichnen Sie das Ger\xE4t als au\xDFer Betrieb und melden
+      Sie es zum Austausch."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931433
+    m_Localized: "wer ein besch\xE4digtes Kabel weiter benutzt, abklebt oder versteckt,
+      l\xE4sst eine akute Stromschlag- und Brandgefahr in Betrieb."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931434
+    m_Localized: "Nicht sicher: Besch\xE4digte Kabel m\xFCssen au\xDFer Betrieb genommen
+      und gemeldet werden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931435
+    m_Localized: "Die teilnehmende Person hat das besch\xE4digte Kabel und die \xFCberlastete
+      Mehrfachsteckdose nicht erkannt."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931436
+    m_Localized: "Sie entdecken ein Stromkabel mit freiliegenden Dr\xE4hten. Was
+      sollten Sie tun?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931437
+    m_Localized: "Die besch\xE4digten Dr\xE4hte vor der Nutzung des Ger\xE4ts mit
+      Klebeband abdecken."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931438
+    m_Localized: "Das besch\xE4digte Kabel bis zur Pr\xFCfung hinter das Ger\xE4t
+      schieben."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931439
+    m_Localized: "Das Ger\xE4t weiter nutzen und die Temperatur der Mehrfachsteckdose
+      beobachten."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931440
+    m_Localized: "Die Nutzung beenden, den Strom sicher trennen, als au\xDFer Betrieb
+      kennzeichnen und melden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931441
+    m_Localized: "Mehrere Ger\xE4te mit hoher Leistung h\xE4ngen an einer Mehrfachsteckdose.
+      Was sollten Sie tun?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931442
+    m_Localized: "eine mit Hochleistungsger\xE4ten \xFCberlastete Mehrfachsteckdose
+      kann \xFCberhitzen und einen Brand ausl\xF6sen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931443
+    m_Localized: "Qualifiziertes Personal die Last und die Stromanschl\xFCsse pr\xFCfen
+      lassen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931444
+    m_Localized: "Eine weitere Mehrfachsteckdose anschlie\xDFen, um die Kabel auf
+      mehr Steckpl\xE4tze zu verteilen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931445
+    m_Localized: "Die Ger\xE4te einzeln einschalten, um \xDCberhitzung zu vermeiden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931446
+    m_Localized: "Die Mehrfachsteckdose unter den Labortisch legen, um Ber\xFChrung
+      zu vermeiden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931447
+    m_Localized: "Wann darf ein Ger\xE4t mit zuvor besch\xE4digtem Kabel wieder verwendet
+      werden?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931448
+    m_Localized: Nachdem das ausgefranste Kabel mit Isoliermaterial abgedeckt wurde.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931449
+    m_Localized: "Nachdem das Ger\xE4t beim Einschalten eine stabile Stromversorgung
+      zeigt."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931450
+    m_Localized: Nachdem qualifiziertes Personal es repariert und freigegeben hat.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931451
+    m_Localized: "Nachdem jemand aus dem Team einen erfolgreichen Testlauf durchgef\xFChrt
+      hat."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931452
+    m_Localized: "Blockierter / unvollst\xE4ndiger Erste-Hilfe-Kasten"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931453
+    m_Localized: Sicherheitsstation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931454
+    m_Localized: Sehr schwer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931455
+    m_Localized: "Notfallausr\xFCstung"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931456
+    m_Localized: Fluchtwege
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931457
+    m_Localized: "Notfallausr\xFCstung muss zug\xE4nglich und vollst\xE4ndig sein.
+      Machen Sie den Zugang frei und melden Sie das fehlende Material der HSE."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931458
+    m_Localized: "Nicht sicher: Erste-Hilfe-K\xE4sten m\xFCssen zug\xE4nglich und
+      vollst\xE4ndig best\xFCckt sein."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931459
+    m_Localized: Die teilnehmende Person hat nicht erkannt, dass der Schrank blockiert
+      war und Material fehlte.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931460
+    m_Localized: Flaschen versperren den Zugang zum Erste-Hilfe-Schrank. Was sollten
+      Sie tun?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931461
+    m_Localized: "Ein zus\xE4tzliches Schild neben dem Schrank anbringen und die
+      Flaschen stehen lassen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931462
+    m_Localized: "Die Hindernisse entfernen, damit der Schrank sofort zug\xE4nglich
+      ist."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931463
+    m_Localized: Einen anderen Erste-Hilfe-Kasten nutzen, ohne den blockierten Schrank
+      zu melden.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931464
+    m_Localized: "Den Schrank schlie\xDFen und andere bitten, den Bereich zu meiden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931465
+    m_Localized: Sie bemerken, dass mehrere wichtige Erste-Hilfe-Materialien fehlen.
+      Was sollten Sie tun?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931466
+    m_Localized: "Das restliche Material so umordnen, dass es die leeren Pl\xE4tze
+      f\xFCllt."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931467
+    m_Localized: "Andere bitten, bis zur n\xE4chsten Inspektion eigenes Material
+      mitzubringen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931468
+    m_Localized: Mit der Nachbestellung warten, bis jemand das Material braucht.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931469
+    m_Localized: "Den Mangel melden und das Auff\xFCllen \xFCber die zust\xE4ndigen
+      Personen veranlassen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931470
+    m_Localized: "Was sollte bei einer routinem\xE4\xDFigen Erste-Hilfe-Kontrolle
+      gepr\xFCft werden?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931471
+    m_Localized: "Der Kasten ist zug\xE4nglich, richtig best\xFCckt und das Material
+      ist verwendbar."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931472
+    m_Localized: "Der Schrank hat keine sichtbaren Kratzer, Fingerabdr\xFCcke oder
+      sonstigen Spuren."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931473
+    m_Localized: "Alle Gegenst\xE4nde sind \xFCber Augenh\xF6he gelagert, um Missbrauch
+      zu verhindern."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931474
+    m_Localized: "Der Schrank ist abgeschlossen, um unn\xF6tigen Zugriff zu verhindern."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931475
+    m_Localized: Falsche Chemikalienlagerung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931476
+    m_Localized: Chemikalienlager
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931477
+    m_Localized: Sehr schwer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931478
+    m_Localized: Chemikalienlagerung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931479
+    m_Localized: Ordnung & Lagerung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931480
+    m_Localized: "\xC4tzende Stoffe geh\xF6ren nach unten in eine Auffangwanne, getrennt
+      von unvertr\xE4glichen Stoffen wie brennbaren Substanzen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931481
+    m_Localized: "\xE4tzende Stoffe d\xFCrfen nicht hoch oben oder zusammen mit unvertr\xE4glichen
+      Stoffen gelagert werden; ein Herunterfallen oder eine Reaktion kann schwere
+      Verletzungen verursachen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931482
+    m_Localized: "Nicht sicher: \xC4tzende Stoffe geh\xF6ren nach unten, in eine
+      Auffangwanne, fern von brennbaren Stoffen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931483
+    m_Localized: "Die teilnehmende Person hat nicht bemerkt, dass \xE4tzende S\xE4ure
+      weit oben neben brennbaren Stoffen gelagert war."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931484
+    m_Localized: "Eine Flasche mit \xE4tzender S\xE4ure steht auf einem hohen Regal.
+      Wo sollte sie aufbewahrt werden?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931485
+    m_Localized: "Auf dem oberen Regal mit einem gr\xF6\xDFeren Gefahrenetikett."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931486
+    m_Localized: "Auf demselben Regal, zusammen mit \xE4hnlich gro\xDFen Chemikalienflaschen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931487
+    m_Localized: "Im vorgesehenen bodennahen Lager f\xFCr \xE4tzende Stoffe mit Auffangwanne."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931488
+    m_Localized: "Im Labork\xFChlschrank, um m\xF6gliche Dampfentwicklung zu verringern."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931489
+    m_Localized: "Wie sollten \xE4tzende S\xE4uren und unvertr\xE4gliche Chemikalien
+      angeordnet werden?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931490
+    m_Localized: "Stoffe nach chemischer Vertr\xE4glichkeit und Laborvorschriften
+      getrennt lagern."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931491
+    m_Localized: "Stoffe nach Flaschengr\xF6\xDFe und Etikettenfarbe gruppieren."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931492
+    m_Localized: "Alle fl\xFCssigen Chemikalien in dieselbe Auffangwanne stellen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931493
+    m_Localized: "\xC4tzende und brennbare Chemikalien platzsparend zusammen lagern."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931494
+    m_Localized: "Warum ist es gef\xE4hrlich, HCl \xFCber Kopfh\xF6he neben unvertr\xE4glichen
+      Chemikalien zu lagern?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931495
+    m_Localized: "Kleinere Chemikalienflaschen k\xF6nnten schwer zu finden sein."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931496
+    m_Localized: "Eine herunterfallende oder auslaufende Flasche k\xF6nnte zu Exposition
+      und Reaktionen f\xFChren."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931497
+    m_Localized: "Chemikalienetiketten k\xF6nnten auf oberen Regalen schneller verblassen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931498
+    m_Localized: "Die Anordnung k\xF6nnte bei Sicherheitsinspektionen unordentlich
+      wirken."
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

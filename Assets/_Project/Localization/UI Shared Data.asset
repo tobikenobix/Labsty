@@ -1,0 +1,528 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: UI Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: UI
+  m_TableCollectionNameGuidString: 2f9d7293f76e6ec43882ebc6deaec43c
+  m_Entries:
+  - m_Id: 4365213696
+    m_Key: lab.started
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4453294080
+    m_Key: lab.calculating
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488384
+    m_Key: q.hint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488385
+    m_Key: q.wrongCritical
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488386
+    m_Key: q.wrong
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488387
+    m_Key: q.submitKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488388
+    m_Key: q.submit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488389
+    m_Key: finish.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488390
+    m_Key: finish.bodyMissed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488391
+    m_Key: finish.body
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488392
+    m_Key: finish.continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488393
+    m_Key: tab.footer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488394
+    m_Key: q.dangerous
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488395
+    m_Key: common.close
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488396
+    m_Key: help.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488397
+    m_Key: help.desktop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488398
+    m_Key: help.vr
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488399
+    m_Key: tab.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488400
+    m_Key: tab.remaining
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488401
+    m_Key: station.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488402
+    m_Key: station.body
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488403
+    m_Key: station.finish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488404
+    m_Key: lab.looksOk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488405
+    m_Key: lab.itemOk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488406
+    m_Key: lab.resolved
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488407
+    m_Key: lab.timeUp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488408
+    m_Key: lab.allResolved
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488409
+    m_Key: lab.submitted
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488410
+    m_Key: lobby.toastTeleport
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488411
+    m_Key: lobby.toastSelected
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488412
+    m_Key: lobby.toastReady
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488413
+    m_Key: lobby.done
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488414
+    m_Key: lobby.step1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488415
+    m_Key: lobby.step2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488416
+    m_Key: lobby.startReady
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488417
+    m_Key: lobby.start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488418
+    m_Key: lobby.kicker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488419
+    m_Key: lobby.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488420
+    m_Key: lobby.language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488421
+    m_Key: lobby.hazards
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488422
+    m_Key: lobby.chooseHazards
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488423
+    m_Key: lobby.warmup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488424
+    m_Key: lobby.rules
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488425
+    m_Key: hz.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488426
+    m_Key: hz.sub
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488427
+    m_Key: hz.pool
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488428
+    m_Key: hz.off
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488429
+    m_Key: hz.perRun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488430
+    m_Key: hz.legend
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488431
+    m_Key: hz.allOn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488432
+    m_Key: hz.lastOn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488433
+    m_Key: hz.caption
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488434
+    m_Key: lobby.sub
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488435
+    m_Key: ctrl.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488436
+    m_Key: ctrl.caption
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488437
+    m_Key: ctrl.trigger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488438
+    m_Key: ctrl.stick
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488439
+    m_Key: ctrl.grip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488440
+    m_Key: end.kicker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488441
+    m_Key: end.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488442
+    m_Key: end.chipReview
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488443
+    m_Key: end.chipRetrain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488444
+    m_Key: end.chipPassed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488445
+    m_Key: end.detection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488446
+    m_Key: end.points
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488447
+    m_Key: end.decisions
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488448
+    m_Key: end.yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488449
+    m_Key: end.no
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488450
+    m_Key: end.rowScore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488451
+    m_Key: end.rowMinScore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488452
+    m_Key: end.rowMinDetection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488453
+    m_Key: end.rowMinDecisions
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488454
+    m_Key: end.rowCritical
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488455
+    m_Key: end.rowNoCritical
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488456
+    m_Key: end.issueCritical
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488457
+    m_Key: end.missedDefault
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488458
+    m_Key: end.noAnswer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488459
+    m_Key: end.issueWrong
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488460
+    m_Key: end.more
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488461
+    m_Key: end.noIssues
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488462
+    m_Key: end.decNotYet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488463
+    m_Key: end.decQualified
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488464
+    m_Key: end.decision
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488465
+    m_Key: end.review
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488466
+    m_Key: end.lobby
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488467
+    m_Key: end.again
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488468
+    m_Key: end.exported
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488469
+    m_Key: end.decTextReview
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488470
+    m_Key: end.decTextRetrain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488471
+    m_Key: end.decTextPass
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488472
+    m_Key: end.missedOne
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488473
+    m_Key: end.missedMany
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488474
+    m_Key: end.joinNone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488475
+    m_Key: end.and
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488476
+    m_Key: end.explTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488477
+    m_Key: end.notAnswered
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488478
+    m_Key: end.missed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488479
+    m_Key: end.correct
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488480
+    m_Key: end.youChose
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488481
+    m_Key: end.closeB
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488482
+    m_Key: end.noRunTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488483
+    m_Key: end.noRunBody
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488484
+    m_Key: end.goLobby
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488485
+    m_Key: board.kicker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488486
+    m_Key: board.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488487
+    m_Key: board.sub
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488488
+    m_Key: board.you
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488489
+    m_Key: decoy.Balance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488490
+    m_Key: decoy.Centrifuge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488491
+    m_Key: decoy.Clean glassware
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488492
+    m_Key: decoy.Coat rack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488493
+    m_Key: decoy.Corrosives cabinet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682688
+    m_Key: decoy.Eye wash station
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682689
+    m_Key: decoy.Fire extinguisher
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682690
+    m_Key: decoy.Fume hood
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682691
+    m_Key: decoy.Hot plate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682692
+    m_Key: decoy.Lab notebook
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682693
+    m_Key: decoy.Lab waste bin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682694
+    m_Key: decoy.Labeled buffer bottles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682695
+    m_Key: decoy.Labeled saline bottle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682696
+    m_Key: decoy.Laptop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682697
+    m_Key: decoy.Pipettes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682698
+    m_Key: decoy.Recycling bin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682699
+    m_Key: decoy.Sample tube rack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682700
+    m_Key: decoy.Sink
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 6819878568427782452
+  references:
+    version: 2
+    RefIds:
+    - rid: 6819878568427782452
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1795211782369

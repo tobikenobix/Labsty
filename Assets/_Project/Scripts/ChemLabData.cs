@@ -49,6 +49,7 @@ namespace ChemLab
         public string wrongFeedback;     // one line shown after a wrong answer
         public string missedFeedback;    // report line when the hazard was never found
         public QuestionData[] questions; // the pool; one is drawn per run
+        [NonSerialized] public string exportCategory;   // English hudCategory, kept for the JSON/CSV export
     }
 
     [Serializable]
@@ -91,7 +92,37 @@ namespace ChemLab
                 else foreach (var q in h.questions)
                     if (q.Option(q.correct) == null) Debug.LogError($"[ChemLab] {h.id} {q.id}: correct answer '{q.correct}' is not one of its options.");
             }
+            Localize(cfg);
             return cfg;
+        }
+
+        /// <summary>Swaps the English JSON text for the selected language's "Hazards" table entries (English stays where none exists).</summary>
+        static void Localize(LabConfig cfg)
+        {
+            cfg.supervisorWelcome = L10n.Hazard("Lab.welcome", cfg.supervisorWelcome);
+            foreach (var h in cfg.hazards)
+            {
+                h.exportCategory = h.hudCategory;
+                string k = h.id + ".";
+                h.title = L10n.Hazard(k + "title", h.title);
+                h.area = L10n.Hazard(k + "area", h.area);
+                h.difficulty = L10n.Hazard(k + "difficulty", h.difficulty);
+                h.category = L10n.Hazard(k + "category", h.category);
+                h.hudCategory = L10n.Hazard(k + "hudCategory", h.hudCategory);
+                h.explanation = L10n.Hazard(k + "explanation", h.explanation);
+                h.criticalReason = L10n.Hazard(k + "criticalReason", h.criticalReason);
+                h.wrongFeedback = L10n.Hazard(k + "wrongFeedback", h.wrongFeedback);
+                h.missedFeedback = L10n.Hazard(k + "missedFeedback", h.missedFeedback);
+                if (h.questions == null) continue;
+                foreach (var q in h.questions)
+                {
+                    string qk = k + q.id + ".";
+                    q.question = L10n.Hazard(qk + "question", q.question);
+                    q.explanation = L10n.Hazard(qk + "explanation", q.explanation);
+                    q.criticalReason = L10n.Hazard(qk + "criticalReason", q.criticalReason);
+                    foreach (var o in q.options) o.text = L10n.Hazard(qk + "option" + o.key, o.text);
+                }
+            }
         }
     }
 

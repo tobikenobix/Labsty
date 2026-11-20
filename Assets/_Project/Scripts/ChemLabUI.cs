@@ -86,7 +86,7 @@ namespace ChemLab
             tablet.gameObject.SetActive(true);
             station.gameObject.SetActive(true);
             UpdateHud();
-            Toast($"Inspection started: {K.Mmss(seconds)} on the clock. Find all {S.HazardCount} hazards!", 3.5f, K.Accent);
+            Toast(L10n.T("lab.started", K.Mmss(seconds), S.HazardCount), 3.5f, K.Accent);
         }
 
         public void ShowRunEnded(string title)
@@ -94,7 +94,7 @@ namespace ChemLab
             tablet.gameObject.SetActive(false);
             station.gameObject.SetActive(false);
             help.gameObject.SetActive(false);
-            ShowMessage(title, "Calculating your results...", null, null);
+            ShowMessage(title, L10n.T("lab.calculating"), null, null);
         }
 
         public void ShowQuestion(HazardRecord rec, Vector3 hazardPos)
@@ -113,7 +113,7 @@ namespace ChemLab
                 qOpt[i].text.text = rec.q.options[i].text;
                 PaintOption(i, null);
             }
-            qFeedback.text = $"<color={K.Hex(K.TextDim)}>Point at an answer and pull the trigger, then press A to submit.</color>";
+            qFeedback.text = $"<color={K.Hex(K.TextDim)}>{L10n.T("q.hint")}</color>";
             SetSubmit(null);
             K.PlaceInFront(question.transform, 0.95f, -0.05f, hazardPos);
             question.gameObject.SetActive(true);
@@ -131,7 +131,7 @@ namespace ChemLab
             qStruck[key] = critical;
             for (int i = 0; i < rec.q.options.Length; i++) PaintOption(i, null);
             qFeedback.text = $"<color={K.Hex(K.Bad)}><b>{rec.data.wrongFeedback}</b></color> " +
-                             (critical ? "Dangerous choice, logged for safety review. Choose again." : "Logged as a mistake. Choose again.");
+                             (critical ? L10n.T("q.wrongCritical") : L10n.T("q.wrong"));
             SetSubmit(null);
         }
 
@@ -164,7 +164,7 @@ namespace ChemLab
         {
             qSubmit.interactable = key != null;
             K.SetButtonColor(qSubmit, key != null ? K.Ok : K.SurfaceHi);
-            K.ButtonLabel(qSubmit).text = key != null ? $"Submit answer {key}" : "Submit";
+            K.ButtonLabel(qSubmit).text = key != null ? L10n.T("q.submitKey", key) : L10n.T("q.submit");
             var ink = key != null ? Color.white : K.TextDim;
             foreach (var g in qSubmit.GetComponentsInChildren<Graphic>(true))
                 if (g != qSubmit.targetGraphic) g.color = ink;
@@ -179,10 +179,10 @@ namespace ChemLab
         public void ShowFinishPrompt()
         {
             int left = S.HazardCount - S.ResolvedCount;
-            ShowMessage("Finish the inspection?",
-                left > 0 ? "You may have missed some hazards. Anything you have not found counts as missed.\nContinue inspecting or submit now?"
-                         : "Submit your inspection now?",
-                "Continue", () => S.ContinueInspecting(), "Submit", () => S.FinishNow());
+            ShowMessage(L10n.T("finish.title"),
+                left > 0 ? L10n.T("finish.bodyMissed")
+                         : L10n.T("finish.body"),
+                L10n.T("finish.continue"), () => S.ContinueInspecting(), L10n.T("q.submit"), () => S.FinishNow());
         }
 
         public void CloseMessage() => msg.gameObject.SetActive(false);
@@ -231,7 +231,7 @@ namespace ChemLab
                 row.count.color = done == inCat.Count ? K.Ok : K.Text;
                 row.bar.Set(inCat.Count == 0 ? 0 : done / (float)inCat.Count);
             }
-            tabFooter.text = $"Resolved <b>{S.ResolvedCount}/{S.HazardCount}</b>     <color={K.Hex(K.TextDim)}>X controls  ·  Y finish</color>";
+            tabFooter.text = L10n.T("tab.footer", S.ResolvedCount, S.HazardCount, K.Hex(K.TextDim));
         }
 
         // ================= builders =================
@@ -248,8 +248,8 @@ namespace ChemLab
             K.Band(t, size, 150f, K.Warn);
             K.WarningSign(t, new Vector2(-404, 365), 112f);
             qTitle = K.Label(t, "Title", "", new Vector2(74, 384), new Vector2(772, 58), 46, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
-            qTitle.enableAutoSizing = true; qTitle.fontSizeMin = 36; qTitle.fontSizeMax = 46;
-            qMeta = K.Label(t, "Meta", "", new Vector2(74, 332), new Vector2(772, 36), 28, K.Text, TextAlignmentOptions.Left);
+            K.FitOneLine(qTitle, 28);   // long translated titles shrink instead of wrapping out of the band
+            qMeta = K.FitOneLine(K.Label(t, "Meta", "", new Vector2(74, 332), new Vector2(772, 36), 28, K.Text, TextAlignmentOptions.Left), 22);
 
             qText = K.Label(t, "Question", "", new Vector2(0, 222), new Vector2(920, 84), 31, K.Text, TextAlignmentOptions.TopLeft);
 
@@ -276,13 +276,14 @@ namespace ChemLab
 
                 o.text = K.Label(o.bg.transform, "Text", "", new Vector2(OptTextX, 0), new Vector2(OptTextW, 92), 28, K.Text, TextAlignmentOptions.MidlineLeft);
                 o.text.enableAutoSizing = true; o.text.fontSizeMin = 22; o.text.fontSizeMax = 28;
-                o.tag = K.Chip(o.bg.transform, "Dangerous", "DANGEROUS", new Vector2(363, 0), new Vector2(170, 46), K.Bad, Color.white).transform.parent.gameObject;
+                o.tag = K.Chip(o.bg.transform, "Dangerous", L10n.T("q.dangerous"), new Vector2(363, 0), new Vector2(170, 46), K.Bad, Color.white).transform.parent.gameObject;
                 K.Img(t, "Rule" + i, new Vector2(0, y - 49), new Vector2(920, 2), K.Rule).raycastTarget = false;
             }
 
             qFeedback = K.Label(t, "Feedback", "", new Vector2(0, -288), new Vector2(920, 84), 28, K.Text, TextAlignmentOptions.TopLeft);
-            K.Button(t, "Close", "Close", new Vector2(-235, -385), new Vector2(430, 70), K.Style.Ghost, () => S.CloseQuestion(), key: "B");
-            qSubmit = K.Button(t, "Submit", "Submit", new Vector2(235, -385), new Vector2(430, 70), K.Style.Primary, () => S.SubmitCurrent(), key: "A");
+            qFeedback.enableAutoSizing = true; qFeedback.fontSizeMin = 22; qFeedback.fontSizeMax = 28;   // three lines fit at 22
+            K.Button(t, "Close", L10n.T("common.close"), new Vector2(-235, -385), new Vector2(430, 70), K.Style.Ghost, () => S.CloseQuestion(), key: "B");
+            qSubmit = K.Button(t, "Submit", L10n.T("q.submit"), new Vector2(235, -385), new Vector2(430, 70), K.Style.Primary, () => S.SubmitCurrent(), key: "A");
             question.gameObject.SetActive(false);
         }
 
@@ -323,7 +324,7 @@ namespace ChemLab
         void BuildHelp()
         {
             help = K.Panel(transform, "Panel_Controls", new Vector2(900, 560), blocksRays: false);
-            K.Label(help.transform, "Title", "Controls", new Vector2(0, 220), new Vector2(820, 60), 40, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
+            K.Label(help.transform, "Title", L10n.T("help.title"), new Vector2(0, 220), new Vector2(820, 60), 40, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
             ChemLabLobby.ControllerGraphic(help.transform, new Vector2(-250, -20), 0.9f);
             K.Label(help.transform, "Body", ControlsText, new Vector2(170, -30), new Vector2(520, 420), 25, K.Text, TextAlignmentOptions.MidlineLeft);
             help.gameObject.SetActive(false);
@@ -331,19 +332,15 @@ namespace ChemLab
 
         public static string ControlsText =>
             ChemLabControls.DesktopMode
-                ? "<b>WASD</b> walk\n<b>Hold right mouse</b> to look\n<b>Left click</b> to select\n<b>Enter</b> submit   <b>Esc</b> close\n<b>H</b> controls   <b>F</b> finish"
-                : $"<b><color={K.Hex(K.Accent)}>Trigger</color></b>  select / inspect\n" +
-                  "<b>Stick forward</b>  aim, release to teleport\n" +
-                  "<b>Stick left/right</b>  turn 45°    <b>back</b>  turn around\n" +
-                  "<b>A</b>  submit    <b>B</b>  close\n" +
-                  "<b>X</b>  this card    <b>Y / Menu</b>  finish";
+                ? L10n.T("help.desktop")
+                : L10n.T("help.vr", K.Hex(K.Accent));
 
         void BuildTablet()
         {
             tablet = K.Panel(transform, "HUD_Tablet", new Vector2(620, 560), 0.0007f, blocksRays: false);
-            K.Label(tablet.transform, "Title", "LAB SAFETY INSPECTION", new Vector2(0, 236), new Vector2(560, 40), 24, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
+            K.Label(tablet.transform, "Title", L10n.T("tab.title"), new Vector2(0, 236), new Vector2(560, 40), 24, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
             tabTimer = K.Label(tablet.transform, "Timer", "07:00", new Vector2(0, 170), new Vector2(560, 90), 86, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
-            K.Label(tablet.transform, "TimerCaption", "remaining", new Vector2(150, 150), new Vector2(240, 40), 24, K.TextDim, TextAlignmentOptions.Right);
+            K.Label(tablet.transform, "TimerCaption", L10n.T("tab.remaining"), new Vector2(150, 150), new Vector2(240, 40), 24, K.TextDim, TextAlignmentOptions.Right);
             tabTimeBar = K.ProgressBar(tablet.transform, "TimeBar", new Vector2(0, 108), new Vector2(560, 12), K.Accent);
 
             tabFooter = K.Label(tablet.transform, "Footer", "", new Vector2(0, -238), new Vector2(560, 44), 23, K.Text, TextAlignmentOptions.Left);
@@ -386,9 +383,9 @@ namespace ChemLab
         void BuildStation()
         {
             station = K.Panel(transform, "Panel_FinishStation", new Vector2(620, 330));
-            K.Label(station.transform, "Title", "Inspection Station", new Vector2(0, 100), new Vector2(560, 60), 38, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
-            K.Label(station.transform, "Body", "Done early? Submit here, or press Y / Menu.", new Vector2(0, 30), new Vector2(560, 60), 24, K.TextDim, TextAlignmentOptions.Center);
-            K.Button(station.transform, "Finish", "Finish Inspection", new Vector2(0, -85), new Vector2(400, 84), K.Style.Primary, () => S.RequestFinish());
+            K.Label(station.transform, "Title", L10n.T("station.title"), new Vector2(0, 100), new Vector2(560, 60), 38, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
+            K.Label(station.transform, "Body", L10n.T("station.body"), new Vector2(0, 30), new Vector2(560, 60), 24, K.TextDim, TextAlignmentOptions.Center);
+            K.Button(station.transform, "Finish", L10n.T("station.finish"), new Vector2(0, -85), new Vector2(400, 84), K.Style.Primary, () => S.RequestFinish());
             if (finishStationAnchor != null) station.transform.SetPositionAndRotation(finishStationAnchor.position, finishStationAnchor.rotation);
             station.gameObject.SetActive(false);
         }

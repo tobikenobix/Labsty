@@ -77,11 +77,11 @@ namespace ChemLab
 
             float top = H / 2f - 40f;
             // header
-            Txt("Kicker", $"{ChemLabRun.StudentId.ToUpper()} · SESSION {ChemLabRun.Attempt:000}", L, top, 600, 34, 22, InkDim, TextAlignmentOptions.Left);
-            Txt("Title", "Assessment Result", L, top - 34, 700, 64, 46, Ink, TextAlignmentOptions.Left, FontStyles.Bold);
+            Txt("Kicker", L10n.T("end.kicker", ChemLabRun.StudentId.ToUpper(), ChemLabRun.Attempt.ToString("000")), L, top, 600, 34, 22, InkDim, TextAlignmentOptions.Left);
+            Txt("Title", L10n.T("end.title"), L, top - 34, 700, 64, 46, Ink, TextAlignmentOptions.Left, FontStyles.Bold);
             Txt("Score", $"{r.score}/100", R - 420, top - 4, 420, 90, 78, Ink, TextAlignmentOptions.Right, FontStyles.Bold);
-            var (chipText, chipCol) = r.outcome == Outcome.SafetyReviewRequired ? ("Safety review required", Red)
-                                    : r.outcome == Outcome.RetrainingRequired ? ("Retraining required", Amber) : ("Passed", Green);
+            var (chipText, chipCol) = r.outcome == Outcome.SafetyReviewRequired ? (L10n.T("end.chipReview"), Red)
+                                    : r.outcome == Outcome.RetrainingRequired ? (L10n.T("end.chipRetrain"), Amber) : (L10n.T("end.chipPassed"), Green);
             float chipW = 34 + chipText.Length * 15f;
             K.Chip(t, "Outcome", chipText, new Vector2(R - chipW / 2f, top - 122), new Vector2(chipW, 44), new Color(chipCol.r, chipCol.g, chipCol.b, 0.14f), chipCol)
                 .fontStyle = FontStyles.Normal;
@@ -94,8 +94,8 @@ namespace ChemLab
                 Txt("StatB", big, x, sy - 44, 500, 58, 44, Ink, TextAlignmentOptions.Left, FontStyles.Bold);
                 Txt("StatS", small, x, sy - 104, 500, 40, 28, InkDim, TextAlignmentOptions.Left);
             }
-            Stat(L + 20, "Hazard detection", $"{r.detected}/{total}", $"{r.detectionPoints} / {r.maxDetectionPoints} points");
-            Stat(L + inner / 2f + 20, "Correct decisions", $"{r.correct}/{r.answered}", $"{r.decisionPoints} / {r.maxDecisionPoints} points");
+            Stat(L + 20, L10n.T("end.detection"), $"{r.detected}/{total}", L10n.T("end.points", r.detectionPoints, r.maxDetectionPoints));
+            Stat(L + inner / 2f + 20, L10n.T("end.decisions"), $"{r.correct}/{r.answered}", L10n.T("end.points", r.decisionPoints, r.maxDecisionPoints));
             HRule(sy - 172);
 
             // criteria rows
@@ -108,31 +108,31 @@ namespace ChemLab
                 ry -= rowH;
                 if (rule) HRule(ry);
             }
-            string Yes(bool ok) => ok ? $"<color={K.Hex(Green)}><b>Yes</b></color>" : $"<color={K.Hex(Red)}><b>No</b></color>";
-            Row("Numerical score", $"{r.score}/100", Ink);
-            Row("Minimum score achieved", Yes(r.minScoreOk), Ink);
-            Row("Minimum detection achieved", Yes(r.minDetectionOk), Ink);
-            Row("Minimum decisions achieved", Yes(r.minDecisionsOk), Ink);
-            Row("All critical hazards correct", Yes(r.allCriticalHazardsCorrect), Ink);
-            Row("No critical unsafe choice", Yes(r.noCriticalChoice), Ink, rule: false);
+            string Yes(bool ok) => ok ? $"<color={K.Hex(Green)}><b>{L10n.T("end.yes")}</b></color>" : $"<color={K.Hex(Red)}><b>{L10n.T("end.no")}</b></color>";
+            Row(L10n.T("end.rowScore"), $"{r.score}/100", Ink);
+            Row(L10n.T("end.rowMinScore"), Yes(r.minScoreOk), Ink);
+            Row(L10n.T("end.rowMinDetection"), Yes(r.minDetectionOk), Ink);
+            Row(L10n.T("end.rowMinDecisions"), Yes(r.minDecisionsOk), Ink);
+            Row(L10n.T("end.rowCritical"), Yes(r.allCriticalHazardsCorrect), Ink);
+            Row(L10n.T("end.rowNoCritical"), Yes(r.noCriticalChoice), Ink, rule: false);
 
             // issues: critical choices, critical hazards not answered correctly, missed, other wrong answers
             var issues = new List<(bool critical, string title, string body)>();
             foreach (var h in recs.Where(x => x.critical))
             {
                 var o = h.q.Option(h.selected);
-                string choice = o != null ? char.ToLower(o.text[0]) + o.text.Substring(1).TrimEnd('.') : h.selected;
+                string choice = o != null ? L10n.LowerFirst(o.text).TrimEnd('.') : h.selected;
                 issues.Add((true, $"{h.data.id} — {h.data.title}",
-                    $"The student selected {h.selected}: {choice}. This is a critical unsafe choice because {h.CriticalReason}"));
+                    L10n.T("end.issueCritical", h.selected, choice, h.CriticalReason)));
             }
             foreach (var h in recs.Where(x => !x.detected))
-                issues.Add((h.data.mandatoryCritical, $"{h.data.id} — {h.data.title}", h.data.missedFeedback ?? "The student did not detect this hazard."));
+                issues.Add((h.data.mandatoryCritical, $"{h.data.id} — {h.data.title}", h.data.missedFeedback ?? L10n.T("end.missedDefault")));
             foreach (var h in recs.Where(x => x.detected && !x.critical && x.isCorrect != true))
                 issues.Add((h.data.mandatoryCritical, $"{h.data.id} — {h.data.title}",
-                    h.selected == null ? "Found, but no answer was submitted." : $"The student selected {h.selected} instead of {h.q.correct}. {h.Explanation}"));
+                    h.selected == null ? L10n.T("end.noAnswer") : L10n.T("end.issueWrong", h.selected, h.q.correct, h.Explanation)));
 
             // Issue list: each block is measured so short and long texts stack without gaps or overlap.
-            float boxTop = -H / 2f + 330f;           // top of the final decision box
+            float boxTop = -H / 2f + 380f;           // top of the final decision box (room for 4-5 lines in longer languages)
             float limit = boxTop + 24f;              // keep clear of the box
             float iy = ry - 22;
             int shown = 0;
@@ -157,25 +157,26 @@ namespace ChemLab
                 shown++;
             }
             if (shown < issues.Count)
-                Txt("More", $"+ {issues.Count - shown} more: see Review explanations", L + 56, iy + gap - 4, bodyW, moreH, 22, InkDim, TextAlignmentOptions.Left, FontStyles.Italic);
+                Txt("More", L10n.T("end.more", issues.Count - shown), L + 56, iy + gap - 4, bodyW, moreH, 22, InkDim, TextAlignmentOptions.Left, FontStyles.Italic);
             if (issues.Count == 0)
-                Txt("NoIssues", "No issues: every hazard was found and handled correctly.", L, iy, inner, 46, 28, Green, TextAlignmentOptions.Left);
+                Txt("NoIssues", L10n.T("end.noIssues"), L, iy, inner, 46, 28, Green, TextAlignmentOptions.Left);
 
             // final decision box
-            string decision = r.outcome == Outcome.SafetyReviewRequired ? "Not yet qualified"
-                            : r.outcome == Outcome.RetrainingRequired ? "Retraining required" : "Qualified";
-            var box = K.Img(t, "DecisionBox", new Vector2(0, boxTop - 95), new Vector2(inner, 190), new Color(0f, 0f, 0f, 0.035f), K.Rounded);
+            string decision = r.outcome == Outcome.SafetyReviewRequired ? L10n.T("end.decNotYet")
+                            : r.outcome == Outcome.RetrainingRequired ? L10n.T("end.chipRetrain") : L10n.T("end.decQualified");
+            var box = K.Img(t, "DecisionBox", new Vector2(0, boxTop - 120), new Vector2(inner, 240), new Color(0f, 0f, 0f, 0.035f), K.Rounded);
             box.raycastTarget = false;
-            Txt("DecisionTitle", $"Final decision: {decision}", L + 20, boxTop - 14, inner - 40, 48, 34, Ink, TextAlignmentOptions.Left, FontStyles.Bold);
-            Txt("DecisionBody", DecisionText(r, recs), L + 20, boxTop - 64, inner - 40, 116, 27, Ink, TextAlignmentOptions.TopLeft);
+            Txt("DecisionTitle", L10n.T("end.decision", decision), L + 20, boxTop - 14, inner - 40, 48, 34, Ink, TextAlignmentOptions.Left, FontStyles.Bold);
+            var decisionBody = Txt("DecisionBody", DecisionText(r, recs), L + 20, boxTop - 64, inner - 40, 166, 27, Ink, TextAlignmentOptions.TopLeft);
+            decisionBody.enableAutoSizing = true; decisionBody.fontSizeMin = 22; decisionBody.fontSizeMax = 27;   // longer languages need a fourth line
 
             // actions
             float by = -H / 2f + 80f;
-            var review = K.Button(t, "Review", "Review explanations", new Vector2(-370, by), new Vector2(340, 78), K.Style.Ghost, ToggleExplanations, 26);
-            K.Button(t, "Lobby", "Back to Lobby", new Vector2(0, by), new Vector2(340, 78), K.Style.Secondary, Lobby, 26);
-            K.Button(t, "Again", "Play again  (A)", new Vector2(370, by), new Vector2(340, 78), K.Style.Primary, PlayAgain, 26);
+            var review = K.Button(t, "Review", L10n.T("end.review"), new Vector2(-370, by), new Vector2(340, 78), K.Style.Ghost, ToggleExplanations, 26);
+            K.Button(t, "Lobby", L10n.T("end.lobby"), new Vector2(0, by), new Vector2(340, 78), K.Style.Secondary, Lobby, 26);
+            K.Button(t, "Again", L10n.T("end.again"), new Vector2(370, by), new Vector2(340, 78), K.Style.Primary, PlayAgain, 26);
             if (!string.IsNullOrEmpty(ChemLabRun.LastJsonPath))
-                K.Label(t, "Export", "Exported: " + ChemLabRun.LastJsonPath + "  (+ .csv)", new Vector2(0, -H / 2f + 22f), new Vector2(inner, 26), 15, InkDim, TextAlignmentOptions.Center);
+                K.Label(t, "Export", L10n.T("end.exported", ChemLabRun.LastJsonPath), new Vector2(0, -H / 2f + 22f), new Vector2(inner, 26), 15, InkDim, TextAlignmentOptions.Center);
 
             if (resultsAnchor != null) results.transform.SetPositionAndRotation(resultsAnchor.position, resultsAnchor.rotation);
         }
@@ -183,30 +184,30 @@ namespace ChemLab
         static string DecisionText(ChemLabResult r, List<HazardRecord> recs)
         {
             var sb = new StringBuilder();
-            var criticalTopics = recs.Where(x => x.critical || (x.data.mandatoryCritical && x.isCorrect != true)).Select(x => x.data.category.ToLower()).Distinct().ToList();
-            var missed = recs.Where(x => !x.detected).Select(x => x.data.title.ToLower()).ToList();
-            var wrong = recs.Where(x => x.detected && x.isCorrect != true && !x.critical).Select(x => x.data.category.ToLower()).Distinct().ToList();
+            var criticalTopics = recs.Where(x => x.critical || (x.data.mandatoryCritical && x.isCorrect != true)).Select(x => L10n.Lower(x.data.category)).Distinct().ToList();
+            var missed = recs.Where(x => !x.detected).Select(x => L10n.Lower(x.data.title)).ToList();
+            var wrong = recs.Where(x => x.detected && x.isCorrect != true && !x.critical).Select(x => L10n.Lower(x.data.category)).Distinct().ToList();
             switch (r.outcome)
             {
                 case Outcome.SafetyReviewRequired:
-                    sb.Append($"Despite scoring {r.score}/100, the student must review the {Join(criticalTopics)} procedure and complete another assessment.");
+                    sb.Append(L10n.T("end.decTextReview", r.score, Join(criticalTopics)));
                     break;
                 case Outcome.RetrainingRequired:
-                    sb.Append($"With {r.score}/100 the minimum requirements were not met. The student should review {Join(wrong.Count > 0 ? wrong : criticalTopics)} and take a fresh assessment.");
+                    sb.Append(L10n.T("end.decTextRetrain", r.score, Join(wrong.Count > 0 ? wrong : criticalTopics)));
                     break;
                 default:
-                    sb.Append($"The student demonstrated competence with {r.score}/100 and no safety-critical mistakes.");
+                    sb.Append(L10n.T("end.decTextPass", r.score));
                     break;
             }
-            if (missed.Count > 0) sb.Append($" The missed {Join(missed)} {(missed.Count == 1 ? "hazard" : "hazards")} should also be included in feedback.");
+            if (missed.Count > 0) sb.Append(" " + L10n.T(missed.Count == 1 ? "end.missedOne" : "end.missedMany", Join(missed)));
             return sb.ToString();
         }
 
         static string Join(List<string> items)
         {
-            if (items.Count == 0) return "relevant safety";
+            if (items.Count == 0) return L10n.T("end.joinNone");
             if (items.Count == 1) return items[0];
-            return string.Join(", ", items.Take(items.Count - 1)) + " and " + items[items.Count - 1];
+            return string.Join(", ", items.Take(items.Count - 1)) + L10n.T("end.and") + items[items.Count - 1];
         }
 
         // ================= explanations (toggle) =================
@@ -216,19 +217,19 @@ namespace ChemLab
             var recs = ChemLabRun.LastRecords;
             explain = K.Panel(transform, "Panel_Explanations", new Vector2(1000, 1250));
             var t = explain.transform;
-            K.Label(t, "Title", "Explanations", new Vector2(0, 570), new Vector2(920, 60), 42, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
+            K.Label(t, "Title", L10n.T("end.explTitle"), new Vector2(0, 570), new Vector2(920, 60), 42, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
             var sb = new StringBuilder();
             foreach (var h in recs)
             {
                 var ok = h.q.Option(h.q.correct);
-                string mine = h.selected == null ? (h.detected ? "not answered" : "missed") : h.selected == h.q.correct ? "correct" : $"you chose {h.selected}";
+                string mine = h.selected == null ? L10n.T(h.detected ? "end.notAnswered" : "end.missed") : h.selected == h.q.correct ? L10n.T("end.correct") : L10n.T("end.youChose", h.selected);
                 string col = h.selected == h.q.correct ? K.Hex(K.Ok) : h.selected == null ? "#8b97a8" : K.Hex(K.Bad);
                 sb.Append($"<b>{h.data.id} {h.data.title}</b>  <color={col}>({mine})</color>\n");
                 sb.Append($"<size=85%><color={K.Hex(K.Accent)}>{h.q.correct}. {ok?.text}</color>\n<color={K.Hex(K.TextDim)}>{h.Explanation}</color></size>\n\n");
             }
             var body = K.Label(t, "Body", sb.ToString(), new Vector2(0, -20), new Vector2(920, 1080), 22, K.Text, TextAlignmentOptions.TopLeft);
             body.overflowMode = TextOverflowModes.Truncate;
-            K.Button(t, "Close", "Close  (B)", new Vector2(0, -575), new Vector2(360, 70), K.Style.Ghost, HideExplanations, 26);
+            K.Button(t, "Close", L10n.T("end.closeB"), new Vector2(0, -575), new Vector2(360, 70), K.Style.Ghost, HideExplanations, 26);
             explain.gameObject.SetActive(false);
         }
 
@@ -247,9 +248,9 @@ namespace ChemLab
         void BuildNoRun()
         {
             results = K.Panel(transform, "Panel_NoRun", new Vector2(900, 420));
-            K.Label(results.transform, "Title", "No run yet", new Vector2(0, 120), new Vector2(800, 70), 48, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
-            K.Label(results.transform, "Body", "Start from the lobby to play the lab and see your results here.", new Vector2(0, 20), new Vector2(800, 90), 28, K.TextDim, TextAlignmentOptions.Center);
-            K.Button(results.transform, "Lobby", "Go to Lobby", new Vector2(0, -120), new Vector2(420, 84), K.Style.Primary, Lobby);
+            K.Label(results.transform, "Title", L10n.T("end.noRunTitle"), new Vector2(0, 120), new Vector2(800, 70), 48, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
+            K.Label(results.transform, "Body", L10n.T("end.noRunBody"), new Vector2(0, 20), new Vector2(800, 90), 28, K.TextDim, TextAlignmentOptions.Center);
+            K.Button(results.transform, "Lobby", L10n.T("end.goLobby"), new Vector2(0, -120), new Vector2(420, 84), K.Style.Primary, Lobby);
             if (resultsAnchor != null) results.transform.SetPositionAndRotation(resultsAnchor.position, resultsAnchor.rotation);
         }
 
@@ -258,13 +259,13 @@ namespace ChemLab
             var r = ChemLabRun.LastResult;
             board = K.Panel(transform, "Panel_Leaderboard", new Vector2(720, 1100));
             var t = board.transform;
-            K.Label(t, "Kicker", "MOCKUP · STATIC DATA", new Vector2(0, 495), new Vector2(640, 36), 20, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
-            K.Label(t, "Title", "Basel Leaderboard", new Vector2(0, 440), new Vector2(640, 70), 50, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
-            K.Label(t, "Sub", "This week · Lab Safety Inspection", new Vector2(0, 390), new Vector2(640, 36), 24, K.TextDim, TextAlignmentOptions.Left);
+            K.Label(t, "Kicker", L10n.T("board.kicker"), new Vector2(0, 495), new Vector2(640, 36), 20, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
+            K.Label(t, "Title", L10n.T("board.title"), new Vector2(0, 440), new Vector2(640, 70), 50, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
+            K.Label(t, "Sub", L10n.T("board.sub"), new Vector2(0, 390), new Vector2(640, 36), 24, K.TextDim, TextAlignmentOptions.Left);
 
             var rows = new List<(string name, string team, int score, string time, bool you)>();
             foreach (var m in Mock) rows.Add((m.name, m.team, m.score, m.time, false));
-            rows.Add(("You", "Basel Campus", r.score, K.Mmss(r.duration), true));
+            rows.Add((L10n.T("board.you"), "Basel Campus", r.score, K.Mmss(r.duration), true));
             rows = rows.OrderByDescending(x => x.score).ThenBy(x => x.you ? 0 : 1).ToList();
 
             for (int i = 0; i < rows.Count; i++)

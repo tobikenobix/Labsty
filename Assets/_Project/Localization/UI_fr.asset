@@ -1,0 +1,549 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UI_fr
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: fr
+  m_SharedData: {fileID: 11400000, guid: 2f9d7293f76e6ec43882ebc6deaec43c, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 4365213696
+    m_Localized: "Inspection lanc\xE9e : {0} au chrono. Trouvez les {1} dangers !"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4453294080
+    m_Localized: "Calcul de vos r\xE9sultats..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488384
+    m_Localized: "Pointez une r\xE9ponse et appuyez sur la g\xE2chette, puis sur
+      A pour valider."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488385
+    m_Localized: "Choix dangereux, consign\xE9 pour revue de s\xE9curit\xE9. Choisissez
+      \xE0 nouveau."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488386
+    m_Localized: "Consign\xE9 comme erreur. Choisissez \xE0 nouveau."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488387
+    m_Localized: "Valider la r\xE9ponse {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488388
+    m_Localized: Valider
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488389
+    m_Localized: Terminer l'inspection ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488390
+    m_Localized: "Vous avez peut-\xEAtre manqu\xE9 des dangers. Tout danger non trouv\xE9
+      compte comme manqu\xE9.\nContinuer l'inspection ou soumettre maintenant ?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488391
+    m_Localized: Soumettre votre inspection maintenant ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488392
+    m_Localized: Continuer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488393
+    m_Localized: "R\xE9solus <b>{0}/{1}</b>     <color={2}>X commandes  \xB7  Y terminer</color>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488394
+    m_Localized: DANGEREUX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488395
+    m_Localized: Fermer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488396
+    m_Localized: Commandes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488397
+    m_Localized: "<b>WASD</b> marcher\n<b>Clic droit maintenu</b> pour regarder\n<b>Clic
+      gauche</b> pour s\xE9lectionner\n<b>Enter</b> valider   <b>Esc</b> fermer\n<b>H</b>
+      commandes   <b>F</b> terminer"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488398
+    m_Localized: "<b><color={0}>G\xE2chette</color></b>  s\xE9lectionner / inspecter\n<b>Stick
+      vers l'avant</b>  viser, rel\xE2cher pour se t\xE9l\xE9porter\n<b>Stick gauche/droite</b> 
+      pivoter de 45\xB0    <b>arri\xE8re</b>  demi-tour\n<b>A</b>  valider    <b>B</b> 
+      fermer\n<b>X</b>  cette fiche    <b>Y / Menu</b>  terminer"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488399
+    m_Localized: "INSPECTION S\xC9CURIT\xC9 LABO"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488400
+    m_Localized: restants
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488401
+    m_Localized: Poste d'inspection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488402
+    m_Localized: "Fini plus t\xF4t ? Soumettez ici, ou appuyez sur Y / Menu."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488403
+    m_Localized: Terminer l'inspection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488404
+    m_Localized: "Rien \xE0 signaler. Poursuivez l'inspection."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488405
+    m_Localized: "{0} : rien \xE0 signaler."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488406
+    m_Localized: "Danger r\xE9solu : {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488407
+    m_Localized: "Temps \xE9coul\xE9 !"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488408
+    m_Localized: "Tous les dangers sont r\xE9solus !"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488409
+    m_Localized: Inspection soumise
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488410
+    m_Localized: "Bravo ! Stick vers l'avant : t\xE9l\xE9portation, gauche/droite
+      : pivoter."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488411
+    m_Localized: "S\xE9lectionn\xE9 ! Dans le labo, cela ouvre une question de s\xE9curit\xE9."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488412
+    m_Localized: C'est bon. Appuyez sur Lancer le labo quand vous voulez.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488413
+    m_Localized: Fait
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488414
+    m_Localized: "<b>T\xE9l\xE9portez-vous</b> sur l'anneau lumineux : poussez un
+      stick vers l'avant, visez l'anneau avec l'arc, rel\xE2chez."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488415
+    m_Localized: "<b>S\xE9lectionnez</b> la tasse de caf\xE9 : pointez-la et appuyez
+      sur la g\xE2chette."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488416
+    m_Localized: Lancer le labo  (A)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488417
+    m_Localized: Lancer le labo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488418
+    m_Localized: "TUM \xB7 ETH  \u2014  INITIATIVE S\xC9CURIT\xC9 AU LABO"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488419
+    m_Localized: "Inspection de s\xE9curit\xE9 du labo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488420
+    m_Localized: LANGUE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488421
+    m_Localized: DANGERS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488422
+    m_Localized: Choisir les dangers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488423
+    m_Localized: "\xC9CHAUFFEMENT DE 60 SECONDES"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488424
+    m_Localized: "Dans le labo : trouvez chaque danger, choisissez l'action la plus
+      s\xFBre. Bonne r\xE9ponse = danger corrig\xE9. Mauvaise r\xE9ponse = consign\xE9e
+      comme erreur."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488425
+    m_Localized: Dangers dans le labo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488426
+    m_Localized: "Activez ou d\xE9sactivez des dangers, puis choisissez combien en
+      placer par partie."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488427
+    m_Localized: "DANGERS PLAC\xC9S"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488428
+    m_Localized: INACTIF
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488429
+    m_Localized: DANGERS PAR PARTIE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488430
+    m_Localized: "Critique pour la s\xE9curit\xE9 : bonne r\xE9ponse obligatoire
+      pour r\xE9ussir."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488431
+    m_Localized: Tout activer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488432
+    m_Localized: "Au moins un danger doit rester activ\xE9."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488433
+    m_Localized: "Chaque partie place {0} des {1} dangers activ\xE9s, tir\xE9s au
+      hasard."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488434
+    m_Localized: "Laboratoire BSL-1 \xB7 {0} dangers cach\xE9s \xB7 7 minutes"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488435
+    m_Localized: Votre manette
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488436
+    m_Localized: "Appuyez sur la <b><color={0}>G\xC2CHETTE</color></b> pour s\xE9lectionner.\n<b>Stick
+      vers l'avant</b> t\xE9l\xE9portation   <b>gauche/droite</b> pivoter\n<b>A</b>
+      confirmer   <b>B</b> fermer   <b>X</b> commandes"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488437
+    m_Localized: "G\xC2CHETTE\n<size=70%>s\xE9lectionner</size>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488438
+    m_Localized: "STICK\n<size=70%>t\xE9l\xE9porter / pivoter</size>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488439
+    m_Localized: GRIP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488440
+    m_Localized: "{0} \xB7 SESSION {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488441
+    m_Localized: "R\xE9sultat de l'\xE9valuation"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488442
+    m_Localized: "Revue de s\xE9curit\xE9 requise"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488443
+    m_Localized: Nouvelle formation requise
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488444
+    m_Localized: "R\xE9ussi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488445
+    m_Localized: "D\xE9tection des dangers"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488446
+    m_Localized: '{0} / {1} points'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488447
+    m_Localized: "D\xE9cisions correctes"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488448
+    m_Localized: Oui
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488449
+    m_Localized: Non
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488450
+    m_Localized: "Score num\xE9rique"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488451
+    m_Localized: Score minimum atteint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488452
+    m_Localized: "D\xE9tection minimale atteinte"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488453
+    m_Localized: "Minimum de d\xE9cisions atteint"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488454
+    m_Localized: "Tous les dangers critiques r\xE9ussis"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488455
+    m_Localized: Aucun choix dangereux critique
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488456
+    m_Localized: "La personne \xE9valu\xE9e a choisi {0} : {1}. C'est un choix dangereux
+      critique, car {2}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488457
+    m_Localized: "La personne \xE9valu\xE9e n'a pas d\xE9tect\xE9 ce danger."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488458
+    m_Localized: "Trouv\xE9, mais aucune r\xE9ponse n'a \xE9t\xE9 soumise."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488459
+    m_Localized: "La personne \xE9valu\xE9e a choisi {0} au lieu de {1}. {2}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488460
+    m_Localized: "+ {0} de plus : voir \xAB Revoir les explications \xBB"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488461
+    m_Localized: "Aucun probl\xE8me : chaque danger a \xE9t\xE9 trouv\xE9 et trait\xE9
+      correctement."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488462
+    m_Localized: "Pas encore qualifi\xE9\xB7e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488463
+    m_Localized: "Qualifi\xE9\xB7e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488464
+    m_Localized: "D\xE9cision finale : {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488465
+    m_Localized: Revoir les explications
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488466
+    m_Localized: "Retour \xE0 l'accueil"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488467
+    m_Localized: Rejouer  (A)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488468
+    m_Localized: "Export\xE9 : {0}  (+ .csv)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488469
+    m_Localized: "Malgr\xE9 un score de {0}/100, la personne \xE9valu\xE9e doit revoir
+      la proc\xE9dure de s\xE9curit\xE9 et passer une nouvelle \xE9valuation. \xC0
+      revoir : {1}."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488470
+    m_Localized: "Avec {0}/100, les exigences minimales ne sont pas remplies. La
+      personne \xE9valu\xE9e devrait revoir les th\xE8mes concern\xE9s et passer
+      une nouvelle \xE9valuation. \xC0 revoir : {1}."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488471
+    m_Localized: "La personne \xE9valu\xE9e a d\xE9montr\xE9 sa comp\xE9tence avec
+      {0}/100 et aucune erreur critique pour la s\xE9curit\xE9."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488472
+    m_Localized: "Le danger manqu\xE9 ({0}) doit aussi figurer dans le retour."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488473
+    m_Localized: "Les dangers manqu\xE9s ({0}) doivent aussi figurer dans le retour."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488474
+    m_Localized: "consignes de s\xE9curit\xE9 concern\xE9es"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488475
+    m_Localized: ' et '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488476
+    m_Localized: Explications
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488477
+    m_Localized: "sans r\xE9ponse"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488478
+    m_Localized: "manqu\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488479
+    m_Localized: correct
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488480
+    m_Localized: vous avez choisi {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488481
+    m_Localized: Fermer  (B)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488482
+    m_Localized: "Aucune partie jou\xE9e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488483
+    m_Localized: "Commencez depuis l'accueil pour jouer dans le labo et voir vos
+      r\xE9sultats ici."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488484
+    m_Localized: "Aller \xE0 l'accueil"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488485
+    m_Localized: "MAQUETTE \xB7 DONN\xC9ES STATIQUES"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488486
+    m_Localized: "Classement de B\xE2le"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488487
+    m_Localized: "Cette semaine \xB7 Inspection de s\xE9curit\xE9 du labo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488488
+    m_Localized: Vous
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488489
+    m_Localized: Balance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488490
+    m_Localized: Centrifugeuse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488491
+    m_Localized: Verrerie propre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488492
+    m_Localized: Portemanteau
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488493
+    m_Localized: "Armoire \xE0 corrosifs"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682688
+    m_Localized: Douche oculaire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682689
+    m_Localized: Extincteur
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682690
+    m_Localized: Hotte aspirante
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682691
+    m_Localized: Plaque chauffante
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682692
+    m_Localized: Cahier de laboratoire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682693
+    m_Localized: "Poubelle \xE0 d\xE9chets de labo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682694
+    m_Localized: "Flacons de tampon \xE9tiquet\xE9s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682695
+    m_Localized: "Flacon de solution saline \xE9tiquet\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682696
+    m_Localized: Ordinateur portable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682697
+    m_Localized: Pipettes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682698
+    m_Localized: Bac de recyclage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682699
+    m_Localized: "Portoir \xE0 tubes"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682700
+    m_Localized: "\xC9vier"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

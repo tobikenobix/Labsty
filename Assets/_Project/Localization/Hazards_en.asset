@@ -1,0 +1,1005 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Hazards_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 080672767c5e81148882c1431d55fcbe, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 1139793920
+    m_Localized: Welcome to the laboratory! Before beginning your research, you need
+      to complete a safety inspection. Some things in this lab are unsafe. Can you
+      find them and decide how to fix them?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931264
+    m_Localized: Blocked emergency exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931265
+    m_Localized: Entrance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931266
+    m_Localized: Easy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931267
+    m_Localized: Emergency access
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931268
+    m_Localized: Escape Routes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931269
+    m_Localized: Emergency exits must be 100% clear at all times. Move the cart to
+      a designated storage area, not just aside.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931270
+    m_Localized: an emergency exit must never be blocked or left partly obstructed,
+      even for a short time.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931271
+    m_Localized: 'Not safe: an emergency exit must be completely clear at all times.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931272
+    m_Localized: The student did not notice that the emergency exit was blocked by
+      a cart.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931273
+    m_Localized: What should you do about the cart blocking the emergency exit?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931274
+    m_Localized: Move the cart enough for one person to pass.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931275
+    m_Localized: Move the cart to storage, leaving the exit completely clear.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931276
+    m_Localized: Leave the cart until the next scheduled supply delivery.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931277
+    m_Localized: Put a warning sign on the cart to alert others.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931278
+    m_Localized: How can you confirm the emergency exit is safe to use?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931279
+    m_Localized: The green emergency exit sign is clearly visible.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931280
+    m_Localized: The cart no longer touches the emergency door.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931281
+    m_Localized: One person can pass through the door sideways.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931282
+    m_Localized: The door and entire escape route are unobstructed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931283
+    m_Localized: The team needs the cart again in ten minutes. What should you do?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931284
+    m_Localized: Park it in a designated area away from the exit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931285
+    m_Localized: Keep it near the exit with some walking space.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931286
+    m_Localized: Ask someone to watch the cart during unloading.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931287
+    m_Localized: Move it in front of a different emergency door.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931288
+    m_Localized: Food and drink on the bench
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931289
+    m_Localized: Main lab bench
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931290
+    m_Localized: Easy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931291
+    m_Localized: Hygiene / contamination
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931292
+    m_Localized: PPE & Behaviour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931293
+    m_Localized: Food and drink are strictly prohibited in the laboratory because
+      of ingestion and contamination risk.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931294
+    m_Localized: 'Not safe: food and drink are never allowed in the lab.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931295
+    m_Localized: The student did not notice food and drink on the lab bench.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931296
+    m_Localized: You notice a coffee cup beside active lab equipment. What should
+      you do?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931297
+    m_Localized: Move the cup to the far side of the bench.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931298
+    m_Localized: Close the lid and continue the experiment as planned.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931299
+    m_Localized: Take the drink to an approved area outside the laboratory.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931300
+    m_Localized: Place the cup inside a drawer until work finishes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931301
+    m_Localized: A colleague wants coffee during a long experiment. What should you
+      suggest?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931302
+    m_Localized: Take a break and drink in an approved non-lab area.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931303
+    m_Localized: Use a spill-proof cup at the edge of the bench.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931304
+    m_Localized: Have someone hold the cup away from the samples.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931305
+    m_Localized: Keep the beverage closed until the experiment finishes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931306
+    m_Localized: Why is a closed coffee cup still a safety concern in the laboratory?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931307
+    m_Localized: The cup might interfere with identifying nearby equipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931308
+    m_Localized: The container could reduce available working space.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931309
+    m_Localized: The lid might prevent proper cleaning of the bench.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931310
+    m_Localized: Food and drinks can lead to exposure or contamination.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931311
+    m_Localized: Unstably stacked boxes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931312
+    m_Localized: Entrance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931313
+    m_Localized: Easy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931314
+    m_Localized: Physical / falling objects
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931315
+    m_Localized: Escape Routes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931316
+    m_Localized: Unstable stacks can fall on people. Unstack them and store items
+      safely at a lower height.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931317
+    m_Localized: 'Not safe: unstable stacks must be taken down and stored low.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931318
+    m_Localized: The student did not notice the unstable stack of boxes near the
+      walkway.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931319
+    m_Localized: Several cardboard boxes are leaning dangerously. What should you
+      do?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931320
+    m_Localized: Unstack the boxes and move them to stable, lower storage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931321
+    m_Localized: Secure the boxes together using tape and plastic wrap.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931322
+    m_Localized: Align the upper boxes and leave them on the crate.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931323
+    m_Localized: Move the crate closer to the wall beside the walkway.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931324
+    m_Localized: What is the main danger of the unstable boxes?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931325
+    m_Localized: The cartons may have different product labels.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931326
+    m_Localized: The crate may occupy too much storage space.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931327
+    m_Localized: The boxes could fall onto people using the walkway.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931328
+    m_Localized: The cardboard may be difficult to clean properly.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931329
+    m_Localized: How should deliveries be stored to prevent this problem?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931330
+    m_Localized: Put lighter boxes on top without checking stability.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931331
+    m_Localized: Use approved shelving and follow safe stacking limits.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931332
+    m_Localized: Keep all deliveries on crates beside active walkways.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931333
+    m_Localized: Wrap boxes tightly even when they extend beyond the crate.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931334
+    m_Localized: Lab coat on a chair
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931335
+    m_Localized: Working area
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931336
+    m_Localized: Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931337
+    m_Localized: PPE / contamination
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931338
+    m_Localized: PPE & Behaviour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931339
+    m_Localized: Lab coats can carry contamination. Store them on a designated hook
+      or rack away from seating and work areas.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931340
+    m_Localized: 'Not safe: lab coats belong on the designated coat rack.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931341
+    m_Localized: The student did not notice the lab coat left on a chair.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931342
+    m_Localized: Where should the lab coat be stored after use?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931343
+    m_Localized: Fold the coat and place it on the lab bench.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931344
+    m_Localized: Leave the coat on the chair until the next experiment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931345
+    m_Localized: Place the coat in a cupboard with personal belongings.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931346
+    m_Localized: Hang the coat in the designated PPE storage location.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931347
+    m_Localized: What should you do if the lab coat may be contaminated?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931348
+    m_Localized: Shake off any residue and hang it to dry.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931349
+    m_Localized: Follow the designated collection or decontamination procedure.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931350
+    m_Localized: Fold the coat and store it in a private drawer.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931351
+    m_Localized: Wear the coat again after checking for visible stains.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931352
+    m_Localized: Why should lab coats not be left on shared chairs?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931353
+    m_Localized: They make chairs harder to move around the bench.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931354
+    m_Localized: They reduce the number of seats available to colleagues.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931355
+    m_Localized: They may transfer contamination to shared surfaces.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931356
+    m_Localized: They make the laboratory appear less organized.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931357
+    m_Localized: Improper waste separation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931358
+    m_Localized: Working area
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931359
+    m_Localized: Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931360
+    m_Localized: Waste handling
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931361
+    m_Localized: PPE & Behaviour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931362
+    m_Localized: Lab waste must be separated from domestic waste and go into the
+      designated lab waste container.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931363
+    m_Localized: 'Not safe: used gloves go into the lab waste container.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931364
+    m_Localized: The student did not notice used gloves in the general waste bin.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931365
+    m_Localized: Used lab gloves are in the domestic waste bin. What should you do?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931366
+    m_Localized: Cover the used gloves with more regular office waste.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931367
+    m_Localized: Follow lab waste procedures and use the designated container.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931368
+    m_Localized: Move the gloves into the recycling bin for plastics.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931369
+    m_Localized: Leave the gloves there until the next waste collection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931370
+    m_Localized: You are unsure whether an item requires special waste handling.
+      What should you do?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931371
+    m_Localized: Treat the item as regular waste if it appears dry.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931372
+    m_Localized: Ask cleaning staff to select the bin during collection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931373
+    m_Localized: Choose the nearest available bin to avoid further handling.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931374
+    m_Localized: Check the lab waste instructions or ask trained staff.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931375
+    m_Localized: Which item can normally go into domestic waste?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931376
+    m_Localized: A clean snack wrapper from the designated break room.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931377
+    m_Localized: A used pipette tip from an active laboratory bench.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931378
+    m_Localized: Gloves removed after handling unknown laboratory chemicals.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931379
+    m_Localized: An unidentified liquid from a reagent storage bottle.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931380
+    m_Localized: Unlabeled chemical bottle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931381
+    m_Localized: Main lab bench
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931382
+    m_Localized: Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931383
+    m_Localized: Chemical identification
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931384
+    m_Localized: Housekeeping & Storage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931385
+    m_Localized: Never smell or pour away an unknown chemical. Isolate it and let
+      the supervisor/HSE identify, label or dispose of it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931386
+    m_Localized: unknown chemicals must never be identified by smell or poured into
+      the drain; they must be isolated and identified by HSE.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931387
+    m_Localized: 'Not safe: never smell, pour away or reuse an unknown chemical.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931388
+    m_Localized: The student did not notice the unlabeled chemical bottle.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931389
+    m_Localized: You find a bottle containing an unknown clear liquid. What should
+      you do?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931390
+    m_Localized: Open the bottle and compare its smell with known reagents.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931391
+    m_Localized: Test a small sample using indicator paper without reporting it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931392
+    m_Localized: Keep it closed, prevent its use, and notify the supervisor.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931393
+    m_Localized: Add a temporary label based on its storage location.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931394
+    m_Localized: A colleague says the liquid must be water because it is clear. What
+      should you do?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931395
+    m_Localized: Pour a small amount into the sink to check it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931396
+    m_Localized: Require verified identification before anyone uses the liquid.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931397
+    m_Localized: Use the liquid only for simple cleaning tasks.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931398
+    m_Localized: Compare its appearance against other transparent liquids.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931399
+    m_Localized: What must happen before this bottle returns to normal chemical storage?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931400
+    m_Localized: The bottle is placed in secondary containment overnight.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931401
+    m_Localized: A colleague confirms that the liquid appears harmless.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931402
+    m_Localized: A temporary note identifies the contents as unknown.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931403
+    m_Localized: The chemical is properly identified and labeled under lab procedures.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931404
+    m_Localized: Missing PPE and headphones
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931405
+    m_Localized: Main lab bench
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931406
+    m_Localized: Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931407
+    m_Localized: PPE / awareness
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931408
+    m_Localized: PPE & Behaviour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931409
+    m_Localized: Wear the required safety glasses and remove headphones so you can
+      hear alarms and colleagues.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931410
+    m_Localized: 'Not safe: wear safety glasses and keep your ears free for alarms.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931411
+    m_Localized: The student did not notice the unused safety glasses and headphones
+      at the bench.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931412
+    m_Localized: You see safety glasses and headphones beside an active workstation.
+      What should you do?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931413
+    m_Localized: Wear the required safety eyewear and remove the headphones.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931414
+    m_Localized: Keep the headphones but wear regular glasses during work.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931415
+    m_Localized: Wear safety goggles only when handling visible chemicals.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931416
+    m_Localized: Lower the headphone volume and leave the goggles nearby.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931417
+    m_Localized: You already wear prescription glasses. What is the appropriate eye
+      protection?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931418
+    m_Localized: Wear ordinary glasses if their lenses are sufficiently thick.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931419
+    m_Localized: Use a face shield instead of wearing safety glasses.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931420
+    m_Localized: Use approved prescription safety eyewear or suitable over-glasses.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931421
+    m_Localized: Work farther from the bench to avoid eye exposure.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931422
+    m_Localized: Why should headphones be removed during active laboratory work?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931423
+    m_Localized: Headphones can be used only during low-risk activities.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931424
+    m_Localized: They may prevent you from hearing alarms or colleagues.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931425
+    m_Localized: They can cause interference with nearby laboratory computers.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931426
+    m_Localized: Headphones may become uncomfortable during long experiments.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931427
+    m_Localized: Damaged power cable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931428
+    m_Localized: Equipment area
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931429
+    m_Localized: Very difficult
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931430
+    m_Localized: Electrical safety
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931431
+    m_Localized: Housekeeping & Storage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931432
+    m_Localized: Damaged cables are a shock and fire risk. Unplug and tag the equipment
+      out of service and report it for replacement.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931433
+    m_Localized: continuing to use, taping or hiding a damaged cable keeps a live
+      shock and fire hazard in service.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931434
+    m_Localized: 'Not safe: damaged cables must be taken out of service and reported.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931435
+    m_Localized: The student did not detect the damaged cable and overloaded power
+      strip.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931436
+    m_Localized: You discover a power cable with exposed wires. What should you do?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931437
+    m_Localized: Cover the damaged wires with tape before using the device.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931438
+    m_Localized: Push the damaged cable behind the equipment until inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931439
+    m_Localized: Continue using the device while monitoring the adapter temperature.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931440
+    m_Localized: Stop using it, safely isolate power, tag it out, and report it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931441
+    m_Localized: Several high-power devices are connected to one adapter. What should
+      you do?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931442
+    m_Localized: overloading an adapter with high-power devices can overheat it and
+      start a fire.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931443
+    m_Localized: Ask qualified staff to review the load and power connections.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931444
+    m_Localized: Add another adapter to distribute the cables across sockets.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931445
+    m_Localized: Switch on devices one at a time to prevent overheating.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931446
+    m_Localized: Move the adapter beneath the workbench to avoid contact.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931447
+    m_Localized: When can equipment with a previously damaged cable be used again?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931448
+    m_Localized: After the frayed cable is covered with insulating material.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931449
+    m_Localized: After the device demonstrates stable power during startup.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931450
+    m_Localized: After qualified personnel repair it and approve its use.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931451
+    m_Localized: After a colleague completes one successful test run.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931452
+    m_Localized: Blocked / incomplete first-aid kit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931453
+    m_Localized: Safety station
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931454
+    m_Localized: Very difficult
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931455
+    m_Localized: Emergency equipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931456
+    m_Localized: Escape Routes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931457
+    m_Localized: Emergency equipment must be accessible and complete. Clear access
+      and report the missing supplies to HSE.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931458
+    m_Localized: 'Not safe: first-aid kits must be accessible and fully stocked.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931459
+    m_Localized: The student did not detect that the cabinet was blocked and supplies
+      were missing.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931460
+    m_Localized: Bottles are blocking access to the first-aid cabinet. What should
+      you do?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931461
+    m_Localized: Place an additional sign near the cabinet and leave the bottles.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931462
+    m_Localized: Remove the obstructions so the cabinet is immediately accessible.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931463
+    m_Localized: Use another first-aid kit without reporting the blocked cabinet.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931464
+    m_Localized: Close the cabinet and ask colleagues to avoid the area.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931465
+    m_Localized: You notice that several essential first-aid supplies are missing.
+      What should you do?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931466
+    m_Localized: Rearrange the remaining supplies to cover the empty spaces.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931467
+    m_Localized: Ask colleagues to bring personal supplies until the next inspection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931468
+    m_Localized: Wait until someone needs those supplies before requesting replacements.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931469
+    m_Localized: Report the shortage and arrange restocking through responsible staff.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931470
+    m_Localized: What should be checked during a routine first-aid inspection?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931471
+    m_Localized: The kit is accessible, properly stocked, and its supplies are usable.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931472
+    m_Localized: The cabinet has no visible scratches, fingerprints, or other marks.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931473
+    m_Localized: Every item is stored above eye level to prevent misuse.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931474
+    m_Localized: The cabinet is locked to prevent unnecessary access.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931475
+    m_Localized: Improper chemical storage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931476
+    m_Localized: Chemical storage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931477
+    m_Localized: Very difficult
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931478
+    m_Localized: Chemical storage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931479
+    m_Localized: Housekeeping & Storage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931480
+    m_Localized: Corrosives belong low down in secondary containment, separated from
+      incompatible substances such as flammables.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931481
+    m_Localized: corrosives must not be stored high up or with incompatible substances;
+      a fall or reaction can cause severe injury.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931482
+    m_Localized: 'Not safe: corrosives go low, in secondary containment, away from
+      flammables.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931483
+    m_Localized: The student did not notice corrosive acid stored high up next to
+      flammables.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931484
+    m_Localized: A corrosive acid bottle is stored on a high shelf. Where should
+      it be kept?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931485
+    m_Localized: On the upper shelf with a larger hazard warning label.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931486
+    m_Localized: On the same shelf, grouped with similar-sized chemical bottles.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931487
+    m_Localized: In designated low-level corrosives storage with secondary containment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931488
+    m_Localized: In the laboratory refrigerator to reduce possible vapor release.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931489
+    m_Localized: How should corrosive acids and incompatible chemicals be organized?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931490
+    m_Localized: Separate substances according to chemical compatibility and lab
+      procedures.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931491
+    m_Localized: Group substances according to bottle size and label color.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931492
+    m_Localized: Place all liquid chemicals in the same containment tray.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931493
+    m_Localized: Store corrosive and flammable chemicals together to save space.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931494
+    m_Localized: Why is storing HCl above head height beside incompatible chemicals
+      dangerous?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931495
+    m_Localized: Smaller chemical bottles may become difficult to locate.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931496
+    m_Localized: A falling or leaking bottle could cause exposure and reactions.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931497
+    m_Localized: Chemical labels may fade more quickly on upper shelves.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1185931498
+    m_Localized: The arrangement may appear disorganized during safety inspections.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

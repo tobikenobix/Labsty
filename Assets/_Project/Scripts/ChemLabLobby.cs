@@ -67,7 +67,7 @@ namespace ChemLab
             if (teleported || node.nodeName == "Start") return;   // the node you spawn on doesn't count
             teleported = true;
             ChemLabAudio.Button();
-            Toast("Nice! Stick forward teleports, left/right turns.", K.Ok);
+            Toast(L10n.T("lobby.toastTeleport"), K.Ok);
             RefreshSteps();
         }
 
@@ -78,10 +78,10 @@ namespace ChemLab
             {
                 selected = true;
                 ChemLabAudio.Correct();
-                Toast("Selected! In the lab, this opens a safety question.", K.Ok);
+                Toast(L10n.T("lobby.toastSelected"), K.Ok);
                 RefreshSteps();
             }
-            else Toast("You've got it. Press Start Lab when ready.", K.Accent);
+            else Toast(L10n.T("lobby.toastReady"), K.Accent);
         }
 
         void StartLab()
@@ -93,9 +93,9 @@ namespace ChemLab
 
         void SetLanguage(string lang)
         {
-            if (lang != "EN") { Toast($"{lang} is coming soon. English only in this MVP.", K.Warn); return; }
-            ChemLabRun.Language = lang;
-            RefreshLanguage();
+            if (lang == ChemLabRun.Language) return;
+            L10n.Set(lang);
+            SceneManager.LoadScene(ChemLabRun.LobbyScene);   // ponytail: a reload rebuilds every code-built panel in the new language
         }
 
         void RefreshLanguage()
@@ -105,17 +105,17 @@ namespace ChemLab
                 bool on = Langs[i] == ChemLabRun.Language;
                 K.SetButtonColor(langBtns[i], on ? K.Accent : K.SurfaceHi);
                 var l = K.ButtonLabel(langBtns[i]);
-                l.color = on ? Color.white : (Langs[i] == "EN" ? K.Text : K.TextDim);
+                l.color = on ? Color.white : K.Text;
             }
         }
 
         void RefreshSteps()
         {
-            step1.text = (teleported ? $"<color={K.Hex(K.Ok)}>Done</color>  " : "") + "<b>Teleport</b> onto the glowing ring: push a stick forward, aim the arc at the ring, release.";
-            step2.text = (selected ? $"<color={K.Hex(K.Ok)}>Done</color>  " : "") + "<b>Select</b> the coffee cup: point at it and pull the trigger.";
+            step1.text = (teleported ? $"<color={K.Hex(K.Ok)}>{L10n.T("lobby.done")}</color>  " : "") + L10n.T("lobby.step1");
+            step2.text = (selected ? $"<color={K.Hex(K.Ok)}>{L10n.T("lobby.done")}</color>  " : "") + L10n.T("lobby.step2");
             step1Dot.color = teleported ? K.Ok : K.SurfaceHi;
             step2Dot.color = selected ? K.Ok : K.SurfaceHi;
-            K.ButtonLabel(startBtn).text = teleported && selected ? "Start Lab  (A)" : "Start Lab";
+            K.ButtonLabel(startBtn).text = teleported && selected ? L10n.T("lobby.startReady") : L10n.T("lobby.start");
         }
 
         // ================= builders =================
@@ -123,24 +123,25 @@ namespace ChemLab
         void BuildMain()
         {
             main = K.Panel(transform, "Panel_Lobby", new Vector2(1100, 900));
-            K.Label(main.transform, "Kicker", "TUM · ETH  —  LAB SAFETY INITIATIVE", new Vector2(0, 385), new Vector2(980, 40), 24, K.Accent, TextAlignmentOptions.Left, FontStyles.Bold);
-            K.Label(main.transform, "Title", "Lab Safety Inspection", new Vector2(0, 325), new Vector2(980, 80), 62, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
+            K.Label(main.transform, "Kicker", L10n.T("lobby.kicker"), new Vector2(0, 385), new Vector2(980, 40), 24, K.Accent, TextAlignmentOptions.Left, FontStyles.Bold);
+            K.Label(main.transform, "Title", L10n.T("lobby.title"), new Vector2(0, 325), new Vector2(980, 80), 62, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
             sub = K.Label(main.transform, "Sub", "", new Vector2(0, 268), new Vector2(980, 40), 28, K.TextDim, TextAlignmentOptions.Left);
 
-            K.Label(main.transform, "LangTitle", "LANGUAGE", new Vector2(0, 200), new Vector2(980, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
+            K.Label(main.transform, "LangTitle", L10n.T("lobby.language"), new Vector2(0, 200), new Vector2(980, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
             for (int i = 0; i < 4; i++)
             {
                 string lang = Langs[i];
                 langBtns[i] = K.Button(main.transform, "Lang_" + lang, lang, new Vector2(-400 + i * 150, 145), new Vector2(130, 64), K.Style.Ghost, () => SetLanguage(lang), 28);
             }
-            K.Label(main.transform, "HazardsTitle", "HAZARDS", new Vector2(325, 200), new Vector2(330, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
-            var choose = K.Button(main.transform, "ChooseHazards", "Choose hazards", new Vector2(325, 145), new Vector2(330, 64), K.Style.Ghost, OpenHazards, 28);
+            K.Label(main.transform, "HazardsTitle", L10n.T("lobby.hazards"), new Vector2(325, 200), new Vector2(330, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
+            var choose = K.Button(main.transform, "ChooseHazards", L10n.T("lobby.chooseHazards"), new Vector2(325, 145), new Vector2(330, 64), K.Style.Ghost, OpenHazards, 28);
             K.WarningSign(choose.transform, new Vector2(-121, 1), 44f);
             var cl = K.ButtonLabel(choose).rectTransform;
             cl.anchoredPosition = new Vector2(22, 0);
             cl.sizeDelta = new Vector2(240, 56);
+            K.FitOneLine(K.ButtonLabel(choose), 20);
 
-            K.Label(main.transform, "WarmupTitle", "60-SECOND WARM-UP", new Vector2(0, 60), new Vector2(980, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
+            K.Label(main.transform, "WarmupTitle", L10n.T("lobby.warmup"), new Vector2(0, 60), new Vector2(980, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
             var c1 = K.Img(main.transform, "Step1Card", new Vector2(0, -15), new Vector2(980, 100), K.Surface, K.Rounded);
             step1Dot = K.Img(c1.transform, "Dot", new Vector2(-450, 0), new Vector2(26, 26), K.SurfaceHi, K.Circle);
             step1 = K.Label(c1.transform, "Text", "", new Vector2(30, 0), new Vector2(880, 90), 26, K.Text, TextAlignmentOptions.Left);
@@ -149,9 +150,9 @@ namespace ChemLab
             step2 = K.Label(c2.transform, "Text", "", new Vector2(30, 0), new Vector2(880, 90), 26, K.Text, TextAlignmentOptions.Left);
             foreach (var g in new Graphic[] { c1, c2, step1Dot, step2Dot }) g.raycastTarget = false;
 
-            K.Label(main.transform, "Rules", "In the lab: find each hazard, choose the safest action. Right answer = hazard fixed. Wrong answer = logged as a mistake.",
+            K.Label(main.transform, "Rules", L10n.T("lobby.rules"),
                 new Vector2(0, -250), new Vector2(980, 80), 24, K.TextDim, TextAlignmentOptions.Left);
-            startBtn = K.Button(main.transform, "StartLab", "Start Lab", new Vector2(0, -365), new Vector2(980, 96), K.Style.Primary, StartLab, 36);
+            startBtn = K.Button(main.transform, "StartLab", L10n.T("lobby.start"), new Vector2(0, -365), new Vector2(980, 96), K.Style.Primary, StartLab, 36);
 
             if (mainPanelAnchor != null) main.transform.SetPositionAndRotation(mainPanelAnchor.position, mainPanelAnchor.rotation);
         }
@@ -166,9 +167,9 @@ namespace ChemLab
             var size = new Vector2(1100, 1080);
             hazards = K.Panel(transform, "Panel_Hazards", size);
             var t = hazards.transform;
-            K.Label(t, "Title", "Hazards in the lab", new Vector2(0, 458), new Vector2(1000, 64), 52, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
-            K.Label(t, "Sub", "Switch hazards on or off, then choose how many to plant each run.", new Vector2(0, 405), new Vector2(1000, 40), 28, K.TextDim, TextAlignmentOptions.Left);
-            K.Label(t, "PoolTitle", "PLANTED HAZARDS", new Vector2(0, 335), new Vector2(1000, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
+            K.Label(t, "Title", L10n.T("hz.title"), new Vector2(0, 458), new Vector2(1000, 64), 52, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
+            K.Label(t, "Sub", L10n.T("hz.sub"), new Vector2(0, 394), new Vector2(1000, 64), 28, K.TextDim, TextAlignmentOptions.TopLeft);   // two lines for longer languages
+            K.Label(t, "PoolTitle", L10n.T("hz.pool"), new Vector2(0, 335), new Vector2(1000, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
             K.Img(t, "RuleTop", new Vector2(0, 309), new Vector2(1000, 2), K.Rule).raycastTarget = false;
 
             for (int i = 0; i < allHazards.Length && i < 10; i++)
@@ -185,13 +186,13 @@ namespace ChemLab
                 var sign = K.WarningSign(bg.transform, new Vector2(-214.5f, 0), 52f);
                 var title = K.Label(bg.transform, "Title", h.title, new Vector2(-10.5f, 0), new Vector2(316, 80), 28, K.Text, TextAlignmentOptions.MidlineLeft, FontStyles.Bold);
                 title.enableAutoSizing = true; title.fontSizeMin = 24; title.fontSizeMax = 28;
-                var off = K.Label(bg.transform, "Off", "OFF", new Vector2(207.5f, 0), new Vector2(70, 40), 24, K.TextDim, TextAlignmentOptions.Right, FontStyles.Bold);
+                var off = K.FitOneLine(K.Label(bg.transform, "Off", L10n.T("hz.off"), new Vector2(197.5f, 0), new Vector2(90, 40), 24, K.TextDim, TextAlignmentOptions.Right, FontStyles.Bold), 16);
                 var crit = h.mandatoryCritical ? K.SignDisc(bg.transform, "Critical", new Vector2(225.5f, 0), 34, K.Bad, check: false) : null;
                 K.Img(t, "Rule_" + h.id, pos + new Vector2(0, -42), new Vector2(485, 2), K.Rule).raycastTarget = false;
                 hzRows.Add((id, sign, title, off, crit, h.mandatoryCritical));
             }
 
-            K.Label(t, "CountTitle", "HAZARDS PER RUN", new Vector2(0, -169), new Vector2(1000, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
+            K.Label(t, "CountTitle", L10n.T("hz.perRun"), new Vector2(0, -169), new Vector2(1000, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
             for (int n = 1; n <= 10; n++)
             {
                 int count = n;
@@ -199,10 +200,10 @@ namespace ChemLab
             }
             perRunCaption = K.Label(t, "CountCaption", "", new Vector2(0, -313), new Vector2(1000, 40), 28, K.TextDim, TextAlignmentOptions.Left);
             K.SignDisc(t, "LegendDisc", new Vector2(-484, -362), 32, K.Bad, check: false);
-            K.Label(t, "Legend", "Safety-critical: must be answered correctly to pass.", new Vector2(23, -362), new Vector2(954, 40), 28, K.Text, TextAlignmentOptions.Left);
+            K.Label(t, "Legend", L10n.T("hz.legend"), new Vector2(23, -362), new Vector2(954, 40), 28, K.Text, TextAlignmentOptions.Left);
 
-            K.Button(t, "SwitchAllOn", "Switch all on", new Vector2(-335, -458), new Vector2(330, 72), K.Style.Ghost, SwitchAllHazardsOn);
-            K.Button(t, "Close", "Close", new Vector2(335, -458), new Vector2(330, 72), K.Style.Ghost, CloseHazards, key: "B");
+            K.Button(t, "SwitchAllOn", L10n.T("hz.allOn"), new Vector2(-335, -458), new Vector2(330, 72), K.Style.Ghost, SwitchAllHazardsOn);
+            K.Button(t, "Close", L10n.T("common.close"), new Vector2(335, -458), new Vector2(330, 72), K.Style.Ghost, CloseHazards, key: "B");
             hazards.gameObject.SetActive(false);
         }
 
@@ -224,7 +225,7 @@ namespace ChemLab
         {
             if (!ChemLabRun.DisabledHazards.Remove(id))
             {
-                if (allHazards.Count(h => !ChemLabRun.DisabledHazards.Contains(h.id)) <= 1) { Toast("At least one hazard has to stay on.", K.Warn); return; }
+                if (allHazards.Count(h => !ChemLabRun.DisabledHazards.Contains(h.id)) <= 1) { Toast(L10n.T("hz.lastOn"), K.Warn); return; }
                 ChemLabRun.DisabledHazards.Add(id);
             }
             ChemLabRun.SaveHazardSettings();
@@ -259,9 +260,9 @@ namespace ChemLab
                 r.sign.Find("Mark").gameObject.SetActive(isOn);
                 r.title.color = isOn ? K.Text : K.TextDim;
                 r.off.gameObject.SetActive(!isOn);
-                if (r.critical != null) r.critical.rectTransform.anchoredPosition = new Vector2(isOn ? 225.5f : 149.5f, 0);
+                if (r.critical != null) r.critical.rectTransform.anchoredPosition = new Vector2(isOn ? 225.5f : 127.5f, 0);
                 // the title takes the row up to whatever sits at its right end (critical disc and/or OFF)
-                float right = (r.critical != null ? (isOn ? 208.5f : 132.5f) : (isOn ? 242.5f : 172.5f)) - 12f, left = -168.5f;
+                float right = (r.critical != null ? (isOn ? 208.5f : 110.5f) : (isOn ? 242.5f : 152.5f)) - 12f, left = -168.5f;
                 r.title.rectTransform.sizeDelta = new Vector2(right - left, 80);
                 r.title.rectTransform.anchoredPosition = new Vector2((left + right) / 2f, 0);
             }
@@ -274,17 +275,17 @@ namespace ChemLab
                 b.transform.Find("Outline").gameObject.SetActive(available && !chosen);
                 K.ButtonLabel(b).color = chosen ? Color.white : available ? K.Text : new Color(0.64f, 0.64f, 0.61f);
             }
-            perRunCaption.text = $"Each run plants {perRun} of the {on} hazards that are on, picked at random.";
-            sub.text = $"BSL-1 laboratory · {perRun} hidden hazards · 7 minutes";
+            perRunCaption.text = L10n.T("hz.caption", perRun, on);
+            sub.text = L10n.T("lobby.sub", perRun);
         }
 
         void BuildController()
         {
             controller = K.Panel(transform, "Panel_Controller", new Vector2(700, 760), blocksRays: false);
-            K.Label(controller.transform, "Title", "Your controller", new Vector2(0, 320), new Vector2(620, 60), 40, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
+            K.Label(controller.transform, "Title", L10n.T("ctrl.title"), new Vector2(0, 320), new Vector2(620, 60), 40, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
             ControllerGraphic(controller.transform, new Vector2(0, 60), 1.15f);
             K.Label(controller.transform, "Caption",
-                $"Pull the <b><color={K.Hex(K.Accent)}>TRIGGER</color></b> to select.\n<b>Stick forward</b> teleport   <b>left/right</b> turn\n<b>A</b> confirm   <b>B</b> close   <b>X</b> controls",
+                L10n.T("ctrl.caption", K.Hex(K.Accent)),
                 new Vector2(0, -260), new Vector2(640, 170), 27, K.Text, TextAlignmentOptions.Center);
             if (controllerPanelAnchor != null) controller.transform.SetPositionAndRotation(controllerPanelAnchor.position, controllerPanelAnchor.rotation);
         }
@@ -333,11 +334,11 @@ namespace ChemLab
             var glow = I("TriggerGlow", new Vector2(40, 150), new Vector2(140, 74), new Color(K.Accent.r, K.Accent.g, K.Accent.b, 0.25f), K.Rounded);
             glow.transform.SetSiblingIndex(trig.transform.GetSiblingIndex());
 
-            K.Label(root, "LTrigger", "TRIGGER\n<size=70%>select</size>", new Vector2(175, 150), new Vector2(160, 70), 24, K.Accent, TextAlignmentOptions.Left, FontStyles.Bold);
-            K.Label(root, "LStick", "STICK\n<size=70%>teleport / turn</size>", new Vector2(-170, 60), new Vector2(150, 70), 20, K.TextDim, TextAlignmentOptions.Right, FontStyles.Bold);
+            K.Label(root, "LTrigger", L10n.T("ctrl.trigger"), new Vector2(175, 150), new Vector2(160, 70), 24, K.Accent, TextAlignmentOptions.Left, FontStyles.Bold);
+            K.Label(root, "LStick", L10n.T("ctrl.stick"), new Vector2(-170, 60), new Vector2(150, 70), 20, K.TextDim, TextAlignmentOptions.Right, FontStyles.Bold);
             K.Label(root, "LA", "A", new Vector2(45, 5), new Vector2(36, 36), 20, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
             K.Label(root, "LB", "B", new Vector2(65, 50), new Vector2(36, 36), 20, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
-            K.Label(root, "LGrip", "GRIP", new Vector2(-160, -95), new Vector2(110, 40), 20, K.TextDim, TextAlignmentOptions.Right, FontStyles.Bold);
+            K.Label(root, "LGrip", L10n.T("ctrl.grip"), new Vector2(-160, -95), new Vector2(110, 40), 20, K.TextDim, TextAlignmentOptions.Right, FontStyles.Bold);
             return root;
         }
     }

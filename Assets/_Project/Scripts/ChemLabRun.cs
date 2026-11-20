@@ -15,7 +15,7 @@ namespace ChemLab
         public const string LabScene = "ChemistryLab";
         public const string EndScene = "ChemLab_End";
 
-        public static string Language = "EN";
+        public static string Language => L10n.Code;   // the selected locale is the single source
         public static string StudentId = "student_001";
         public static int Attempt = 0;
 
@@ -107,7 +107,7 @@ namespace ChemLab
             {
                 var h = records[i];
                 sb.Append("    {");
-                sb.Append($"\"id\": {S(h.data.id)}, \"questionId\": {S(h.q.id)}, \"category\": {S(h.data.hudCategory)},\"status\": {S(h.Status.ToString())}, ");
+                sb.Append($"\"id\": {S(h.data.id)}, \"questionId\": {S(h.q.id)}, \"category\": {S(h.data.exportCategory)}, \"status\": {S(h.Status.ToString())}, ");
                 sb.Append($"\"mandatoryCritical\": {B(h.data.mandatoryCritical)}, \"detected\": {B(h.detected)}, ");
                 sb.Append($"\"detectedAt\": {(h.detected ? F(h.detectedAt) : "null")}, ");
                 sb.Append($"\"selectedOption\": {S(h.selected)}, \"correctOption\": {S(h.q.correct)}, \"isCorrect\": {B(h.isCorrect)}, ");
@@ -120,7 +120,7 @@ namespace ChemLab
             var csv = new StringBuilder();
             csv.AppendLine("session_id,student_id,hazard_id,question_id,category,detected,detected_at,first_answer,correct_answer,first_attempt_correct,wrong_answers,resolved,critical_error,response_time");
             foreach (var h in records)
-                csv.AppendLine(string.Join(",", sessionId, StudentId, h.data.id, h.q.id, "\"" + h.data.hudCategory + "\"", h.detected ? 1 : 0,
+                csv.AppendLine(string.Join(",", sessionId, StudentId, h.data.id, h.q.id, "\"" + h.data.exportCategory + "\"", h.detected ? 1 : 0,
                     h.detected ? F(h.detectedAt) : "", h.selected ?? "", h.q.correct, h.isCorrect == true ? 1 : 0, h.wrongAnswers,
                     h.solved ? 1 : 0, h.critical ? 1 : 0, h.responseTime >= 0 ? F(h.responseTime) : ""));
             csv.AppendLine();

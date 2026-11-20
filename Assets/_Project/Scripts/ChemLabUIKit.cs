@@ -245,6 +245,19 @@ namespace ChemLab
             return t;
         }
 
+        /// <summary>
+        /// Keep a label on one line and shrink it (down to `min`) when a translation is longer than its box.
+        /// Use for titles, meta lines and button labels; running text should wrap instead.
+        /// </summary>
+        public static TextMeshProUGUI FitOneLine(TextMeshProUGUI t, float min)
+        {
+            t.textWrappingMode = TextWrappingModes.NoWrap;
+            t.enableAutoSizing = true;
+            t.fontSizeMax = Mathf.Max(t.fontSizeMax, t.fontSize);
+            t.fontSizeMin = min;
+            return t;
+        }
+
         /// <summary>Body text target in canvas units: about 1.2 deg at 1.3 m with the default 0.001 panel scale.</summary>
         public const float MinReadableSize = 28f;
 
@@ -286,7 +299,8 @@ namespace ChemLab
             s.colors = cb;
         }
 
-        public static TextMeshProUGUI ButtonLabel(Button b) => b.GetComponentInChildren<TextMeshProUGUI>();
+        // by name: on a button with a controller key the first TMP child is the key letter, not the label
+        public static TextMeshProUGUI ButtonLabel(Button b) => b.transform.Find("Label").GetComponent<TextMeshProUGUI>();
 
         public static void SetButtonColor(Button b, Color c) => b.GetComponent<Image>().color = c;
 
@@ -294,7 +308,10 @@ namespace ChemLab
         {
             var img = Img(parent, name, pos, size, col, Rounded);
             img.raycastTarget = false;
-            return Label(img.transform, "Text", text, Vector2.zero, size, size.y * 0.5f, textCol, TextAlignmentOptions.Center, FontStyles.Bold);
+            // the text stays inside the tag's rounded ends: one line, shrinking for long translations
+            var t = Label(img.transform, "Text", text, Vector2.zero, size - new Vector2(size.y * 0.6f, 0), size.y * 0.5f, textCol, TextAlignmentOptions.Center, FontStyles.Bold);
+            FitOneLine(t, size.y * 0.32f);   // grows to the readable size when there is room, shrinks when there is not
+            return t;
         }
 
         public class Bar

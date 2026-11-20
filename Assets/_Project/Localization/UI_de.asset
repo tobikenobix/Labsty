@@ -1,0 +1,550 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UI_de
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: de
+  m_SharedData: {fileID: 11400000, guid: 2f9d7293f76e6ec43882ebc6deaec43c, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 4365213696
+    m_Localized: 'Inspektion gestartet: {0} Zeit. Finden Sie alle {1} Gefahren!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4453294080
+    m_Localized: Ergebnisse werden berechnet...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488384
+    m_Localized: "Zeigen Sie auf eine Antwort, ziehen Sie den Trigger und dr\xFCcken
+      Sie dann A zum Absenden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488385
+    m_Localized: "Gef\xE4hrliche Wahl, f\xFCr die Sicherheitspr\xFCfung erfasst.
+      W\xE4hlen Sie erneut."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488386
+    m_Localized: "Als Fehler erfasst. W\xE4hlen Sie erneut."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488387
+    m_Localized: Antwort {0} absenden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488388
+    m_Localized: Absenden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488389
+    m_Localized: Inspektion beenden?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488390
+    m_Localized: "M\xF6glicherweise haben Sie Gefahren \xFCbersehen. Alles, was Sie
+      nicht gefunden haben, gilt als \xFCbersehen.\nWeiter inspizieren oder jetzt
+      absenden?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488391
+    m_Localized: Inspektion jetzt absenden?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488392
+    m_Localized: Weiter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488393
+    m_Localized: "Behoben <b>{0}/{1}</b>     <color={2}>X Steuerung  \xB7  Y beenden</color>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488394
+    m_Localized: "GEF\xC4HRLICH"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488395
+    m_Localized: "Schlie\xDFen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488396
+    m_Localized: Steuerung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488397
+    m_Localized: "<b>WASD</b> gehen\n<b>Rechte Maustaste halten</b> umsehen\n<b>Linksklick</b>
+      ausw\xE4hlen\n<b>Enter</b> absenden   <b>Esc</b> schlie\xDFen\n<b>H</b> Steuerung  
+      <b>F</b> beenden"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488398
+    m_Localized: "<b><color={0}>Trigger</color></b>  ausw\xE4hlen / pr\xFCfen\n<b>Stick
+      nach vorn</b>  zielen, loslassen zum Teleportieren\n<b>Stick links/rechts</b> 
+      45\xB0 drehen    <b>zur\xFCck</b>  umdrehen\n<b>A</b>  absenden    <b>B</b> 
+      schlie\xDFen\n<b>X</b>  diese Karte    <b>Y / Menu</b>  beenden"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488399
+    m_Localized: LABOR-SICHERHEITSINSPEKTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488400
+    m_Localized: verbleibend
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488401
+    m_Localized: Inspektionsstation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488402
+    m_Localized: "Fr\xFCher fertig? Hier absenden oder Y / Menu dr\xFCcken."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488403
+    m_Localized: Inspektion beenden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488404
+    m_Localized: Sieht gut aus. Weiter inspizieren.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488405
+    m_Localized: '{0}: sieht gut aus.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488406
+    m_Localized: 'Gefahr behoben: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488407
+    m_Localized: Zeit abgelaufen!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488408
+    m_Localized: Alle Gefahren behoben!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488409
+    m_Localized: Inspektion abgesendet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488410
+    m_Localized: Sehr gut! Stick nach vorn teleportiert, links/rechts dreht.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488411
+    m_Localized: "Ausgew\xE4hlt! Im Labor \xF6ffnet das eine Sicherheitsfrage."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488412
+    m_Localized: "Alles klar. Dr\xFCcken Sie Labor starten, sobald Sie bereit sind."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488413
+    m_Localized: Erledigt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488414
+    m_Localized: "<b>Teleportieren</b> Sie sich auf den leuchtenden Ring: Stick nach
+      vorn dr\xFCcken, Bogen auf den Ring richten, loslassen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488415
+    m_Localized: "<b>W\xE4hlen</b> Sie die Kaffeetasse aus: darauf zeigen und den
+      Trigger ziehen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488416
+    m_Localized: Labor starten  (A)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488417
+    m_Localized: Labor starten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488418
+    m_Localized: "TUM \xB7 ETH  \u2014  INITIATIVE LABORSICHERHEIT"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488419
+    m_Localized: Labor-Sicherheitsinspektion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488420
+    m_Localized: SPRACHE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488421
+    m_Localized: GEFAHREN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488422
+    m_Localized: "Gefahren w\xE4hlen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488423
+    m_Localized: "60 SEKUNDEN AUFW\xC4RMEN"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488424
+    m_Localized: "Im Labor: Finden Sie jede Gefahr und w\xE4hlen Sie die sicherste
+      Ma\xDFnahme. Richtige Antwort = Gefahr behoben. Falsche Antwort = als Fehler
+      erfasst."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488425
+    m_Localized: Gefahren im Labor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488426
+    m_Localized: "Schalten Sie Gefahren ein oder aus und w\xE4hlen Sie, wie viele
+      pro Durchgang platziert werden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488427
+    m_Localized: PLATZIERTE GEFAHREN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488428
+    m_Localized: AUS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488429
+    m_Localized: GEFAHREN PRO DURCHGANG
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488430
+    m_Localized: 'Sicherheitskritisch: muss zum Bestehen richtig beantwortet werden.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488431
+    m_Localized: Alle einschalten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488432
+    m_Localized: Mindestens eine Gefahr muss eingeschaltet bleiben.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488433
+    m_Localized: "Jeder Durchgang platziert zuf\xE4llig {0} der {1} eingeschalteten
+      Gefahren."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488434
+    m_Localized: "BSL-1-Labor \xB7 {0} versteckte Gefahren \xB7 7 Minuten"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488435
+    m_Localized: Ihr Controller
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488436
+    m_Localized: "Ziehen Sie den <b><color={0}>TRIGGER</color></b> zum Ausw\xE4hlen.\n<b>Stick
+      nach vorn</b> teleportieren   <b>links/rechts</b> drehen\n<b>A</b> best\xE4tigen  
+      <b>B</b> schlie\xDFen   <b>X</b> Steuerung"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488437
+    m_Localized: "TRIGGER\n<size=70%>ausw\xE4hlen</size>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488438
+    m_Localized: 'STICK
+
+      <size=70%>teleportieren / drehen</size>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488439
+    m_Localized: GRIFF
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488440
+    m_Localized: "{0} \xB7 SITZUNG {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488441
+    m_Localized: Bewertungsergebnis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488442
+    m_Localized: "Sicherheitspr\xFCfung erforderlich"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488443
+    m_Localized: Nachschulung erforderlich
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488444
+    m_Localized: Bestanden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488445
+    m_Localized: Gefahrenerkennung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488446
+    m_Localized: '{0} / {1} Punkte'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488447
+    m_Localized: Richtige Entscheidungen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488448
+    m_Localized: Ja
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488449
+    m_Localized: Nein
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488450
+    m_Localized: Punktzahl
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488451
+    m_Localized: Mindestpunktzahl erreicht
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488452
+    m_Localized: Mindesterkennung erreicht
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488453
+    m_Localized: Mindestanzahl Entscheidungen erreicht
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488454
+    m_Localized: Alle kritischen Gefahren richtig
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488455
+    m_Localized: Keine kritisch unsichere Wahl
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488456
+    m_Localized: "Die teilnehmende Person hat {0} gew\xE4hlt: {1}. Dies ist eine
+      kritisch unsichere Wahl, denn {2}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488457
+    m_Localized: Die teilnehmende Person hat diese Gefahr nicht erkannt.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488458
+    m_Localized: Gefunden, aber keine Antwort abgesendet.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488459
+    m_Localized: "Die teilnehmende Person hat {0} statt {1} gew\xE4hlt. {2}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488460
+    m_Localized: "+ {0} weitere: unter Erkl\xE4rungen ansehen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488461
+    m_Localized: 'Keine Probleme: Jede Gefahr wurde gefunden und richtig behandelt.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488462
+    m_Localized: Noch nicht qualifiziert
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488463
+    m_Localized: Qualifiziert
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488464
+    m_Localized: "Abschlie\xDFende Entscheidung: {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488465
+    m_Localized: "Erkl\xE4rungen ansehen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488466
+    m_Localized: "Zur\xFCck zur Lobby"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488467
+    m_Localized: Erneut spielen  (A)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488468
+    m_Localized: 'Exportiert: {0}  (+ .csv)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488469
+    m_Localized: Trotz {0}/100 Punkten muss die teilnehmende Person die Verfahren
+      zu {1} erneut durcharbeiten und eine weitere Bewertung absolvieren.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488470
+    m_Localized: "Mit {0}/100 wurden die Mindestanforderungen nicht erf\xFCllt. Die
+      teilnehmende Person sollte sich erneut mit {1} befassen und eine neue Bewertung
+      ablegen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488471
+    m_Localized: Die teilnehmende Person hat mit {0}/100 und ohne sicherheitskritische
+      Fehler ihre Kompetenz nachgewiesen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488472
+    m_Localized: "Die \xFCbersehene Gefahr ({0}) sollte ebenfalls in das Feedback
+      einflie\xDFen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488473
+    m_Localized: "Die \xFCbersehenen Gefahren ({0}) sollten ebenfalls in das Feedback
+      einflie\xDFen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488474
+    m_Localized: relevanten Sicherheitsthemen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488475
+    m_Localized: ' und '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488476
+    m_Localized: "Erkl\xE4rungen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488477
+    m_Localized: nicht beantwortet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488478
+    m_Localized: "\xFCbersehen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488479
+    m_Localized: richtig
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488480
+    m_Localized: 'Ihre Wahl: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488481
+    m_Localized: "Schlie\xDFen  (B)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488482
+    m_Localized: Noch kein Durchgang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488483
+    m_Localized: Starten Sie in der Lobby, um das Labor zu spielen und hier Ihre
+      Ergebnisse zu sehen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488484
+    m_Localized: Zur Lobby
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488485
+    m_Localized: "MOCKUP \xB7 STATISCHE DATEN"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488486
+    m_Localized: Bestenliste Basel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488487
+    m_Localized: "Diese Woche \xB7 Labor-Sicherheitsinspektion"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488488
+    m_Localized: Sie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488489
+    m_Localized: Waage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488490
+    m_Localized: Zentrifuge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488491
+    m_Localized: Saubere Glaswaren
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488492
+    m_Localized: "Kittelst\xE4nder"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4457488493
+    m_Localized: "Schrank f\xFCr \xE4tzende Stoffe"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682688
+    m_Localized: Augendusche
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682689
+    m_Localized: "Feuerl\xF6scher"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682690
+    m_Localized: Abzug
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682691
+    m_Localized: Heizplatte
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682692
+    m_Localized: Laborbuch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682693
+    m_Localized: "Laborabfallbeh\xE4lter"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682694
+    m_Localized: Beschriftete Pufferflaschen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682695
+    m_Localized: "Beschriftete Kochsalzl\xF6sung"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682696
+    m_Localized: Laptop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682697
+    m_Localized: Pipetten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682698
+    m_Localized: "Recyclingbeh\xE4lter"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682699
+    m_Localized: "Probenr\xF6hrchen-St\xE4nder"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4461682700
+    m_Localized: "Sp\xFClbecken"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
