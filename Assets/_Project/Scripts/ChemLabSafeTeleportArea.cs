@@ -16,6 +16,44 @@ namespace ChemLab
         const float Head = 1.9f;       // tall player's head
         const float MaxShift = 0.6f;
         static readonly Collider[] buf = new Collider[8];
+        static readonly Color FreeCol = new Color(0f, 0.9f, 0.75f, 0.45f);
+        static readonly Color BlockedCol = new Color(1f, 0.25f, 0.2f, 0.45f);
+        Transform marker;
+        Material markerMat;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            // Hide XRI's stock reticle on this floor: it sits on the raw hit, not where you'll land.
+            customReticle = new GameObject("NoReticle");
+            customReticle.SetActive(false);
+            customReticle.transform.SetParent(transform, false);
+            // Body-sized disc (0.5 m = CharacterController diameter); same always-shipped shader as ColliderView.
+            var g = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            Destroy(g.GetComponent<Collider>());
+            g.name = "TeleportMarker";
+            g.transform.localScale = new Vector3(Radius * 2f, 0.002f, Radius * 2f);
+            markerMat = new Material(Shader.Find("Sprites/Default"));
+            g.GetComponent<Renderer>().sharedMaterial = markerMat;
+            marker = g.transform;
+            g.SetActive(false);
+        }
+
+        /// <summary>Shows where the player will really land (after FindFreeSpot), red when the teleport will be refused.</summary>
+        void LateUpdate()
+        {
+            bool show = false;
+            foreach (var i in interactorsHovering)
+            {
+                if (!(i is XRRayInteractor ray) || !ray.TryGetCurrent3DRaycastHit(out var hit) || !colliders.Contains(hit.collider)) continue;
+                bool free = FindFreeSpot(hit.point, out var spot);   // same check the real teleport uses
+                marker.position = (free ? spot : hit.point) + Vector3.up * 0.01f;
+                markerMat.color = free ? FreeCol : BlockedCol;
+                show = true;
+                break;
+            }
+            if (marker.gameObject.activeSelf != show) marker.gameObject.SetActive(show);
+        }
 
         protected override bool GenerateTeleportRequest(IXRInteractor interactor, RaycastHit raycastHit, ref TeleportRequest teleportRequest)
         {
