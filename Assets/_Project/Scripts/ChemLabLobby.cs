@@ -92,7 +92,7 @@ namespace ChemLab
                 bool on = Langs[i] == ChemLabRun.Language;
                 K.SetButtonColor(langBtns[i], on ? K.Accent : K.SurfaceHi);
                 var l = K.ButtonLabel(langBtns[i]);
-                l.color = on ? new Color(0.02f, 0.1f, 0.1f) : (Langs[i] == "EN" ? K.Text : K.TextDim);
+                l.color = on ? Color.white : (Langs[i] == "EN" ? K.Text : K.TextDim);
             }
         }
 
@@ -179,7 +179,7 @@ namespace ChemLab
             root.localScale = Vector3.one * scale;
 
             Image I(string n, Vector2 p, Vector2 s, Color c, Sprite sp) { var i = K.Img(root, n, p, s, c, sp); i.raycastTarget = false; return i; }
-            I("Ring", new Vector2(0, 40), new Vector2(250, 250), new Color(1, 1, 1, 0.07f), K.Circle);
+            I("Ring", new Vector2(0, 40), new Vector2(250, 250), K.Surface, K.Circle);
             I("RingInner", new Vector2(0, 40), new Vector2(214, 214), K.Bg, K.Circle);
             I("Face", new Vector2(10, 20), new Vector2(170, 150), K.Surface, K.Rounded);
             I("Handle", new Vector2(-20, -110), new Vector2(110, 190), K.Surface, K.Rounded);
@@ -189,7 +189,7 @@ namespace ChemLab
             I("BtnA", new Vector2(45, 5), new Vector2(36, 36), K.SurfaceHi, K.Circle);
             I("BtnB", new Vector2(65, 50), new Vector2(36, 36), K.SurfaceHi, K.Circle);
             var trig = I("Trigger", new Vector2(40, 150), new Vector2(110, 46), K.Accent, K.Rounded);
-            var glow = I("TriggerGlow", new Vector2(40, 150), new Vector2(140, 74), new Color(0f, 0.78f, 0.68f, 0.25f), K.Rounded);
+            var glow = I("TriggerGlow", new Vector2(40, 150), new Vector2(140, 74), new Color(K.Accent.r, K.Accent.g, K.Accent.b, 0.25f), K.Rounded);
             glow.transform.SetSiblingIndex(trig.transform.GetSiblingIndex());
 
             K.Label(root, "LTrigger", "TRIGGER\n<size=70%>select</size>", new Vector2(175, 150), new Vector2(160, 70), 24, K.Accent, TextAlignmentOptions.Left, FontStyles.Bold);
