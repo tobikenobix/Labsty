@@ -1,0 +1,157 @@
+using System;
+using System.Collections;
+using Unity.XR.CoreUtils;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
+
+namespace ChemLab
+{
+    /// <summary>
+    /// Meta Quest 3 button mapping, shared by all three scenes (teleport/turn come from the XRI starter rig):
+    ///   Thumbstick forward + release   teleport to a glowing node (no free walking)
+    ///   Right thumbstick left/right    snap turn
+    ///   Trigger                        select: inspect the object you point at, press UI buttons
+    ///   Grip                           also inspects the object you point at
+    ///   A (right)                      confirm / submit answer
+    ///   B (right)                      close panel
+    ///   X (left)                       show / hide the controls card
+    ///   Y or Menu (left)               finish the lab early
+    /// When no headset is active (Play in Editor without Link), a keyboard + mouse fallback is enabled.
+    /// </summary>
+    public class ChemLabControls : MonoBehaviour
+    {
+        public static event Action Confirm, Back, ToggleHelp, Finish;
+        /// <summary>Set by the active scene UI: when true, trigger presses go to UI buttons only.</summary>
+        public static Func<bool> BlockInspect;
+        public static bool DesktopMode { get; private set; }
+
+        public float desktopMoveSpeed = 2.2f;
+        public float desktopLookSpeed = 0.15f;
+
+        InputAction leftTrigger, rightTrigger, aBtn, bBtn, xBtn, yBtn;
+        XROrigin origin;
+        CharacterController body;
+        Transform cam;
+        float pitch;
+
+        static InputAction Make(string name, params string[] paths)
+        {
+            var a = new InputAction(name, InputActionType.Button);
+            foreach (var p in paths) a.AddBinding(p);
+            a.Enable();
+            return a;
+        }
+
+        void Awake()
+        {
+            DesktopMode = false;
+            leftTrigger = Make("Inspect L", "<XRController>{LeftHand}/{TriggerButton}");
+            rightTrigger = Make("Inspect R", "<XRController>{RightHand}/{TriggerButton}");
+            aBtn = Make("Confirm", "<XRController>{RightHand}/{PrimaryButton}", "<Keyboard>/enter", "<Keyboard>/numpadEnter");
+            bBtn = Make("Back", "<XRController>{RightHand}/{SecondaryButton}", "<Keyboard>/escape", "<Keyboard>/backspace");
+            xBtn = Make("Help", "<XRController>{LeftHand}/{PrimaryButton}", "<Keyboard>/h");
+            yBtn = Make("Finish", "<XRController>{LeftHand}/{SecondaryButton}", "<XRController>{LeftHand}/{MenuButton}",
+                        "<XRController>{LeftHand}/menu", "<Keyboard>/f");
+        }
+
+        IEnumerator Start()
+        {
+            // Only fall back to keyboard/mouse when OpenXR really failed to start.
+            yield return new WaitForSeconds(3f);
+            var mgr = UnityEngine.XR.Management.XRGeneralSettings.Instance != null
+                ? UnityEngine.XR.Management.XRGeneralSettings.Instance.Manager : null;
+            bool xrRunning = (mgr != null && mgr.activeLoader != null) || UnityEngine.XR.XRSettings.isDeviceActive;
+            if (xrRunning) yield break;
+
+            DesktopMode = true;
+            Debug.Log("[ChemLab] No XR headset active: keyboard + mouse fallback enabled.");
+            origin = FindFirstObjectByType<XROrigin>();
+            if (origin != null)
+            {
+                body = origin.GetComponent<CharacterController>();
+                cam = origin.Camera != null ? origin.Camera.transform : null;
+                if (cam != null)
+                    foreach (var tpd in cam.GetComponents<UnityEngine.InputSystem.XR.TrackedPoseDriver>()) tpd.enabled = false;
+            }
+            ChemLabUIKit.EnableMouse();
+        }
+
+        void OnDestroy()
+        {
+            foreach (var a in new[] { leftTrigger, rightTrigger, aBtn, bBtn, xBtn, yBtn }) a?.Dispose();
+        }
+
+        void Update()
+        {
+            if (rightTrigger.WasPressedThisFrame()) TryInspect(InteractorHandedness.Right);
+            if (leftTrigger.WasPressedThisFrame()) TryInspect(InteractorHandedness.Left);
+            if (aBtn.WasPressedThisFrame()) Confirm?.Invoke();
+            if (bBtn.WasPressedThisFrame()) Back?.Invoke();
+            if (xBtn.WasPressedThisFrame()) ToggleHelp?.Invoke();
+            if (yBtn.WasPressedThisFrame()) Finish?.Invoke();
+            if (DesktopMode) DesktopUpdate();
+        }
+
+        static bool Blocked => BlockInspect != null && BlockInspect();
+
+        void TryInspect(InteractorHandedness hand)
+        {
+            if (Blocked) return;
+            var target = ChemLabInspectable.FindHoveredBy(hand);
+            if (target != null) target.Inspect();
+        }
+
+        // ---------- keyboard + mouse fallback (testing only; VR uses teleport) ----------
+
+        void DesktopUpdate()
+        {
+            if (origin == null || cam == null) return;
+            var kb = Keyboard.current;
+            var mouse = Mouse.current;
+
+            var offset = origin.CameraFloorOffsetObject != null ? origin.CameraFloorOffsetObject.transform.localPosition.y : 0f;
+            cam.localPosition = new Vector3(0f, 1.6f - offset, 0f);
+
+            if (mouse != null && mouse.rightButton.isPressed)
+            {
+                var d = mouse.delta.ReadValue() * desktopLookSpeed;
+                origin.transform.Rotate(0f, d.x, 0f, Space.World);
+                pitch = Mathf.Clamp(pitch - d.y, -80f, 80f);
+            }
+            cam.localRotation = Quaternion.Euler(pitch, 0f, 0f);
+
+            if (kb != null)
+            {
+                Vector2 m = Vector2.zero;
+                if (kb.wKey.isPressed || kb.upArrowKey.isPressed) m.y += 1;
+                if (kb.sKey.isPressed || kb.downArrowKey.isPressed) m.y -= 1;
+                if (kb.dKey.isPressed || kb.rightArrowKey.isPressed) m.x += 1;
+                if (kb.aKey.isPressed || kb.leftArrowKey.isPressed) m.x -= 1;
+                if (m != Vector2.zero)
+                {
+                    var f = Vector3.ProjectOnPlane(cam.forward, Vector3.up).normalized;
+                    var r = Vector3.ProjectOnPlane(cam.right, Vector3.up).normalized;
+                    var move = (f * m.y + r * m.x).normalized * desktopMoveSpeed * Time.deltaTime;
+                    if (body != null && body.enabled) body.Move(move + Vector3.down * 0.01f);
+                    else origin.transform.position += move;
+                }
+            }
+
+            if (mouse != null && mouse.leftButton.wasPressedThisFrame && !Blocked)
+            {
+                if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
+                var ray = origin.Camera.ScreenPointToRay(mouse.position.ReadValue());
+                if (Physics.Raycast(ray, out var hit, 15f, ~0, QueryTriggerInteraction.Ignore))
+                {
+                    var target = hit.collider.GetComponentInParent<ChemLabInspectable>();
+                    if (target != null) { target.Inspect(); return; }
+                    // clicking a teleport node moves you there (desktop stand-in for the teleport ray)
+                    var node = hit.collider.GetComponentInParent<ChemLabTeleportNode>();
+                    if (node != null) node.TeleportHere(origin);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,374 @@
+{
+  "scoring": {
+    "pointsPerDetection": 3,
+    "pointsPerCorrectDecision": 7,
+    "passScore": 80,
+    "minDetected": 8,
+    "minCorrect": 8
+  },
+  "timeLimitSeconds": 420,
+  "targetTimeSeconds": 480,
+  "supervisorWelcome": "Welcome to the laboratory! Before beginning your research, you need to complete a safety inspection. Some things in this lab are unsafe. Can you find them and decide how to fix them?",
+  "hazards": [
+    {
+      "id": "H01",
+      "title": "Blocked emergency exit",
+      "area": "Entrance",
+      "difficulty": "Easy",
+      "category": "Emergency access",
+      "question": "A utility cart is parked in front of the emergency exit. What is the safest action?",
+      "correct": "B",
+      "explanation": "Emergency exits must be 100% clear at all times. Move the cart to a designated storage area, not just aside.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Push the cart slightly to the side so you can squeeze past.",
+          "critical": false
+        },
+        {
+          "key": "B",
+          "text": "Move the cart completely out of the walkway to a designated storage area so the exit is 100% clear.",
+          "critical": false
+        },
+        {
+          "key": "C",
+          "text": "Leave it there if you are only unloading supplies for 10 minutes.",
+          "critical": true
+        },
+        {
+          "key": "D",
+          "text": "Put a 'Caution' sign on the cart so people know to use another door.",
+          "critical": true
+        }
+      ],
+      "mandatoryCritical": true,
+      "criticalReason": "an emergency exit must never be blocked or left partly obstructed, even for a short time.",
+      "hudCategory": "Escape Routes",
+      "wrongFeedback": "Not safe: an emergency exit must be completely clear at all times."
+    },
+    {
+      "id": "H02",
+      "title": "Food and drink on the bench",
+      "area": "Main lab bench",
+      "difficulty": "Easy",
+      "category": "Hygiene / contamination",
+      "question": "There is a coffee cup and a sandwich next to the pipettes. What is the safest action?",
+      "correct": "C",
+      "explanation": "Food and drink are strictly prohibited in the laboratory because of ingestion and contamination risk.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Put a lid on the coffee cup so nothing spills into it.",
+          "critical": false
+        },
+        {
+          "key": "B",
+          "text": "Move the cup to the edge of the bench away from the chemicals.",
+          "critical": false
+        },
+        {
+          "key": "C",
+          "text": "Remove all food and drinks from the laboratory immediately; they are strictly prohibited on lab benches.",
+          "critical": false
+        },
+        {
+          "key": "D",
+          "text": "Finish drinking it quickly and throw the cup in the biohazard bin.",
+          "critical": false
+        }
+      ],
+      "mandatoryCritical": false,
+      "criticalReason": "",
+      "hudCategory": "PPE & Behaviour",
+      "wrongFeedback": "Not safe: food and drink are never allowed in the lab."
+    },
+    {
+      "id": "H03",
+      "title": "Unstably stacked boxes",
+      "area": "Entrance",
+      "difficulty": "Easy",
+      "category": "Physical / falling objects",
+      "question": "Cardboard boxes are stacked unevenly on a crate near the walkway. What is the safest action?",
+      "correct": "A",
+      "explanation": "Unstable stacks can fall on people. Unstack them and store items safely at a lower height.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Remove excess boxes, unstack them, and store items safely at a lower height.",
+          "critical": false
+        },
+        {
+          "key": "B",
+          "text": "Tape the boxes together so they don't fall over.",
+          "critical": false
+        },
+        {
+          "key": "C",
+          "text": "Lean the boxes against the wall for extra support.",
+          "critical": false
+        },
+        {
+          "key": "D",
+          "text": "Leave them for the cleaning staff to handle at the end of the day.",
+          "critical": false
+        }
+      ],
+      "mandatoryCritical": false,
+      "criticalReason": "",
+      "hudCategory": "Escape Routes",
+      "wrongFeedback": "Not safe: unstable stacks must be taken down and stored low."
+    },
+    {
+      "id": "H04",
+      "title": "Lab coat on a chair",
+      "area": "Working area",
+      "difficulty": "Medium",
+      "category": "PPE / contamination",
+      "question": "A lab coat is thrown over the back of a chair. What is the safest action?",
+      "correct": "C",
+      "explanation": "Lab coats can carry contamination. Store them on a designated hook or rack away from seating and work areas.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Leave it there so it's easy to grab when you come back from lunch.",
+          "critical": false
+        },
+        {
+          "key": "B",
+          "text": "Fold it neatly and place it on top of the lab bench.",
+          "critical": false
+        },
+        {
+          "key": "C",
+          "text": "Store the lab coat properly on a designated coat hook/rack away from seating and work areas.",
+          "critical": false
+        },
+        {
+          "key": "D",
+          "text": "Throw it in the general trash bin because it might be contaminated.",
+          "critical": false
+        }
+      ],
+      "mandatoryCritical": false,
+      "criticalReason": "",
+      "hudCategory": "PPE & Behaviour",
+      "wrongFeedback": "Not safe: lab coats belong on the designated coat rack."
+    },
+    {
+      "id": "H05",
+      "title": "Improper waste separation",
+      "area": "Working area",
+      "difficulty": "Medium",
+      "category": "Waste handling",
+      "question": "Used gloves and pipette tips are in the general waste bin. What is the safest action?",
+      "correct": "B",
+      "explanation": "Lab waste must be separated from domestic waste and go into the designated lab waste container.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Push the gloves deeper into the domestic bin so no one touches them.",
+          "critical": false
+        },
+        {
+          "key": "B",
+          "text": "Separate lab waste from domestic waste and dispose of used gloves in the designated lab waste container.",
+          "critical": false
+        },
+        {
+          "key": "C",
+          "text": "Rinse the gloves in the sink first, then throw them in domestic waste.",
+          "critical": false
+        },
+        {
+          "key": "D",
+          "text": "Leave them there; nitrile gloves are harmless and can go in regular trash.",
+          "critical": false
+        }
+      ],
+      "mandatoryCritical": false,
+      "criticalReason": "",
+      "hudCategory": "PPE & Behaviour",
+      "wrongFeedback": "Not safe: used gloves go into the lab waste container."
+    },
+    {
+      "id": "H06",
+      "title": "Unlabeled chemical bottle",
+      "area": "Main lab bench",
+      "difficulty": "Medium",
+      "category": "Chemical identification",
+      "question": "A bottle of clear liquid has no label or hazard pictogram. What is the safest action?",
+      "correct": "C",
+      "explanation": "Never smell or pour away an unknown chemical. Isolate it and let the supervisor/HSE identify, label or dispose of it.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Smell the liquid carefully to figure out if it's just water or ethanol.",
+          "critical": true
+        },
+        {
+          "key": "B",
+          "text": "Pour it down the sink with plenty of running water just to be safe.",
+          "critical": true
+        },
+        {
+          "key": "C",
+          "text": "Isolate the bottle, do not use it, and notify the lab supervisor/HSE to identify, label, or safely dispose of it.",
+          "critical": false
+        },
+        {
+          "key": "D",
+          "text": "Write 'Unknown Liquid' on a sticky note and put it back on the shelf.",
+          "critical": false
+        }
+      ],
+      "mandatoryCritical": true,
+      "criticalReason": "unknown chemicals must never be identified by smell or poured into the drain; they must be isolated and identified by HSE.",
+      "hudCategory": "Housekeeping & Storage",
+      "wrongFeedback": "Not safe: never smell, pour away or reuse an unknown chemical."
+    },
+    {
+      "id": "H07",
+      "title": "Missing PPE and headphones",
+      "area": "Main lab bench",
+      "difficulty": "Medium",
+      "category": "PPE / awareness",
+      "question": "Safety glasses lie unused next to active equipment, together with headphones. What is the safest action?",
+      "correct": "A",
+      "explanation": "Wear the required safety glasses and remove headphones so you can hear alarms and colleagues.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Put on the required PPE (safety glasses) before working and remove headphones so you can hear alarms and colleagues.",
+          "critical": false
+        },
+        {
+          "key": "B",
+          "text": "Keep headphones on at low volume so you can still hear the fire alarm.",
+          "critical": false
+        },
+        {
+          "key": "C",
+          "text": "Skip the safety glasses if you are only working with BSL-1 materials.",
+          "critical": false
+        },
+        {
+          "key": "D",
+          "text": "Wear regular prescription glasses instead of safety goggles.",
+          "critical": false
+        }
+      ],
+      "mandatoryCritical": false,
+      "criticalReason": "",
+      "hudCategory": "PPE & Behaviour",
+      "wrongFeedback": "Not safe: wear safety glasses and keep your ears free for alarms."
+    },
+    {
+      "id": "H08",
+      "title": "Damaged power cable",
+      "area": "Equipment area",
+      "difficulty": "Very difficult",
+      "category": "Electrical safety",
+      "question": "A frayed cable is plugged into an overloaded power strip behind the centrifuge. What is the safest action?",
+      "correct": "B",
+      "explanation": "Damaged cables are a shock and fire risk. Unplug and tag the equipment out of service and report it for replacement.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Wrap electrical tape around the frayed wire and keep using the device.",
+          "critical": true
+        },
+        {
+          "key": "B",
+          "text": "Unplug/tag the equipment out of service immediately and report it so the damaged cable and unsafe adapter are replaced.",
+          "critical": false
+        },
+        {
+          "key": "C",
+          "text": "Move the cable behind the machine so nobody accidentally touches the exposed wire.",
+          "critical": true
+        },
+        {
+          "key": "D",
+          "text": "Turn off the power strip only when you finish your experiment.",
+          "critical": true
+        }
+      ],
+      "mandatoryCritical": true,
+      "criticalReason": "continuing to use, taping or hiding a damaged cable keeps a live shock and fire hazard in service.",
+      "hudCategory": "Housekeeping & Storage",
+      "wrongFeedback": "Not safe: damaged cables must be taken out of service and reported."
+    },
+    {
+      "id": "H09",
+      "title": "Blocked / incomplete first-aid kit",
+      "area": "Safety station",
+      "difficulty": "Very difficult",
+      "category": "Emergency equipment",
+      "question": "The first-aid cabinet is blocked by bottles and is missing supplies. What is the safest action?",
+      "correct": "D",
+      "explanation": "Emergency equipment must be accessible and complete. Clear access and report the missing supplies to HSE.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Close the cabinet door so it looks tidy during the inspection.",
+          "critical": false
+        },
+        {
+          "key": "B",
+          "text": "Only report it if someone actually gets hurt and needs a bandage.",
+          "critical": false
+        },
+        {
+          "key": "C",
+          "text": "Bring band-aids from home to refill it yourself.",
+          "critical": false
+        },
+        {
+          "key": "D",
+          "text": "Clear access to the cabinet immediately and report the missing supplies to HSE so the first-aid kit is restocked and complete.",
+          "critical": false
+        }
+      ],
+      "mandatoryCritical": false,
+      "criticalReason": "",
+      "hudCategory": "Escape Routes",
+      "wrongFeedback": "Not safe: first-aid kits must be accessible and fully stocked."
+    },
+    {
+      "id": "H10",
+      "title": "Improper chemical storage",
+      "area": "Chemical storage",
+      "difficulty": "Very difficult",
+      "category": "Chemical storage",
+      "question": "Corrosive HCl is stored on a high shelf next to flammable chemicals. What is the safest action?",
+      "correct": "B",
+      "explanation": "Corrosives belong low down in secondary containment, separated from incompatible substances such as flammables.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Leave it on the top shelf so it stays out of the way of daily bench work.",
+          "critical": true
+        },
+        {
+          "key": "B",
+          "text": "Relocate the corrosive chemical to a designated, lower-level secondary containment cabinet, separated from incompatible substances.",
+          "critical": false
+        },
+        {
+          "key": "C",
+          "text": "Turn the bottle around so the hazard label faces outward and is easier to read.",
+          "critical": false
+        },
+        {
+          "key": "D",
+          "text": "Place it in the regular lab refrigerator to keep it stable.",
+          "critical": true
+        }
+      ],
+      "mandatoryCritical": true,
+      "criticalReason": "corrosives must not be stored high up or with incompatible substances; a fall or reaction can cause severe injury.",
+      "hudCategory": "Housekeeping & Storage",
+      "wrongFeedback": "Not safe: corrosives go low, in secondary containment, away from flammables."
+    }
+  ]
+}
