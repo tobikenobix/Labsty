@@ -44,13 +44,22 @@ class ChemLabMergeStatic : IProcessSceneWithReport
         foreach (var g in groups)
         {
             var list = g.Value;
-            before += list.Count;
-            after++;
-            if (list.Count == 1) continue;
+            if (list.Count == 1) { before++; after++; continue; }
             var combine = list.Select(r => new CombineInstance { mesh = r.GetComponent<MeshFilter>().sharedMesh, transform = r.transform.localToWorldMatrix }).ToArray();
             var mesh = new Mesh { name = $"Merged_{g.Key.Item1.name}_{g.Key.Item2}_{g.Key.Item3}" };
-            if (combine.Sum(ci => (long)ci.mesh.vertexCount) > 65535) mesh.indexFormat = IndexFormat.UInt32;
+            long verts = combine.Sum(ci => (long)ci.mesh.vertexCount);
+            if (verts > 65535) mesh.indexFormat = IndexFormat.UInt32;
             mesh.CombineMeshes(combine, true, true);   // ponytail: stays CPU-readable (~+20 MB RAM in the player); fine on Quest 3
+            if (mesh.vertexCount != verts)
+            {
+                // Source meshes are Read/Write off. Their data is available when the scene is built or opened in the
+                // Editor, but not when Play Mode loads the lab later (e.g. from the Lobby). Never drop geometry: stop here.
+                Object.DestroyImmediate(mesh);
+                Debug.Log("[ChemLab] Lab meshes not readable in this load path; merge skipped (build-time merge is unaffected).");
+                break;
+            }
+            before += list.Count;
+            after++;
 
             var go = new GameObject(mesh.name);
             go.transform.SetParent(root, false);
