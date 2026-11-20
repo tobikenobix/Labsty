@@ -145,8 +145,9 @@ public static class ChemLabSceneBuilder
         Systems(start, 0f);
         var game = new GameObject("ChemLab Lobby");
         var lobby = game.AddComponent<ChemLabLobby>();
-        lobby.mainPanelAnchor = Anchor("MainPanelAnchor", new Vector3(-0.5f, 1.5f, -0.85f), start);
-        lobby.controllerPanelAnchor = Anchor("ControllerPanelAnchor", new Vector3(0.9f, 1.45f, -1.1f), start);
+        // ~1.25 m from the start spot (was ~1.6 m): text cap height 0.51-0.68 deg -> ~0.67-0.9 deg
+        lobby.mainPanelAnchor = Anchor("MainPanelAnchor", new Vector3(-0.45f, 1.5f, -1.25f), start);
+        lobby.controllerPanelAnchor = Anchor("ControllerPanelAnchor", new Vector3(0.75f, 1.45f, -1.4f), start);
         game.AddComponent<ChemLabControls>();
         EditorSceneManager.SaveScene(scene, LobbyPath);
     }
@@ -163,8 +164,9 @@ public static class ChemLabSceneBuilder
         Systems(start, 0f);
         var game = new GameObject("ChemLab End Screen");
         var end = game.AddComponent<ChemLabEndScreen>();
-        end.resultsAnchor = Anchor("ResultsAnchor", new Vector3(-0.5f, 1.5f, -0.45f), start);
-        end.leaderboardAnchor = Anchor("LeaderboardAnchor", new Vector3(1.3f, 1.5f, -0.95f), start);
+        // ~1.35-1.45 m from the start spot (was ~2.0 m): report text ~0.55 deg -> ~0.8 deg
+        end.resultsAnchor = Anchor("ResultsAnchor", new Vector3(-0.35f, 1.5f, -1.1f), start);
+        end.leaderboardAnchor = Anchor("LeaderboardAnchor", new Vector3(1.05f, 1.5f, -1.45f), start);
         game.AddComponent<ChemLabControls>();
         EditorSceneManager.SaveScene(scene, EndPath);
     }
