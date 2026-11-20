@@ -146,6 +146,13 @@ namespace ChemLab
             var t = go.AddComponent<TextMeshProUGUI>();
             t.text = text;
             t.fontSize = fontSize;
+            if (fontSize < MinReadableSize)
+            {
+                // grow small text up to the readable size wherever its box has room; never smaller than requested
+                t.enableAutoSizing = true;
+                t.fontSizeMin = fontSize;
+                t.fontSizeMax = MinReadableSize;
+            }
             t.color = col;
             t.alignment = align;
             t.fontStyle = style;
@@ -153,6 +160,9 @@ namespace ChemLab
             t.raycastTarget = false;
             return t;
         }
+
+        /// <summary>Body text target in canvas units: about 1.2 deg at 1.3 m with the default 0.001 panel scale.</summary>
+        public const float MinReadableSize = 28f;
 
         public enum Style { Primary, Secondary, Ghost, Danger }
 
@@ -238,7 +248,8 @@ namespace ChemLab
             Vector3 flatFwd = Vector3.ProjectOnPlane(head.forward, Vector3.up);
             if (flatFwd.sqrMagnitude < 1e-4f) return;
             float angle = Vector3.Angle(Vector3.ProjectOnPlane(toPanel, Vector3.up), flatFwd);
-            if (angle < 55f && toPanel.magnitude < 3f && Mathf.Abs(toPanel.y) < 1.2f) return;
+            // ponytail: 1.6 m keeps 24pt text near 0.9 deg (VR minimum); farther and it stops being readable
+            if (angle < 55f && toPanel.magnitude < 1.6f && Mathf.Abs(toPanel.y) < 1.2f) return;
             flatFwd.Normalize();
             Vector3 target = head.position + flatFwd * dist + Vector3.up * yOffset;
             panel.position = Vector3.Lerp(panel.position, target, Time.deltaTime * 4f);

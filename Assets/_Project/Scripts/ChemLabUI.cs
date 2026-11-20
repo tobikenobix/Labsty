@@ -272,7 +272,7 @@ namespace ChemLab
 
         void BuildTablet()
         {
-            tablet = K.Panel(transform, "HUD_Tablet", new Vector2(620, 560), 0.0005f, blocksRays: false);
+            tablet = K.Panel(transform, "HUD_Tablet", new Vector2(620, 560), 0.0007f, blocksRays: false);
             K.Label(tablet.transform, "Title", "LAB SAFETY INSPECTION", new Vector2(0, 236), new Vector2(560, 40), 24, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
             tabTimer = K.Label(tablet.transform, "Timer", "07:00", new Vector2(0, 170), new Vector2(560, 90), 86, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
             K.Label(tablet.transform, "TimerCaption", "remaining", new Vector2(150, 150), new Vector2(240, 40), 24, K.TextDim, TextAlignmentOptions.Right);
@@ -300,7 +300,7 @@ namespace ChemLab
             if (leftHandAnchor != null && !K.MouseMode)
             {
                 tablet.transform.SetParent(leftHandAnchor, false);
-                tablet.transform.localPosition = new Vector3(0f, 0.09f, 0.03f);
+                tablet.transform.localPosition = new Vector3(0f, 0.13f, 0.07f);   // raised along the tilt so the larger tablet clears the controller
                 tablet.transform.localRotation = Quaternion.Euler(45f, 0f, 0f);
             }
             else if (Camera.main != null)
