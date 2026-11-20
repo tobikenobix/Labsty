@@ -166,7 +166,7 @@ public static class ChemLabSceneBuilder
 
     // ===================================================================== shared scene pieces
 
-    /// <summary>XR rig (left stick walks, right stick turns, no teleport), interaction manager and UI event system. Returns the left controller.</summary>
+    /// <summary>XR rig (left stick walks, right stick snap-turns or teleports), interaction manager and UI event system. Returns the left controller.</summary>
     static Transform Systems(Vector3 pos, float yaw)
     {
         new GameObject("XR Interaction Manager", typeof(XRInteractionManager));
@@ -177,24 +177,19 @@ public static class ChemLabSceneBuilder
         rig.transform.SetPositionAndRotation(pos, Quaternion.Euler(0, yaw, 0));
         SetBody(rig.GetComponent<CharacterController>());
         var all = rig.GetComponentsInChildren<Transform>(true);
-        // Grab move and jump off; teleport interactors off (movement is stick-only).
-        foreach (var name in new[] { "Grab Move", "Jump", "Teleport Interactor" })
+        // Grab move and jump off.
+        foreach (var name in new[] { "Grab Move", "Jump" })
             foreach (var t in all.Where(t => t.name == name)) t.gameObject.SetActive(false);
 
-        // Starter rig input managers: left = smooth move, right = smooth turn; remove the teleport input.
+        // Starter rig input managers: left stick = smooth move; right stick = snap turn (45 deg, back = turn around)
+        // and push forward to aim a teleport arc onto the floor, the comfort fallback for anyone who gets sick walking.
+        // The manager itself disables teleport on the hand that has smooth motion.
         foreach (var m in rig.GetComponentsInChildren<MonoBehaviour>(true).Where(m => m != null && m.GetType().Name == "ControllerInputActionManager"))
         {
             var so = new SerializedObject(m);
             bool left = m.transform.name.Contains("Left") || (m.transform.parent != null && m.transform.parent.name.Contains("Left"));
             var sm = so.FindProperty("m_SmoothMotionEnabled"); if (sm != null) sm.boolValue = left;
-            var st = so.FindProperty("m_SmoothTurnEnabled"); if (st != null) st.boolValue = !left;
-            foreach (var prop in new[] { "m_TeleportMode", "m_TeleportModeCancel" })
-            {
-                var p = so.FindProperty(prop);
-                if (p != null) p.objectReferenceValue = null;
-            }
-            var ti = so.FindProperty("m_TeleportInteractor");
-            if (ti != null) ti.objectReferenceValue = null;
+            var st = so.FindProperty("m_SmoothTurnEnabled"); if (st != null) st.boolValue = false;
             so.ApplyModifiedPropertiesWithoutUndo();
         }
         // Comfortable speeds: left stick walks in all directions, right stick turns.
@@ -258,6 +253,14 @@ public static class ChemLabSceneBuilder
         return g;
     }
 
+    /// <summary>Lets the right-stick teleport arc land anywhere on this floor (its collider).</summary>
+    static void TeleportFloor(GameObject floor)
+    {
+        var area = floor.AddComponent<TeleportationArea>();
+        int teleMask = InteractionLayerMask.GetMask("Teleport");
+        if (teleMask != 0) area.interactionLayers = teleMask;
+    }
+
     /// <summary>Anchor for a world-space panel, facing the player standing at 'viewer'.</summary>
     static Transform Anchor(string name, Vector3 pos, Vector3 viewer)
     {
@@ -286,6 +289,7 @@ public static class ChemLabSceneBuilder
         Label("Brand", env, "LAB SAFETY TRAINING", new Vector3(0, 2.85f, d / 2f - 0.03f), Quaternion.identity, 2.2f, new Color(0.1f, 0.3f, 0.35f));
         // keep floor + wall colliders so you can't walk through the walls
         foreach (var c in env.GetComponentsInChildren<Collider>()) if (c.name != "Floor" && !c.name.StartsWith("Wall_")) Object.DestroyImmediate(c);
+        TeleportFloor(env.Find("Floor").gameObject);
     }
 
     /// <summary>Procedural vinyl floor tile (4 x 4 tiles with grout lines and soft speckle), saved as a PNG asset.</summary>
@@ -349,6 +353,8 @@ public static class ChemLabSceneBuilder
         var q = Quaternion.Inverse(Quaternion.LookRotation(fwd, up));
         env.transform.SetPositionAndRotation(q * -start, q);
         teammateEnv = env.transform;
+        if (floor.GetComponent<Collider>() != null) TeleportFloor(floor.gameObject);
+        else Debug.LogWarning("[ChemLab] Lab floor has no collider: teleport has nowhere to land.");
         // Glass (fume-hood sashes, cabinet doors) should not stop the controller ray.
         int glass = 0;
         foreach (var r in env.GetComponentsInChildren<Renderer>(true))
