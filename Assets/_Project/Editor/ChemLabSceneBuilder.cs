@@ -1094,6 +1094,9 @@ public static class ChemLabSceneBuilder
             m.SetInt("_ZWrite", 0);
             m.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
             m.renderQueue = (int)RenderQueue.Transparent;
+            // Let URP derive the final blend state (Lit premultiplies when "preserve specular" is on -> SrcBlend One).
+            // Without this every rebuild wrote SrcBlend 5 and Unity re-saved it as 1 later (commit b888c96).
+            BaseShaderGUI.SetupMaterialBlendMode(m);
         }
         if (emissive)
         {
