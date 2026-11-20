@@ -60,3 +60,7 @@ Assets/Resources/PerformanceTestRun*.json*
 
 # Per-machine IDE workload file
 .vsconfig
+
+# Impeccable design-tool workspace (local only)
+.impeccable/
+PRODUCT.md
