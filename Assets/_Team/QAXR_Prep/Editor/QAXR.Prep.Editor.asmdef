@@ -1,0 +1,13 @@
+{
+    "name": "QAXR.Prep.Editor",
+    "rootNamespace": "QAXR",
+    "references": [
+        "QAXR.Prep",
+        "Unity.XR.Interaction.Toolkit",
+        "Unity.TextMeshPro"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "autoReferenced": false
+}
