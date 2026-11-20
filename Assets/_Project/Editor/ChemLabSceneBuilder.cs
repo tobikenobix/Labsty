@@ -878,7 +878,8 @@ public static class ChemLabSceneBuilder
         // H05 Used gloves and pipette tips in the general (domestic) waste bin
         {
             var g = Group("H05_WasteSeparation", p, new Vector3(-4.6f, 0, 2.95f));
-            Model("TrashBin", "Bin", g, Vector3.zero, new Vector3(0.4f, 0.6f, 0.4f), new Vector3(0, -90f, 0), out var bin);
+            // unlike the other bins, this model's front (pedal + opening) is +Z
+            Model("TrashBin", "Bin", g, Vector3.zero, new Vector3(0.4f, 0.6f, 0.4f), new Vector3(0, 90f, 0), out var bin);
             float d = bin.y * 0.8f - 0.51f;   // gloves were placed for a 0.51 m rim; follow the model's opening
             var glove = M("GloveBlue", new Color(0.2f, 0.42f, 0.95f));
             Box("Glove1", g, new Vector3(0.03f, 0.53f + d, 0.02f), new Vector3(0.18f, 0.03f, 0.1f), glove, new Vector3(0, 30f, 15f));
