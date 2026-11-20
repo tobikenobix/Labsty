@@ -68,28 +68,44 @@ public static class ChemLabSceneBuilder
     static void BuildLab()
     {
         var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-        BuildLighting();
         var env = new GameObject("Environment").transform;
-        BuildRoom(env);
+        // Use the teammate's textured lab when it is in the project, otherwise the primitive room.
+        bool team = BuildTeammateEnvironment(env);
+        if (team) BuildLighting(lightPositions: new[] { new Vector3(0, 2.6f, 1f), new Vector3(0, 2.6f, 5f), new Vector3(0, 2.6f, 9f), new Vector3(0, 2.6f, 13f) }, panels: false);
+        else { BuildLighting(); BuildRoom(env); }
         var lab = new GameObject("Lab").transform;
         var decoys = new GameObject("Decoys (inspectable, not hazards)").transform;
         var hazards = new GameObject("Hazards (10)").transform;
-        BuildFurniture(lab);
-        BuildPolish(lab);
+        BuildFurniture(lab, team);
+        if (!team) BuildPolish(lab);
         BuildDecoys(decoys);
         BuildHazards(hazards);
+        if (team) RelayoutForTeammateLab(lab, decoys, hazards);
 
         // 4 fixed teleport nodes, no free walking
         var nodes = new GameObject("Teleport Nodes").transform;
-        Node(nodes, "Exit Area", new Vector3(-1.5f, 0, -2.6f), 0f);
-        Node(nodes, "Main Bench", new Vector3(0.2f, 0, -0.75f), 0f);
-        Node(nodes, "Chemical Shelf", new Vector3(2.7f, 0, 2.2f), 20f);
-        Node(nodes, "Waste Station", new Vector3(-3.2f, 0, 2.3f), -70f);
+        Vector3 startPos;
+        Transform finishAnchor = new GameObject("FinishStationAnchor").transform;
+        if (team)
+        {
+            startPos = new Vector3(0.9f, 0, 0.2f);
+            Node(nodes, "Exit Area", startPos, 0f);
+            Node(nodes, "Main Bench", new Vector3(-1.55f, 0, 5.4f), 40f);
+            Node(nodes, "Waste Station", new Vector3(1.45f, 0, 7.5f), 70f);
+            Node(nodes, "Chemical Shelf", new Vector3(0f, 0, 11.2f), 0f);
+            finishAnchor.SetPositionAndRotation(new Vector3(1.65f, 1.45f, -1.5f), Quaternion.LookRotation(Vector3.back));
+        }
+        else
+        {
+            startPos = new Vector3(-1.5f, 0, -2.6f);
+            Node(nodes, "Exit Area", startPos, 0f);
+            Node(nodes, "Main Bench", new Vector3(0.2f, 0, -0.75f), 0f);
+            Node(nodes, "Chemical Shelf", new Vector3(2.7f, 0, 2.2f), 20f);
+            Node(nodes, "Waste Station", new Vector3(-3.2f, 0, 2.3f), -70f);
+            finishAnchor.SetPositionAndRotation(new Vector3(-0.3f, 1.45f, -3.93f), Quaternion.LookRotation(Vector3.back));
+        }
 
-        var leftHand = Systems(new Vector3(-1.5f, 0f, -2.6f), 0f);
-
-        var finishAnchor = new GameObject("FinishStationAnchor").transform;
-        finishAnchor.SetPositionAndRotation(new Vector3(-0.3f, 1.45f, -3.93f), Quaternion.LookRotation(Vector3.back));
+        var leftHand = Systems(startPos, 0f);
 
         var game = new GameObject("ChemLab Game");
         var ui = game.AddComponent<ChemLabUI>();
@@ -256,9 +272,133 @@ public static class ChemLabSceneBuilder
         return AssetDatabase.LoadAssetAtPath<Texture2D>(path);
     }
 
+    // ===================================================================== teammate lab environment
+
+    const string TeammateLabPrefab = "Assets/3D Models/Lab Environment.prefab";
+    static Transform teammateEnv;
+
+    /// <summary>
+    /// Instantiates the teammate's textured lab (Assets/3D Models/Lab Environment.prefab) and aligns it exactly like
+    /// their LabEnvironmentBuilder does: floor levelled at y = 0, room running along +Z, entrance door behind the origin.
+    /// Room: x = -2.86..2.86, z = -1.6 (entrance) .. 15.1; central island x = -0.8..0.8, z = 1.5..10.5; wall benches at x = +-2.6.
+    /// </summary>
+    static bool BuildTeammateEnvironment(Transform parent)
+    {
+        var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(TeammateLabPrefab);
+        if (prefab == null) return false;
+        var env = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+        env.name = "Lab Environment (teammate)";
+        env.transform.SetParent(parent, false);
+        env.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+        Transform floor = env.GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t.name.StartsWith("Plane018") && t.GetComponent<MeshFilter>() != null);
+        if (floor == null) { Debug.LogWarning("[ChemLab] Teammate lab floor (Plane018) not found; using it unaligned."); teammateEnv = env.transform; return true; }
+        var b = floor.GetComponent<MeshFilter>().sharedMesh.bounds;
+        var axes = new[] { Vector3.right, Vector3.up, Vector3.forward };
+        var world = Enumerable.Range(0, 3).Select(i => floor.TransformVector(axes[i] * b.size[i])).ToArray();
+        var order = Enumerable.Range(0, 3).OrderBy(i => world[i].magnitude).ToArray();
+        var center = floor.TransformPoint(b.center);
+        var up = floor.TransformDirection(axes[order[0]]).normalized;
+        if (up.y < 0) up = -up;
+        float length = world[order[2]].magnitude;
+        var fwd = world[order[2]];
+        fwd = (fwd - up * Vector3.Dot(fwd, up)).normalized;
+        var door = env.GetComponentsInChildren<Renderer>(true).FirstOrDefault(r => r.name.StartsWith("Object1111191742"));
+        if (door != null && Vector3.Dot(door.bounds.center - center, fwd) > 0) fwd = -fwd;
+        var start = center + fwd * (-length * 0.5f + 1.6f);
+        var q = Quaternion.Inverse(Quaternion.LookRotation(fwd, up));
+        env.transform.SetPositionAndRotation(q * -start, q);
+        teammateEnv = env.transform;
+        // Glass (fume-hood sashes, cabinet doors) should not stop the controller ray.
+        int glass = 0;
+        foreach (var r in env.GetComponentsInChildren<Renderer>(true))
+        {
+            var m = r.sharedMaterial;
+            bool transparent = m != null && (m.renderQueue >= 2900 || (m.HasProperty("_Surface") && m.GetFloat("_Surface") > 0.5f));
+            if (!transparent) continue;
+            foreach (var c in r.GetComponents<Collider>()) { Object.DestroyImmediate(c); glass++; }
+        }
+        Debug.Log("[ChemLab] Teammate lab aligned; removed " + glass + " glass colliders.");
+        Physics.SyncTransforms();
+
+        // keep-clear zone in front of the entrance (the H01 cart sits on it)
+        var tape = M("SafetyYellow", new Color(0.98f, 0.8f, 0.1f));
+        Box("ExitZone_F", parent, new Vector3(0f, 0.003f, -0.6f), new Vector3(1.7f, 0.004f, 0.08f), tape);
+        Box("ExitZone_L", parent, new Vector3(-0.85f, 0.003f, -1.1f), new Vector3(0.08f, 0.004f, 1.0f), tape);
+        Box("ExitZone_R", parent, new Vector3(0.85f, 0.003f, -1.1f), new Vector3(0.08f, 0.004f, 1.0f), tape);
+        Label("KeepClear", parent, "KEEP CLEAR", new Vector3(0f, 0.007f, -0.8f), Quaternion.Euler(90, 0, 0), 1.0f, new Color(0.85f, 0.65f, 0.05f));
+        Label("Sign_Storage", parent, "CHEMICAL STORAGE", new Vector3(0f, 2.45f, 12.6f), Quaternion.LookRotation(Vector3.forward), 0.9f, new Color(0.15f, 0.3f, 0.5f));
+        return true;
+    }
+
+    /// <summary>Height of the teammate's lab surface (bench, island, floor) under (x, z), ignoring our own objects.</summary>
+    static float SurfaceY(float x, float z)
+    {
+        var hits = Physics.RaycastAll(new Vector3(x, 2.2f, z), Vector3.down, 3f, ~0, QueryTriggerInteraction.Ignore);
+        float best = 0f; float bestDist = float.MaxValue;
+        foreach (var h in hits)
+            if (teammateEnv != null && h.collider.transform.IsChildOf(teammateEnv) && h.distance < bestDist) { bestDist = h.distance; best = h.point.y; }
+        return best;
+    }
+
+    /// <summary>Moves our hazards, decoys and storage shelf from the primitive-room layout into the teammate's lab.</summary>
+    static void RelayoutForTeammateLab(params Transform[] roots)
+    {
+        Physics.SyncTransforms();
+        // name -> (x, z, yaw, snapToSurface)
+        var layout = new Dictionary<string, (float x, float z, float yaw, bool snap)>
+        {
+            // entrance
+            { "H01_BlockedExit",       (0.0f, -1.1f,   0f, false) },
+            { "H03_StackedBoxes",      (-1.75f, 0.9f,  0f, false) },
+            { "CoatRack",              (1.7f, -1.15f,  0f, false) },
+            { "FireExtinguisher",      (2.2f, 0.75f,   0f, false) },
+            // central island
+            { "H02_FoodAndDrink",      (-0.4f, 2.7f,   0f, true) },
+            { "TubeRack",              (0.35f, 3.2f,   0f, true) },
+            { "Pipettes",              (-0.4f, 3.75f,  0f, true) },
+            { "H06_UnlabeledBottle",   (0.35f, 4.6f,   0f, true) },
+            { "LabeledBottle_NaCl",    (0.4f, 6.8f,    0f, true) },
+            { "H07_PPEAndHeadphones",  (-0.15f, 8.0f,  0f, true) },
+            { "HotPlate",              (0.45f, 8.35f,  0f, true) },
+            { "LabNotebook",           (-0.3f, 9.6f,   0f, true) },
+            // left wall bench (work area)
+            { "H04_LabCoatOnChair",    (-1.95f, 3.4f, -90f, false) },
+            { "Laptop",                (-2.6f, 3.0f,  90f, true) },
+            { "H09_FirstAidKit",       (-2.15f, 15.0f,  0f, false) },   // far-left corner wall
+            // right wall (waste + equipment)
+            { "H05_WasteSeparation",   (2.15f, 7.2f, 180f, false) },
+            { "LabWasteBin",           (2.15f, 7.85f, 180f, false) },
+            { "Balance",               (2.6f, 3.0f,    0f, true) },
+            { "Centrifuge",            (2.45f, 9.35f,  0f, true) },
+            { "H08_DamagedCable",      (2.47f, 9.8f,   0f, true) },
+            // chemical storage (freestanding rack near the far end)
+            { "CorrosivesCabinet",     (1.25f, 12.75f, 0f, false) },
+        };
+        // the storage rack and everything sitting on it move together, keeping their offsets
+        var shelfOld = new Vector3(2.5f, 0, 3.75f);
+        var shelfNew = new Vector3(0f, 0, 12.8f);
+        var shelfSet = new HashSet<string> { "ChemicalShelf", "H10_ChemicalStorage", "LowerShelfBottles", "MidShelfGlassware" };
+
+        foreach (var root in roots)
+            foreach (Transform t in root.Cast<Transform>().ToArray())
+            {
+                if (shelfSet.Contains(t.name)) { t.position = shelfNew + (t.position - shelfOld); continue; }
+                if (!layout.TryGetValue(t.name, out var p)) continue;
+                float y = p.snap ? SurfaceY(p.x, p.z) : 0f;
+                t.SetPositionAndRotation(new Vector3(p.x, y, p.z), Quaternion.Euler(0, p.yaw, 0));
+            }
+
+        // our primitive-room decoys that have no place in the teammate's lab
+        foreach (var root in roots)
+            foreach (Transform t in root.Cast<Transform>().ToArray())
+                if (t.name == "SafetySupervisor" || t.name == "EyeWash" || t.name == "Sink" || t.name == "FumeHood" || t.name == "WallCabinets" || t.name == "Poster" || t.name.StartsWith("GasTap"))
+                    Object.DestroyImmediate(t.gameObject);
+    }
+
     // ===================================================================== lighting / room
 
-    static void BuildLighting(bool bright = false)
+    static void BuildLighting(bool bright = false, Vector3[] lightPositions = null, bool panels = true)
     {
         RenderSettings.ambientMode = AmbientMode.Trilight;
         RenderSettings.ambientSkyColor = bright ? new Color(0.78f, 0.82f, 0.86f) : new Color(0.62f, 0.66f, 0.7f);
@@ -274,12 +414,15 @@ public static class ChemLabSceneBuilder
         sun.transform.rotation = Quaternion.Euler(60f, 30f, 0f);
 
         var lights = new GameObject("Ceiling Lights").transform;
-        foreach (var p in new[] { new Vector3(-2.5f, 2.85f, -1.8f), new Vector3(2.5f, 2.85f, -1.8f), new Vector3(-2.5f, 2.85f, 2f), new Vector3(2.5f, 2.85f, 2f) })
+        foreach (var p in lightPositions ?? new[] { new Vector3(-2.5f, 2.85f, -1.8f), new Vector3(2.5f, 2.85f, -1.8f), new Vector3(-2.5f, 2.85f, 2f), new Vector3(2.5f, 2.85f, 2f) })
         {
-            var panel = Box("LightPanel", lights, p + Vector3.up * 0.1f, new Vector3(1.2f, 0.04f, 0.4f), M("LightPanel", Color.white, emissive: true));
-            Object.DestroyImmediate(panel.GetComponent<Collider>());
-            var frame = Box("LightFrame", lights, p + Vector3.up * 0.11f, new Vector3(1.26f, 0.03f, 0.46f), M("Metal", Color.grey));
-            Object.DestroyImmediate(frame.GetComponent<Collider>());
+            if (panels)
+            {
+                var panel = Box("LightPanel", lights, p + Vector3.up * 0.1f, new Vector3(1.2f, 0.04f, 0.4f), M("LightPanel", Color.white, emissive: true));
+                Object.DestroyImmediate(panel.GetComponent<Collider>());
+                var frame = Box("LightFrame", lights, p + Vector3.up * 0.11f, new Vector3(1.26f, 0.03f, 0.46f), M("Metal", Color.grey));
+                Object.DestroyImmediate(frame.GetComponent<Collider>());
+            }
             var l = new GameObject("Point Light").AddComponent<Light>();
             l.transform.SetParent(lights, false);
             l.transform.position = p;
@@ -361,10 +504,18 @@ public static class ChemLabSceneBuilder
 
     // ===================================================================== furniture
 
-    static void BuildFurniture(Transform lab)
+    static void BuildFurniture(Transform lab, bool teammateLab = false)
+    {
+        if (!teammateLab) BuildBenches(lab);
+        // reagent shelf on the island
+        // Chemical storage shelf unit (north wall, x = 2.5)
+        BuildChemShelf(lab);
+        BuildSupervisor(lab);
+    }
+
+    static void BuildBenches(Transform lab)
     {
         Bench("MainBench", lab, new Vector3(0, 0, 0.5f), new Vector2(4.0f, 1.2f));
-        // reagent shelf on the island
         var shelfMat = M("Metal", Color.grey);
         Box("IslandShelf_PostL", lab, new Vector3(-1.9f, 1.25f, 0.5f), new Vector3(0.04f, 0.7f, 0.04f), shelfMat);
         Box("IslandShelf_PostR", lab, new Vector3(1.9f, 1.25f, 0.5f), new Vector3(0.04f, 0.7f, 0.04f), shelfMat);
@@ -372,8 +523,10 @@ public static class ChemLabSceneBuilder
 
         Bench("WorkBench_West", lab, new Vector3(-4.55f, 0, 1.0f), new Vector2(0.8f, 3.0f));
         Bench("EquipmentBench_East", lab, new Vector3(4.55f, 0, 1.0f), new Vector2(0.8f, 3.0f));
+    }
 
-        // Chemical storage shelf unit (north wall, x = 2.5)
+    static void BuildChemShelf(Transform lab)
+    {
         var shelf = Group("ChemicalShelf", lab, new Vector3(2.5f, 0, 3.75f));
         var wood = M("ShelfWhite", new Color(0.88f, 0.88f, 0.86f));
         Box("Side_L", shelf, new Vector3(-0.72f, 1.1f, 0), new Vector3(0.03f, 2.2f, 0.4f), wood);
@@ -381,7 +534,10 @@ public static class ChemLabSceneBuilder
         Box("Back", shelf, new Vector3(0, 1.1f, 0.19f), new Vector3(1.44f, 2.2f, 0.02f), wood);
         foreach (var y in new[] { 0.05f, 0.5f, 1.0f, 1.5f, 1.95f })
             Box("Shelf_" + y, shelf, new Vector3(0, y, 0), new Vector3(1.42f, 0.03f, 0.4f), wood);
+    }
 
+    static void BuildSupervisor(Transform lab)
+    {
         // supervisor figure near the start (non-interactive)
         var sup = Group("SafetySupervisor", lab, new Vector3(-4.3f, 0, -1.3f));
         sup.rotation = Quaternion.Euler(0, 120f, 0);
