@@ -393,6 +393,10 @@ public static class ChemLabSceneBuilder
         Box("ExitZone_F", parent, new Vector3(0f, 0.003f, -0.6f), new Vector3(1.7f, 0.004f, 0.08f), tape);
         Box("ExitZone_L", parent, new Vector3(-0.85f, 0.003f, -1.1f), new Vector3(0.08f, 0.004f, 1.0f), tape);
         Box("ExitZone_R", parent, new Vector3(0.85f, 0.003f, -1.1f), new Vector3(0.08f, 0.004f, 1.0f), tape);
+        // exit sign on the wall above the entrance door (wall face z = -1.59 above 2.4 m, ceiling 2.96 m)
+        var sign = Model("ExitSign", "ExitSign", parent, Vector3.zero, new Vector3(0.6f, 0, 0.12f), new Vector3(0, 180f, 0), out var es);
+        sign.localPosition = new Vector3(0f, 2.4f, -1.59f + es.z / 2f);
+        ExitSignGlow();
         Label("KeepClear", parent, "KEEP CLEAR", new Vector3(0f, 0.007f, -0.8f), Quaternion.Euler(90, 0, 0), 1.0f, new Color(0.85f, 0.65f, 0.05f));
         Label("Sign_Storage", parent, "CHEMICAL STORAGE", new Vector3(0f, 2.45f, 12.6f), Quaternion.LookRotation(Vector3.forward), 0.9f, new Color(0.15f, 0.3f, 0.5f));
         return true;
@@ -436,6 +440,7 @@ public static class ChemLabSceneBuilder
             // right wall (waste + equipment)
             { "H05_WasteSeparation",   (2.15f, 7.2f, 180f, false) },
             { "LabWasteBin",           (2.15f, 7.85f, 180f, false) },
+            { "RecyclingBin",          (2.15f, 8.5f, 180f, false) },
             { "Balance",               (2.6f, 3.0f,    0f, true) },
             { "Centrifuge",            (2.45f, 9.35f,  0f, true) },
             { "H08_DamagedCable",      (2.47f, 9.8f,   0f, true) },
@@ -558,8 +563,10 @@ public static class ChemLabSceneBuilder
         Box("Panel", door, new Vector3(0, 1.05f, 0.02f), new Vector3(1.0f, 2.1f, 0.05f), M("Door", new Color(0.3f, 0.5f, 0.42f)));
         Box("Window", door, new Vector3(0, 1.6f, 0.05f), new Vector3(0.3f, 0.5f, 0.01f), sky);
         Box("PushBar", door, new Vector3(0, 1.0f, 0.08f), new Vector3(0.8f, 0.06f, 0.06f), M("Metal", Color.grey));
-        Box("ExitSign", door, new Vector3(0, 2.35f, 0.04f), new Vector3(0.7f, 0.22f, 0.04f), M("ExitGreen", new Color(0.05f, 0.7f, 0.3f), emissive: true));
-        Label("ExitText", door, "EMERGENCY EXIT", new Vector3(0, 2.35f, 0.065f), Quaternion.LookRotation(Vector3.back), 0.6f, Color.white);
+        // exit sign model: its face is -Z, the room is +Z here; lit like a real exit sign
+        var sign = Model("ExitSign", "ExitSign", door, new Vector3(0, 2.22f, 0), new Vector3(0.7f, 0, 0.12f), new Vector3(0, 180f, 0), out var es);
+        sign.localPosition += new Vector3(0, 0, 0.02f + es.z / 2f);
+        ExitSignGlow();
 
         // Area signs (help orientation, not hazard hints)
         Label("Sign_Storage", env, "CHEMICAL STORAGE", new Vector3(2.6f, 2.6f, 3.99f), Quaternion.identity, 1.0f, new Color(0.15f, 0.3f, 0.5f));
@@ -599,8 +606,11 @@ public static class ChemLabSceneBuilder
         Box("Side_L", shelf, new Vector3(-0.72f, 1.1f, 0), new Vector3(0.03f, 2.2f, 0.4f), wood);
         Box("Side_R", shelf, new Vector3(0.72f, 1.1f, 0), new Vector3(0.03f, 2.2f, 0.4f), wood);
         Box("Back", shelf, new Vector3(0, 1.1f, 0.19f), new Vector3(1.44f, 2.2f, 0.02f), wood);
-        foreach (var y in new[] { 0.05f, 0.5f, 1.0f, 1.5f, 1.95f })
+        foreach (var y in new[] { 0.05f, 0.5f, 1.0f, 1.5f })
             Box("Shelf_" + y, shelf, new Vector3(0, y, 0), new Vector3(1.42f, 0.03f, 0.4f), wood);
+        // top shelf is glass; its surface stays at 1.965 where H10 stands
+        var glass = Model("GlassShelf", "Shelf_1.95", shelf, Vector3.zero, new Vector3(1.42f, 0, 0.4f), Vector3.zero, out var gs, 0.8f);
+        glass.localPosition = new Vector3(0, 1.965f - gs.y, 0);
     }
 
     static void BuildSupervisor(Transform lab)
@@ -736,10 +746,13 @@ public static class ChemLabSceneBuilder
 
         // Proper lab waste bin (yellow, lidded)
         var lw = Group("LabWasteBin", p, new Vector3(-4.6f, 0, 3.55f));
-        Cyl("Bin", lw, new Vector3(0, 0.27f, 0), 0.38f, 0.54f, M("WasteYellow", new Color(0.95f, 0.78f, 0.1f)));
-        Cyl("Lid", lw, new Vector3(0, 0.555f, 0), 0.4f, 0.03f, M("WasteYellow", Color.yellow));
-        Label("Text", lw, "LAB WASTE", new Vector3(0.2f, 0.32f, 0), Quaternion.LookRotation(Vector3.left), 0.35f, Color.black);
+        Model("BiohazardBin", "Bin", lw, Vector3.zero, new Vector3(0.45f, 0.62f, 0.45f), new Vector3(0, -90f, 0), out var lwb);
+        Label("Text", lw, "LAB WASTE", new Vector3(lwb.z / 2f + 0.01f, lwb.y * 0.5f, 0), Quaternion.LookRotation(Vector3.left), 0.35f, Color.black);
         MakeInspectable(lw.gameObject, ChemLabInspectable.Kind.Decoy, null, "Lab waste bin");
+
+        var rb = Group("RecyclingBin", p, new Vector3(-4.6f, 0, 2.35f));
+        Model("RecyclingBin", "Bin", rb, Vector3.zero, new Vector3(0.45f, 0.62f, 0.45f), new Vector3(0, -90f, 0));
+        MakeInspectable(rb.gameObject, ChemLabInspectable.Kind.Decoy, null, "Recycling bin");
 
         // West bench: microscope-ish + laptop
         var lap = Group("Laptop", p, new Vector3(-4.5f, 0.9f, 1.4f));
@@ -808,43 +821,33 @@ public static class ChemLabSceneBuilder
         var metal = M("Metal", Color.grey);
         var white = M("LabCoat", Color.white);
 
-        // H01 Blocked emergency exit: black utility cart right in front of the exit door
+        // H01 Blocked emergency exit: utility trolley with boxes right in front of the exit door
         {
             var g = Group("H01_BlockedExit", p, new Vector3(-3.2f, 0, -3.5f));
-            Box("ShelfLow", g, new Vector3(0, 0.25f, 0), new Vector3(0.95f, 0.04f, 0.5f), black);
-            Box("ShelfHigh", g, new Vector3(0, 0.85f, 0), new Vector3(0.95f, 0.04f, 0.5f), black);
-            foreach (var x in new[] { -0.45f, 0.45f })
-                foreach (var z in new[] { -0.22f, 0.22f })
-                {
-                    Cyl("Post", g, new Vector3(x, 0.52f, z), 0.03f, 0.8f, black);
-                    Sphere("Wheel", g, new Vector3(x, 0.05f, z), 0.1f, M("Graphite", Color.grey));
-                }
-            Box("Handle", g, new Vector3(0.5f, 1.0f, 0), new Vector3(0.03f, 0.3f, 0.45f), black);
-            Box("Box", g, new Vector3(-0.1f, 1.05f, 0), new Vector3(0.5f, 0.35f, 0.4f), card);
-            Box("Box2", g, new Vector3(0.05f, 0.42f, 0.02f), new Vector3(0.6f, 0.3f, 0.4f), card);
+            Model("Trolley", "Trolley", g, Vector3.zero, new Vector3(1.0f, 1.1f, 0.6f), Vector3.zero, out var cart, 0.5f);
+            Model("CardboardBox", "Box", g, new Vector3(-0.05f, cart.y * 0.8f, 0), new Vector3(0.45f, 0.3f, 0.4f), new Vector3(0, 8f, 0));
+            Model("CardboardBox", "Box2", g, new Vector3(0.05f, cart.y * 0.22f, 0), new Vector3(0.5f, 0.28f, 0.4f), Vector3.zero);
             MakeInspectable(g.gameObject, ChemLabInspectable.Kind.Hazard, "H01");
         }
 
         // H02 Coffee cup + sandwich next to the pipettes
         {
             var g = Group("H02_FoodAndDrink", p, new Vector3(-1.1f, 0.9f, 0.6f));
-            Cyl("Cup", g, new Vector3(0, 0.065f, 0), 0.085f, 0.13f, M("CupPaper", new Color(0.95f, 0.92f, 0.85f)));
-            Cyl("Sleeve", g, new Vector3(0, 0.06f, 0), 0.088f, 0.05f, M("CupSleeve", new Color(0.45f, 0.3f, 0.18f)));
-            Cyl("Lid", g, new Vector3(0, 0.135f, 0), 0.09f, 0.012f, M("CupLid", new Color(0.2f, 0.15f, 0.12f)));
-            Cyl("Plate", g, new Vector3(0.17f, 0.005f, -0.05f), 0.22f, 0.01f, M("Paper", Color.white));
-            Box("BreadLow", g, new Vector3(0.17f, 0.02f, -0.05f), new Vector3(0.13f, 0.02f, 0.11f), M("Bread", new Color(0.86f, 0.7f, 0.45f)));
-            Box("Filling", g, new Vector3(0.17f, 0.037f, -0.05f), new Vector3(0.135f, 0.014f, 0.115f), M("Lettuce", new Color(0.35f, 0.7f, 0.25f)));
-            Box("BreadTop", g, new Vector3(0.17f, 0.054f, -0.05f), new Vector3(0.13f, 0.02f, 0.11f), M("Bread", Color.white));
+            Model("CoffeeCup", "Cup", g, Vector3.zero, new Vector3(0.1f, 0.15f, 0.1f), Vector3.zero);
+            Model("Sandwich", "Sandwich", g, new Vector3(0.17f, 0, -0.05f), new Vector3(0.15f, 0.08f, 0.12f), new Vector3(0, 25f, 0));
             MakeInspectable(g.gameObject, ChemLabInspectable.Kind.Hazard, "H02");
         }
 
         // H03 Unstably stacked boxes on a crate near the walkway
         {
             var g = Group("H03_StackedBoxes", p, new Vector3(2.7f, 0, -3.35f));
-            Box("Crate", g, new Vector3(0, 0.2f, 0), new Vector3(0.65f, 0.4f, 0.5f), M("Wood", new Color(0.55f, 0.4f, 0.25f)));
-            Box("Box1", g, new Vector3(0.03f, 0.58f, 0), new Vector3(0.5f, 0.36f, 0.42f), card, new Vector3(0, 8f, 4f));
-            Box("Box2", g, new Vector3(0.1f, 0.93f, 0.02f), new Vector3(0.46f, 0.32f, 0.38f), card, new Vector3(0, -14f, -7f));
-            Box("Box3", g, new Vector3(0.2f, 1.24f, -0.02f), new Vector3(0.4f, 0.28f, 0.34f), card, new Vector3(0, 22f, 12f));
+            Model("WoodenCrate", "Crate", g, Vector3.zero, new Vector3(0.65f, 0, 0.5f), Vector3.zero, out var crate);
+            float y = crate.y;
+            Model("CardboardBox", "Box1", g, new Vector3(0.03f, y, 0), new Vector3(0.5f, 0.36f, 0.42f), new Vector3(0, 8f, 4f), out var b1);
+            y += b1.y;
+            Model("CardboardBox", "Box2", g, new Vector3(0.1f, y, 0.02f), new Vector3(0.46f, 0.32f, 0.38f), new Vector3(0, -14f, -7f), out var b2);
+            y += b2.y;
+            Model("CardboardBox", "Box3", g, new Vector3(0.2f, y, -0.02f), new Vector3(0.4f, 0.28f, 0.34f), new Vector3(0, 22f, 12f));
             Hide(MakeInspectable(g.gameObject, ChemLabInspectable.Kind.Hazard, "H03"), "Box1", "Box2", "Box3");
         }
 
@@ -852,70 +855,48 @@ public static class ChemLabSceneBuilder
         {
             var g = Group("H04_LabCoatOnChair", p, new Vector3(-3.75f, 0, 1.0f));
             g.rotation = Quaternion.Euler(0, -90f, 0);   // chair faces the west bench, backrest towards the room
-            var fabric = M("ChairFabric", new Color(0.15f, 0.15f, 0.17f));
-            Box("Seat", g, new Vector3(0, 0.5f, 0), new Vector3(0.46f, 0.07f, 0.46f), fabric);
-            Cyl("Post", g, new Vector3(0, 0.26f, 0), 0.05f, 0.45f, metal);
-            Box("BaseA", g, new Vector3(0, 0.04f, 0), new Vector3(0.6f, 0.04f, 0.06f), black);
-            Box("BaseB", g, new Vector3(0, 0.04f, 0), new Vector3(0.06f, 0.04f, 0.6f), black);
-            Box("Back", g, new Vector3(0, 0.85f, -0.22f), new Vector3(0.44f, 0.55f, 0.05f), fabric);
-            Box("CoatTop", g, new Vector3(0, 1.13f, -0.22f), new Vector3(0.48f, 0.05f, 0.14f), white);
-            Box("CoatBack", g, new Vector3(0, 0.8f, -0.29f), new Vector3(0.46f, 0.62f, 0.025f), white, new Vector3(-6f, 0, 0));
-            Box("CoatFront", g, new Vector3(0, 0.95f, -0.16f), new Vector3(0.42f, 0.32f, 0.02f), white);
-            Box("SleeveL", g, new Vector3(-0.27f, 0.82f, -0.25f), new Vector3(0.08f, 0.5f, 0.08f), white, new Vector3(0, 0, -8f));
-            Box("SleeveR", g, new Vector3(0.27f, 0.78f, -0.24f), new Vector3(0.08f, 0.55f, 0.08f), white, new Vector3(0, 0, 10f));
-            Hide(MakeInspectable(g.gameObject, ChemLabInspectable.Kind.Hazard, "H04"), "CoatTop", "CoatBack", "CoatFront", "SleeveL", "SleeveR");
+            // ponytail: the model is chair + coat in one mesh, so the whole chair disappears when fixed.
+            // Split the coat into its own mesh (or add an empty chair to swap in) if that looks wrong.
+            Model("LabChair", "CoatChair", g, Vector3.zero, new Vector3(0.7f, 1.1f, 0.7f), Vector3.zero);
+            MakeInspectable(g.gameObject, ChemLabInspectable.Kind.Hazard, "H04");
         }
 
         // H05 Used gloves and pipette tips in the general (domestic) waste bin
         {
             var g = Group("H05_WasteSeparation", p, new Vector3(-4.6f, 0, 2.95f));
-            Cyl("Bin", g, new Vector3(0, 0.25f, 0), 0.36f, 0.5f, M("BinGrey", new Color(0.45f, 0.47f, 0.5f)));
-            Cyl("Rim", g, new Vector3(0, 0.505f, 0), 0.38f, 0.015f, black);
+            Model("TrashBin", "Bin", g, Vector3.zero, new Vector3(0.4f, 0.6f, 0.4f), new Vector3(0, -90f, 0), out var bin);
+            float d = bin.y * 0.8f - 0.51f;   // gloves were placed for a 0.51 m rim; follow the model's opening
             var glove = M("GloveBlue", new Color(0.2f, 0.42f, 0.95f));
-            Box("Glove1", g, new Vector3(0.03f, 0.53f, 0.02f), new Vector3(0.18f, 0.03f, 0.1f), glove, new Vector3(0, 30f, 15f));
-            Box("Glove2", g, new Vector3(-0.06f, 0.55f, -0.04f), new Vector3(0.17f, 0.03f, 0.09f), glove, new Vector3(10f, -40f, -20f));
-            Box("Finger", g, new Vector3(0.11f, 0.58f, 0.05f), new Vector3(0.02f, 0.08f, 0.02f), glove, new Vector3(0, 0, -30f));
+            Box("Glove1", g, new Vector3(0.03f, 0.53f + d, 0.02f), new Vector3(0.18f, 0.03f, 0.1f), glove, new Vector3(0, 30f, 15f));
+            Box("Glove2", g, new Vector3(-0.06f, 0.55f + d, -0.04f), new Vector3(0.17f, 0.03f, 0.09f), glove, new Vector3(10f, -40f, -20f));
+            Box("Finger", g, new Vector3(0.11f, 0.58f + d, 0.05f), new Vector3(0.02f, 0.08f, 0.02f), glove, new Vector3(0, 0, -30f));
             var tip = M("TipYellow", new Color(0.95f, 0.9f, 0.5f));
-            Cyl("Tip1", g, new Vector3(0.05f, 0.56f, -0.08f), 0.015f, 0.07f, tip);
-            Cyl("Tip2", g, new Vector3(-0.08f, 0.55f, 0.07f), 0.015f, 0.07f, tip);
-            Label("Text", g, "GENERAL WASTE", new Vector3(0.185f, 0.3f, 0), Quaternion.LookRotation(Vector3.left), 0.3f, Color.white);
+            Cyl("Tip1", g, new Vector3(0.05f, 0.56f + d, -0.08f), 0.015f, 0.07f, tip);
+            Cyl("Tip2", g, new Vector3(-0.08f, 0.55f + d, 0.07f), 0.015f, 0.07f, tip);
+            Label("Text", g, "GENERAL WASTE", new Vector3(bin.z / 2f + 0.01f, bin.y * 0.45f, 0), Quaternion.LookRotation(Vector3.left), 0.3f, Color.white);
             Hide(MakeInspectable(g.gameObject, ChemLabInspectable.Kind.Hazard, "H05"), "Glove1", "Glove2", "Finger", "Tip1", "Tip2");
         }
 
-        // H06 Unlabeled bottle of clear liquid on the main bench
+        // H06 Unlabeled amber bottle on the main bench
         {
             var g = Group("H06_UnlabeledBottle", p, new Vector3(0.2f, 0.9f, 0.5f));
-            Cyl("Body", g, new Vector3(0, 0.09f, 0), 0.09f, 0.18f, M("Glass", Color.white));
-            var liq = Cyl("Liquid", g, new Vector3(0, 0.07f, 0), 0.08f, 0.13f, M("LiquidClear", new Color(0.85f, 0.95f, 1f, 0.55f), transparent: true));
-            Cyl("Neck", g, new Vector3(0, 0.2f, 0), 0.035f, 0.05f, M("Glass", Color.white));
-            Cyl("Cap", g, new Vector3(0, 0.235f, 0), 0.04f, 0.02f, black);
+            Model("AmberBottle", "Bottle", g, Vector3.zero, new Vector3(0.12f, 0.24f, 0.12f), Vector3.zero, 0.7f);
             MakeInspectable(g.gameObject, ChemLabInspectable.Kind.Hazard, "H06");
         }
 
         // H07 Safety glasses unused next to active equipment + over-ear headphones
         {
             var g = Group("H07_PPEAndHeadphones", p, new Vector3(1.35f, 0.9f, 0.6f));
-            var lens = M("GogglesLens", new Color(0.75f, 0.9f, 1f, 0.5f), transparent: true);
-            Box("GogglesLens", g, new Vector3(-0.05f, 0.03f, 0), new Vector3(0.17f, 0.05f, 0.02f), lens, new Vector3(-60f, 0, 0));
-            Box("GogglesStrap", g, new Vector3(-0.05f, 0.01f, 0.05f), new Vector3(0.18f, 0.01f, 0.08f), M("GogglesBlue", new Color(0.3f, 0.55f, 0.9f)));
-            var hp = M("HeadphoneBlack", new Color(0.1f, 0.1f, 0.12f));
-            var cupL = Cyl("EarCupL", g, new Vector3(0.12f, 0.03f, -0.02f), 0.08f, 0.04f, hp);
-            var cupR = Cyl("EarCupR", g, new Vector3(0.28f, 0.03f, -0.02f), 0.08f, 0.04f, hp);
-            Box("Band", g, new Vector3(0.2f, 0.012f, 0.06f), new Vector3(0.2f, 0.02f, 0.03f), hp);
-            Box("BandL", g, new Vector3(0.12f, 0.012f, 0.03f), new Vector3(0.025f, 0.02f, 0.08f), hp);
-            Box("BandR", g, new Vector3(0.28f, 0.012f, 0.03f), new Vector3(0.025f, 0.02f, 0.08f), hp);
+            Model("SafetyGlasses", "Glasses", g, new Vector3(-0.05f, 0, 0), new Vector3(0.17f, 0.06f, 0.17f), new Vector3(0, -20f, 0), 0.6f);
+            Model("Earmuffs", "Headphones", g, new Vector3(0.22f, 0, 0), new Vector3(0.2f, 0.2f, 0.12f), new Vector3(0, 15f, 0));
             MakeInspectable(g.gameObject, ChemLabInspectable.Kind.Hazard, "H07");
         }
 
         // H08 Frayed cable in an overloaded power strip, tucked behind the centrifuge
         {
             var g = Group("H08_DamagedCable", p, new Vector3(4.82f, 0.9f, 1.25f));
-            Box("PowerStrip", g, new Vector3(0, 0.02f, 0), new Vector3(0.06f, 0.04f, 0.32f), M("DeviceWhite", Color.white));
-            for (int i = 0; i < 4; i++)
-                Box("Plug", g, new Vector3(-0.005f, 0.06f, -0.12f + i * 0.08f), new Vector3(0.04f, 0.05f, 0.04f), black);
-            Box("Adapter", g, new Vector3(-0.005f, 0.1f, 0.12f), new Vector3(0.05f, 0.04f, 0.06f), M("DeviceWhite", Color.white));
-            Box("AdapterPlug", g, new Vector3(-0.005f, 0.14f, 0.12f), new Vector3(0.04f, 0.04f, 0.04f), black);
-            // cable towards the centrifuge with an exposed section
+            Model("PowerStrip", "PowerStrip", g, Vector3.zero, new Vector3(0.36f, 0, 0), new Vector3(0, 90f, 0), 0.4f);
+            // cable towards the centrifuge with an exposed section (the visible clue)
             var cable = M("CableBlack", new Color(0.05f, 0.05f, 0.05f));
             Box("CableA", g, new Vector3(-0.08f, 0.012f, -0.16f), new Vector3(0.12f, 0.018f, 0.018f), cable);
             Box("CableB", g, new Vector3(-0.24f, 0.012f, -0.16f), new Vector3(0.1f, 0.018f, 0.018f), cable);
@@ -929,43 +910,24 @@ public static class ChemLabSceneBuilder
         // H09 First-aid cabinet: open, missing supplies, blocked by bottles on a shelf in front
         {
             var g = Group("H09_FirstAidKit", p, new Vector3(-2.0f, 0, 3.9f));
-            var green = M("FirstAidGreen", new Color(0.08f, 0.55f, 0.25f));
-            Box("Back", g, new Vector3(0, 1.75f, 0.07f), new Vector3(0.5f, 0.5f, 0.02f), M("Paper", Color.white));
-            Box("Top", g, new Vector3(0, 2.0f, 0), new Vector3(0.5f, 0.02f, 0.16f), green);
-            Box("Bottom", g, new Vector3(0, 1.5f, 0), new Vector3(0.5f, 0.02f, 0.16f), green);
-            Box("Left", g, new Vector3(-0.25f, 1.75f, 0), new Vector3(0.02f, 0.5f, 0.16f), green);
-            Box("Right", g, new Vector3(0.25f, 1.75f, 0), new Vector3(0.02f, 0.5f, 0.16f), green);
-            Box("InnerShelf", g, new Vector3(0, 1.75f, 0), new Vector3(0.48f, 0.015f, 0.14f), M("Paper", Color.white));
-            Box("EmptyBandageBox", g, new Vector3(-0.1f, 1.79f, 0.01f), new Vector3(0.12f, 0.06f, 0.08f), M("Paper", Color.white), new Vector3(0, 0, 70f));
-            Box("Door", g, new Vector3(-0.26f, 1.75f, -0.33f), new Vector3(0.02f, 0.5f, 0.5f), green, new Vector3(0, -10f, 0));
-            Box("CrossV", g, new Vector3(-0.275f, 1.75f, -0.33f), new Vector3(0.005f, 0.24f, 0.07f), M("Paper", Color.white), new Vector3(0, -10f, 0));
-            Box("CrossH", g, new Vector3(-0.275f, 1.75f, -0.33f), new Vector3(0.005f, 0.07f, 0.24f), M("Paper", Color.white), new Vector3(0, -10f, 0));
+            // model's open front faces +Z; the room is -Z here
+            var cab = Model("FirstAidCabinet", "Cabinet", g, new Vector3(0, 1.48f, 0), new Vector3(0, 0.55f, 0), new Vector3(0, 180f, 0), out var cabSize);
+            cab.localPosition += new Vector3(0, 0, 0.08f - cabSize.z / 2f);   // back against the wall
             Label("Sign", g, "FIRST AID", new Vector3(0, 2.12f, 0.05f), Quaternion.identity, 0.45f, new Color(0.08f, 0.55f, 0.25f));
             // blocking shelf + bottles
             Box("BlockingShelf", g, new Vector3(0, 1.38f, -0.12f), new Vector3(0.7f, 0.025f, 0.26f), M("ShelfWhite", Color.white));
             for (int i = 0; i < 4; i++)
-                Cyl("Bottle", g, new Vector3(-0.24f + i * 0.16f, 1.53f, -0.14f), 0.09f, 0.28f, M(i % 2 == 0 ? "AmberGlass" : "BottleWhite", Color.white));
+                Model("AmberBottle", "Bottle", g, new Vector3(-0.24f + i * 0.16f, 1.39f, -0.14f), new Vector3(0.1f, 0.26f, 0.1f), Vector3.zero, 0.7f);
             Hide(MakeInspectable(g.gameObject, ChemLabInspectable.Kind.Hazard, "H09"), "BlockingShelf", "Bottle");
         }
 
-        // H10 Corrosive HCl on the top shelf, next to flammables
+        // H10 Corrosive HCl on the top (glass) shelf, next to flammable acetone
         {
             var g = Group("H10_ChemicalStorage", p, new Vector3(2.5f, 1.965f, 3.72f));
-            Cyl("HCl", g, new Vector3(-0.2f, 0.13f, 0), 0.1f, 0.26f, M("BottleWhite", new Color(0.92f, 0.92f, 0.9f)));
-            Cyl("HClCap", g, new Vector3(-0.2f, 0.275f, 0), 0.045f, 0.03f, M("CapRed", new Color(0.8f, 0.1f, 0.1f)));
-            Box("HClLabel", g, new Vector3(-0.2f, 0.13f, -0.051f), new Vector3(0.08f, 0.1f, 0.004f), M("Paper", Color.white));
-            Label("HClText", g, "HCl\n37%", new Vector3(-0.2f, 0.15f, -0.054f), Quaternion.identity, 0.12f, Color.black);
-            // corrosive pictogram: red diamond
-            Box("Pictogram", g, new Vector3(-0.2f, 0.1f, -0.054f), new Vector3(0.03f, 0.03f, 0.002f), M("CapRed", Color.red), new Vector3(0, 0, 45f));
-            var orange = M("FlammableOrange", new Color(0.95f, 0.5f, 0.1f));
+            Model("HClBottle", "HCl", g, new Vector3(-0.2f, 0, 0), new Vector3(0.14f, 0.27f, 0.14f), Vector3.zero, 0.6f);
             for (int i = 0; i < 2; i++)
-            {
-                float x = 0.05f + i * 0.2f;
-                Cyl("Flammable", g, new Vector3(x, 0.11f, 0), 0.09f, 0.22f, M("AmberGlass", Color.white));
-                Box("FlamLabel", g, new Vector3(x, 0.11f, -0.046f), new Vector3(0.07f, 0.08f, 0.004f), orange);
-                Label("FlamText", g, "ETHANOL\nFLAMMABLE", new Vector3(x, 0.11f, -0.049f), Quaternion.identity, 0.08f, Color.black);
-            }
-            Hide(MakeInspectable(g.gameObject, ChemLabInspectable.Kind.Hazard, "H10"), "HCl", "HClCap", "HClLabel", "HClText", "Pictogram");
+                Model("AcetoneBottle", "Flammable", g, new Vector3(0.05f + i * 0.2f, 0, 0), new Vector3(0.13f, 0.24f, 0.13f), Vector3.zero, 0.6f);
+            Hide(MakeInspectable(g.gameObject, ChemLabInspectable.Kind.Hazard, "H10"), "HCl");
         }
     }
 
@@ -1014,6 +976,92 @@ public static class ChemLabSceneBuilder
         g.SetParent(parent, false);
         g.localPosition = pos;
         return g;
+    }
+
+    // ---------- imported models (Models/Hazards/<Model>/<Model>_low.fbx + textures)
+
+    const string ModelDir = Root + "/Models/Hazards/";
+
+    static Transform Model(string model, string name, Transform parent, Vector3 localPos, Vector3 fit, Vector3 euler, float smooth = 0.3f)
+        => Model(model, name, parent, localPos, fit, euler, out _, smooth);
+
+    /// <summary>
+    /// Adds the model as child <paramref name="name"/>: uniformly scaled to fit inside <paramref name="fit"/>
+    /// (metres, in the model's own axes; 0 = ignore that axis), bottom-centre at localPos, rotated by euler.
+    /// <paramref name="size"/> is the fitted size in the model's axes.
+    /// </summary>
+    static Transform Model(string model, string name, Transform parent, Vector3 localPos, Vector3 fit, Vector3 euler, out Vector3 size, float smooth = 0.3f)
+    {
+        string dir = ModelDir + model + "/";
+        var src = AssetDatabase.LoadAssetAtPath<GameObject>(dir + model + "_low.fbx") ?? AssetDatabase.LoadAssetAtPath<GameObject>(dir + model + ".fbx");
+        var holder = Group(name, parent, localPos);
+        holder.localRotation = Quaternion.Euler(euler);
+        if (src == null) { Debug.LogError("[ChemLab] Missing model " + dir); size = Vector3.zero; return holder; }
+
+        var inst = Object.Instantiate(src);
+        inst.name = model;
+        inst.transform.position = Vector3.zero;   // measure at the origin; keep the FBX's own root rotation (Meshy meshes are Z-up)
+        var r = inst.GetComponentInChildren<Renderer>();
+        var b = r.bounds;
+        float k = float.MaxValue;
+        for (int i = 0; i < 3; i++) if (fit[i] > 0f) k = Mathf.Min(k, fit[i] / b.size[i]);
+        inst.transform.SetParent(holder, false);
+        inst.transform.localScale *= k;
+        inst.transform.localPosition = -new Vector3(b.center.x, b.min.y, b.center.z) * k;
+        r.sharedMaterial = HazardMat(model, smooth);
+        size = b.size * k;
+        return holder;
+    }
+
+    /// <summary>Exit signs are lit: the sign's own texture as emission.</summary>
+    static void ExitSignGlow()
+    {
+        var m = HazardMat("ExitSign", 0.3f);
+        m.EnableKeyword("_EMISSION");
+        m.SetTexture("_EmissionMap", m.GetTexture("_BaseMap"));
+        m.SetColor("_EmissionColor", Color.white * 0.8f);
+        m.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
+    }
+
+    /// <summary>URP Lit material next to the model, from its BaseColor / Normal / Metallic PNGs.</summary>
+    static Material HazardMat(string model, float smooth)
+    {
+        string dir = ModelDir + model + "/", path = dir + model + ".mat";
+        var m = AssetDatabase.LoadAssetAtPath<Material>(path);
+        bool create = m == null;
+        if (create) m = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+        m.SetTexture("_BaseMap", ModelTex(dir, model, "_BaseColor"));
+        var n = ModelTex(dir, model, "_Normal");
+        if (n != null) { m.SetTexture("_BumpMap", n); m.EnableKeyword("_NORMALMAP"); }
+        var mt = ModelTex(dir, model, "_Metallic");
+        if (mt != null) { m.SetTexture("_MetallicGlossMap", mt); m.EnableKeyword("_METALLICSPECGLOSSMAP"); }
+        // ponytail: constant smoothness; the Meshy roughness maps would need inverting into the metallic alpha
+        m.SetFloat("_Smoothness", smooth);
+        if (create) AssetDatabase.CreateAsset(m, path);
+        else EditorUtility.SetDirty(m);
+        return m;
+    }
+
+    /// <summary>Finds Model+kind .png (any case; FirstAidCabinet.png is its base colour) and sets Quest-friendly import settings.</summary>
+    static Texture2D ModelTex(string dir, string model, string kind)
+    {
+        var path = new[] { dir + model + kind + ".png", dir + model + kind.ToLowerInvariant() + ".png", kind == "_BaseColor" ? dir + model + ".png" : null }
+            .FirstOrDefault(f => f != null && System.IO.File.Exists(f));
+        if (path == null) return null;
+        var ti = (TextureImporter)AssetImporter.GetAtPath(path);
+        bool dirty = false;
+        if (kind == "_Normal" && ti.textureType != TextureImporterType.NormalMap) { ti.textureType = TextureImporterType.NormalMap; dirty = true; }
+        if (kind == "_Metallic" && ti.sRGBTexture) { ti.sRGBTexture = false; dirty = true; }
+        var android = ti.GetPlatformTextureSettings("Android");
+        if (!android.overridden || android.maxTextureSize != 1024)
+        {
+            android.overridden = true;
+            android.maxTextureSize = 1024;   // ~40 maps at 2048 would eat Quest memory; these props are small
+            ti.SetPlatformTextureSettings(android);
+            dirty = true;
+        }
+        if (dirty) ti.SaveAndReimport();
+        return AssetDatabase.LoadAssetAtPath<Texture2D>(path);
     }
 
     static GameObject Box(string name, Transform parent, Vector3 localPos, Vector3 size, Material m, Vector3? euler = null)
