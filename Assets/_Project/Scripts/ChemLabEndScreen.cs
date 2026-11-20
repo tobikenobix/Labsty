@@ -258,7 +258,7 @@ namespace ChemLab
             var r = ChemLabRun.LastResult;
             board = K.Panel(transform, "Panel_Leaderboard", new Vector2(720, 1100));
             var t = board.transform;
-            K.Label(t, "Kicker", "MOCKUP · STATIC DATA", new Vector2(0, 495), new Vector2(640, 36), 20, K.Warn, TextAlignmentOptions.Left, FontStyles.Bold);
+            K.Label(t, "Kicker", "MOCKUP · STATIC DATA", new Vector2(0, 495), new Vector2(640, 36), 20, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
             K.Label(t, "Title", "Basel Leaderboard", new Vector2(0, 440), new Vector2(640, 70), 50, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
             K.Label(t, "Sub", "This week · Lab Safety Inspection", new Vector2(0, 390), new Vector2(640, 36), 24, K.TextDim, TextAlignmentOptions.Left);
 
@@ -271,7 +271,7 @@ namespace ChemLab
             {
                 var row = rows[i];
                 float y = 300 - i * 108;
-                var bg = K.Img(t, "Row" + i, new Vector2(0, y), new Vector2(650, 94), row.you ? new Color(0f, 0.78f, 0.68f, 0.18f) : K.Surface, K.Rounded);
+                var bg = K.Img(t, "Row" + i, new Vector2(0, y), new Vector2(650, 94), row.you ? K.SelectFill : K.Surface, K.Rounded);
                 bg.raycastTarget = false;
                 Color medal = i == 0 ? new Color(1f, 0.8f, 0.3f) : i == 1 ? new Color(0.8f, 0.84f, 0.9f) : i == 2 ? new Color(0.85f, 0.55f, 0.35f) : K.SurfaceHi;
                 var badge = K.Img(bg.transform, "Rank", new Vector2(-275, 0), new Vector2(56, 56), medal, K.Circle);

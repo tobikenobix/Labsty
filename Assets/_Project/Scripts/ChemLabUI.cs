@@ -23,17 +23,24 @@ namespace ChemLab
 
         // question panel
         Canvas question;
-        TextMeshProUGUI qCategory, qDifficulty, qText, qFeedback;
-        readonly Button[] qOpt = new Button[4];
+        TextMeshProUGUI qTitle, qMeta, qText, qFeedback;
+        readonly Opt[] qOpt = new Opt[4];
         Button qSubmit;
         HazardRecord qRec;
-        readonly HashSet<string> qDisabled = new HashSet<string>();
+        readonly Dictionary<string, bool> qStruck = new Dictionary<string, bool>();   // ruled-out key -> was it dangerous
+
+        /// <summary>One answer row: a ruled line with a sign disc (key letter) and the option text.</summary>
+        class Opt
+        {
+            public Button btn; public Image bg, outline, disc, rim, slash; public TextMeshProUGUI key, text; public GameObject tag;
+        }
 
         // message panel
         Canvas msg; TextMeshProUGUI msgTitle, msgBody; Button msgBtn1, msgBtn2; System.Action msgAct1, msgAct2;
 
         // toast / banner / help / tablet / station
-        Canvas toast; TextMeshProUGUI toastText; Image toastDot; Coroutine toastCo;
+        Canvas toast; TextMeshProUGUI toastText; Coroutine toastCo;
+        GameObject toastOk, toastInfo, toastBad, toastWarn;
         Canvas help;
         Canvas tablet; TextMeshProUGUI tabTimer, tabFooter; K.Bar tabTimeBar;
         readonly List<(string cat, TextMeshProUGUI count, K.Bar bar)> tabRows = new List<(string, TextMeshProUGUI, K.Bar)>();
@@ -92,22 +99,21 @@ namespace ChemLab
         public void ShowQuestion(HazardRecord rec, Vector3 hazardPos)
         {
             qRec = rec;
-            qDisabled.Clear();
-            qCategory.text = rec.data.hudCategory.ToUpper();
-            qDifficulty.text = rec.data.difficulty;
+            qStruck.Clear();
+            qTitle.text = rec.data.title;
+            qMeta.text = $"{rec.data.hudCategory}  /  {rec.data.area}  /  {rec.data.difficulty}";
             qText.text = rec.data.question;
             for (int i = 0; i < 4; i++)
             {
                 bool has = i < rec.data.options.Length;
-                qOpt[i].gameObject.SetActive(has);
+                qOpt[i].btn.gameObject.SetActive(has);
                 if (!has) continue;
-                var o = rec.data.options[i];
-                K.ButtonLabel(qOpt[i]).text = $"<b><color={K.Hex(K.Accent)}>{o.key}</color></b>   {o.text}";
-                qOpt[i].interactable = true;
-                K.SetButtonColor(qOpt[i], K.Surface);
+                qOpt[i].key.text = rec.data.options[i].key;
+                qOpt[i].text.text = rec.data.options[i].text;
+                PaintOption(i, null);
             }
-            qFeedback.text = $"<color={K.Hex(K.TextDim)}>Point at an answer and pull the trigger, then Submit (A).</color>";
-            qSubmit.interactable = false;
+            qFeedback.text = $"<color={K.Hex(K.TextDim)}>Point at an answer and pull the trigger, then press A to submit.</color>";
+            SetSubmit(null);
             K.PlaceInFront(question.transform, 0.95f, -0.05f, hazardPos);
             question.gameObject.SetActive(true);
         }
@@ -115,28 +121,52 @@ namespace ChemLab
         public void HighlightOption(string key)
         {
             if (qRec == null) return;
-            for (int i = 0; i < qRec.data.options.Length; i++)
-            {
-                var k = qRec.data.options[i].key;
-                if (qDisabled.Contains(k)) continue;
-                K.SetButtonColor(qOpt[i], k == key ? K.AccentBlue : K.Surface);
-            }
-            qSubmit.interactable = true;
+            for (int i = 0; i < qRec.data.options.Length; i++) PaintOption(i, key);
+            SetSubmit(key);
         }
 
         public void ShowWrong(HazardRecord rec, string key, bool critical)
         {
-            qDisabled.Add(key);
-            for (int i = 0; i < rec.data.options.Length; i++)
-            {
-                if (rec.data.options[i].key != key) continue;
-                K.SetButtonColor(qOpt[i], new Color(0.45f, 0.13f, 0.15f));
-                qOpt[i].interactable = false;
-            }
-            qFeedback.text = $"<color={K.Hex(K.Bad)}><b>{rec.data.wrongFeedback}</b></color>" +
-                             (critical ? $"\n<color={K.Hex(K.Warn)}>[!] Dangerous choice - logged for safety review. Try again.</color>"
-                                       : $"\n<color={K.Hex(K.TextDim)}>Logged as a mistake. Try again.</color>");
-            qSubmit.interactable = false;
+            qStruck[key] = critical;
+            for (int i = 0; i < rec.data.options.Length; i++) PaintOption(i, null);
+            qFeedback.text = $"<color={K.Hex(K.Bad)}><b>{rec.data.wrongFeedback}</b></color> " +
+                             (critical ? "Dangerous choice, logged for safety review. Choose again." : "Logged as a mistake. Choose again.");
+            SetSubmit(null);
+        }
+
+        /// <summary>
+        /// Sign grammar per row: plain rim = open, blue mandatory disc = your pick,
+        /// red prohibition ring + struck text = ruled out (plus a DANGEROUS plate when it was a critical choice).
+        /// </summary>
+        void PaintOption(int i, string selectedKey)
+        {
+            var o = qOpt[i];
+            string k = qRec.data.options[i].key;
+            bool struck = qStruck.TryGetValue(k, out bool dangerous);
+            bool sel = !struck && k == selectedKey;
+            o.btn.interactable = !struck;
+            o.bg.color = sel ? K.SelectFill : K.Bg;
+            o.outline.gameObject.SetActive(sel);
+            o.disc.color = sel ? K.Accent : Color.white;
+            o.rim.gameObject.SetActive(!sel && !struck);
+            o.slash.gameObject.SetActive(struck);
+            o.key.color = sel ? Color.white : K.Text;
+            o.text.color = struck ? K.TextDim : K.Text;
+            o.text.fontStyle = struck ? FontStyles.Strikethrough : FontStyles.Normal;
+            o.tag.SetActive(struck && dangerous);
+            float cut = o.tag.activeSelf ? 186f : 0f;   // make room for the DANGEROUS plate
+            o.text.rectTransform.sizeDelta = new Vector2(OptTextW - cut, 92f);
+            o.text.rectTransform.anchoredPosition = new Vector2(OptTextX - cut / 2f, 0);
+        }
+
+        void SetSubmit(string key)
+        {
+            qSubmit.interactable = key != null;
+            K.SetButtonColor(qSubmit, key != null ? K.Ok : K.SurfaceHi);
+            K.ButtonLabel(qSubmit).text = key != null ? $"Submit answer {key}" : "Submit";
+            var ink = key != null ? Color.white : K.TextDim;
+            foreach (var g in qSubmit.GetComponentsInChildren<Graphic>(true))
+                if (g != qSubmit.targetGraphic) g.color = ink;
         }
 
         public void CloseQuestion()
@@ -164,7 +194,11 @@ namespace ChemLab
         public void Toast(string text, float seconds = 2.2f, Color? dot = null)
         {
             toastText.text = text;
-            toastDot.color = dot ?? K.TextDim;
+            // the toast speaks in signs too: green check = done, red ! = problem, yellow triangle = caution, blue i = info
+            toastOk.SetActive(dot == K.Ok);
+            toastBad.SetActive(dot == K.Bad);
+            toastWarn.SetActive(dot == K.Warn);
+            toastInfo.SetActive(dot != K.Ok && dot != K.Bad && dot != K.Warn);
             K.PlaceInFront(toast.transform, 0.85f, -0.3f);
             toast.gameObject.SetActive(true);
             if (toastCo != null) StopCoroutine(toastCo);
@@ -185,9 +219,9 @@ namespace ChemLab
             if (S == null) return;
             float rem = S.Remaining;
             tabTimer.text = K.Mmss(rem);
-            tabTimer.color = rem < 60f ? K.Bad : rem < 120f ? K.Warn : K.Text;
+            tabTimer.color = rem < 60f ? K.Bad : K.Text;   // yellow is a field colour, never text on the plate
             tabTimeBar.Set(rem / S.Config.timeLimitSeconds);
-            tabTimeBar.fillImage.color = rem < 60f ? K.Bad : K.Accent;
+            tabTimeBar.fillImage.color = rem < 60f ? K.Bad : rem < 120f ? K.Warn : K.Accent;
             foreach (var row in tabRows)
             {
                 var inCat = S.Records.Where(r => r.data.hudCategory == row.cat).ToList();
@@ -201,23 +235,53 @@ namespace ChemLab
 
         // ================= builders =================
 
+        const float OptTextX = 46f, OptTextW = 804f;   // option text column: right of the 68-unit disc to the row's right padding
+
         void BuildQuestion()
         {
-            question = K.Panel(transform, "Panel_Question", new Vector2(1000, 880));
-            qCategory = K.Chip(question.transform, "Category", "", new Vector2(-300, 380), new Vector2(330, 44), new Color(0f, 0.78f, 0.68f, 0.18f), K.Accent);
-            qDifficulty = K.Chip(question.transform, "Difficulty", "", new Vector2(380, 380), new Vector2(190, 44), new Color(1f, 0.74f, 0.25f, 0.18f), K.Warn);
-            K.Label(question.transform, "Title", "You found a potential hazard", new Vector2(0, 318), new Vector2(920, 56), 40, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
-            qText = K.Label(question.transform, "Question", "", new Vector2(0, 250), new Vector2(920, 84), 27, K.TextDim, TextAlignmentOptions.TopLeft);
+            var size = new Vector2(1000, 880);
+            question = K.Panel(transform, "Panel_Question", size, accentLine: false);
+            var t = question.transform;
+
+            // yellow warning band naming the hazard
+            K.Band(t, size, 150f, K.Warn);
+            K.WarningSign(t, new Vector2(-404, 365), 112f);
+            qTitle = K.Label(t, "Title", "", new Vector2(74, 384), new Vector2(772, 58), 46, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
+            qTitle.enableAutoSizing = true; qTitle.fontSizeMin = 36; qTitle.fontSizeMax = 46;
+            qMeta = K.Label(t, "Meta", "", new Vector2(74, 332), new Vector2(772, 36), 28, K.Text, TextAlignmentOptions.Left);
+
+            qText = K.Label(t, "Question", "", new Vector2(0, 222), new Vector2(920, 84), 31, K.Text, TextAlignmentOptions.TopLeft);
+
+            K.Img(t, "RuleTop", new Vector2(0, 160), new Vector2(920, 2), K.Rule).raycastTarget = false;
             for (int i = 0; i < 4; i++)
             {
                 int idx = i;
-                qOpt[i] = K.Button(question.transform, "Option" + i, "", new Vector2(0, 140 - i * 112), new Vector2(920, 100), K.Style.Ghost,
-                    () => { if (qRec != null && idx < qRec.data.options.Length) S.SelectOption(qRec.data.options[idx].key); },
-                    25, TextAlignmentOptions.Left);
+                float y = 160 - 49 - i * 98;
+                var o = qOpt[i] = new Opt();
+                o.bg = K.Img(t, "Option" + i, new Vector2(0, y), new Vector2(920, 94), K.Bg, K.Rounded);
+                o.bg.pixelsPerUnitMultiplier = 1.5f;
+                o.btn = o.bg.gameObject.AddComponent<Button>();
+                K.Tint(o.btn);
+                o.btn.onClick.AddListener(() => { if (qRec != null && idx < qRec.data.options.Length) S.SelectOption(qRec.data.options[idx].key); });
+                o.btn.onClick.AddListener(() => ChemLabAudio.Click());
+                o.outline = K.Outline(o.bg.transform, new Vector2(920, 94), K.Accent, 1.5f);
+
+                var discPos = new Vector2(-414, 0);
+                o.disc = K.Img(o.bg.transform, "Disc", discPos, new Vector2(68, 68), Color.white, K.Circle);
+                o.rim = K.Img(o.bg.transform, "Rim", discPos, new Vector2(68, 68), K.Text, K.Ring);
+                o.key = K.Label(o.bg.transform, "Key", "", discPos + new Vector2(0, -1), new Vector2(68, 68), 34, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
+                o.slash = K.Img(o.bg.transform, "Prohibited", discPos, new Vector2(68, 68), K.Bad, K.Prohibition);
+                o.disc.raycastTarget = o.rim.raycastTarget = o.slash.raycastTarget = false;
+
+                o.text = K.Label(o.bg.transform, "Text", "", new Vector2(OptTextX, 0), new Vector2(OptTextW, 92), 28, K.Text, TextAlignmentOptions.MidlineLeft);
+                o.text.enableAutoSizing = true; o.text.fontSizeMin = 22; o.text.fontSizeMax = 28;
+                o.tag = K.Chip(o.bg.transform, "Dangerous", "DANGEROUS", new Vector2(363, 0), new Vector2(170, 46), K.Bad, Color.white).transform.parent.gameObject;
+                K.Img(t, "Rule" + i, new Vector2(0, y - 49), new Vector2(920, 2), K.Rule).raycastTarget = false;
             }
-            qFeedback = K.Label(question.transform, "Feedback", "", new Vector2(0, -305), new Vector2(920, 80), 24, K.Text, TextAlignmentOptions.TopLeft);
-            K.Button(question.transform, "Close", "Close  (B)", new Vector2(-235, -390), new Vector2(430, 76), K.Style.Ghost, () => S.CloseQuestion());
-            qSubmit = K.Button(question.transform, "Submit", "Submit  (A)", new Vector2(235, -390), new Vector2(430, 76), K.Style.Primary, () => S.SubmitCurrent());
+
+            qFeedback = K.Label(t, "Feedback", "", new Vector2(0, -288), new Vector2(920, 84), 28, K.Text, TextAlignmentOptions.TopLeft);
+            K.Button(t, "Close", "Close", new Vector2(-235, -385), new Vector2(430, 70), K.Style.Ghost, () => S.CloseQuestion(), key: "B");
+            qSubmit = K.Button(t, "Submit", "Submit", new Vector2(235, -385), new Vector2(430, 70), K.Style.Primary, () => S.SubmitCurrent(), key: "A");
             question.gameObject.SetActive(false);
         }
 
@@ -246,9 +310,12 @@ namespace ChemLab
         void BuildToast()
         {
             toast = K.Panel(transform, "Panel_Toast", new Vector2(760, 96), 0.0008f, accentLine: false, blocksRays: false);
-            toastDot = K.Img(toast.transform, "Dot", new Vector2(-345, 0), new Vector2(22, 22), K.Accent, K.Circle);
-            toastDot.raycastTarget = false;
-            toastText = K.Label(toast.transform, "Text", "", new Vector2(20, 0), new Vector2(660, 84), 28, K.Text, TextAlignmentOptions.Left);
+            var iconPos = new Vector2(-326, 0);
+            toastOk = K.SignDisc(toast.transform, "IconDone", iconPos, 60, K.Ok, check: true).gameObject;
+            toastBad = K.SignDisc(toast.transform, "IconProblem", iconPos, 60, K.Bad, check: false).gameObject;
+            toastInfo = K.SignDisc(toast.transform, "IconInfo", iconPos, 60, K.Accent, check: false, info: true).gameObject;
+            toastWarn = K.WarningSign(toast.transform, iconPos + new Vector2(0, 3), 68).gameObject;
+            toastText = K.Label(toast.transform, "Text", "", new Vector2(42, 0), new Vector2(636, 84), 28, K.Text, TextAlignmentOptions.Left);
             toast.gameObject.SetActive(false);
         }
 

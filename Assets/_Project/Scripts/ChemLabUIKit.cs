@@ -9,27 +9,33 @@ using UnityEngine.XR.Interaction.Toolkit.UI;
 namespace ChemLab
 {
     /// <summary>
-    /// Small shared UI framework for every ChemLab scene: one colour palette, rounded "glass" panels,
-    /// pill buttons, chips and progress bars, all built in code as world-space canvases that work with
-    /// the Quest controller rays (TrackedDeviceGraphicRaycaster) and with the mouse in desktop mode.
+    /// Small shared UI framework for every ChemLab scene, styled as lab safety sign plates (ISO 7010 / ISO 3864):
+    /// enamel-white plates, black ink, and the four safety colours used only for their sign meaning
+    /// (yellow warning, blue mandatory/selected, red prohibited/dangerous, green safe/go).
+    /// Built in code as world-space canvases that work with the Quest controller rays
+    /// (TrackedDeviceGraphicRaycaster) and with the mouse in desktop mode.
     /// </summary>
     public static class ChemLabUIKit
     {
-        // ---------- palette ----------
-        public static readonly Color Bg = new Color(0.055f, 0.075f, 0.105f, 0.975f);
-        public static readonly Color Surface = new Color(0.11f, 0.14f, 0.19f, 1f);
-        public static readonly Color SurfaceHi = new Color(0.16f, 0.2f, 0.27f, 1f);
-        public static readonly Color Stroke = new Color(1f, 1f, 1f, 0.08f);
-        public static readonly Color Accent = new Color(0.0f, 0.78f, 0.68f, 1f);     // teal
-        public static readonly Color AccentBlue = new Color(0.24f, 0.52f, 1f, 1f);
-        public static readonly Color Ok = new Color(0.3f, 0.85f, 0.5f, 1f);
-        public static readonly Color Warn = new Color(1f, 0.74f, 0.25f, 1f);
-        public static readonly Color Bad = new Color(0.95f, 0.36f, 0.36f, 1f);
-        public static readonly Color Text = new Color(0.95f, 0.97f, 0.99f, 1f);
-        public static readonly Color TextDim = new Color(0.62f, 0.68f, 0.76f, 1f);
-        public static readonly Color Shadow = new Color(0f, 0f, 0f, 0.35f);
+        // ---------- palette (ISO 3864 safety colours, approx. RAL 1003 / 5005 / 3001 / 6032) ----------
+        public static readonly Color Bg = Rgb("#FBFBF9");          // sign plate
+        public static readonly Color Surface = Rgb("#EEEEEA");
+        public static readonly Color SurfaceHi = Rgb("#DCDCD6");
+        public static readonly Color Rule = Rgb("#D8D8D2");
+        public static readonly Color Stroke = new Color(0.08f, 0.08f, 0.08f, 0.22f);
+        public static readonly Color Accent = Rgb("#154889");      // safety blue: mandatory / selected / info
+        public static readonly Color AccentBlue = Accent;
+        public static readonly Color SelectFill = Rgb("#E3EBF5");
+        public static readonly Color Ok = Rgb("#237F52");          // safety green: safe / go
+        public static readonly Color Warn = Rgb("#F9A800");        // safety yellow: fields only, never text on the plate
+        public static readonly Color Bad = Rgb("#A52019");         // safety red: prohibited / dangerous
+        public static readonly Color Text = Rgb("#141414");
+        public static readonly Color TextDim = Rgb("#5A5A55");
+        public static readonly Color Shadow = new Color(0f, 0f, 0f, 0.28f);
 
         public static string Hex(Color c) => "#" + ColorUtility.ToHtmlStringRGB(c);
+
+        static Color Rgb(string hex) { ColorUtility.TryParseHtmlString(hex, out var c); return c; }
 
         // ---------- mouse support (desktop fallback) ----------
         public static bool MouseMode { get; private set; }
@@ -46,49 +52,69 @@ namespace ChemLab
             MouseModeEnabled?.Invoke();
         }
 
-        // ---------- rounded sprite ----------
-        static Sprite rounded, circle;
+        // ---------- sign shapes, baked once from signed-distance functions (white, tinted per use) ----------
+        static Sprite rounded, roundedOutline, softShadow, circle, ring, prohibition, check, triFill, triBorder, exclaim;
 
-        public static Sprite Rounded
-        {
-            get
-            {
-                if (rounded == null) rounded = MakeRounded(64, 22);
-                return rounded;
-            }
-        }
+        public static Sprite Rounded => Get(ref rounded, () => Bake(64, 64, p => SdRoundRect(p, new Vector2(32, 32), new Vector2(32, 32), 22), 22));
+        public static Sprite RoundedOutline => Get(ref roundedOutline, () => Bake(64, 64, p => Mathf.Abs(SdRoundRect(p, new Vector2(32, 32), new Vector2(32, 32), 22) + 3f) - 3f, 22));
+        static Sprite SoftShadow => Get(ref softShadow, () => Bake(128, 128, p => SdRoundRect(p, new Vector2(64, 64), new Vector2(34, 34), 22), 52, 28f));
+        public static Sprite Circle => Get(ref circle, () => Bake(128, 128, p => (p - C128).magnitude - 63f));
+        /// <summary>Plain sign rim (neutral answer key, controller-button disc).</summary>
+        public static Sprite Ring => Get(ref ring, () => Bake(128, 128, p => Mathf.Abs((p - C128).magnitude - 58.5f) - 4.5f));
+        /// <summary>ISO prohibition: red ring with a slash from top-left to bottom-right.</summary>
+        public static Sprite Prohibition => Get(ref prohibition, () => Bake(128, 128, p =>
+            Mathf.Min(Mathf.Abs((p - C128).magnitude - 56f) - 7f, SegDist(p, C128 + new Vector2(-39.6f, 39.6f), C128 + new Vector2(39.6f, -39.6f)) - 6f)));
+        public static Sprite Check => Get(ref check, () => Bake(64, 64, p => Mathf.Min(SegDist(p, new Vector2(16, 33), new Vector2(27, 21)), SegDist(p, new Vector2(27, 21), new Vector2(48, 44))) - 4f));
+        static Sprite Exclaim => Get(ref exclaim, () => Bake(32, 96, p => Mathf.Min(SegDist(p, new Vector2(16, 84), new Vector2(16, 38)) - 6f, (p - new Vector2(16, 14)).magnitude - 7f)));
+        static Sprite TriFill => Get(ref triFill, () => Bake(128, 112, SdWarningTriangle));
+        static Sprite TriBorder => Get(ref triBorder, () => Bake(128, 112, p => Mathf.Abs(SdWarningTriangle(p) + 5.5f) - 5.5f));
 
-        public static Sprite Circle
-        {
-            get
-            {
-                if (circle == null) circle = MakeRounded(64, 32, false);
-                return circle;
-            }
-        }
+        static Sprite Get(ref Sprite s, Func<Sprite> make) { if (s == null) s = make(); return s; }   // Unity null: survives asset unloads
 
-        static Sprite MakeRounded(int size, int radius, bool sliced = true)
+        static readonly Vector2 C128 = new Vector2(64, 64);
+
+        /// <summary>Alpha = inside of the distance field (pixels, negative inside), anti-aliased over `soft` pixels.</summary>
+        static Sprite Bake(int w, int h, Func<Vector2, float> sdf, float border = 0f, float soft = 1f)
         {
-            var tex = new Texture2D(size, size, TextureFormat.RGBA32, false) { wrapMode = TextureWrapMode.Clamp, filterMode = FilterMode.Bilinear };
-            var px = new Color32[size * size];
-            for (int y = 0; y < size; y++)
-                for (int x = 0; x < size; x++)
-                {
-                    float cx = Mathf.Clamp(x + 0.5f, radius, size - radius);
-                    float cy = Mathf.Clamp(y + 0.5f, radius, size - radius);
-                    float d = Vector2.Distance(new Vector2(x + 0.5f, y + 0.5f), new Vector2(cx, cy));
-                    float a = Mathf.Clamp01(radius - d + 0.5f);
-                    px[y * size + x] = new Color32(255, 255, 255, (byte)(a * 255));
-                }
+            var tex = new Texture2D(w, h, TextureFormat.RGBA32, false) { wrapMode = TextureWrapMode.Clamp, filterMode = FilterMode.Bilinear };
+            var px = new Color32[w * h];
+            for (int y = 0; y < h; y++)
+                for (int x = 0; x < w; x++)
+                    px[y * w + x] = new Color32(255, 255, 255, (byte)(Mathf.Clamp01(0.5f - sdf(new Vector2(x + 0.5f, y + 0.5f)) / soft) * 255));
             tex.SetPixels32(px);
             tex.Apply();
-            var border = sliced ? new Vector4(radius, radius, radius, radius) : Vector4.zero;
-            return Sprite.Create(tex, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f), 100f, 0, SpriteMeshType.FullRect, border);
+            return Sprite.Create(tex, new Rect(0, 0, w, h), new Vector2(0.5f, 0.5f), 100f, 0, SpriteMeshType.FullRect, Vector4.one * border);
         }
+
+        static float SdRoundRect(Vector2 p, Vector2 c, Vector2 half, float r)
+        {
+            var q = new Vector2(Mathf.Abs(p.x - c.x), Mathf.Abs(p.y - c.y)) - half + Vector2.one * r;
+            return Vector2.Max(q, Vector2.zero).magnitude + Mathf.Min(Mathf.Max(q.x, q.y), 0f) - r;
+        }
+
+        static float SegDist(Vector2 p, Vector2 a, Vector2 b)
+        {
+            var ab = b - a;
+            float t = Mathf.Clamp01(Vector2.Dot(p - a, ab) / ab.sqrMagnitude);
+            return (p - (a + ab * t)).magnitude;
+        }
+
+        /// <summary>Equilateral warning triangle with rounded corners (an inset triangle grown by 8 px).</summary>
+        static float SdWarningTriangle(Vector2 p)
+        {
+            var c = new Vector2(64, 38.7f);
+            Vector2 a = c + (new Vector2(64, 108) - c) * 0.77f, b = c + (new Vector2(124, 4) - c) * 0.77f, d = c + (new Vector2(4, 4) - c) * 0.77f;
+            float dist = Mathf.Min(SegDist(p, a, b), Mathf.Min(SegDist(p, b, d), SegDist(p, d, a)));
+            float s1 = Cross(b - a, p - a), s2 = Cross(d - b, p - b), s3 = Cross(a - d, p - d);
+            bool inside = (s1 < 0 && s2 < 0 && s3 < 0) || (s1 > 0 && s2 > 0 && s3 > 0);
+            return (inside ? -dist : dist) - 8f;
+        }
+
+        static float Cross(Vector2 u, Vector2 v) => u.x * v.y - u.y * v.x;
 
         // ---------- builders ----------
 
-        /// <summary>A world-space panel: drop shadow, rounded glass background, thin accent line on top.</summary>
+        /// <summary>A world-space sign plate: soft drop shadow, dark rim, enamel-white plate, blue header band on top.</summary>
         public static Canvas Panel(Transform parent, string name, Vector2 size, float scale = 0.001f, bool accentLine = true, bool blocksRays = true)
         {
             var go = new GameObject(name, typeof(RectTransform));
@@ -104,20 +130,78 @@ namespace ChemLab
             rt.sizeDelta = size;
             rt.localScale = Vector3.one * scale;
 
-            var shadow = Img(go.transform, "Shadow", new Vector2(0, -10), size + new Vector2(24, 24), Shadow, Rounded);
+            var shadow = Img(go.transform, "Shadow", new Vector2(0, -12), size + new Vector2(60, 60), Shadow, SoftShadow);
             shadow.raycastTarget = false;
             var bg = Img(go.transform, "Background", Vector2.zero, size, Bg, Rounded);
             bg.raycastTarget = blocksRays;
-            var stroke = Img(go.transform, "Stroke", Vector2.zero, size + new Vector2(3, 3), Stroke, Rounded);
+            var stroke = Img(go.transform, "Stroke", Vector2.zero, size + new Vector2(4, 4), Stroke, Rounded);
             stroke.raycastTarget = false;
             stroke.transform.SetSiblingIndex(1);
-            if (accentLine)
-            {
-                var line = Img(go.transform, "AccentLine", new Vector2(0, size.y / 2f - 6f), new Vector2(size.x * 0.3f, 6f), Accent, Rounded);
-                line.raycastTarget = false;
-            }
+            if (accentLine) Band(go.transform, size, 24f, Accent);
             canvases.Add(c);
             return c;
+        }
+
+        /// <summary>
+        /// Full-width colour band across the top of a plate (rounded top corners, square bottom),
+        /// like the header field of a safety sign. Children laid out from the band's centre.
+        /// </summary>
+        public static RectTransform Band(Transform panel, Vector2 panelSize, float height, Color col)
+        {
+            float r = Rounded.border.x, top = panelSize.y / 2f;
+            float h = Mathf.Max(height, 2f * r);   // a sliced sprite needs both corners' height
+            var band = Img(panel, "Band", new Vector2(0, top - h / 2f), new Vector2(panelSize.x, h), col, Rounded);
+            band.raycastTarget = false;
+            // shorter than two corners: hide the rest under plate colour; taller: square off the bottom corners
+            var fix = height < h
+                ? Img(panel, "BandCover", new Vector2(0, top - height - (h - height) / 2f), new Vector2(panelSize.x, h - height), Bg)
+                : Img(panel, "BandBase", new Vector2(0, top - height + r / 2f), new Vector2(panelSize.x, r), col);
+            fix.raycastTarget = false;
+            var root = new GameObject("BandContent", typeof(RectTransform)).GetComponent<RectTransform>();
+            root.SetParent(panel, false);
+            root.anchoredPosition = new Vector2(0, top - height / 2f);
+            root.sizeDelta = new Vector2(panelSize.x, height);
+            return root;
+        }
+
+        /// <summary>A rounded outline drawn over `target` (same size); ppuMul matches the target's corner radius.</summary>
+        public static Image Outline(Transform target, Vector2 size, Color col, float ppuMul = 1f)
+        {
+            var o = Img(target, "Outline", Vector2.zero, size, col, RoundedOutline);
+            o.pixelsPerUnitMultiplier = ppuMul;
+            o.raycastTarget = false;
+            return o;
+        }
+
+        /// <summary>ISO warning sign: yellow triangle, black rim, exclamation mark. Returns the sign root.</summary>
+        public static RectTransform WarningSign(Transform parent, Vector2 pos, float width)
+        {
+            var root = Img(parent, "WarningSign", pos, new Vector2(width, width * 0.875f), Warn, TriFill);
+            root.raycastTarget = false;
+            Img(root.transform, "Rim", Vector2.zero, root.rectTransform.sizeDelta, Text, TriBorder).raycastTarget = false;
+            Img(root.transform, "Mark", new Vector2(0, -width * 0.07f), new Vector2(width * 0.15f, width * 0.45f), Text, Exclaim).raycastTarget = false;
+            return root.rectTransform;
+        }
+
+        /// <summary>Round sign: filled disc with a white glyph (Check, or the exclamation mark; rotate 180 deg for "i").</summary>
+        public static Image SignDisc(Transform parent, string name, Vector2 pos, float d, Color col, bool check, bool info = false)
+        {
+            var disc = Img(parent, name, pos, new Vector2(d, d), col, Circle);
+            disc.raycastTarget = false;
+            var g = check ? Img(disc.transform, "Glyph", Vector2.zero, new Vector2(d * 0.8f, d * 0.8f), Color.white, Check)
+                          : Img(disc.transform, "Glyph", Vector2.zero, new Vector2(d * 0.17f, d * 0.52f), Color.white, Exclaim);
+            g.raycastTarget = false;
+            if (info) g.rectTransform.localRotation = Quaternion.Euler(0, 0, 180f);
+            return disc;
+        }
+
+        /// <summary>A controller-button key in a sign rim ("A", "B"); ring and letter take `col`.</summary>
+        public static Image KeyDisc(Transform parent, string key, Vector2 pos, float d, Color col)
+        {
+            var rim = Img(parent, "Key_" + key, pos, new Vector2(d, d), col, Ring);
+            rim.raycastTarget = false;
+            Label(rim.transform, "Letter", key, new Vector2(0, -d * 0.02f), new Vector2(d, d), d * 0.55f, col, TextAlignmentOptions.Center, FontStyles.Bold);
+            return rim;
         }
 
         public static Image Img(Transform parent, string name, Vector2 pos, Vector2 size, Color col, Sprite sprite = null)
@@ -166,26 +250,40 @@ namespace ChemLab
 
         public enum Style { Primary, Secondary, Ghost, Danger }
 
+        /// <summary>
+        /// Primary = green (go), Secondary = blue, Danger = red, Ghost = outlined plate. Optional `key` draws the
+        /// controller button ("A", "B") as a sign rim at the left end.
+        /// </summary>
         public static Button Button(Transform parent, string name, string label, Vector2 pos, Vector2 size, Style style, UnityAction onClick,
-            float fontSize = 30, TextAlignmentOptions align = TextAlignmentOptions.Center)
+            float fontSize = 30, TextAlignmentOptions align = TextAlignmentOptions.Center, string key = null)
         {
-            Color col = style == Style.Primary ? Accent : style == Style.Danger ? Bad : style == Style.Secondary ? AccentBlue : SurfaceHi;
+            Color col = style == Style.Primary ? Ok : style == Style.Danger ? Bad : style == Style.Secondary ? Accent : Bg;
             var img = Img(parent, name, pos, size, col, Rounded);
+            img.pixelsPerUnitMultiplier = 2f;   // ~11-unit corners, tighter than the plate's
             var b = img.gameObject.AddComponent<Button>();
-            var cb = b.colors;
-            cb.normalColor = Color.white;
-            cb.highlightedColor = new Color(1.15f, 1.15f, 1.15f);
-            cb.selectedColor = Color.white;
-            cb.pressedColor = new Color(0.75f, 0.75f, 0.8f);
-            cb.disabledColor = new Color(0.5f, 0.5f, 0.55f, 0.6f);
-            cb.colorMultiplier = 1.2f;
-            cb.fadeDuration = 0.08f;
-            b.colors = cb;
+            Tint(b);
             if (onClick != null) b.onClick.AddListener(onClick);
             b.onClick.AddListener(() => ChemLabAudio.Click());
-            var textCol = style == Style.Primary ? new Color(0.02f, 0.1f, 0.1f) : Text;
-            var lbl = Label(img.transform, "Label", label, Vector2.zero, size - new Vector2(40, 8), fontSize, textCol, align, style == Style.Primary ? FontStyles.Bold : FontStyles.Normal);
+            var textCol = style == Style.Ghost ? Text : Color.white;
+            if (style == Style.Ghost) Outline(img.transform, size, Text, 2f);
+            float inset = key != null ? 70f : 0f;
+            if (key != null) KeyDisc(img.transform, key, new Vector2(-size.x / 2f + 24f + 20f, 0), 40f, textCol);
+            Label(img.transform, "Label", label, new Vector2(inset / 2f, 0), size - new Vector2(40 + inset, 8), fontSize, textCol, align, FontStyles.Bold);
             return b;
+        }
+
+        /// <summary>Hover/press darken (works on light plates and on colour fields alike); disabled styling is up to the caller.</summary>
+        public static void Tint(Selectable s)
+        {
+            var cb = s.colors;
+            cb.normalColor = Color.white;
+            cb.highlightedColor = new Color(0.87f, 0.87f, 0.87f);
+            cb.selectedColor = Color.white;
+            cb.pressedColor = new Color(0.74f, 0.74f, 0.74f);
+            cb.disabledColor = new Color(1f, 1f, 1f, 0.55f);
+            cb.colorMultiplier = 1f;
+            cb.fadeDuration = 0.08f;
+            s.colors = cb;
         }
 
         public static TextMeshProUGUI ButtonLabel(Button b) => b.GetComponentInChildren<TextMeshProUGUI>();
@@ -214,7 +312,7 @@ namespace ChemLab
 
         public static Bar ProgressBar(Transform parent, string name, Vector2 pos, Vector2 size, Color fillCol)
         {
-            var track = Img(parent, name, pos, size, new Color(1, 1, 1, 0.08f), Rounded);
+            var track = Img(parent, name, pos, size, SurfaceHi, Rounded);
             track.raycastTarget = false;
             var fill = Img(track.transform, "Fill", Vector2.zero, size, fillCol, Rounded);
             fill.raycastTarget = false;
