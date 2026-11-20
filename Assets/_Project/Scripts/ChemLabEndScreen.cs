@@ -120,16 +120,16 @@ namespace ChemLab
             var issues = new List<(bool critical, string title, string body)>();
             foreach (var h in recs.Where(x => x.critical))
             {
-                var o = h.data.Option(h.selected);
+                var o = h.q.Option(h.selected);
                 string choice = o != null ? char.ToLower(o.text[0]) + o.text.Substring(1).TrimEnd('.') : h.selected;
                 issues.Add((true, $"{h.data.id} — {h.data.title}",
-                    $"The student selected {h.selected}: {choice}. This is a critical unsafe choice because {h.data.criticalReason}"));
+                    $"The student selected {h.selected}: {choice}. This is a critical unsafe choice because {h.CriticalReason}"));
             }
             foreach (var h in recs.Where(x => !x.detected))
                 issues.Add((h.data.mandatoryCritical, $"{h.data.id} — {h.data.title}", h.data.missedFeedback ?? "The student did not detect this hazard."));
             foreach (var h in recs.Where(x => x.detected && !x.critical && x.isCorrect != true))
                 issues.Add((h.data.mandatoryCritical, $"{h.data.id} — {h.data.title}",
-                    h.selected == null ? "Found, but no answer was submitted." : $"The student selected {h.selected} instead of {h.data.correct}. {h.data.explanation}"));
+                    h.selected == null ? "Found, but no answer was submitted." : $"The student selected {h.selected} instead of {h.q.correct}. {h.Explanation}"));
 
             // Issue list: each block is measured so short and long texts stack without gaps or overlap.
             float boxTop = -H / 2f + 330f;           // top of the final decision box
@@ -220,11 +220,11 @@ namespace ChemLab
             var sb = new StringBuilder();
             foreach (var h in recs)
             {
-                var ok = h.data.Option(h.data.correct);
-                string mine = h.selected == null ? (h.detected ? "not answered" : "missed") : h.selected == h.data.correct ? "correct" : $"you chose {h.selected}";
-                string col = h.selected == h.data.correct ? K.Hex(K.Ok) : h.selected == null ? "#8b97a8" : K.Hex(K.Bad);
+                var ok = h.q.Option(h.q.correct);
+                string mine = h.selected == null ? (h.detected ? "not answered" : "missed") : h.selected == h.q.correct ? "correct" : $"you chose {h.selected}";
+                string col = h.selected == h.q.correct ? K.Hex(K.Ok) : h.selected == null ? "#8b97a8" : K.Hex(K.Bad);
                 sb.Append($"<b>{h.data.id} {h.data.title}</b>  <color={col}>({mine})</color>\n");
-                sb.Append($"<size=85%><color={K.Hex(K.Accent)}>{h.data.correct}. {ok?.text}</color>\n<color={K.Hex(K.TextDim)}>{h.data.explanation}</color></size>\n\n");
+                sb.Append($"<size=85%><color={K.Hex(K.Accent)}>{h.q.correct}. {ok?.text}</color>\n<color={K.Hex(K.TextDim)}>{h.Explanation}</color></size>\n\n");
             }
             var body = K.Label(t, "Body", sb.ToString(), new Vector2(0, -20), new Vector2(920, 1080), 22, K.Text, TextAlignmentOptions.TopLeft);
             body.overflowMode = TextOverflowModes.Truncate;

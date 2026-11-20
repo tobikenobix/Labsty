@@ -14,6 +14,24 @@ namespace ChemLab
         public bool critical;
     }
 
+    /// <summary>One question of a hazard's pool. Empty explanation / criticalReason = use the hazard's.</summary>
+    [Serializable]
+    public class QuestionData
+    {
+        public string id;                // "Q1".."Q3"
+        public string question;
+        public string correct;
+        public string explanation;
+        public string criticalReason;
+        public OptionData[] options;
+
+        public OptionData Option(string key)
+        {
+            foreach (var o in options) if (o.key == key) return o;
+            return null;
+        }
+    }
+
     [Serializable]
     public class HazardData
     {
@@ -24,21 +42,13 @@ namespace ChemLab
         public float fixSoundSeconds;    // cut + fade the clip after this many seconds (0 = play it all)
         public string difficulty;
         public string category;
-        public string question;
-        public string correct;
         public string explanation;
         public bool mandatoryCritical;   // one of the safety-critical hazards that must be answered correctly to pass
         public string criticalReason;    // why the critical options are unsafe (shown in the report)
         public string hudCategory;       // group shown on the player's tablet (e.g. "Escape Routes")
         public string wrongFeedback;     // one line shown after a wrong answer
         public string missedFeedback;    // report line when the hazard was never found
-        public OptionData[] options;
-
-        public OptionData Option(string key)
-        {
-            foreach (var o in options) if (o.key == key) return o;
-            return null;
-        }
+        public QuestionData[] questions; // the pool; one is drawn per run
     }
 
     [Serializable]
@@ -74,7 +84,14 @@ namespace ChemLab
                 Debug.LogError("[ChemLab] Resources/ChemLab/hazards.json not found.");
                 return new LabConfig { hazards = new HazardData[0] };
             }
-            return JsonUtility.FromJson<LabConfig>(asset.text);
+            var cfg = JsonUtility.FromJson<LabConfig>(asset.text);
+            foreach (var h in cfg.hazards)
+            {
+                if (h.questions == null || h.questions.Length == 0) Debug.LogError($"[ChemLab] {h.id} has no questions in hazards.json.");
+                else foreach (var q in h.questions)
+                    if (q.Option(q.correct) == null) Debug.LogError($"[ChemLab] {h.id} {q.id}: correct answer '{q.correct}' is not one of its options.");
+            }
+            return cfg;
         }
     }
 
@@ -84,6 +101,9 @@ namespace ChemLab
     public class HazardRecord
     {
         public HazardData data;
+        public QuestionData q;              // the question drawn from the pool for this run
+        public string Explanation => string.IsNullOrEmpty(q.explanation) ? data.explanation : q.explanation;
+        public string CriticalReason => string.IsNullOrEmpty(q.criticalReason) ? data.criticalReason : q.criticalReason;
         public bool detected;
         public float detectedAt = -1f;      // seconds since inspection start
         public float questionShownAt = -1f; // seconds since inspection start (first display)

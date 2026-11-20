@@ -81,6 +81,16 @@ namespace ChemLab
             StartCoroutine(ShrinkAway(parts));
         }
 
+        /// <summary>Safe state without animation, for a hazard left out of this run.</summary>
+        public void FixInstant()
+        {
+            IsFixed = true;
+            GetComponent<XRSimpleInteractable>().enabled = false;
+            foreach (var c in GetComponents<Collider>()) c.enabled = false;
+            if (hideOnFix != null && hideOnFix.Length > 0) { foreach (var p in hideOnFix) if (p != null) p.SetActive(false); }
+            else foreach (var r in GetComponentsInChildren<Renderer>()) r.enabled = false;
+        }
+
         IEnumerator ShrinkAway(GameObject[] parts)
         {
             var start = new Vector3[parts.Length];

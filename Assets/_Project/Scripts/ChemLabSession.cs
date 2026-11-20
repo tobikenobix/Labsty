@@ -56,7 +56,11 @@ namespace ChemLab
             Instance = this;
             Config = LabConfig.Load();
             ui = GetComponent<ChemLabUI>();
-            foreach (var h in Config.hazards) records.Add(new HazardRecord { data = h });
+            var active = ChemLabRun.PickHazards(Config.hazards);
+            foreach (var h in active) records.Add(new HazardRecord { data = h, q = ChemLabRun.PickQuestion(h) });
+            // hazards left out of this run start in their safe state
+            foreach (var i in FindObjectsByType<ChemLabInspectable>(FindObjectsSortMode.None))
+                if (i.kind == ChemLabInspectable.Kind.Hazard && active.All(h => h.id != i.hazardId)) i.FixInstant();
             sessionId = "session_" + DateTime.Now.ToString("yyyyMMdd_HHmmss");
             ChemLabRun.Attempt++;
         }
@@ -144,8 +148,8 @@ namespace ChemLab
             if (Current == null || CurrentSelection == null) return;
             var rec = Current;
             var key = CurrentSelection;
-            var opt = rec.data.Option(key);
-            bool correct = key == rec.data.correct;
+            var opt = rec.q.Option(key);
+            bool correct = key == rec.q.correct;
 
             rec.attempts++;
             if (rec.selected == null)   // only the first answer is scored
@@ -259,11 +263,15 @@ namespace ChemLab
             r.decisionPoints = sc.pointsPerCorrectDecision * r.correct;
             r.maxDetectionPoints = sc.pointsPerDetection * records.Count;
             r.maxDecisionPoints = sc.pointsPerCorrectDecision * records.Count;
-            r.score = r.detectionPoints + r.decisionPoints;
+            // Score = % of the points this run offered, so a run with fewer hazards is graded on the same scale.
+            int max = r.maxDetectionPoints + r.maxDecisionPoints;
+            r.score = max == 0 ? 0 : Mathf.RoundToInt(100f * (r.detectionPoints + r.decisionPoints) / max);
+            // minDetected / minCorrect are written for the full hazard set; scale them to this run's share.
+            float share = Config.hazards.Length == 0 ? 1f : records.Count / (float)Config.hazards.Length;
 
             r.minScoreOk = r.score >= sc.passScore;
-            r.minDetectionOk = r.detected >= sc.minDetected;
-            r.minDecisionsOk = r.correct >= sc.minCorrect;
+            r.minDetectionOk = r.detected >= Mathf.CeilToInt(sc.minDetected * share);
+            r.minDecisionsOk = r.correct >= Mathf.CeilToInt(sc.minCorrect * share);
             r.allCriticalHazardsCorrect = records.Where(x => x.data.mandatoryCritical).All(x => x.isCorrect == true);
             r.noCriticalChoice = !records.Any(x => x.critical);
 

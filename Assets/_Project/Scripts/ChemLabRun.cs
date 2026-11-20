@@ -26,6 +26,45 @@ namespace ChemLab
         public static bool LastTimedOut;
         public static string LastJsonPath, LastCsvPath, LastSessionId;
 
+        // ---------- hazard selection (lobby "Choose hazards"), saved on the headset ----------
+
+        const string DisabledKey = "chemlab.disabledHazards", PerRunKey = "chemlab.hazardsPerRun";
+        /// <summary>Hazard ids switched off in the lobby.</summary>
+        public static readonly HashSet<string> DisabledHazards =
+            new HashSet<string>(PlayerPrefs.GetString(DisabledKey, "").Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
+        /// <summary>Most hazards planted per run (capped by how many are switched on).</summary>
+        public static int HazardsPerRun = PlayerPrefs.GetInt(PerRunKey, 10);
+
+        public static void SaveHazardSettings()
+        {
+            PlayerPrefs.SetString(DisabledKey, string.Join(",", DisabledHazards));
+            PlayerPrefs.SetInt(PerRunKey, HazardsPerRun);
+            PlayerPrefs.Save();
+        }
+
+        /// <summary>The hazards for one run: a random pick of HazardsPerRun among the switched-on ones, in id order.</summary>
+        public static List<HazardData> PickHazards(HazardData[] all)
+        {
+            var on = all.Where(h => !DisabledHazards.Contains(h.id)).ToList();
+            if (on.Count == 0) on = all.ToList();   // never an empty lab, even with stale settings
+            return on.OrderBy(_ => UnityEngine.Random.value).Take(Mathf.Clamp(HazardsPerRun, 1, on.Count)).OrderBy(h => h.id).ToList();
+        }
+
+        // ---------- question pool ----------
+
+        static readonly Dictionary<string, int> lastQuestion = new Dictionary<string, int>();
+
+        /// <summary>Random question from the hazard's pool, never the one it showed last run (while the app stays open).</summary>
+        public static QuestionData PickQuestion(HazardData h)
+        {
+            int n = h.questions.Length;
+            int i = n > 1 && lastQuestion.TryGetValue(h.id, out var last)
+                ? (last + UnityEngine.Random.Range(1, n)) % n   // any of the other n-1, evenly
+                : UnityEngine.Random.Range(0, n);
+            lastQuestion[h.id] = i;
+            return h.questions[i];
+        }
+
         /// <summary>Writes session_xxx.json (full detail) and session_xxx.csv (one row per hazard + summary row).</summary>
         public static void Export(string sessionId, bool practice, ChemLabResult r, IReadOnlyList<HazardRecord> records)
         {
@@ -48,6 +87,7 @@ namespace ChemLab
             sb.Append($"  \"mode\": {S(practice ? "practice" : "assessment")},\n");
             sb.Append($"  \"completion_time\": {F(r.duration)},\n");
             sb.Append($"  \"timed_out\": {B(LastTimedOut)},\n");
+            sb.Append($"  \"hazardsInRun\": {records.Count},\n");
             sb.Append($"  \"hazards_found\": {Ids(found)},\n");
             sb.Append($"  \"hazards_missed\": {Ids(missed)},\n");
             sb.Append($"  \"wrong_answers\": {wrong},\n");
@@ -67,10 +107,10 @@ namespace ChemLab
             {
                 var h = records[i];
                 sb.Append("    {");
-                sb.Append($"\"id\": {S(h.data.id)}, \"category\": {S(h.data.hudCategory)}, \"status\": {S(h.Status.ToString())}, ");
+                sb.Append($"\"id\": {S(h.data.id)}, \"questionId\": {S(h.q.id)}, \"category\": {S(h.data.hudCategory)},\"status\": {S(h.Status.ToString())}, ");
                 sb.Append($"\"mandatoryCritical\": {B(h.data.mandatoryCritical)}, \"detected\": {B(h.detected)}, ");
                 sb.Append($"\"detectedAt\": {(h.detected ? F(h.detectedAt) : "null")}, ");
-                sb.Append($"\"selectedOption\": {S(h.selected)}, \"correctOption\": {S(h.data.correct)}, \"isCorrect\": {B(h.isCorrect)}, ");
+                sb.Append($"\"selectedOption\": {S(h.selected)}, \"correctOption\": {S(h.q.correct)}, \"isCorrect\": {B(h.isCorrect)}, ");
                 sb.Append($"\"responseTimeSeconds\": {(h.responseTime >= 0 ? F(h.responseTime) : "null")}, ");
                 sb.Append($"\"wrongAnswers\": {h.wrongAnswers}, \"resolved\": {B(h.solved)}, \"criticalError\": {B(h.critical)}}}");
                 sb.Append(i < records.Count - 1 ? ",\n" : "\n");
@@ -78,10 +118,10 @@ namespace ChemLab
             sb.Append("  ]\n}\n");
 
             var csv = new StringBuilder();
-            csv.AppendLine("session_id,student_id,hazard_id,category,detected,detected_at,first_answer,correct_answer,first_attempt_correct,wrong_answers,resolved,critical_error,response_time");
+            csv.AppendLine("session_id,student_id,hazard_id,question_id,category,detected,detected_at,first_answer,correct_answer,first_attempt_correct,wrong_answers,resolved,critical_error,response_time");
             foreach (var h in records)
-                csv.AppendLine(string.Join(",", sessionId, StudentId, h.data.id, "\"" + h.data.hudCategory + "\"", h.detected ? 1 : 0,
-                    h.detected ? F(h.detectedAt) : "", h.selected ?? "", h.data.correct, h.isCorrect == true ? 1 : 0, h.wrongAnswers,
+                csv.AppendLine(string.Join(",", sessionId, StudentId, h.data.id, h.q.id, "\"" + h.data.hudCategory + "\"", h.detected ? 1 : 0,
+                    h.detected ? F(h.detectedAt) : "", h.selected ?? "", h.q.correct, h.isCorrect == true ? 1 : 0, h.wrongAnswers,
                     h.solved ? 1 : 0, h.critical ? 1 : 0, h.responseTime >= 0 ? F(h.responseTime) : ""));
             csv.AppendLine();
             csv.AppendLine("session_id,hazards_found,hazards_missed,wrong_answers,completion_time,score,outcome");

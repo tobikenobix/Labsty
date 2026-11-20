@@ -82,10 +82,11 @@ namespace ChemLab
 
         public void ShowRunStarted(float seconds)
         {
+            if (tabRows.Count == 0) BuildTabletRows();
             tablet.gameObject.SetActive(true);
             station.gameObject.SetActive(true);
             UpdateHud();
-            Toast($"Inspection started: {K.Mmss(seconds)} on the clock. Find all 10 hazards!", 3.5f, K.Accent);
+            Toast($"Inspection started: {K.Mmss(seconds)} on the clock. Find all {S.HazardCount} hazards!", 3.5f, K.Accent);
         }
 
         public void ShowRunEnded(string title)
@@ -102,14 +103,14 @@ namespace ChemLab
             qStruck.Clear();
             qTitle.text = rec.data.title;
             qMeta.text = $"{rec.data.hudCategory}  /  {rec.data.area}  /  {rec.data.difficulty}";
-            qText.text = rec.data.question;
+            qText.text = rec.q.question;
             for (int i = 0; i < 4; i++)
             {
-                bool has = i < rec.data.options.Length;
+                bool has = i < rec.q.options.Length;
                 qOpt[i].btn.gameObject.SetActive(has);
                 if (!has) continue;
-                qOpt[i].key.text = rec.data.options[i].key;
-                qOpt[i].text.text = rec.data.options[i].text;
+                qOpt[i].key.text = rec.q.options[i].key;
+                qOpt[i].text.text = rec.q.options[i].text;
                 PaintOption(i, null);
             }
             qFeedback.text = $"<color={K.Hex(K.TextDim)}>Point at an answer and pull the trigger, then press A to submit.</color>";
@@ -121,14 +122,14 @@ namespace ChemLab
         public void HighlightOption(string key)
         {
             if (qRec == null) return;
-            for (int i = 0; i < qRec.data.options.Length; i++) PaintOption(i, key);
+            for (int i = 0; i < qRec.q.options.Length; i++) PaintOption(i, key);
             SetSubmit(key);
         }
 
         public void ShowWrong(HazardRecord rec, string key, bool critical)
         {
             qStruck[key] = critical;
-            for (int i = 0; i < rec.data.options.Length; i++) PaintOption(i, null);
+            for (int i = 0; i < rec.q.options.Length; i++) PaintOption(i, null);
             qFeedback.text = $"<color={K.Hex(K.Bad)}><b>{rec.data.wrongFeedback}</b></color> " +
                              (critical ? "Dangerous choice, logged for safety review. Choose again." : "Logged as a mistake. Choose again.");
             SetSubmit(null);
@@ -141,7 +142,7 @@ namespace ChemLab
         void PaintOption(int i, string selectedKey)
         {
             var o = qOpt[i];
-            string k = qRec.data.options[i].key;
+            string k = qRec.q.options[i].key;
             bool struck = qStruck.TryGetValue(k, out bool dangerous);
             bool sel = !struck && k == selectedKey;
             o.btn.interactable = !struck;
@@ -262,7 +263,7 @@ namespace ChemLab
                 o.bg.pixelsPerUnitMultiplier = 1.5f;
                 o.btn = o.bg.gameObject.AddComponent<Button>();
                 K.Tint(o.btn);
-                o.btn.onClick.AddListener(() => { if (qRec != null && idx < qRec.data.options.Length) S.SelectOption(qRec.data.options[idx].key); });
+                o.btn.onClick.AddListener(() => { if (qRec != null && idx < qRec.q.options.Length) S.SelectOption(qRec.q.options[idx].key); });
                 o.btn.onClick.AddListener(() => ChemLabAudio.Click());
                 o.outline = K.Outline(o.bg.transform, new Vector2(920, 94), K.Accent, 1.5f);
 
@@ -345,9 +346,15 @@ namespace ChemLab
             K.Label(tablet.transform, "TimerCaption", "remaining", new Vector2(150, 150), new Vector2(240, 40), 24, K.TextDim, TextAlignmentOptions.Right);
             tabTimeBar = K.ProgressBar(tablet.transform, "TimeBar", new Vector2(0, 108), new Vector2(560, 12), K.Accent);
 
-            var cats = new List<string>();
-            foreach (var h in ChemLabSession.Instance != null ? ChemLabSession.Instance.Config.hazards : LabConfig.Load().hazards)
-                if (!cats.Contains(h.hudCategory)) cats.Add(h.hudCategory);
+            tabFooter = K.Label(tablet.transform, "Footer", "", new Vector2(0, -238), new Vector2(560, 44), 23, K.Text, TextAlignmentOptions.Left);
+            AttachTablet();
+            tablet.gameObject.SetActive(false);
+        }
+
+        /// <summary>One checklist row per category that has a hazard in this run (built when the run starts).</summary>
+        void BuildTabletRows()
+        {
+            var cats = S.Records.Select(r => r.data.hudCategory).Distinct().ToList();
             for (int i = 0; i < cats.Count; i++)
             {
                 float y = 50 - i * 86;
@@ -356,9 +363,6 @@ namespace ChemLab
                 var bar = K.ProgressBar(tablet.transform, "Bar" + i, new Vector2(0, y - 32), new Vector2(560, 10), K.Ok);
                 tabRows.Add((cats[i], count, bar));
             }
-            tabFooter = K.Label(tablet.transform, "Footer", "", new Vector2(0, -238), new Vector2(560, 44), 23, K.Text, TextAlignmentOptions.Left);
-            AttachTablet();
-            tablet.gameObject.SetActive(false);
         }
 
         void AttachTablet()
