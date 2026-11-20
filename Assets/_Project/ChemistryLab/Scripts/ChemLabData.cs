@@ -29,6 +29,7 @@ namespace ChemLab
         public string criticalReason;    // why the critical options are unsafe (shown in the report)
         public string hudCategory;       // group shown on the player's tablet (e.g. "Escape Routes")
         public string wrongFeedback;     // one line shown after a wrong answer
+        public string missedFeedback;    // report line when the hazard was never found
         public OptionData[] options;
 
         public OptionData Option(string key)

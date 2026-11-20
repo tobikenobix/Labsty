@@ -44,7 +44,8 @@
       "mandatoryCritical": true,
       "criticalReason": "an emergency exit must never be blocked or left partly obstructed, even for a short time.",
       "hudCategory": "Escape Routes",
-      "wrongFeedback": "Not safe: an emergency exit must be completely clear at all times."
+      "wrongFeedback": "Not safe: an emergency exit must be completely clear at all times.",
+      "missedFeedback": "The student did not notice that the emergency exit was blocked by a cart."
     },
     {
       "id": "H02",
@@ -80,7 +81,8 @@
       "mandatoryCritical": false,
       "criticalReason": "",
       "hudCategory": "PPE & Behaviour",
-      "wrongFeedback": "Not safe: food and drink are never allowed in the lab."
+      "wrongFeedback": "Not safe: food and drink are never allowed in the lab.",
+      "missedFeedback": "The student did not notice food and drink on the lab bench."
     },
     {
       "id": "H03",
@@ -116,7 +118,8 @@
       "mandatoryCritical": false,
       "criticalReason": "",
       "hudCategory": "Escape Routes",
-      "wrongFeedback": "Not safe: unstable stacks must be taken down and stored low."
+      "wrongFeedback": "Not safe: unstable stacks must be taken down and stored low.",
+      "missedFeedback": "The student did not notice the unstable stack of boxes near the walkway."
     },
     {
       "id": "H04",
@@ -152,7 +155,8 @@
       "mandatoryCritical": false,
       "criticalReason": "",
       "hudCategory": "PPE & Behaviour",
-      "wrongFeedback": "Not safe: lab coats belong on the designated coat rack."
+      "wrongFeedback": "Not safe: lab coats belong on the designated coat rack.",
+      "missedFeedback": "The student did not notice the lab coat left on a chair."
     },
     {
       "id": "H05",
@@ -188,7 +192,8 @@
       "mandatoryCritical": false,
       "criticalReason": "",
       "hudCategory": "PPE & Behaviour",
-      "wrongFeedback": "Not safe: used gloves go into the lab waste container."
+      "wrongFeedback": "Not safe: used gloves go into the lab waste container.",
+      "missedFeedback": "The student did not notice used gloves in the general waste bin."
     },
     {
       "id": "H06",
@@ -224,7 +229,8 @@
       "mandatoryCritical": true,
       "criticalReason": "unknown chemicals must never be identified by smell or poured into the drain; they must be isolated and identified by HSE.",
       "hudCategory": "Housekeeping & Storage",
-      "wrongFeedback": "Not safe: never smell, pour away or reuse an unknown chemical."
+      "wrongFeedback": "Not safe: never smell, pour away or reuse an unknown chemical.",
+      "missedFeedback": "The student did not notice the unlabeled chemical bottle."
     },
     {
       "id": "H07",
@@ -260,7 +266,8 @@
       "mandatoryCritical": false,
       "criticalReason": "",
       "hudCategory": "PPE & Behaviour",
-      "wrongFeedback": "Not safe: wear safety glasses and keep your ears free for alarms."
+      "wrongFeedback": "Not safe: wear safety glasses and keep your ears free for alarms.",
+      "missedFeedback": "The student did not notice the unused safety glasses and headphones at the bench."
     },
     {
       "id": "H08",
@@ -296,7 +303,8 @@
       "mandatoryCritical": true,
       "criticalReason": "continuing to use, taping or hiding a damaged cable keeps a live shock and fire hazard in service.",
       "hudCategory": "Housekeeping & Storage",
-      "wrongFeedback": "Not safe: damaged cables must be taken out of service and reported."
+      "wrongFeedback": "Not safe: damaged cables must be taken out of service and reported.",
+      "missedFeedback": "The student did not detect the damaged cable and overloaded power strip."
     },
     {
       "id": "H09",
@@ -332,7 +340,8 @@
       "mandatoryCritical": false,
       "criticalReason": "",
       "hudCategory": "Escape Routes",
-      "wrongFeedback": "Not safe: first-aid kits must be accessible and fully stocked."
+      "wrongFeedback": "Not safe: first-aid kits must be accessible and fully stocked.",
+      "missedFeedback": "The student did not detect that the cabinet was blocked and supplies were missing."
     },
     {
       "id": "H10",
@@ -368,7 +377,8 @@
       "mandatoryCritical": true,
       "criticalReason": "corrosives must not be stored high up or with incompatible substances; a fall or reaction can cause severe injury.",
       "hudCategory": "Housekeeping & Storage",
-      "wrongFeedback": "Not safe: corrosives go low, in secondary containment, away from flammables."
+      "wrongFeedback": "Not safe: corrosives go low, in secondary containment, away from flammables.",
+      "missedFeedback": "The student did not notice corrosive acid stored high up next to flammables."
     }
   ]
 }

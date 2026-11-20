@@ -24,7 +24,7 @@ namespace ChemLab
         public static List<HazardRecord> LastRecords;
         public static LabConfig LastConfig;
         public static bool LastTimedOut;
-        public static string LastJsonPath, LastCsvPath;
+        public static string LastJsonPath, LastCsvPath, LastSessionId;
 
         /// <summary>Writes session_xxx.json (full detail) and session_xxx.csv (one row per hazard + summary row).</summary>
         public static void Export(string sessionId, bool practice, ChemLabResult r, IReadOnlyList<HazardRecord> records)
@@ -34,6 +34,7 @@ namespace ChemLab
             string B(bool? v) => v == null ? "null" : v.Value ? "true" : "false";
             string Ids(IEnumerable<HazardRecord> rs) => "[" + string.Join(", ", rs.Select(x => S(x.data.id))) + "]";
 
+            LastSessionId = sessionId;
             var found = records.Where(x => x.detected).ToList();
             var missed = records.Where(x => !x.detected).ToList();
             int wrong = records.Sum(x => x.wrongAnswers);
