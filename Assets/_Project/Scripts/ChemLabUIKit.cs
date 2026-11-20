@@ -252,8 +252,10 @@ namespace ChemLab
         public static TextMeshProUGUI FitOneLine(TextMeshProUGUI t, float min)
         {
             t.textWrappingMode = TextWrappingModes.NoWrap;
+            // never larger than designed: keep Label's grow-to-readable cap if it set one, else the label's own size
+            // (TMP's default fontSizeMax is 72, which would inflate short text)
+            t.fontSizeMax = t.enableAutoSizing ? t.fontSizeMax : t.fontSize;
             t.enableAutoSizing = true;
-            t.fontSizeMax = Mathf.Max(t.fontSizeMax, t.fontSize);
             t.fontSizeMin = min;
             return t;
         }

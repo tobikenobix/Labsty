@@ -45,8 +45,9 @@ namespace ChemLab
         /// <summary>The hazards for one run: a random pick of HazardsPerRun among the switched-on ones, in id order.</summary>
         public static List<HazardData> PickHazards(HazardData[] all)
         {
-            var on = all.Where(h => !DisabledHazards.Contains(h.id)).ToList();
-            if (on.Count == 0) on = all.ToList();   // never an empty lab, even with stale settings
+            var usable = all.Where(h => h.questions != null && h.questions.Length > 0).ToList();   // LabConfig.Load logs the others
+            var on = usable.Where(h => !DisabledHazards.Contains(h.id)).ToList();
+            if (on.Count == 0) on = usable;   // never an empty lab, even with stale settings
             return on.OrderBy(_ => UnityEngine.Random.value).Take(Mathf.Clamp(HazardsPerRun, 1, on.Count)).OrderBy(h => h.id).ToList();
         }
 
