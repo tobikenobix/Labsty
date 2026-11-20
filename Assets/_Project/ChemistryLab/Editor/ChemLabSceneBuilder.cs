@@ -196,7 +196,7 @@ public static class ChemLabSceneBuilder
             if (ti != null) ti.objectReferenceValue = null;
             so.ApplyModifiedPropertiesWithoutUndo();
         }
-        // Comfortable speeds: walk forward/backward only, smooth turning.
+        // Comfortable speeds: left stick walks in all directions, right stick turns.
         foreach (var mb in rig.GetComponentsInChildren<MonoBehaviour>(true).Where(m => m != null))
         {
             var typeName = mb.GetType().Name;
@@ -207,7 +207,7 @@ public static class ChemLabSceneBuilder
             {
                 var speed = so.FindProperty("m_MoveSpeed"); if (speed != null) speed.floatValue = 1.5f;
                 var strafe = so.FindProperty("m_EnableStrafe");
-                if (strafe != null) strafe.boolValue = false;
+                if (strafe != null) strafe.boolValue = true;   // left stick: forward/back + left/right
             }
             else { var ts = so.FindProperty("m_TurnSpeed"); if (ts != null) ts.floatValue = 75f; }
             so.ApplyModifiedPropertiesWithoutUndo();
