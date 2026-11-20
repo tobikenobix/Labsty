@@ -57,9 +57,16 @@ namespace ChemLab
         void OnEnable() => ChemLabControls.ToggleHelp += ToggleHelp;
         void OnDisable() => ChemLabControls.ToggleHelp -= ToggleHelp;
 
+        int hudSecond = -1;
+
         void Update()
         {
-            if (S != null && tablet.gameObject.activeSelf) UpdateHud();
+            // The timer only changes once per second; inspect/resolve call UpdateHud themselves.
+            if (S != null && tablet.gameObject.activeSelf && (int)S.Remaining != hudSecond)
+            {
+                hudSecond = (int)S.Remaining;
+                UpdateHud();
+            }
             K.KeepInView(question.transform, 0.95f, -0.05f);
             K.KeepInView(msg.transform, 1.15f, 0f);
         }
