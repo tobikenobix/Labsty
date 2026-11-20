@@ -256,9 +256,9 @@ namespace ChemLab
 
         public static string ControlsText =>
             ChemLabControls.DesktopMode
-                ? "<b>Click</b> a glowing ring to move\n<b>Hold right mouse</b> to look\n<b>Left click</b> to select\n<b>Enter</b> submit   <b>Esc</b> close\n<b>H</b> controls   <b>F</b> finish"
+                ? "<b>WASD</b> walk\n<b>Hold right mouse</b> to look\n<b>Left click</b> to select\n<b>Enter</b> submit   <b>Esc</b> close\n<b>H</b> controls   <b>F</b> finish"
                 : $"<b><color={K.Hex(K.Accent)}>Trigger</color></b>  select / inspect\n" +
-                  "<b>Thumbstick forward</b>  aim at a glowing ring, release to teleport\n" +
+                  "<b>Left stick</b>  walk forward / backward\n" +
                   "<b>Right stick left/right</b>  turn\n" +
                   "<b>A</b>  submit    <b>B</b>  close\n" +
                   "<b>X</b>  this card    <b>Y / Menu</b>  finish";

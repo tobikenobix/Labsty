@@ -100,11 +100,11 @@ namespace ChemLab
 
             // criteria rows
             float ry = sy - 190;
-            const float rowH = 62f;
+            const float rowH = 54f;
             void Row(string label, string value, Color valueCol, bool rule = true)
             {
-                Txt("RowL", label, L, ry, 800, rowH, 30, Ink, TextAlignmentOptions.Left);
-                Txt("RowV", value, R - 300, ry, 300, rowH, 30, valueCol, TextAlignmentOptions.Right);
+                Txt("RowL", label, L, ry, 800, rowH, 28, Ink, TextAlignmentOptions.Left);
+                Txt("RowV", value, R - 300, ry, 300, rowH, 28, valueCol, TextAlignmentOptions.Right);
                 ry -= rowH;
                 if (rule) HRule(ry);
             }
@@ -131,35 +131,39 @@ namespace ChemLab
                 issues.Add((h.data.mandatoryCritical, $"{h.data.id} — {h.data.title}",
                     h.selected == null ? "Found, but no answer was submitted." : $"The student selected {h.selected} instead of {h.data.correct}. {h.data.explanation}"));
 
-            float iy = ry - 26;
+            // Issue list: each block is measured so short and long texts stack without gaps or overlap.
+            float boxTop = -H / 2f + 330f;           // top of the final decision box
+            float limit = boxTop + 24f;              // keep clear of the box
+            float iy = ry - 22;
             int shown = 0;
-            foreach (var i in issues)
+            const float titleH = 40f, gap = 18f, moreH = 34f;
+            float bodyW = inner - 56;
+            for (int n = 0; n < issues.Count; n++)
             {
-                if (iy < -H / 2f + 360f) break;
-                var badge = K.Img(t, "IssueIcon", new Vector2(L + 20, iy - 22), new Vector2(38, 38), i.critical ? Red : InkDim, i.critical ? K.Rounded : K.Circle);
+                var i = issues[n];
+                var body = Txt("IssueBody", i.body, L + 56, iy - titleH, bodyW, 10, 24, Ink, TextAlignmentOptions.TopLeft);
+                float bodyH = Mathf.Ceil(body.GetPreferredValues(i.body, bodyW, 0).y) + 4f;
+                bool last = n == issues.Count - 1;
+                float need = titleH + bodyH + (last ? 0f : moreH);
+                if (iy - need < limit) { Destroy(body.gameObject); break; }
+                var rt = body.rectTransform;
+                rt.sizeDelta = new Vector2(bodyW, bodyH);
+                rt.anchoredPosition = new Vector2(L + 56 + bodyW / 2f, iy - titleH - bodyH / 2f);
+                var badge = K.Img(t, "IssueIcon", new Vector2(L + 19, iy - 20), new Vector2(36, 36), i.critical ? Red : InkDim, i.critical ? K.Rounded : K.Circle);
                 badge.raycastTarget = false;
-                K.Label(badge.transform, "G", i.critical ? "!" : "?", Vector2.zero, new Vector2(38, 38), 26, Color.white, TextAlignmentOptions.Center, FontStyles.Bold);
-                Txt("IssueTitle", i.title, L + 56, iy, inner - 56, 46, 32, Ink, TextAlignmentOptions.Left, FontStyles.Bold);
-                var body = Txt("IssueBody", i.body, L + 56, iy - 46, inner - 56, 108, 25, Ink, TextAlignmentOptions.TopLeft);
-                body.overflowMode = TextOverflowModes.Ellipsis;
-                iy -= 162;
+                K.Label(badge.transform, "G", i.critical ? "!" : "?", Vector2.zero, new Vector2(36, 36), 24, Color.white, TextAlignmentOptions.Center, FontStyles.Bold);
+                Txt("IssueTitle", i.title, L + 56, iy, bodyW, titleH, 30, Ink, TextAlignmentOptions.Left, FontStyles.Bold);
+                iy -= titleH + bodyH + gap;
                 shown++;
             }
             if (shown < issues.Count)
-            {
-                Txt("More", $"+ {issues.Count - shown} more (see Review explanations)", L + 56, iy, inner - 56, 36, 24, InkDim, TextAlignmentOptions.Left);
-                iy -= 40;
-            }
+                Txt("More", $"+ {issues.Count - shown} more: see Review explanations", L + 56, iy + gap - 4, bodyW, moreH, 22, InkDim, TextAlignmentOptions.Left, FontStyles.Italic);
             if (issues.Count == 0)
-            {
                 Txt("NoIssues", "No issues: every hazard was found and handled correctly.", L, iy, inner, 46, 28, Green, TextAlignmentOptions.Left);
-                iy -= 60;
-            }
 
             // final decision box
             string decision = r.outcome == Outcome.SafetyReviewRequired ? "Not yet qualified"
                             : r.outcome == Outcome.RetrainingRequired ? "Retraining required" : "Qualified";
-            float boxTop = -H / 2f + 330f;
             var box = K.Img(t, "DecisionBox", new Vector2(0, boxTop - 95), new Vector2(inner, 190), new Color(0f, 0f, 0f, 0.035f), K.Rounded);
             box.raycastTarget = false;
             Txt("DecisionTitle", $"Final decision: {decision}", L + 20, boxTop - 14, inner - 40, 48, 34, Ink, TextAlignmentOptions.Left, FontStyles.Bold);

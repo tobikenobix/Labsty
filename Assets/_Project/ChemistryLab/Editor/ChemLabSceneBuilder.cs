@@ -82,26 +82,17 @@ public static class ChemLabSceneBuilder
         BuildHazards(hazards);
         if (team) RelayoutForTeammateLab(lab, decoys, hazards);
 
-        // 4 fixed teleport nodes, no free walking
-        var nodes = new GameObject("Teleport Nodes").transform;
+        // Movement: left stick walks, right stick turns (no teleport nodes in the lab)
         Vector3 startPos;
         Transform finishAnchor = new GameObject("FinishStationAnchor").transform;
         if (team)
         {
             startPos = new Vector3(0.9f, 0, 0.2f);
-            Node(nodes, "Exit Area", startPos, 0f);
-            Node(nodes, "Main Bench", new Vector3(-1.55f, 0, 5.4f), 40f);
-            Node(nodes, "Waste Station", new Vector3(1.45f, 0, 7.5f), 70f);
-            Node(nodes, "Chemical Shelf", new Vector3(0f, 0, 11.2f), 0f);
             finishAnchor.SetPositionAndRotation(new Vector3(1.65f, 1.45f, -1.5f), Quaternion.LookRotation(Vector3.back));
         }
         else
         {
             startPos = new Vector3(-1.5f, 0, -2.6f);
-            Node(nodes, "Exit Area", startPos, 0f);
-            Node(nodes, "Main Bench", new Vector3(0.2f, 0, -0.75f), 0f);
-            Node(nodes, "Chemical Shelf", new Vector3(2.7f, 0, 2.2f), 20f);
-            Node(nodes, "Waste Station", new Vector3(-3.2f, 0, 2.3f), -70f);
             finishAnchor.SetPositionAndRotation(new Vector3(-0.3f, 1.45f, -3.93f), Quaternion.LookRotation(Vector3.back));
         }
 
@@ -126,9 +117,9 @@ public static class ChemLabSceneBuilder
         SimpleRoom(env, 8f, 8f);
 
         var start = new Vector3(0, 0, -2.4f);
-        var nodes = new GameObject("Teleport Nodes").transform;
-        Node(nodes, "Start", start, 0f);
-        var practice = Node(nodes, "Teleport here", new Vector3(1.9f, 0, -1.2f), -30f);
+        // practice target: walk onto the glowing ring with the left stick
+        var nodes = new GameObject("Walk Target").transform;
+        var practice = Node(nodes, "Walk here", new Vector3(1.9f, 0, -1.2f), -30f, teleport: false);
         practice.localScale = new Vector3(1.2f, 1f, 1.2f);
 
         // coffee cup on a pedestal: practise selecting
@@ -175,7 +166,7 @@ public static class ChemLabSceneBuilder
 
     // ===================================================================== shared scene pieces
 
-    /// <summary>XR rig (teleport + snap turn only), interaction manager and UI event system. Returns the left controller.</summary>
+    /// <summary>XR rig (left stick walks, right stick turns, no teleport), interaction manager and UI event system. Returns the left controller.</summary>
     static Transform Systems(Vector3 pos, float yaw)
     {
         new GameObject("XR Interaction Manager", typeof(XRInteractionManager));
@@ -185,14 +176,47 @@ public static class ChemLabSceneBuilder
         var rig = (GameObject)PrefabUtility.InstantiatePrefab(rigPrefab);
         rig.transform.SetPositionAndRotation(pos, Quaternion.Euler(0, yaw, 0));
         var all = rig.GetComponentsInChildren<Transform>(true);
-        // No free walking (motion sickness): keep teleport + snap turn, disable continuous move, grab move and jump.
-        foreach (var name in new[] { "Move", "Grab Move", "Jump" })
+        // Grab move and jump off; teleport interactors off (movement is stick-only).
+        foreach (var name in new[] { "Grab Move", "Jump", "Teleport Interactor" })
             foreach (var t in all.Where(t => t.name == name)) t.gameObject.SetActive(false);
+
+        // Starter rig input managers: left = smooth move, right = smooth turn; remove the teleport input.
+        foreach (var m in rig.GetComponentsInChildren<MonoBehaviour>(true).Where(m => m != null && m.GetType().Name == "ControllerInputActionManager"))
+        {
+            var so = new SerializedObject(m);
+            bool left = m.transform.name.Contains("Left") || (m.transform.parent != null && m.transform.parent.name.Contains("Left"));
+            var sm = so.FindProperty("m_SmoothMotionEnabled"); if (sm != null) sm.boolValue = left;
+            var st = so.FindProperty("m_SmoothTurnEnabled"); if (st != null) st.boolValue = !left;
+            foreach (var prop in new[] { "m_TeleportMode", "m_TeleportModeCancel" })
+            {
+                var p = so.FindProperty(prop);
+                if (p != null) p.objectReferenceValue = null;
+            }
+            var ti = so.FindProperty("m_TeleportInteractor");
+            if (ti != null) ti.objectReferenceValue = null;
+            so.ApplyModifiedPropertiesWithoutUndo();
+        }
+        // Comfortable speeds: walk forward/backward only, smooth turning.
+        foreach (var mb in rig.GetComponentsInChildren<MonoBehaviour>(true).Where(m => m != null))
+        {
+            var typeName = mb.GetType().Name;
+            if (typeName == "DynamicMoveProvider") typeName = "ContinuousMoveProvider";   // starter-rig subclass
+            if (typeName != "ContinuousMoveProvider" && typeName != "ContinuousTurnProvider") continue;
+            var so = new SerializedObject(mb);
+            if (typeName == "ContinuousMoveProvider")
+            {
+                var speed = so.FindProperty("m_MoveSpeed"); if (speed != null) speed.floatValue = 1.5f;
+                var strafe = so.FindProperty("m_EnableStrafe");
+                if (strafe != null) strafe.boolValue = false;
+            }
+            else { var ts = so.FindProperty("m_TurnSpeed"); if (ts != null) ts.floatValue = 75f; }
+            so.ApplyModifiedPropertiesWithoutUndo();
+        }
         return all.FirstOrDefault(t => t.name == "Left Controller");
     }
 
     /// <summary>A fixed teleport node: XRI TeleportationAnchor + glowing ring + floating name tag.</summary>
-    static Transform Node(Transform parent, string name, Vector3 pos, float yaw)
+    static Transform Node(Transform parent, string name, Vector3 pos, float yaw, bool teleport = true)
     {
         var g = Group("Node_" + name, parent, pos);
         g.rotation = Quaternion.Euler(0, yaw, 0);
@@ -202,12 +226,15 @@ public static class ChemLabSceneBuilder
         Object.DestroyImmediate(inner.GetComponent<Collider>());
         var arrow = Box("Arrow", g, new Vector3(0, 0.012f, 0.22f), new Vector3(0.08f, 0.004f, 0.16f), M("NodeGlow", Color.cyan));
         Object.DestroyImmediate(arrow.GetComponent<Collider>());
-        var box = g.gameObject.AddComponent<BoxCollider>();
-        box.center = new Vector3(0, 0.02f, 0);
-        box.size = new Vector3(0.95f, 0.04f, 0.95f);
-        var anchor = g.gameObject.AddComponent<TeleportationAnchor>();
-        int teleMask = InteractionLayerMask.GetMask("Teleport");
-        if (teleMask != 0) anchor.interactionLayers = teleMask;
+        if (teleport)
+        {
+            var box = g.gameObject.AddComponent<BoxCollider>();
+            box.center = new Vector3(0, 0.02f, 0);
+            box.size = new Vector3(0.95f, 0.04f, 0.95f);
+            var anchor = g.gameObject.AddComponent<TeleportationAnchor>();
+            int teleMask = InteractionLayerMask.GetMask("Teleport");
+            if (teleMask != 0) anchor.interactionLayers = teleMask;
+        }
         var tag = new GameObject("Tag").transform;
         tag.SetParent(g, false);
         tag.localPosition = new Vector3(0, 0.45f, 0);
@@ -245,7 +272,8 @@ public static class ChemLabSceneBuilder
         Box("Accent_E", env, new Vector3(w / 2f - 0.005f, 0.6f, 0), new Vector3(0.02f, 0.04f, d), accent);
         Box("LightWall", env, new Vector3(0, 1.8f, d / 2f - 0.01f), new Vector3(5f, 1.6f, 0.02f), M("WindowSky", new Color(0.55f, 0.75f, 0.95f), emissive: true));
         Label("Brand", env, "LAB SAFETY TRAINING", new Vector3(0, 2.85f, d / 2f - 0.03f), Quaternion.identity, 2.2f, new Color(0.1f, 0.3f, 0.35f));
-        foreach (var c in env.GetComponentsInChildren<Collider>()) if (c.name != "Floor") Object.DestroyImmediate(c);
+        // keep floor + wall colliders so you can't walk through the walls
+        foreach (var c in env.GetComponentsInChildren<Collider>()) if (c.name != "Floor" && !c.name.StartsWith("Wall_")) Object.DestroyImmediate(c);
     }
 
     /// <summary>Procedural vinyl floor tile (4 x 4 tiles with grout lines and soft speckle), saved as a PNG asset.</summary>
@@ -437,7 +465,7 @@ public static class ChemLabSceneBuilder
     static void BuildRoom(Transform env)
     {
         var wall = M("Wall", new Color(0.93f, 0.94f, 0.94f));
-        // floor: vinyl tiles, no teleport area (movement only via the 4 fixed nodes)
+        // floor: vinyl tiles (walked on with the left stick)
         Box("Floor", env, new Vector3(0, -0.05f, 0), new Vector3(10f, 0.1f, 8f),
             M("Floor", new Color(0.78f, 0.82f, 0.86f), smooth: 0.6f, tex: FloorTexture(), tiling: new Vector2(5f, 4f)));
 

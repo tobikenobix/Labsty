@@ -9,9 +9,9 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 namespace ChemLab
 {
     /// <summary>
-    /// Meta Quest 3 button mapping, shared by all three scenes (teleport/turn come from the XRI starter rig):
-    ///   Thumbstick forward + release   teleport to a glowing node (no free walking)
-    ///   Right thumbstick left/right    snap turn
+    /// Meta Quest 3 button mapping, shared by all three scenes (walking/turning come from the XRI starter rig):
+    ///   Left thumbstick                walk forward / backward
+    ///   Right thumbstick left/right    turn
     ///   Trigger                        select: inspect the object you point at, press UI buttons
     ///   Grip                           also inspects the object you point at
     ///   A (right)                      confirm / submit answer
@@ -109,7 +109,7 @@ namespace ChemLab
             if (target != null) target.Inspect();
         }
 
-        // ---------- keyboard + mouse fallback (testing only; VR uses teleport) ----------
+        // ---------- keyboard + mouse fallback (testing only) ----------
 
         void DesktopUpdate()
         {

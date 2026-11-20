@@ -9,7 +9,7 @@ namespace ChemLab
 {
     /// <summary>
     /// Scene 1: 60-second onboarding lobby. Language selector (EN functional), a controller graphic
-    /// explaining the trigger, one glowing floor ring to practise teleporting, one coffee cup to practise
+    /// explaining the trigger, one glowing floor ring to practise walking, one coffee cup to practise
     /// selecting, and the Start Lab button that loads the lab (where the 7-minute countdown begins).
     /// </summary>
     public class ChemLabLobby : MonoBehaviour
@@ -55,7 +55,7 @@ namespace ChemLab
             if (teleported || node.nodeName == "Start") return;   // the node you spawn on doesn't count
             teleported = true;
             ChemLabAudio.Ding();
-            Toast("Teleport works! You'll move between fixed points in the lab.", K.Ok);
+            Toast("Nice! Left stick walks, right stick turns.", K.Ok);
             RefreshSteps();
         }
 
@@ -98,7 +98,7 @@ namespace ChemLab
 
         void RefreshSteps()
         {
-            step1.text = (teleported ? $"<color={K.Hex(K.Ok)}>Done</color>  " : "") + "<b>Teleport</b> onto the glowing ring: aim with the thumbstick pushed forward, then release.";
+            step1.text = (teleported ? $"<color={K.Hex(K.Ok)}>Done</color>  " : "") + "<b>Walk</b> onto the glowing ring: push the LEFT stick to move, RIGHT stick to turn.";
             step2.text = (selected ? $"<color={K.Hex(K.Ok)}>Done</color>  " : "") + "<b>Select</b> the coffee cup: point at it and pull the trigger.";
             step1Dot.color = teleported ? K.Ok : K.SurfaceHi;
             step2Dot.color = selected ? K.Ok : K.SurfaceHi;
@@ -143,7 +143,7 @@ namespace ChemLab
             K.Label(controller.transform, "Title", "Your controller", new Vector2(0, 320), new Vector2(620, 60), 40, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
             ControllerGraphic(controller.transform, new Vector2(0, 60), 1.15f);
             K.Label(controller.transform, "Caption",
-                $"Pull the <b><color={K.Hex(K.Accent)}>TRIGGER</color></b> to select.\n<b>Thumbstick forward</b> + release to teleport.\n<b>A</b> confirm   <b>B</b> close   <b>X</b> controls",
+                $"Pull the <b><color={K.Hex(K.Accent)}>TRIGGER</color></b> to select.\n<b>Left stick</b> walk   <b>Right stick</b> turn\n<b>A</b> confirm   <b>B</b> close   <b>X</b> controls",
                 new Vector2(0, -260), new Vector2(640, 170), 27, K.Text, TextAlignmentOptions.Center);
             if (controllerPanelAnchor != null) controller.transform.SetPositionAndRotation(controllerPanelAnchor.position, controllerPanelAnchor.rotation);
         }
@@ -193,7 +193,7 @@ namespace ChemLab
             glow.transform.SetSiblingIndex(trig.transform.GetSiblingIndex());
 
             K.Label(root, "LTrigger", "TRIGGER\n<size=70%>select</size>", new Vector2(175, 150), new Vector2(160, 70), 24, K.Accent, TextAlignmentOptions.Left, FontStyles.Bold);
-            K.Label(root, "LStick", "STICK\n<size=70%>teleport</size>", new Vector2(-170, 60), new Vector2(150, 70), 20, K.TextDim, TextAlignmentOptions.Right, FontStyles.Bold);
+            K.Label(root, "LStick", "STICK\n<size=70%>L walk / R turn</size>", new Vector2(-170, 60), new Vector2(150, 70), 20, K.TextDim, TextAlignmentOptions.Right, FontStyles.Bold);
             K.Label(root, "LA", "A", new Vector2(45, 5), new Vector2(36, 36), 20, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
             K.Label(root, "LB", "B", new Vector2(65, 50), new Vector2(36, 36), 20, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
             K.Label(root, "LGrip", "GRIP", new Vector2(-160, -95), new Vector2(110, 40), 20, K.TextDim, TextAlignmentOptions.Right, FontStyles.Bold);
