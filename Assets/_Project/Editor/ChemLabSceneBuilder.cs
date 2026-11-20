@@ -10,6 +10,10 @@ using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion.Comfort;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion.Movement;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion.Turning;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 using UnityEngine.XR.Interaction.Toolkit.UI;
 
@@ -27,6 +31,7 @@ public static class ChemLabSceneBuilder
     const string ScenePath = Root + "/Scenes/ChemistryLab.unity";
     const string EndPath = Root + "/Scenes/ChemLab_End.unity";
     const string RigPath = "Assets/Samples/XR Interaction Toolkit/3.6.1/Starter Assets/Prefabs/XR Origin (XR Rig).prefab";
+    const string VignettePath = "Assets/Samples/XR Interaction Toolkit/3.6.1/Starter Assets/TunnelingVignette/TunnelingVignette.prefab";
 
     static readonly Dictionary<string, Material> mats = new Dictionary<string, Material>();
 
@@ -208,6 +213,18 @@ public static class ChemLabSceneBuilder
             else { var ts = so.FindProperty("m_TurnSpeed"); if (ts != null) ts.floatValue = 75f; }
             so.ApplyModifiedPropertiesWithoutUndo();
         }
+        // Tunneling vignette (XRI starter asset) narrows the view while the stick moves or smooth-turns you:
+        // the standard comfort aid for continuous locomotion. Snap turn and teleport are instant and need none.
+        var vignette = AssetDatabase.LoadAssetAtPath<GameObject>(VignettePath);
+        var head = all.FirstOrDefault(t => t.name == "Main Camera");
+        if (vignette != null && head != null)
+        {
+            var ctrl = ((GameObject)PrefabUtility.InstantiatePrefab(vignette, head)).GetComponent<TunnelingVignetteController>();
+            foreach (var lp in rig.GetComponentsInChildren<LocomotionProvider>(true).Where(p => p is ContinuousMoveProvider || p is ContinuousTurnProvider))
+                ctrl.locomotionVignetteProviders.Add(new LocomotionVignetteProvider { locomotionProvider = lp, enabled = true });
+            PrefabUtility.RecordPrefabInstancePropertyModifications(ctrl);
+        }
+        else Debug.LogWarning("[ChemLab] Tunneling vignette not added (prefab or Main Camera missing).");
         return all.FirstOrDefault(t => t.name == "Left Controller");
     }
 
