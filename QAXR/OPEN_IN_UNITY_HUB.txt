@@ -1,5 +1,0 @@
-1. Unzip this entire folder.
-2. Unity Hub > Projects > Add project from disk.
-3. Select the QAXR_Complete_Unity6_Project folder.
-4. Open in Unity 6 and press Play (Game tab).
-5. If needed: QAXR > Rebuild Demo Scene.

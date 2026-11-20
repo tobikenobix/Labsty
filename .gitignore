@@ -45,9 +45,6 @@ ExportedObj/
 .DS_Store
 Thumbs.db
 
-# Instructor tooling, not part of the student template
-Assets/_Project/Editor/
-Assets/_Project/Editor.meta
 tools/
 
 # Unity Android build cache and the meta of an ignored temp folder
