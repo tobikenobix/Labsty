@@ -35,6 +35,7 @@ namespace ChemLab
             float k = PlayerHere ? 0.35f : pulse;
             if (glow != null)
             {
+                if (mpb == null) mpb = new MaterialPropertyBlock();   // survives a script reload during Play
                 glow.GetPropertyBlock(mpb);
                 mpb.SetColor(EmissionId, color * (0.6f + 1.6f * k));
                 mpb.SetColor(BaseId, new Color(color.r, color.g, color.b, 0.35f + 0.4f * k));

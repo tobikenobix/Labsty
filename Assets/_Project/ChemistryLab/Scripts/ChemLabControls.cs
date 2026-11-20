@@ -47,6 +47,11 @@ namespace ChemLab
         void Awake()
         {
             DesktopMode = false;
+            CreateActions();
+        }
+
+        void CreateActions()
+        {
             leftTrigger = Make("Inspect L", "<XRController>{LeftHand}/{TriggerButton}");
             rightTrigger = Make("Inspect R", "<XRController>{RightHand}/{TriggerButton}");
             aBtn = Make("Confirm", "<XRController>{RightHand}/{PrimaryButton}", "<Keyboard>/enter", "<Keyboard>/numpadEnter");
@@ -85,6 +90,7 @@ namespace ChemLab
 
         void Update()
         {
+            if (rightTrigger == null) CreateActions();   // bindings are lost if scripts reload during Play
             if (rightTrigger.WasPressedThisFrame()) TryInspect(InteractorHandedness.Right);
             if (leftTrigger.WasPressedThisFrame()) TryInspect(InteractorHandedness.Left);
             if (aBtn.WasPressedThisFrame()) Confirm?.Invoke();
