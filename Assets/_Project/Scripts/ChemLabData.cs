@@ -20,6 +20,8 @@ namespace ChemLab
         public string id;
         public string title;
         public string area;
+        public string fixSound;          // clip in Resources/ChemLab/Audio played when fixed ("" = silent)
+        public float fixSoundSeconds;    // cut + fade the clip after this many seconds (0 = play it all)
         public string difficulty;
         public string category;
         public string question;

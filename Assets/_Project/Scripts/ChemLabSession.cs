@@ -49,6 +49,7 @@ namespace ChemLab
         float startTime, endTime;
         int falseClicks;
         string sessionId;
+        AudioSource tick;   // clock ticking during the last minute
 
         void Awake()
         {
@@ -82,6 +83,9 @@ namespace ChemLab
         {
             // give head tracking a moment so panels appear at eye height
             yield return new WaitForSeconds(1.0f);
+            ChemLabAudio.Loop("ambient", 0.3f);
+            var hood = FindObjectsByType<ChemLabInspectable>(FindObjectsSortMode.None).FirstOrDefault(i => i.displayName == "Fume hood");
+            if (hood != null) ChemLabAudio.Loop("ventilator", 0.5f, hood.transform);
             phase = Phase.Running;
             startTime = Time.time;
             ui.ShowRunStarted(Config.timeLimitSeconds);
@@ -90,7 +94,10 @@ namespace ChemLab
         void Update()
         {
             if (phase == Phase.Running || phase == Phase.FinishPrompt)
+            {
+                if (tick == null && Remaining <= 60f) tick = ChemLabAudio.Loop("clock_tick", 0.6f);
                 if (Remaining <= 0f) EndRun(timedOut: true);
+            }
         }
 
         // ---------- interaction ----------
@@ -154,6 +161,7 @@ namespace ChemLab
                 rec.solved = true;
                 ChemLabAudio.Correct();
                 var obj = CurrentObject;
+                ChemLabAudio.PlayAt(rec.data.fixSound, obj.transform.position, rec.data.fixSoundSeconds);
                 CloseQuestion();
                 obj.Fix();
                 ui.Toast("Hazard resolved: " + rec.data.title, 2.4f, ChemLabUIKit.Ok);
@@ -163,7 +171,7 @@ namespace ChemLab
             else
             {
                 rec.wrongAnswers++;   // logged as a mistake
-                ChemLabAudio.Wrong();
+                ChemLabAudio.Wrong(opt != null && opt.critical);
                 ui.ShowWrong(rec, key, opt != null && opt.critical);
                 CurrentSelection = null;
             }
@@ -219,7 +227,8 @@ namespace ChemLab
             ChemLabRun.LastRecords = records.ToList();
             ChemLabRun.LastConfig = Config;
 
-            ChemLabAudio.Ding();
+            if (tick != null) Destroy(tick.gameObject);
+            if (timedOut) ChemLabAudio.Alarm(); else ChemLabAudio.Ding();
             ui.ShowRunEnded(timedOut ? "Time's up!" : records.All(r => r.solved) ? "All hazards resolved!" : "Inspection submitted");
             StartCoroutine(LoadEnd());
         }

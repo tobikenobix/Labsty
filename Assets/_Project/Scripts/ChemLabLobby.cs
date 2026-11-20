@@ -54,7 +54,7 @@ namespace ChemLab
         {
             if (teleported || node.nodeName == "Start") return;   // the node you spawn on doesn't count
             teleported = true;
-            ChemLabAudio.Ding();
+            ChemLabAudio.Button();
             Toast("Nice! Left stick walks, right stick turns.", K.Ok);
             RefreshSteps();
         }
