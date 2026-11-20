@@ -188,18 +188,17 @@ public static class ChemLabSceneBuilder
         foreach (var name in new[] { "Grab Move", "Jump" })
             foreach (var t in all.Where(t => t.name == name)) t.gameObject.SetActive(false);
 
-        // Starter rig input managers: left stick = smooth move; right stick = snap turn (45 deg, back = turn around)
-        // and push forward to aim a teleport arc onto the floor, the comfort fallback for anyone who gets sick walking.
-        // The manager itself disables teleport on the hand that has smooth motion.
+        // Starter rig input managers, both sticks the same: push forward to aim a teleport arc and release to jump,
+        // left/right to snap turn, pull back to turn around. No continuous walking or turning (motion sickness).
         foreach (var m in rig.GetComponentsInChildren<MonoBehaviour>(true).Where(m => m != null && m.GetType().Name == "ControllerInputActionManager"))
         {
             var so = new SerializedObject(m);
-            bool left = m.transform.name.Contains("Left") || (m.transform.parent != null && m.transform.parent.name.Contains("Left"));
-            var sm = so.FindProperty("m_SmoothMotionEnabled"); if (sm != null) sm.boolValue = left;
+            var sm = so.FindProperty("m_SmoothMotionEnabled"); if (sm != null) sm.boolValue = false;
             var st = so.FindProperty("m_SmoothTurnEnabled"); if (st != null) st.boolValue = false;
             so.ApplyModifiedPropertiesWithoutUndo();
         }
-        // Comfortable speeds: left stick walks in all directions, right stick turns.
+        SetSnapTurn(rig);
+        // Speeds for the continuous providers (inactive while both sticks teleport; kept in case walking is re-enabled).
         foreach (var mb in rig.GetComponentsInChildren<MonoBehaviour>(true).Where(m => m != null))
         {
             var typeName = mb.GetType().Name;
@@ -272,10 +271,25 @@ public static class ChemLabSceneBuilder
         return g;
     }
 
-    /// <summary>Lets the right-stick teleport arc land anywhere on this floor (its collider).</summary>
-    static void TeleportFloor(GameObject floor)
+    /// <summary>
+    /// Snap-turn step. 45 deg is the XRI default and a common comfort setting: two clicks face a bench square on (90 deg),
+    /// which 60 deg cannot. Raise it if turning around in the aisle feels slow.
+    /// </summary>
+    public const float SnapTurnDegrees = 45f;
+
+    public static void SetSnapTurn(GameObject rig)
     {
-        var area = floor.AddComponent<TeleportationArea>();
+        foreach (var snap in rig.GetComponentsInChildren<SnapTurnProvider>(true))
+        {
+            snap.turnAmount = SnapTurnDegrees;
+            PrefabUtility.RecordPrefabInstancePropertyModifications(snap);
+        }
+    }
+
+    /// <summary>Lets the teleport arc land anywhere on this floor (its collider), never inside furniture.</summary>
+    public static void TeleportFloor(GameObject floor)
+    {
+        var area = floor.AddComponent<ChemLabSafeTeleportArea>();
         int teleMask = InteractionLayerMask.GetMask("Teleport");
         if (teleMask != 0) area.interactionLayers = teleMask;
     }

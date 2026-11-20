@@ -265,8 +265,8 @@ namespace ChemLab
             ChemLabControls.DesktopMode
                 ? "<b>WASD</b> walk\n<b>Hold right mouse</b> to look\n<b>Left click</b> to select\n<b>Enter</b> submit   <b>Esc</b> close\n<b>H</b> controls   <b>F</b> finish"
                 : $"<b><color={K.Hex(K.Accent)}>Trigger</color></b>  select / inspect\n" +
-                  "<b>Left stick</b>  walk (forward, back, left, right)\n" +
-                  "<b>Right stick</b>  left/right turn, push forward to teleport\n" +
+                  "<b>Stick forward</b>  aim, release to teleport\n" +
+                  "<b>Stick left/right</b>  turn 45°    <b>back</b>  turn around\n" +
                   "<b>A</b>  submit    <b>B</b>  close\n" +
                   "<b>X</b>  this card    <b>Y / Menu</b>  finish";
 

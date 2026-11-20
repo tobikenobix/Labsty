@@ -10,9 +10,8 @@ namespace ChemLab
 {
     /// <summary>
     /// Meta Quest 3 button mapping, shared by all three scenes (walking/turning come from the XRI starter rig):
-    ///   Left thumbstick                walk forward / back / left / right
-    ///   Right thumbstick left/right    snap turn 45 deg (pull back = turn around)
-    ///   Right thumbstick forward       aim a teleport arc onto the floor, release to jump (comfort fallback)
+    ///   Either thumbstick forward      aim a teleport arc onto the floor, release to jump (no continuous walking)
+    ///   Either thumbstick left/right   snap turn 45 deg; pull back = turn around
     ///   Trigger                        select: inspect the object you point at, press UI buttons
     ///   Grip                           also inspects the object you point at
     ///   A (right)                      confirm / submit answer

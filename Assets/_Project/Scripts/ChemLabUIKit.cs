@@ -235,8 +235,68 @@ namespace ChemLab
             fwd.y = 0f;
             if (fwd.sqrMagnitude < 1e-4f) fwd = Vector3.forward;
             fwd.Normalize();
-            panel.position = head.position + fwd * dist + Vector3.up * yOffset;
-            panel.rotation = Quaternion.LookRotation(fwd, Vector3.up);
+            // Straight ahead first; when that is cramped (standing against a shelf), turn up to 50 deg either way for room.
+            Vector3 bestPos = Vector3.zero; Quaternion bestRot = Quaternion.identity; float best = -1f;
+            foreach (var yaw in SideYaws)
+            {
+                var dir = Quaternion.Euler(0f, yaw, 0f) * fwd;
+                var pos = head.position + dir * dist + Vector3.up * yOffset;
+                var rot = Quaternion.LookRotation(dir, Vector3.up);
+                float t = ClearFraction(panel, head.position, pos, rot);
+                if (t > best + 0.1f) { best = t; bestRot = rot; bestPos = head.position + (pos - head.position) * Mathf.Max(t, MinFraction); }
+                if (best >= 1f) break;
+            }
+            panel.SetPositionAndRotation(bestPos, bestRot);
+            panel.localScale = Vector3.one * BaseScale(panel) * Mathf.Max(best, MinFraction);
+        }
+
+        static readonly float[] SideYaws = { 0f, 25f, -25f, 50f, -50f };
+
+        // ---------- keep panels out of walls, benches and shelves ----------
+        const float ClearMargin = 0.05f;   // gap left between a pulled-in panel and the obstacle
+        const float MinFraction = 0.35f;   // never closer than 35% of the requested distance
+        static readonly Dictionary<Transform, float> baseScales = new Dictionary<Transform, float>();
+        static readonly RaycastHit[] hitBuf = new RaycastHit[16];
+
+        static float BaseScale(Transform panel)
+        {
+            if (!baseScales.TryGetValue(panel, out var s)) baseScales[panel] = s = panel.localScale.x;
+            return s;
+        }
+
+        /// <summary>
+        /// How far (0..1 of the way from the head) a panel at pos/rot can go before something solid cuts through it.
+        /// Rays from the head to a 7 x 5 grid on the panel; the panel is later pulled in AND shrunk by this factor,
+        /// so it keeps the same apparent size and just sits in front of the obstacle.
+        /// </summary>
+        static float ClearFraction(Transform panel, Vector3 head, Vector3 pos, Quaternion rot)
+        {
+            var half = ((RectTransform)panel).rect.size * BaseScale(panel) * 0.5f;
+            float t = 1f;
+            for (int i = 0; i <= 6; i++)
+                for (int j = 0; j <= 4; j++)
+                {
+                    var d = pos + rot * new Vector3(Mathf.Lerp(-half.x, half.x, i / 6f), Mathf.Lerp(-half.y, half.y, j / 4f), 0f) - head;
+                    float len = d.magnitude;
+                    int n = Physics.RaycastNonAlloc(head, d / len, hitBuf, len + ClearMargin, ~0, QueryTriggerInteraction.Ignore);
+                    for (int k = 0; k < n; k++)
+                        if (!(hitBuf[k].collider is CharacterController)) t = Mathf.Min(t, (hitBuf[k].distance - ClearMargin) / len);
+                }
+            // Thin things (shelf boards, edges) can slip between the rays: step closer while anything still pokes through the panel.
+            t = Mathf.Max(t, MinFraction);
+            while (t > MinFraction && Pierced(head + (pos - head) * t, new Vector3(half.x * t, half.y * t, ClearMargin), rot)) t -= 0.05f;
+            t = Mathf.Clamp(t, MinFraction, 1f);
+            // 0 = blocked even at the closest allowed spot (callers still place it at MinFraction, but prefer another direction)
+            return Pierced(head + (pos - head) * t, new Vector3(half.x * t, half.y * t, ClearMargin), rot) ? 0f : t;
+        }
+
+        static readonly Collider[] overlapBuf = new Collider[16];
+
+        static bool Pierced(Vector3 center, Vector3 halfExtents, Quaternion rot)
+        {
+            int n = Physics.OverlapBoxNonAlloc(center, halfExtents, overlapBuf, rot, ~0, QueryTriggerInteraction.Ignore);
+            for (int k = 0; k < n; k++) if (!(overlapBuf[k] is CharacterController)) return true;
+            return false;
         }
 
         /// <summary>Smoothly bring a panel back in front of the player if they turned away or walked off.</summary>
@@ -252,7 +312,10 @@ namespace ChemLab
             if (angle < 55f && toPanel.magnitude < 1.6f && Mathf.Abs(toPanel.y) < 1.2f) return;
             flatFwd.Normalize();
             Vector3 target = head.position + flatFwd * dist + Vector3.up * yOffset;
+            float t = Mathf.Max(ClearFraction(panel, head.position, target, Quaternion.LookRotation(flatFwd)), MinFraction);
+            target = head.position + (target - head.position) * t;
             panel.position = Vector3.Lerp(panel.position, target, Time.deltaTime * 4f);
+            panel.localScale = Vector3.Lerp(panel.localScale, Vector3.one * BaseScale(panel) * t, Time.deltaTime * 4f);
             Vector3 look = panel.position - head.position;
             look.y = 0f;
             if (look.sqrMagnitude > 1e-4f) panel.rotation = Quaternion.Slerp(panel.rotation, Quaternion.LookRotation(look), Time.deltaTime * 4f);
