@@ -1,0 +1,2917 @@
+{
+ "materials": [
+  {
+   "name": "Material_#1111225081_3_20",
+   "baseMap": "BakedTexture_GRZCUGONFPMKM.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "70_020_13",
+   "baseMap": "BakedTexture_GRZCUGLBPBBCR.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225081_3_22",
+   "baseMap": "I_Laboratory_1001_Doorknobs_Co_0001.jpg",
+   "normalMap": "I_Laboratory_1001_Doorknobs_Nr_0001.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.6,
+   "metallic": 0.85,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "metal"
+  },
+  {
+   "name": "Material_#2",
+   "baseMap": "BakedTexture_GRZCUGNWFUARA.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.8,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "opaque-glassy"
+  },
+  {
+   "name": "Merged materials",
+   "baseMap": "",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    0.9063,
+    0.9063,
+    0.9063,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.35,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "painted"
+  },
+  {
+   "name": "I_Funnel_0_001_StandtoVR",
+   "baseMap": "I_Laborator_1001_Funnel_Co_0001.jpg",
+   "normalMap": "BakedTexture_GRZCUGKMZCDYM.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#26",
+   "baseMap": "BakedTexture_30_0_0.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225081_3_14",
+   "baseMap": "BakedTexture_30_36_15.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#113_2_Opaque10_0",
+   "baseMap": "BakedTexture_GRZCUGNLGVROA.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.8,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "opaque-glassy"
+  },
+  {
+   "name": "Material_#1111225103_23_4",
+   "baseMap": "BakedTexture_GRZCUGNWMKFEW.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225081_3_15",
+   "baseMap": "I_Laboratory_1001_ETHANOL_Co_0001.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225081_3_16",
+   "baseMap": "I_Laboratory_1001_Line_Co_0001.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225081_3_0",
+   "baseMap": "BakedTexture_GRZCUGONMZGRZ.jpg",
+   "normalMap": "BakedTexture_GRZCUGKLTTRUS.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225081_3_17",
+   "baseMap": "I_Laboratory_1001_Folder_Co_0004.jpg",
+   "normalMap": "BakedTexture_GRZCUGKLEPMAA.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225125",
+   "baseMap": "I_Laboratory_1001_Screws_Co_0001.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.6,
+   "metallic": 0.85,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "metal"
+  },
+  {
+   "name": "Material_#1111225527",
+   "baseMap": "BakedTexture_GRZCUGONSYDYO.jpg",
+   "normalMap": "BakedTexture_GRZCUGKMHHYEG.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225104_5",
+   "baseMap": "BakedTexture_GRZCUGNPQRURI.png",
+   "normalMap": "BakedTexture_GRZCUGKKWBKWG.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.8,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "opaque-glassy"
+  },
+  {
+   "name": "Material_#1111225104_5_1",
+   "baseMap": "BakedTexture_GRZCUGNPRPWCC.png",
+   "normalMap": "BakedTexture_GRZCUGKKWTBOG.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225104_5_0",
+   "baseMap": "BakedTexture_GRZCUGNPSAVNZ.png",
+   "normalMap": "BakedTexture_GRZCUGKKXBQAK.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225104_5_2",
+   "baseMap": "BakedTexture_GRZCUGNPRDEUD.png",
+   "normalMap": "BakedTexture_GRZCUGKKWKMPH.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "cutout",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "cutout"
+  },
+  {
+   "name": "Material_#1111225104_5_3",
+   "baseMap": "BakedTexture_GRZCUGNPSKJCP.png",
+   "normalMap": "BakedTexture_GRZCUGKKXJRDX.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225104_5_4",
+   "baseMap": "BakedTexture_GRZCUGNPSTVBM.png",
+   "normalMap": "BakedTexture_GRZCUGKKXRQST.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225128",
+   "baseMap": "I_Laboratory_1001_equipment_Co_0001.jpg",
+   "normalMap": "BakedTexture_GRZCUGKLDRANV.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225072",
+   "baseMap": "I_Laboratory_1001_Ceiling_Co_0001.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225072.002",
+   "baseMap": "I_Laboratory_1001_Ceiling_Co_0001.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225072.003",
+   "baseMap": "I_Laboratory_1001_Ceiling_Co_0001.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225072.004",
+   "baseMap": "I_Laboratory_1001_Ceiling_Co_0001.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225072.005",
+   "baseMap": "I_Laboratory_1001_Ceiling_Co_0001.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225072.006",
+   "baseMap": "I_Laboratory_1001_Ceiling_Co_0001.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225072.007",
+   "baseMap": "I_Laboratory_1001_Ceiling_Co_0001.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225072.008",
+   "baseMap": "I_Laboratory_1001_Ceiling_Co_0001.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225502_1_4",
+   "baseMap": "I_Laboratory_1001_Table_Co_0001.jpg",
+   "normalMap": "BakedTexture_GRZCUGKJXAVIZ.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225502_1",
+   "baseMap": "I_Laboratory_1001_Table_Co_0001.jpg",
+   "normalMap": "BakedTexture_GRZCUGKJWQZGR.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225502_1_3",
+   "baseMap": "I_Laboratory_1001_Table_Co_0001.jpg",
+   "normalMap": "BakedTexture_GRZCUGKJXJMNP.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225502_1_1",
+   "baseMap": "I_Laboratory_1001_Table_Co_0001.jpg",
+   "normalMap": "BakedTexture_GRZCUGKJXSBYF.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225502_1_0",
+   "baseMap": "I_Laboratory_1001_Table_Co_0001.jpg",
+   "normalMap": "BakedTexture_GRZCUGKJYBEVL.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225502_1_2",
+   "baseMap": "I_Laboratory_1001_Table_Co_0001.jpg",
+   "normalMap": "BakedTexture_GRZCUGKJYJVXA.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#407336802_1",
+   "baseMap": "I_Laboratory_1001_emergencyshower_Co_0001.jpg",
+   "normalMap": "BakedTexture_GRZCUGKJKLJMO.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225081_3_6",
+   "baseMap": "BakedTexture_GRZCUGONBDVRA.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#33_2",
+   "baseMap": "I_Laboratory_1001_Handle_Co_0002.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.6,
+   "metallic": 0.85,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "metal"
+  },
+  {
+   "name": "Material_#33_2_0",
+   "baseMap": "I_Laboratory_1001_Handle_co_0001.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.6,
+   "metallic": 0.85,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "metal"
+  },
+  {
+   "name": "Material_#1111225081_3",
+   "baseMap": "I_Laboratory_1001_Other_Co_0001.jpg",
+   "normalMap": "BakedTexture_GRZCUGKLLNOPD.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225081_3_2",
+   "baseMap": "I_Laboratory_1001_Outlet_Co_0001.jpg",
+   "normalMap": "BakedTexture_GRZCUGKIXJBJK.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225081_3_12",
+   "baseMap": "BakedTexture_GRZCUGLMVDLPS.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.8,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "opaque-glassy"
+  },
+  {
+   "name": "Material_#33_2_1",
+   "baseMap": "I_Laboratory_1001_Handle_Co_0003.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.6,
+   "metallic": 0.85,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "metal"
+  },
+  {
+   "name": "Material_#1111225124",
+   "baseMap": "I_Laboratory_1001_Metal_Co_0001.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.6,
+   "metallic": 0.85,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "metal"
+  },
+  {
+   "name": "Material_#113_2_Opaque10_1",
+   "baseMap": "BakedTexture_GRZCUGNLIQDDN.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "I_Railing_0001_1",
+   "baseMap": "BakedTexture_116_120_125.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.6,
+   "metallic": 0.85,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "metal"
+  },
+  {
+   "name": "Silver steel",
+   "baseMap": "Generated/BrushedSteel_BaseColor.png",
+   "normalMap": "Generated/BrushedSteel_Normal.png",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.72,
+   "metallic": 1.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "steel"
+  },
+  {
+   "name": "Material_#407336796",
+   "baseMap": "BakedTexture_127_127_127.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225081_3_10",
+   "baseMap": "I_Laboratory_1001_equipment_Co_0002.jpg",
+   "normalMap": "BakedTexture_GRZCUGKMFRFFX.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225086",
+   "baseMap": "I_Laboratory_1001_equipment_Co_0003.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#407336802_1_0",
+   "baseMap": "I_Laboratory_1001_emergencyshower_Co_0002.jpg",
+   "normalMap": "BakedTexture_GRZCUGKJLDKLH.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1000000010",
+   "baseMap": "BakedTexture_170_169_154.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225081_3_8",
+   "baseMap": "I_TrashBinB_Not_Co_001.jpg",
+   "normalMap": "BakedTexture_GRZCUGKJJGTNS.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225081_3_7",
+   "baseMap": "",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    0.12,
+    0.12,
+    0.12,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "trim"
+  },
+  {
+   "name": "Material_#1111225103_23_0",
+   "baseMap": "BakedTexture_GRZCUGNWMDYFO.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225103_23",
+   "baseMap": "BakedTexture_GRZCUGNWLXCPG.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.8,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "opaque-glassy"
+  },
+  {
+   "name": "Material_#407336874_2_0",
+   "baseMap": "I_Laboratory_1001_Stationery_Co0002.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225081_3_18",
+   "baseMap": "BakedTexture_GRZCUGLBMVMOK.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "cutout",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "cutout"
+  },
+  {
+   "name": "Material_#1111225081_3_21",
+   "baseMap": "BakedTexture_GRZCUGLABLQWN.png",
+   "normalMap": "BakedTexture_GRZCUGKLJZFOU.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "cutout",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "cutout"
+  },
+  {
+   "name": "Material_#2_12",
+   "baseMap": "BakedTexture_GRZCUGLBUCGPW.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#29",
+   "baseMap": "BakedTexture_GRZCUGNKVTPVX.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Teal Pearl Resin",
+   "baseMap": "Generated/TealPearlResin_BaseColor.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.82,
+   "metallic": 0.0,
+   "tiling": [
+    10,
+    10
+   ],
+   "doubleSided": false,
+   "category": "resin"
+  },
+  {
+   "name": "Material_#1111225552",
+   "baseMap": "BakedTexture_GRZCUGKIYRNSV.jpg",
+   "normalMap": "BakedTexture_GRZCUGKJBHTSB.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#407336809_0",
+   "baseMap": "BakedTexture_41_49_46.jpg",
+   "normalMap": "BakedTexture_GRZCUGKLMGJYW.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#407336809_0_0",
+   "baseMap": "BakedTexture_127_129_124.jpg",
+   "normalMap": "BakedTexture_GRZCUGKLMQBUN.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "ColorControl",
+   "baseMap": "BakedTexture_GRZCUGOMWZVMW.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225103_23_13",
+   "baseMap": "BakedTexture_GRZCUGNTRAXKV.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225103_23_14",
+   "baseMap": "BakedTexture_GRZCUGNJSTORO.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225103_23_15",
+   "baseMap": "BakedTexture_GRZCUGNJYRLNO.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225103_23_16",
+   "baseMap": "BakedTexture_GRZCUGNTWGBCE.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225122",
+   "baseMap": "I_Laboratory_1001_Cupboard_Co_0001.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225835",
+   "baseMap": "BakedTexture_GRZCUGONZVFPI.jpg",
+   "normalMap": "",
+   "emissionMap": "BakedTexture_GRZCUGOOASMWD.jpg",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    1,
+    1,
+    1
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "emissive"
+  },
+  {
+   "name": "Material_#1111225081_3_3",
+   "baseMap": "I_Laboratory_1001_Wall_Co_0001.jpg",
+   "normalMap": "BakedTexture_GRZCUGKJCATBQ.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225081_3_4",
+   "baseMap": "BakedTexture_GRZCUGOMQUGRQ.jpg",
+   "normalMap": "BakedTexture_GRZCUGKJCJYXE.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225081_3_5",
+   "baseMap": "I_Laboratory_1001_Door_Co_0001.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225103_23_12",
+   "baseMap": "BakedTexture_GRZCUGNTLRECP.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225103_23_17",
+   "baseMap": "BakedTexture_GRZCUGNKJFNYN.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225103_23_18",
+   "baseMap": "BakedTexture_GRZCUGNKOLPGF.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225103_23_19",
+   "baseMap": "BakedTexture_GRZCUGNUCAPFT.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225103_23_20",
+   "baseMap": "BakedTexture_GRZCUGNUHGEXR.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225103_23_21",
+   "baseMap": "BakedTexture_GRZCUGNVIMWNK.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225081_3_11",
+   "baseMap": "I_Laboratory_1001_Cork_Co_0001.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225503",
+   "baseMap": "BakedTexture_GRZCUGNUBMUTR.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1527",
+   "baseMap": "BakedTexture_GRZCUGONMGWXR.jpg",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#407336802_1_1",
+   "baseMap": "I_Laboratory_1001_emergencyshower_Co_0003.jpg",
+   "normalMap": "BakedTexture_GRZCUGKJLVAVY.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225103_23_11",
+   "baseMap": "BakedTexture_GRZCUGNSHPHDX.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225103_23_10",
+   "baseMap": "BakedTexture_GRZCUGNSBXTHO.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225103_23_9",
+   "baseMap": "BakedTexture_GRZCUGNRWQJHW.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225103_23_8",
+   "baseMap": "BakedTexture_GRZCUGNFCKXHX.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225103_23_7",
+   "baseMap": "BakedTexture_GRZCUGNEWTKZY.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225103_23_5",
+   "baseMap": "BakedTexture_GRZCUGNRQYNFQ.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225103_23_6",
+   "baseMap": "BakedTexture_GRZCUGNEQODQH.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225103_23_1",
+   "baseMap": "BakedTexture_GRZCUGNPXAXEK.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225103_23_2",
+   "baseMap": "BakedTexture_GRZCUGNQCWBNE.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225103_23_3",
+   "baseMap": "BakedTexture_GRZCUGNQJPYUK.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#1111225081_3_13",
+   "baseMap": "BakedTexture_GRZCUGONXAXEO.jpg",
+   "normalMap": "BakedTexture_GRZCUGKMIZQAP.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225081_3_1",
+   "baseMap": "BakedTexture_GRZCUGLMOVFYZ.png",
+   "normalMap": "BakedTexture_GRZCUGKMCXFNK.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "cutout",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "cutout"
+  },
+  {
+   "name": "Material_#407336874_2",
+   "baseMap": "BakedTexture_GRZCUGOMLXDOE.jpg",
+   "normalMap": "BakedTexture_GRZCUGKIWIWMC.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.45,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "floor"
+  },
+  {
+   "name": "Material_#1111225081_3_19",
+   "baseMap": "I_Laboratory_1001_CeilingBase_Co_0001.jpg",
+   "normalMap": "BakedTexture_GRZCUGKKEJXQU.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225547",
+   "baseMap": "BakedTexture_GRZCUGKKHQDAG.jpg",
+   "normalMap": "",
+   "emissionMap": "BakedTexture_GRZCUGKKJJRNF.jpg",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0.55,
+    0.55,
+    0.55
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "emissive"
+  },
+  {
+   "name": "Material_#3",
+   "baseMap": "BakedTexture_GRZCUGLKPFNVE.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  },
+  {
+   "name": "Material_#113_2_Opaque10",
+   "baseMap": "BakedTexture_GRZCUGNLKMHAY.png",
+   "normalMap": "",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "opaque",
+   "cutoff": 0.5,
+   "smoothness": 0.22,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": false,
+   "category": "baked"
+  },
+  {
+   "name": "Material_#1111225081_3_9",
+   "baseMap": "BakedTexture_GRZCUGKNJWEOO.png",
+   "normalMap": "I_TrashBinDBag_Nr_001.jpg",
+   "emissionMap": "",
+   "baseColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "emissionColor": [
+    0,
+    0,
+    0
+   ],
+   "surface": "transparent",
+   "cutoff": 0.5,
+   "smoothness": 0.9,
+   "metallic": 0.0,
+   "tiling": [
+    1,
+    1
+   ],
+   "doubleSided": true,
+   "category": "glass"
+  }
+ ],
+ "normalMaps": [
+  "BakedTexture_GRZCUGKIWIWMC.jpg",
+  "BakedTexture_GRZCUGKIXJBJK.jpg",
+  "BakedTexture_GRZCUGKJBHTSB.jpg",
+  "BakedTexture_GRZCUGKJCATBQ.jpg",
+  "BakedTexture_GRZCUGKJCJYXE.jpg",
+  "BakedTexture_GRZCUGKJJGTNS.jpg",
+  "BakedTexture_GRZCUGKJKLJMO.jpg",
+  "BakedTexture_GRZCUGKJLDKLH.jpg",
+  "BakedTexture_GRZCUGKJLVAVY.jpg",
+  "BakedTexture_GRZCUGKJWQZGR.jpg",
+  "BakedTexture_GRZCUGKJXAVIZ.jpg",
+  "BakedTexture_GRZCUGKJXJMNP.jpg",
+  "BakedTexture_GRZCUGKJXSBYF.jpg",
+  "BakedTexture_GRZCUGKJYBEVL.jpg",
+  "BakedTexture_GRZCUGKJYJVXA.jpg",
+  "BakedTexture_GRZCUGKKEJXQU.jpg",
+  "BakedTexture_GRZCUGKKWBKWG.jpg",
+  "BakedTexture_GRZCUGKKWKMPH.jpg",
+  "BakedTexture_GRZCUGKKWTBOG.jpg",
+  "BakedTexture_GRZCUGKKXBQAK.jpg",
+  "BakedTexture_GRZCUGKKXJRDX.jpg",
+  "BakedTexture_GRZCUGKKXRQST.jpg",
+  "BakedTexture_GRZCUGKLDRANV.jpg",
+  "BakedTexture_GRZCUGKLEPMAA.jpg",
+  "BakedTexture_GRZCUGKLJZFOU.jpg",
+  "BakedTexture_GRZCUGKLLNOPD.jpg",
+  "BakedTexture_GRZCUGKLMGJYW.jpg",
+  "BakedTexture_GRZCUGKLMQBUN.jpg",
+  "BakedTexture_GRZCUGKLTTRUS.jpg",
+  "BakedTexture_GRZCUGKMCXFNK.jpg",
+  "BakedTexture_GRZCUGKMFRFFX.jpg",
+  "BakedTexture_GRZCUGKMHHYEG.jpg",
+  "BakedTexture_GRZCUGKMIZQAP.jpg",
+  "BakedTexture_GRZCUGKMZCDYM.jpg",
+  "Generated/BrushedSteel_Normal.png",
+  "I_Laboratory_1001_Doorknobs_Nr_0001.jpg",
+  "I_TrashBinDBag_Nr_001.jpg",
+  "metal_normal_opengl.jpg"
+ ],
+ "alphaTextures": [
+  "BakedTexture_GRZCUGKNJWEOO.png",
+  "BakedTexture_GRZCUGLABLQWN.png",
+  "BakedTexture_GRZCUGLBMVMOK.png",
+  "BakedTexture_GRZCUGLBUCGPW.png",
+  "BakedTexture_GRZCUGLKPFNVE.png",
+  "BakedTexture_GRZCUGLMOVFYZ.png",
+  "BakedTexture_GRZCUGNEQODQH.png",
+  "BakedTexture_GRZCUGNEWTKZY.png",
+  "BakedTexture_GRZCUGNFCKXHX.png",
+  "BakedTexture_GRZCUGNJSTORO.png",
+  "BakedTexture_GRZCUGNJYRLNO.png",
+  "BakedTexture_GRZCUGNKJFNYN.png",
+  "BakedTexture_GRZCUGNKOLPGF.png",
+  "BakedTexture_GRZCUGNKVTPVX.png",
+  "BakedTexture_GRZCUGNLIQDDN.png",
+  "BakedTexture_GRZCUGNPRDEUD.png",
+  "BakedTexture_GRZCUGNPRPWCC.png",
+  "BakedTexture_GRZCUGNPSAVNZ.png",
+  "BakedTexture_GRZCUGNPSKJCP.png",
+  "BakedTexture_GRZCUGNPSTVBM.png",
+  "BakedTexture_GRZCUGNPXAXEK.png",
+  "BakedTexture_GRZCUGNQCWBNE.png",
+  "BakedTexture_GRZCUGNQJPYUK.png",
+  "BakedTexture_GRZCUGNRQYNFQ.png",
+  "BakedTexture_GRZCUGNRWQJHW.png",
+  "BakedTexture_GRZCUGNSBXTHO.png",
+  "BakedTexture_GRZCUGNSHPHDX.png",
+  "BakedTexture_GRZCUGNTLRECP.png",
+  "BakedTexture_GRZCUGNTRAXKV.png",
+  "BakedTexture_GRZCUGNTWGBCE.png",
+  "BakedTexture_GRZCUGNUBMUTR.png",
+  "BakedTexture_GRZCUGNUCAPFT.png",
+  "BakedTexture_GRZCUGNUHGEXR.png",
+  "BakedTexture_GRZCUGNVIMWNK.png",
+  "BakedTexture_GRZCUGNWMDYFO.png",
+  "BakedTexture_GRZCUGNWMKFEW.png"
+ ]
+}
