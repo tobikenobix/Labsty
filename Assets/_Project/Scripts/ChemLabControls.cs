@@ -63,6 +63,7 @@ namespace ChemLab
 
         IEnumerator Start()
         {
+            SetFoveation();   // no-op without a headset
             // Only fall back to keyboard/mouse when OpenXR really failed to start.
             yield return new WaitForSeconds(3f);
             var mgr = UnityEngine.XR.Management.XRGeneralSettings.Instance != null
@@ -81,6 +82,19 @@ namespace ChemLab
                     foreach (var tpd in cam.GetComponents<UnityEngine.InputSystem.XR.TrackedPoseDriver>()) tpd.enabled = false;
             }
             ChemLabUIKit.EnableMouse();
+        }
+
+        /// <summary>
+        /// Fixed foveated rendering (OpenXR Foveated Rendering feature, SRP foveation API): the periphery of each eye
+        /// is shaded at lower rate. 0 = off, 1 = strongest. Panels are placed in the centre of view, so text stays sharp.
+        /// </summary>
+        [Range(0f, 1f)] public float foveation = 0.66f;   // ponytail: tune on device; raise if GPU-bound, lower if edges shimmer
+
+        void SetFoveation()
+        {
+            var displays = new System.Collections.Generic.List<UnityEngine.XR.XRDisplaySubsystem>();
+            SubsystemManager.GetSubsystems(displays);
+            foreach (var d in displays) d.foveatedRenderingLevel = foveation;
         }
 
         void OnDestroy()
