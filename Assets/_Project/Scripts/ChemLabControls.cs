@@ -48,6 +48,10 @@ namespace ChemLab
         {
             DesktopMode = false;
             CreateActions();
+            // Teleport-only locomotion, so gravity has nothing to do; with it on, walking (headset off, out of the Guardian)
+            // past the floor colliders dropped the rig forever: blue clear colour, rays hitting nothing, until a restart.
+            foreach (var g in FindObjectsByType<UnityEngine.XR.Interaction.Toolkit.Locomotion.Gravity.GravityProvider>(FindObjectsSortMode.None))
+                g.useGravity = false;
         }
 
         void CreateActions()
