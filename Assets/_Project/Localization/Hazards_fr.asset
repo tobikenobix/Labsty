@@ -1083,6 +1083,163 @@ MonoBehaviour:
       de s\xE9curit\xE9."
     m_Metadata:
       m_Items: []
+  - m_Id: 177914296393728
+    m_Localized: "D\xE9placer le chariot juste assez pour passer, ou y poser un panneau,
+      laisse la voie d'\xE9vacuation r\xE9tr\xE9cie. Seul le rangement lib\xE8re
+      compl\xE8tement la sortie en cas d'\xE9vacuation."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914380279808
+    m_Localized: "Une sortie n'est utilisable que si tout le chemin vers l'ext\xE9rieur
+      est d\xE9gag\xE9, pas seulement la porte."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914380279809
+    m_Localized: 'Une urgence peut aussi survenir pendant ces dix minutes : le chariot
+      n''attend donc jamais devant la sortie.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914380279810
+    m_Localized: "Une boisson pos\xE9e pr\xE8s du mat\xE9riel peut recueillir des
+      r\xE9sidus chimiques qui seront aval\xE9s. Ne buvez qu'\xE0 l'ext\xE9rieur
+      du laboratoire."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668416
+    m_Localized: "Un gobelet anti-renversement ou un couvercle ferm\xE9 reste une
+      boisson dans le laboratoire. La solution s\xFBre est une courte pause hors
+      du laboratoire."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668417
+    m_Localized: "Les mains et la surface du gobelet se chargent de r\xE9sidus dans
+      le laboratoire : m\xEAme ferm\xE9, le gobelet les porte \xE0 la bouche."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668418
+    m_Localized: Scotcher ou aligner la pile laisse des cartons lourds en hauteur.
+      Seul un rangement bas et stable supprime le risque de chute.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668419
+    m_Localized: Une pile qui tombe peut blesser les personnes dans le passage et
+      le bloquer.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668420
+    m_Localized: "Des \xE9tag\xE8res adapt\xE9es \xE0 la charge, utilis\xE9es dans
+      leurs limites de hauteur, emp\xEAchent d'embl\xE9e les piles de devenir instables."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668421
+    m_Localized: "Une pat\xE8re pr\xE9vue \xE0 cet effet tient une \xE9ventuelle
+      contamination \xE0 l'\xE9cart des si\xE8ges et des zones propres."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668422
+    m_Localized: "Le secouer ou le porter \xE0 nouveau propage la contamination.
+      Une blouse contamin\xE9e suit la proc\xE9dure de collecte ou de d\xE9contamination
+      du laboratoire."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668423
+    m_Localized: "Les chaises sont partag\xE9es et touch\xE9es \xE0 mains nues :
+      les r\xE9sidus d'une blouse passent ainsi \xE0 d'autres personnes."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668424
+    m_Localized: "Les gants utilis\xE9s au laboratoire peuvent porter des r\xE9sidus
+      chimiques : ils vont dans la fili\xE8re des d\xE9chets de laboratoire."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668425
+    m_Localized: "Deviner peut envoyer des d\xE9chets dangereux dans la mauvaise
+      poubelle. Consultez les consignes de tri ou demandez au personnel form\xE9."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668426
+    m_Localized: "Seuls les objets qui n'ont jamais servi au travail de laboratoire,
+      comme un emballage propre de la salle de pause, sont des d\xE9chets m\xE9nagers."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668427
+    m_Localized: "Un liquide inconnu peut \xEAtre n'importe quoi. Gardez-le ferm\xE9
+      et hors d'usage pour que personne ne le sente, ne l'utilise ni ne le vide."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668428
+    m_Localized: "Beaucoup de liquides dangereux sont incolores et inodores. L'apparence,
+      ou un essai dans l'\xE9vier, n'identifie jamais un produit chimique."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668429
+    m_Localized: "Un flacon ne retourne au stockage qu'une fois son contenu identifi\xE9
+      et correctement \xE9tiquet\xE9."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668430
+    m_Localized: "Les lunettes de s\xE9curit\xE9 prot\xE8gent des \xE9claboussures,
+      et sans casque audio vous entendez les alarmes et vos coll\xE8gues."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668431
+    m_Localized: "Des lunettes ordinaires, m\xEAme \xE9paisses, ne sont pas con\xE7ues
+      contre les chocs ni les \xE9claboussures. Utilisez des lunettes de s\xE9curit\xE9
+      correctrices ou des surlunettes."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668432
+    m_Localized: "Un casque audio peut masquer les alarmes incendie et les avertissements
+      cri\xE9s par les coll\xE8gues."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668433
+    m_Localized: "Des fils \xE0 nu peuvent provoquer une \xE9lectrocution ou un incendie.
+      Coupez l'alimentation et signalez l'appareil pour que personne ne l'utilise
+      avant sa r\xE9paration."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668434
+    m_Localized: "Ajouter des adaptateurs ou allumer les appareils un par un ne r\xE8gle
+      pas un circuit surcharg\xE9. Le personnel qualifi\xE9 peut v\xE9rifier la charge."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668435
+    m_Localized: "Seules une r\xE9paration et une validation par du personnel qualifi\xE9
+      rendent l'appareil \xE0 nouveau s\xFBr."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668436
+    m_Localized: "En cas d'urgence, chaque seconde compte : l'armoire de premiers
+      secours doit \xEAtre accessible imm\xE9diatement."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668437
+    m_Localized: "Signalez le mat\xE9riel manquant pour qu'il soit r\xE9approvisionn\xE9
+      avant que quelqu'un en ait besoin."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668438
+    m_Localized: "Un contr\xF4le de routine porte sur l'acc\xE8s, la compl\xE9tude
+      et la validit\xE9 des fournitures (date et \xE9tat)."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668439
+    m_Localized: "Stock\xE9 en bas, un corrosif ne peut pas tomber de haut, et le
+      bac de r\xE9tention retient toute fuite."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668440
+    m_Localized: "Des produits incompatibles stock\xE9s ensemble peuvent r\xE9agir
+      si l'un fuit. S\xE9parez-les selon leur compatibilit\xE9, pas selon la taille
+      ou la couleur du flacon."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668441
+    m_Localized: "Un flacon qui tombe d'au-dessus de la t\xEAte peut projeter de
+      l'acide sur le visage et les yeux, et r\xE9agir avec ce qu'il touche."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
