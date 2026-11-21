@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -22,8 +21,8 @@ namespace ChemLab
         [Tooltip("Wall posters, in order: chemicals warning, no food or drink, lab coat and glasses, eyewash.")]
         public Transform[] posterAnchors;
 
-        Canvas main, teaching, toast, hazards, idPad;
-        TextMeshProUGUI toastText, sub, perRunCaption, idText;
+        Canvas main, teaching, hazards, idPad;
+        TextMeshProUGUI sub, perRunCaption, idText;
         HazardData[] allHazards;
         readonly List<(string id, RectTransform sign, TextMeshProUGUI title, TextMeshProUGUI off, Image critical, bool mandatory)> hzRows =
             new List<(string, RectTransform, TextMeshProUGUI, TextMeshProUGUI, Image, bool)>();
@@ -34,7 +33,6 @@ namespace ChemLab
         readonly Button[] langBtns = new Button[4];
         readonly Button[] handBtns = new Button[2];
         static readonly string[] Langs = { "DE", "FR", "IT", "EN" };
-        Coroutine toastCo;
 
         void Awake()
         {
@@ -43,7 +41,6 @@ namespace ChemLab
             BuildMain();
             BuildTeaching();
             BuildPosters();
-            BuildToast();
             BuildHazards();
             BuildIdPad();
             ChemLabControllerLabels.Create(
@@ -104,8 +101,9 @@ namespace ChemLab
         {
             void Paint(Button b, bool on)
             {
-                K.SetButtonColor(b, on ? K.Accent : K.SurfaceHi);
+                K.SetButtonColor(b, on ? K.Accent : K.Bg);
                 K.ButtonLabel(b).color = on ? Color.white : K.Text;
+                b.transform.Find("Outline").gameObject.SetActive(!on);
             }
             for (int i = 0; i < 4; i++) Paint(langBtns[i], Langs[i] == ChemLabRun.Language);
             for (int i = 0; i < 2; i++) Paint(handBtns[i], (i == 1) == ChemLabRun.LeftHanded);
@@ -117,7 +115,7 @@ namespace ChemLab
         void BuildMain()
         {
             main = K.Panel(transform, "Panel_Lobby", new Vector2(1100, 600), MainScale);
-            K.Label(main.transform, "Kicker", L10n.T("lobby.kicker"), new Vector2(0, 235), new Vector2(980, 40), 24, K.Accent, TextAlignmentOptions.Left, FontStyles.Bold);
+            K.FitOneLine(K.Label(main.transform, "Credit", L10n.T("lobby.kicker"), new Vector2(0, 235), new Vector2(980, 40), 24, K.TextDim, TextAlignmentOptions.Left), 20);
             K.Label(main.transform, "Title", L10n.T("lobby.title"), new Vector2(0, 175), new Vector2(980, 80), 62, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
             sub = K.Label(main.transform, "Sub", "", new Vector2(0, 118), new Vector2(980, 40), 28, K.TextDim, TextAlignmentOptions.Left);
 
@@ -141,7 +139,7 @@ namespace ChemLab
             K.FitOneLine(K.ButtonLabel(choose), 20);
 
             K.Img(main.transform, "Rule", new Vector2(0, -68), new Vector2(980, 2), K.Rule).raycastTarget = false;
-            var next = K.Label(main.transform, "Next", L10n.T("lobby.next"), new Vector2(0, -120), new Vector2(980, 76), 28, K.Accent, TextAlignmentOptions.MidlineLeft);
+            var next = K.Label(main.transform, "Next", L10n.T("lobby.next"), new Vector2(0, -120), new Vector2(980, 76), 28, K.Text, TextAlignmentOptions.MidlineLeft);
             next.enableAutoSizing = true; next.fontSizeMin = 22; next.fontSizeMax = 28;
             K.Button(main.transform, "StartLab", L10n.T("lobby.start"), new Vector2(0, -225), new Vector2(980, 84), K.Style.Primary, StartLab, 36);
 
@@ -229,8 +227,8 @@ namespace ChemLab
                 string d = ((i + 1) % 10).ToString();   // 1 2 3 4 5 / 6 7 8 9 0
                 K.Button(t, "Digit_" + d, d, new Vector2(-392 + (i % 5) * 196, 15 - (i / 5) * 128), new Vector2(180, 112), K.Style.Ghost, () => TypeDigit(d), 52);
             }
-            K.Button(t, "Delete", L10n.T("lobby.idDelete"), new Vector2(-245, -245), new Vector2(490, 84), K.Style.Ghost, DeleteDigit, 30);
-            K.Button(t, "Close", L10n.T("common.close"), new Vector2(245, -245), new Vector2(490, 84), K.Style.Ghost, CloseIdPad, 30, key: "B");
+            K.Button(t, "Delete", L10n.T("lobby.idDelete"), new Vector2(-250, -245), new Vector2(480, 84), K.Style.Ghost, DeleteDigit, 30);
+            K.Button(t, "Close", L10n.T("common.close"), new Vector2(250, -245), new Vector2(480, 84), K.Style.Ghost, CloseIdPad, 30, key: "B");
             idGo = K.Button(t, "Confirm", L10n.T("lobby.idConfirm"), new Vector2(0, -375), new Vector2(980, 84), K.Style.Primary, StartLab, 36, key: "A");
             idPad.gameObject.SetActive(false);
         }
@@ -288,7 +286,7 @@ namespace ChemLab
         {
             if (!ChemLabRun.DisabledHazards.Remove(id))
             {
-                if (allHazards.Count(h => !ChemLabRun.DisabledHazards.Contains(h.id)) <= 1) { Toast(L10n.T("hz.lastOn"), K.Warn); return; }
+                if (allHazards.Count(h => !ChemLabRun.DisabledHazards.Contains(h.id)) <= 1) { perRunCaption.text = $"<color={K.Hex(K.Bad)}><b>{L10n.T("hz.lastOn")}</b></color>"; return; }
                 ChemLabRun.DisabledHazards.Add(id);
             }
             ChemLabRun.SaveHazardSettings();
@@ -368,7 +366,7 @@ namespace ChemLab
             K.KeyDisc(Row(1, "tch.answer"), "A", icon, 66f, K.Accent);
             K.SignDisc(Row(2, "tch.right"), "Icon", icon, 70f, K.Ok, check: true);
             K.SignDisc(Row(3, "tch.wrong"), "Icon", icon, 70f, K.Bad, check: false, cross: true);
-            K.Chip(Row(4, "tch.critical"), "Icon", L10n.T("q.dangerous"), icon + new Vector2(-2, 0), new Vector2(128, 44), K.Bad, Color.white);   // ends just left of the text column (-240)
+            K.Chip(Row(4, "tch.critical"), "Icon", L10n.T("q.dangerous"), icon + new Vector2(2, 0), new Vector2(100, 40), K.Bad, Color.white);   // -353..-253: inside the plate margin, left of the text column (-240)
             var o = Row(5, "tch.outline");
             var sample = K.Img(o, "Icon", icon, new Vector2(64, 64), K.SurfaceHi, K.Rounded);
             sample.pixelsPerUnitMultiplier = 2f;
@@ -409,28 +407,6 @@ namespace ChemLab
                 cap.enableAutoSizing = true; cap.fontSizeMin = 32; cap.fontSizeMax = 52;
                 p.transform.SetPositionAndRotation(posterAnchors[i].position, posterAnchors[i].rotation);
             }
-        }
-
-        void BuildToast()
-        {
-            toast = K.Panel(transform, "Panel_Toast", new Vector2(820, 96), 0.0008f, accentLine: false, blocksRays: false);
-            toastText = K.Label(toast.transform, "Text", "", new Vector2(0, 0), new Vector2(760, 84), 28, K.Text, TextAlignmentOptions.Center);
-            toast.gameObject.SetActive(false);
-        }
-
-        void Toast(string text, Color col)
-        {
-            toastText.text = $"<color={K.Hex(col)}><b>|</b></color>  {text}";
-            K.PlaceInFront(toast.transform, 0.85f, -0.3f);
-            toast.gameObject.SetActive(true);
-            if (toastCo != null) StopCoroutine(toastCo);
-            toastCo = StartCoroutine(Hide());
-        }
-
-        IEnumerator Hide()
-        {
-            yield return new WaitForSeconds(2.8f);
-            toast.gameObject.SetActive(false);
         }
 
         /// <summary>A stylised Quest controller drawn with UI shapes, trigger highlighted.</summary>

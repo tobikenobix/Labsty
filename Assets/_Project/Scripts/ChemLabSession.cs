@@ -176,10 +176,11 @@ namespace ChemLab
                 ChemLabAudio.Correct();
                 var obj = CurrentObject;
                 ChemLabAudio.PlayAt(rec.data.fixSound, obj.transform.position, rec.data.fixSoundSeconds);
-                CloseQuestion();
+                Current = null; CurrentObject = null; CurrentSelection = null;   // input off while the plate holds the check
+                ui.ShowCorrect(rec, key);   // the plate says it, so no toast (one would land on the plate)
                 obj.Fix();
-                ui.Toast(L10n.T("lab.resolved", rec.data.title), 2.4f, ChemLabUIKit.Ok);
                 ui.UpdateHud();
+                StartCoroutine(CloseResolvedAfter(ChemLabQuestionPanel.ResolvedHold));
                 if (records.All(r => r.solved)) StartCoroutine(EndAfter(1.6f));
             }
             else
@@ -220,6 +221,12 @@ namespace ChemLab
         }
 
         public void FinishNow() => EndRun(timedOut: false);
+
+        IEnumerator CloseResolvedAfter(float s)
+        {
+            yield return new WaitForSeconds(s);
+            ui.CloseResolved();
+        }
 
         IEnumerator EndAfter(float s)
         {

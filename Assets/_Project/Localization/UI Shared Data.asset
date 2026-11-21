@@ -795,6 +795,18 @@ MonoBehaviour:
     m_Key: lobby.next
     m_Metadata:
       m_Items: []
+  - m_Id: 190000000000101
+    m_Key: end.explReview
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000102
+    m_Key: end.explCorrect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000103
+    m_Key: end.rightAnswer
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

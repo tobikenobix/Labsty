@@ -159,7 +159,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488418
-    m_Localized: "TUM \xB7 ETH  \u2014  LAB SAFETY INITIATIVE"
+    m_Localized: "Made by TUM and ETH students"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488419
@@ -235,7 +235,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488440
-    m_Localized: "{0} \xB7 SESSION {1}"
+    m_Localized: "ID {0} \xB7 Session {1}"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488441
@@ -299,12 +299,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488456
-    m_Localized: 'The student selected {0}: {1}. This is a critical unsafe choice
-      because {2}'
+    m_Localized: "You chose {0}: {1}. This is a critical unsafe choice because {2}"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488457
-    m_Localized: The student did not detect this hazard.
+    m_Localized: "You did not find this hazard."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488458
@@ -312,11 +311,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488459
-    m_Localized: The student selected {0} instead of {1}. {2}
+    m_Localized: "You chose {0} instead of {1}. {2}"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488460
-    m_Localized: '+ {0} more: see Review explanations'
+    m_Localized: "+ {0} more: see Explanations"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488461
@@ -352,26 +351,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488469
-    m_Localized: Despite scoring {0}/100, the student must review the {1} procedure
-      and complete another assessment.
+    m_Localized: "You scored {0}/100, but a safety-critical requirement was not met. Review the {1} procedure and take the assessment again."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488470
-    m_Localized: With {0}/100 the minimum requirements were not met. The student
-      should review {1} and take a fresh assessment.
+    m_Localized: "With {0}/100 you did not meet the minimum requirements. Review {1} and take the assessment again."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488471
-    m_Localized: The student demonstrated competence with {0}/100 and no safety-critical
-      mistakes.
+    m_Localized: "You showed competence with {0}/100 and no safety-critical mistakes."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488472
-    m_Localized: The missed {0} hazard should also be included in feedback.
+    m_Localized: "You also missed this hazard: {0}."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488473
-    m_Localized: The missed {0} hazards should also be included in feedback.
+    m_Localized: "You also missed these hazards: {0}."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488474
@@ -391,7 +387,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488478
-    m_Localized: missed
+    m_Localized: "not found"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488479
@@ -829,6 +825,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 190000000000028
     m_Localized: "Next: a short practice room (about 3 minutes), then the lab."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000101
+    m_Localized: "To review ({0})"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000102
+    m_Localized: "Correct ({0})"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000103
+    m_Localized: "Right answer: {0}"
     m_Metadata:
       m_Items: []
   references:

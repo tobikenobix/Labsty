@@ -152,7 +152,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488418
-    m_Localized: "TUM \xB7 ETH  \u2014  INITIATIVE LABORSICHERHEIT"
+    m_Localized: "Entwickelt von Studierenden der TUM und ETH"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488419
@@ -228,7 +228,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488440
-    m_Localized: "{0} \xB7 SITZUNG {1}"
+    m_Localized: "ID {0} \xB7 Sitzung {1}"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488441
@@ -292,12 +292,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488456
-    m_Localized: "Die teilnehmende Person hat {0} gew\xE4hlt: {1}. Dies ist eine
-      kritisch unsichere Wahl, denn {2}"
+    m_Localized: "Sie haben {0} gew\xE4hlt: {1}. Dies ist eine kritisch unsichere Wahl, denn {2}"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488457
-    m_Localized: Die teilnehmende Person hat diese Gefahr nicht erkannt.
+    m_Localized: "Sie haben diese Gefahr nicht gefunden."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488458
@@ -305,11 +304,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488459
-    m_Localized: "Die teilnehmende Person hat {0} statt {1} gew\xE4hlt. {2}"
+    m_Localized: "Sie haben {0} statt {1} gew\xE4hlt. {2}"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488460
-    m_Localized: "+ {0} weitere: unter Erkl\xE4rungen ansehen"
+    m_Localized: "+ {0} weitere: siehe Erkl\xE4rungen"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488461
@@ -345,29 +344,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488469
-    m_Localized: Trotz {0}/100 Punkten muss die teilnehmende Person die Verfahren
-      zu {1} erneut durcharbeiten und eine weitere Bewertung absolvieren.
+    m_Localized: "Sie haben {0}/100 Punkte erreicht, aber eine sicherheitskritische Anforderung nicht erf\xFCllt. Arbeiten Sie die Verfahren zu {1} erneut durch und wiederholen Sie die Bewertung."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488470
-    m_Localized: "Mit {0}/100 wurden die Mindestanforderungen nicht erf\xFCllt. Die
-      teilnehmende Person sollte sich erneut mit {1} befassen und eine neue Bewertung
-      ablegen."
+    m_Localized: "Mit {0}/100 haben Sie die Mindestanforderungen nicht erf\xFCllt. Befassen Sie sich erneut mit {1} und wiederholen Sie die Bewertung."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488471
-    m_Localized: Die teilnehmende Person hat mit {0}/100 und ohne sicherheitskritische
-      Fehler ihre Kompetenz nachgewiesen.
+    m_Localized: "Sie haben mit {0}/100 und ohne sicherheitskritische Fehler Ihre Kompetenz nachgewiesen."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488472
-    m_Localized: "Die \xFCbersehene Gefahr ({0}) sollte ebenfalls in das Feedback
-      einflie\xDFen."
+    m_Localized: "\xDCbersehen haben Sie au\xDFerdem: {0}."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488473
-    m_Localized: "Die \xFCbersehenen Gefahren ({0}) sollten ebenfalls in das Feedback
-      einflie\xDFen."
+    m_Localized: "\xDCbersehen haben Sie au\xDFerdem: {0}."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488474
@@ -387,7 +380,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488478
-    m_Localized: "\xFCbersehen"
+    m_Localized: "nicht gefunden"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488479
@@ -827,6 +820,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 190000000000028
     m_Localized: "Danach: ein kurzer \xDCbungsraum (etwa 3 Minuten), dann das Labor."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000101
+    m_Localized: "Nochmals ansehen ({0})"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000102
+    m_Localized: "Richtig ({0})"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000103
+    m_Localized: "Richtig: {0}"
     m_Metadata:
       m_Items: []
   references:
