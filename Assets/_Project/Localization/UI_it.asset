@@ -764,6 +764,26 @@ MonoBehaviour:
       poi di nuovo A per mostrarlo."
     m_Metadata:
       m_Items: []
+  - m_Id: 180335206719488
+    m_Localized: Dettagli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799872
+    m_Localized: Risultato
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799873
+    m_Localized: Condizioni per superare e problemi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799874
+    m_Localized: Precedente
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799875
+    m_Localized: Successivo
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

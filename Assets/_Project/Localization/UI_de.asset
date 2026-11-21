@@ -760,6 +760,26 @@ MonoBehaviour:
       auszublenden, und erneut A, um sie zur\xFCckzuholen."
     m_Metadata:
       m_Items: []
+  - m_Id: 180335206719488
+    m_Localized: Details
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799872
+    m_Localized: Ergebnis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799873
+    m_Localized: Bestehensbedingungen und Probleme
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799874
+    m_Localized: "Zur\xFCck"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799875
+    m_Localized: Weiter
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -350,8 +350,8 @@ public static class ChemLabSceneBuilder
         Systems(start, 0f);
         var game = new GameObject("ChemLab End Screen");
         var end = game.AddComponent<ChemLabEndScreen>();
-        // ~1.35-1.45 m from the start spot (was ~2.0 m): report text ~0.55 deg -> ~0.8 deg
-        end.resultsAnchor = Anchor("ResultsAnchor", new Vector3(-0.35f, 1.5f, -1.1f), start);
+        // report card 1.10 m from the start spot, drawn at 0.00118 scale by the end screen: 28-unit text ~0.92 deg
+        end.resultsAnchor = Anchor("ResultsAnchor", new Vector3(-0.29f, 1.5f, -1.34f), start);
         end.leaderboardAnchor = Anchor("LeaderboardAnchor", new Vector3(1.05f, 1.5f, -1.45f), start);
         game.AddComponent<ChemLabControls>();
         EditorSceneManager.SaveScene(scene, EndPath);

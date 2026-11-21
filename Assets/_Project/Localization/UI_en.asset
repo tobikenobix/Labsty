@@ -761,6 +761,26 @@ MonoBehaviour:
       to bring it back.
     m_Metadata:
       m_Items: []
+  - m_Id: 180335206719488
+    m_Localized: Details
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799872
+    m_Localized: Result
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799873
+    m_Localized: Pass conditions and issues
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799874
+    m_Localized: Previous
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799875
+    m_Localized: Next
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

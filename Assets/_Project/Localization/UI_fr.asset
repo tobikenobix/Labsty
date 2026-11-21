@@ -760,6 +760,26 @@ MonoBehaviour:
       puis de nouveau sur A pour le r\xE9afficher."
     m_Metadata:
       m_Items: []
+  - m_Id: 180335206719488
+    m_Localized: "D\xE9tails"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799872
+    m_Localized: "R\xE9sultat"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799873
+    m_Localized: "Conditions de r\xE9ussite et probl\xE8mes"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799874
+    m_Localized: "Pr\xE9c\xE9dent"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799875
+    m_Localized: Suivant
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
