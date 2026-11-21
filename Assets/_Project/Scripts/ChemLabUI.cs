@@ -103,7 +103,7 @@ namespace ChemLab
 
         public void ShowQuestion(HazardRecord rec, Vector3 hazardPos)
         {
-            question.Show(rec.data.title, $"{rec.data.hudCategory}  /  {rec.data.area}  /  {rec.data.difficulty}", rec.q, hazardPos, rec.shownOrder);
+            question.Show(rec.data.title, $"{rec.data.hudCategory}  /  {rec.Area}  /  {rec.Difficulty}", rec.q, hazardPos, rec.shownOrder);
             rec.shownOrder = question.Order;   // reopening the same hazard keeps its option order
         }
 

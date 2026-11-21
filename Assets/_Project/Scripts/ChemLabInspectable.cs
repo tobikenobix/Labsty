@@ -69,8 +69,12 @@ namespace ChemLab
             return InteractorHandedness.None;
         }
 
+        /// <summary>Set by ZoneView while it is on: inspecting selects the object there instead of reaching the run.</summary>
+        public static Action<ChemLabInspectable> DevSelect;
+
         public void Inspect()
         {
+            if (DevSelect != null) { DevSelect(this); return; }
             if (IsFixed) return;
             Inspected?.Invoke(this);
         }

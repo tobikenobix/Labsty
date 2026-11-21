@@ -1222,6 +1222,42 @@ MonoBehaviour:
       und Augen spritzen und mit dem reagieren, worauf sie f\xE4llt."
     m_Metadata:
       m_Items: []
+  - m_Id: 198768665288704
+    m_Localized: Hauptlabortisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768791117824
+    m_Localized: Arbeitsbereich
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768799506432
+    m_Localized: "Ger\xE4tebereich"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768799506433
+    m_Localized: Eingang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768799506434
+    m_Localized: Chemikalienlager
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768807895040
+    m_Localized: Sicherheitsstation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768807895041
+    m_Localized: Leicht
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768812089344
+    m_Localized: Mittel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768812089345
+    m_Localized: Sehr schwer
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

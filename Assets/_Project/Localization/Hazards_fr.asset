@@ -1240,6 +1240,42 @@ MonoBehaviour:
       l'acide sur le visage et les yeux, et r\xE9agir avec ce qu'il touche."
     m_Metadata:
       m_Items: []
+  - m_Id: 198768665288704
+    m_Localized: Paillasse principale
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768791117824
+    m_Localized: Zone de travail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768799506432
+    m_Localized: "Zone des \xE9quipements"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768799506433
+    m_Localized: "Entr\xE9e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768799506434
+    m_Localized: Stockage chimique
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768807895040
+    m_Localized: "Poste de s\xE9curit\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768807895041
+    m_Localized: Facile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768812089344
+    m_Localized: Moyen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768812089345
+    m_Localized: "Tr\xE8s difficile"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
