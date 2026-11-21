@@ -747,6 +747,23 @@ MonoBehaviour:
     m_Localized: Conferma e inizia
     m_Metadata:
       m_Items: []
+  - m_Id: 175657316245504
+    m_Localized: MANO DOMINANTE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965760
+    m_Localized: Destra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965761
+    m_Localized: Sinistra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965762
+    m_Localized: "Prema A sul controller destro per nascondere il pannello attivit\xE0,
+      poi di nuovo A per mostrarlo."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -37,6 +37,7 @@ namespace ChemLab
         bool IdOpen => idPad != null && idPad.gameObject.activeSelf;
         Button startBtn, idGo;
         readonly Button[] langBtns = new Button[4];
+        readonly Button[] handBtns = new Button[2];
         static readonly string[] Langs = { "DE", "FR", "IT", "EN" };
         Coroutine toastCo;
 
@@ -236,15 +237,23 @@ namespace ChemLab
             SceneManager.LoadScene(ChemLabRun.LobbyScene);   // ponytail: a reload rebuilds every code-built panel in the new language
         }
 
+        /// <summary>Left-handed mode swaps controllers for the task panel and the face buttons; a reload rebuilds labels and bindings.</summary>
+        void SetHand(bool left)
+        {
+            if (left == ChemLabRun.LeftHanded) return;
+            ChemLabRun.SetLeftHanded(left);
+            SceneManager.LoadScene(ChemLabRun.LobbyScene);
+        }
+
         void RefreshLanguage()
         {
-            for (int i = 0; i < 4; i++)
+            void Paint(Button b, bool on)
             {
-                bool on = Langs[i] == ChemLabRun.Language;
-                K.SetButtonColor(langBtns[i], on ? K.Accent : K.SurfaceHi);
-                var l = K.ButtonLabel(langBtns[i]);
-                l.color = on ? Color.white : K.Text;
+                K.SetButtonColor(b, on ? K.Accent : K.SurfaceHi);
+                K.ButtonLabel(b).color = on ? Color.white : K.Text;
             }
+            for (int i = 0; i < 4; i++) Paint(langBtns[i], Langs[i] == ChemLabRun.Language);
+            for (int i = 0; i < 2; i++) Paint(handBtns[i], (i == 1) == ChemLabRun.LeftHanded);
         }
 
         /// <summary>
@@ -284,17 +293,22 @@ namespace ChemLab
             sub = K.Label(main.transform, "Sub", "", new Vector2(0, 268), new Vector2(980, 40), 28, K.TextDim, TextAlignmentOptions.Left);
 
             K.Label(main.transform, "LangTitle", L10n.T("lobby.language"), new Vector2(0, 200), new Vector2(980, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
+            // one row, three columns: language | dominant hand | hazards
             for (int i = 0; i < 4; i++)
             {
                 string lang = Langs[i];
-                langBtns[i] = K.Button(main.transform, "Lang_" + lang, lang, new Vector2(-400 + i * 150, 145), new Vector2(130, 64), K.Style.Ghost, () => SetLanguage(lang), 28);
+                langBtns[i] = K.Button(main.transform, "Lang_" + lang, lang, new Vector2(-440 + i * 112, 145), new Vector2(100, 64), K.Style.Ghost, () => SetLanguage(lang), 28);
             }
-            K.Label(main.transform, "HazardsTitle", L10n.T("lobby.hazards"), new Vector2(325, 200), new Vector2(330, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
-            var choose = K.Button(main.transform, "ChooseHazards", L10n.T("lobby.chooseHazards"), new Vector2(325, 145), new Vector2(330, 64), K.Style.Ghost, OpenHazards, 28);
-            K.WarningSign(choose.transform, new Vector2(-121, 1), 44f);
-            var cl = K.ButtonLabel(choose).rectTransform;
-            cl.anchoredPosition = new Vector2(22, 0);
-            cl.sizeDelta = new Vector2(240, 56);
+            K.Label(main.transform, "HandTitle", L10n.T("lobby.hand"), new Vector2(100, 200), new Vector2(260, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
+            for (int i = 0; i < 2; i++)
+            {
+                bool left = i == 1;
+                handBtns[i] = K.Button(main.transform, left ? "Hand_Left" : "Hand_Right", L10n.T(left ? "lobby.handLeft" : "lobby.handRight"),
+                    new Vector2(32.5f + i * 135, 145), new Vector2(125, 64), K.Style.Ghost, () => SetHand(left), 28);
+                K.FitOneLine(K.ButtonLabel(handBtns[i]), 20);
+            }
+            K.Label(main.transform, "HazardsTitle", L10n.T("lobby.hazards"), new Vector2(370, 200), new Vector2(240, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
+            var choose = K.Button(main.transform, "ChooseHazards", L10n.T("lobby.chooseHazards"), new Vector2(370, 145), new Vector2(240, 64), K.Style.Ghost, OpenHazards, 28);
             K.FitOneLine(K.ButtonLabel(choose), 20);
 
             K.Label(main.transform, "TutorialTitle", L10n.T("tut.title"), new Vector2(0, 72), new Vector2(980, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
@@ -644,8 +658,8 @@ namespace ChemLab
 
             K.Label(root, "LTrigger", L10n.T("ctrl.trigger"), new Vector2(175, 150), new Vector2(160, 70), 24, K.Accent, TextAlignmentOptions.Left, FontStyles.Bold);
             K.Label(root, "LStick", L10n.T("ctrl.stick"), new Vector2(-170, 60), new Vector2(150, 70), 20, K.TextDim, TextAlignmentOptions.Right, FontStyles.Bold);
-            K.Label(root, "LA", "A", new Vector2(45, 5), new Vector2(36, 36), 20, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
-            K.Label(root, "LB", "B", new Vector2(65, 50), new Vector2(36, 36), 20, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
+            K.Label(root, "LA", ChemLabRun.Btn("A"), new Vector2(45, 5), new Vector2(36, 36), 20, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
+            K.Label(root, "LB", ChemLabRun.Btn("B"), new Vector2(65, 50), new Vector2(36, 36), 20, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
             K.Label(root, "LGrip", L10n.T("ctrl.grip"), new Vector2(-160, -95), new Vector2(110, 40), 20, K.TextDim, TextAlignmentOptions.Right, FontStyles.Bold);
             return root;
         }

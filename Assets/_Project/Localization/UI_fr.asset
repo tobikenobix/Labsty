@@ -743,6 +743,23 @@ MonoBehaviour:
     m_Localized: Confirmer et commencer
     m_Metadata:
       m_Items: []
+  - m_Id: 175657316245504
+    m_Localized: MAIN DOMINANTE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965760
+    m_Localized: Droite
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965761
+    m_Localized: Gauche
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965762
+    m_Localized: "Appuyez sur A (manette droite) pour masquer le panneau des t\xE2ches,
+      puis de nouveau sur A pour le r\xE9afficher."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

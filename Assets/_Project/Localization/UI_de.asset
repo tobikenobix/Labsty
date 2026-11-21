@@ -743,6 +743,23 @@ MonoBehaviour:
     m_Localized: "Best\xE4tigen und starten"
     m_Metadata:
       m_Items: []
+  - m_Id: 175657316245504
+    m_Localized: DOMINANTE HAND
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965760
+    m_Localized: Rechts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965761
+    m_Localized: Links
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965762
+    m_Localized: "Dr\xFCcken Sie A am rechten Controller, um die Aufgabenanzeige
+      auszublenden, und erneut A, um sie zur\xFCckzuholen."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

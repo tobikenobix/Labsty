@@ -36,6 +36,27 @@ namespace ChemLab
         public static bool LastTimedOut;
         public static string LastJsonPath, LastCsvPath, LastSessionId;
 
+        // ---------- left-handed mode (lobby "Hand"), saved on the headset ----------
+
+        const string LeftKey = "chemlab.leftHanded";
+        /// <summary>Task panel on the right controller; confirm / back on X / Y, panel / finish on A / B.</summary>
+        public static bool LeftHanded { get; private set; } = PlayerPrefs.GetInt(LeftKey, 0) == 1;
+
+        public static void SetLeftHanded(bool on)
+        {
+            LeftHanded = on;
+            PlayerPrefs.SetInt(LeftKey, on ? 1 : 0);
+            PlayerPrefs.Save();
+        }
+
+        /// <summary>The controller letter for this mode: A&lt;-&gt;X and B&lt;-&gt;Y when left-handed.</summary>
+        public static string Btn(string key) =>
+            !LeftHanded || key == null ? key : key == "A" ? "X" : key == "X" ? "A" : key == "B" ? "Y" : key == "Y" ? "B" : key;
+
+        /// <summary>Swaps the standalone button letters in a text (not letters inside words, numbers or colour codes).</summary>
+        public static string SwapButtons(string s) =>
+            System.Text.RegularExpressions.Regex.Replace(s, @"(?<![\p{L}\p{N}#'’])[ABXY](?![\p{L}\p{N}'’])", m => Btn(m.Value));
+
         // ---------- hazard selection (lobby "Choose hazards"), saved on the headset ----------
 
         const string DisabledKey = "chemlab.disabledHazards", PerRunKey = "chemlab.hazardsPerRun";

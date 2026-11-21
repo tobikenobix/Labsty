@@ -200,6 +200,7 @@ namespace ChemLab
         /// <summary>A controller-button key in a sign rim ("A", "B"); ring and letter take `col`.</summary>
         public static Image KeyDisc(Transform parent, string key, Vector2 pos, float d, Color col)
         {
+            key = ChemLabRun.Btn(key);   // every drawn button letter follows the left-handed mode
             var rim = Img(parent, "Key_" + key, pos, new Vector2(d, d), col, Ring);
             rim.raycastTarget = false;
             Label(rim.transform, "Letter", key, new Vector2(0, -d * 0.02f), new Vector2(d, d), d * 0.55f, col, TextAlignmentOptions.Center, FontStyles.Bold);
@@ -449,9 +450,11 @@ namespace ChemLab
         /// </summary>
         public static void AttachTablet(Transform tablet, Transform leftHand)
         {
-            if (leftHand != null && !MouseMode)
+            // left-handed mode: the other controller, a sibling of the left one in the XR rig
+            var hand = ChemLabRun.LeftHanded && leftHand != null ? leftHand.parent.Find("Right Controller") ?? leftHand : leftHand;
+            if (hand != null && !MouseMode)
             {
-                tablet.SetParent(leftHand, false);
+                tablet.SetParent(hand, false);
                 tablet.localPosition = new Vector3(0f, 0.13f, 0.07f);   // raised along the tilt so the tablet clears the controller
                 tablet.localRotation = Quaternion.Euler(45f, 0f, 0f);
             }

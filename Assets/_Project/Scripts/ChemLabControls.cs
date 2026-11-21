@@ -54,10 +54,13 @@ namespace ChemLab
         {
             leftTrigger = Make("Inspect L", "<XRController>{LeftHand}/{TriggerButton}");
             rightTrigger = Make("Inspect R", "<XRController>{RightHand}/{TriggerButton}");
-            aBtn = Make("Confirm", "<XRController>{RightHand}/{PrimaryButton}", "<Keyboard>/enter", "<Keyboard>/numpadEnter");
-            bBtn = Make("Back", "<XRController>{RightHand}/{SecondaryButton}", "<Keyboard>/escape", "<Keyboard>/backspace");
-            xBtn = Make("Help", "<XRController>{LeftHand}/{PrimaryButton}", "<Keyboard>/h");
-            yBtn = Make("Finish", "<XRController>{LeftHand}/{SecondaryButton}", "<XRController>{LeftHand}/{MenuButton}",
+            // confirm / back sit on the main hand's face buttons, panel / finish on the other hand (left-handed mode swaps them);
+            // the Menu button exists only on the left controller, so it always finishes
+            string main = ChemLabRun.LeftHanded ? "{LeftHand}" : "{RightHand}", other = ChemLabRun.LeftHanded ? "{RightHand}" : "{LeftHand}";
+            aBtn = Make("Confirm", $"<XRController>{main}/{{PrimaryButton}}", "<Keyboard>/enter", "<Keyboard>/numpadEnter");
+            bBtn = Make("Back", $"<XRController>{main}/{{SecondaryButton}}", "<Keyboard>/escape", "<Keyboard>/backspace");
+            xBtn = Make("Help", $"<XRController>{other}/{{PrimaryButton}}", "<Keyboard>/h");
+            yBtn = Make("Finish", $"<XRController>{other}/{{SecondaryButton}}", "<XRController>{LeftHand}/{MenuButton}",
                         "<XRController>{LeftHand}/menu", "<Keyboard>/f");
         }
 

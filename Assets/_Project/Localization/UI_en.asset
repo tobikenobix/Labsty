@@ -744,6 +744,23 @@ MonoBehaviour:
     m_Localized: Confirm and start
     m_Metadata:
       m_Items: []
+  - m_Id: 175657316245504
+    m_Localized: DOMINANT HAND
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965760
+    m_Localized: Right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965761
+    m_Localized: Left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965762
+    m_Localized: Press A on the right controller to hide the task panel, then A again
+      to bring it back.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
