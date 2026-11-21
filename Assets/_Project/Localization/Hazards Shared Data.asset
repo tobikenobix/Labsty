@@ -1079,6 +1079,42 @@ MonoBehaviour:
     m_Key: H10.Q3.explanation
     m_Metadata:
       m_Items: []
+  - m_Id: 198768665288704
+    m_Key: Area.Main lab bench
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768791117824
+    m_Key: Area.Working area
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768799506432
+    m_Key: Area.Equipment area
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768799506433
+    m_Key: Area.Entrance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768799506434
+    m_Key: Area.Chemical storage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768807895040
+    m_Key: Area.Safety station
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768807895041
+    m_Key: Difficulty.Easy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768812089344
+    m_Key: Difficulty.Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 198768812089345
+    m_Key: Difficulty.Hard
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

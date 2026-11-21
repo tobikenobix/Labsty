@@ -13,7 +13,7 @@ namespace ChemLab
         // ponytail: tuning knobs, no inspector for them; raise Tries if a big, cluttered zone often falls back
         const int Tries = 20;            // random samples per hazard before it stays at its authored spot
         const float MinSpacing = 0.5f;   // metres between a moved hazard and any other hazard of the run
-        const int PerArea = 2;           // most moved hazards in one area, so a run can't pile them all onto one bench
+        const int PerArea = 3;           // most moved hazards in one area, so a run can't pile them all onto one bench
 
         /// <summary>
         /// Moves each hazard of the run that has zones to a random free spot in one of them (one hazard per zone).
