@@ -98,8 +98,11 @@ namespace ChemLab
             ShowMessage(title, L10n.T("lab.calculating"), null, null);
         }
 
-        public void ShowQuestion(HazardRecord rec, Vector3 hazardPos) =>
-            question.Show(rec.data.title, $"{rec.data.hudCategory}  /  {rec.data.area}  /  {rec.data.difficulty}", rec.q, hazardPos);
+        public void ShowQuestion(HazardRecord rec, Vector3 hazardPos)
+        {
+            question.Show(rec.data.title, $"{rec.data.hudCategory}  /  {rec.data.area}  /  {rec.data.difficulty}", rec.q, hazardPos, rec.shownOrder);
+            rec.shownOrder = question.Order;   // reopening the same hazard keeps its option order
+        }
 
         public void HighlightOption(string key) => question.Highlight(key);
 

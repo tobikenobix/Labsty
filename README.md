@@ -82,7 +82,7 @@ JSON, one object per run:
 | `score`, `detectionPoints`, `decisionPoints` | Points per hazard found plus points per first answer correct (weights in the lab config); `score` is the percentage of the points this run offered |
 | `outcome` | `Pass`, `RetrainingRequired` or `SafetyReviewRequired` |
 | `minimumScoreAchieved` … `safetyReviewRequired` | The pass conditions behind the outcome |
-| `hazards[]` | One entry per hazard: `id`, `questionId`, `category`, `status`, `mandatoryCritical`, `detected`, `detectedAt`, `selectedOption` (first answer), `correctOption`, `isCorrect`, `responseTimeSeconds`, `wrongAnswers`, `resolved`, `criticalError` |
+| `hazards[]` | One entry per hazard: `id`, `questionId`, `category`, `status`, `mandatoryCritical`, `detected`, `detectedAt`, `selectedOption` (first answer), `correctOption`, `optionOrder` (the keys in the shuffled order the student saw them; rows are lettered A-D by position, the option fields keep the keys from hazards.json), `isCorrect`, `responseTimeSeconds`, `wrongAnswers`, `resolved`, `criticalError` |
 
 CSV: one row per hazard with the columns `session_id, student_id, hazard_id, question_id, category, detected, detected_at, first_answer, correct_answer, first_attempt_correct, wrong_answers, resolved, critical_error, response_time`. After an empty line follows a one-row summary: `session_id, hazards_found, hazards_missed, wrong_answers, completion_time, score, outcome`. Times are seconds with one decimal and a dot.
 

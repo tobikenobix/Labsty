@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -57,7 +58,7 @@ namespace ChemLab
                 o.bg.pixelsPerUnitMultiplier = 1.5f;
                 o.btn = o.bg.gameObject.AddComponent<Button>();
                 K.Tint(o.btn);
-                o.btn.onClick.AddListener(() => { if (q != null && idx < q.options.Length) onSelect(q.options[idx].key); });
+                o.btn.onClick.AddListener(() => { if (q != null && idx < q.options.Length) onSelect(OptAt(idx).key); });
                 o.btn.onClick.AddListener(() => ChemLabAudio.Click());
                 o.outline = K.Outline(o.bg.transform, new Vector2(920, 94), K.Accent, 1.5f);
 
@@ -82,11 +83,21 @@ namespace ChemLab
             canvas.gameObject.SetActive(false);
         }
 
-        /// <summary>Open the plate for one question, in front of the head and turned towards the object.</summary>
-        public void Show(string titleText, string metaText, QuestionData question, Vector3 towards)
+        /// <summary>Option keys in the order the rows show them (single-letter keys), e.g. "CADB".</summary>
+        public string Order { get; private set; }
+
+        /// <summary>
+        /// Open the plate for one question, in front of the head and turned towards the object. The options are shuffled
+        /// (pass a previous Order to keep it when the same question reopens); rows are lettered A-D by position, while
+        /// selection, scoring and export keep the option's own key.
+        /// </summary>
+        public void Show(string titleText, string metaText, QuestionData question, Vector3 towards, string order = null)
         {
             q = question;
             struck.Clear();
+            if (order == null || order.Length != q.options.Length)
+                order = string.Concat(q.options.Select(o => o.key).OrderBy(_ => UnityEngine.Random.value));
+            Order = order;
             title.text = titleText;
             meta.text = metaText;
             text.text = q.question;
@@ -95,8 +106,8 @@ namespace ChemLab
                 bool has = i < q.options.Length;
                 opts[i].btn.gameObject.SetActive(has);
                 if (!has) continue;
-                opts[i].key.text = q.options[i].key;
-                opts[i].text.text = q.options[i].text;
+                opts[i].key.text = ((char)('A' + i)).ToString();
+                opts[i].text.text = OptAt(i).text;
                 Paint(i, null);
             }
             feedback.text = $"<color={K.Hex(K.TextDim)}>{L10n.T("q.hint")}</color>";
@@ -136,7 +147,7 @@ namespace ChemLab
         void Paint(int i, string selectedKey)
         {
             var o = opts[i];
-            string k = q.options[i].key;
+            string k = OptAt(i).key;
             bool isStruck = struck.TryGetValue(k, out bool dangerous);
             bool sel = !isStruck && k == selectedKey;
             o.btn.interactable = !isStruck;
@@ -154,11 +165,14 @@ namespace ChemLab
             o.text.rectTransform.anchoredPosition = new Vector2(OptTextX - cut / 2f, 0);
         }
 
+        /// <summary>The option shown in row i.</summary>
+        OptionData OptAt(int i) => q.Option(Order[i].ToString());
+
         void SetSubmit(string key)
         {
             submit.interactable = key != null;
             K.SetButtonColor(submit, key != null ? K.Ok : K.SurfaceHi);
-            K.ButtonLabel(submit).text = key != null ? L10n.T("q.submitKey", key) : L10n.T("q.submit");
+            K.ButtonLabel(submit).text = key != null ? L10n.T("q.submitKey", (char)('A' + Order.IndexOf(key, StringComparison.Ordinal))) : L10n.T("q.submit");
             var ink = key != null ? Color.white : K.TextDim;
             foreach (var g in submit.GetComponentsInChildren<Graphic>(true))
                 if (g != submit.targetGraphic) g.color = ink;

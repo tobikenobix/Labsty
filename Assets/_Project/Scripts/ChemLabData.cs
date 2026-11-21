@@ -145,6 +145,14 @@ namespace ChemLab
         public int attempts;                // total submissions
         public int wrongAnswers;            // every wrong submission is logged as a mistake
         public bool solved;                 // eventually answered correctly -> hazard fixed in the scene
+        public string shownOrder;           // option keys in the shuffled order the panel showed them, e.g. "CADB"
+
+        /// <summary>The letter the student saw for an option key (rows are lettered A-D by position after shuffling).</summary>
+        public string Shown(string key)
+        {
+            int i = key == null || shownOrder == null ? -1 : shownOrder.IndexOf(key, System.StringComparison.Ordinal);
+            return i < 0 ? key : ((char)('A' + i)).ToString();
+        }
 
         public HazardStatus Status =>
             !detected ? HazardStatus.Missed :

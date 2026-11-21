@@ -115,7 +115,7 @@ namespace ChemLab
                 sb.Append($"\"id\": {S(h.data.id)}, \"questionId\": {S(h.q.id)}, \"category\": {S(h.data.exportCategory)}, \"status\": {S(h.Status.ToString())}, ");
                 sb.Append($"\"mandatoryCritical\": {B(h.data.mandatoryCritical)}, \"detected\": {B(h.detected)}, ");
                 sb.Append($"\"detectedAt\": {(h.detected ? F(h.detectedAt) : "null")}, ");
-                sb.Append($"\"selectedOption\": {S(h.selected)}, \"correctOption\": {S(h.q.correct)}, \"isCorrect\": {B(h.isCorrect)}, ");
+                sb.Append($"\"selectedOption\": {S(h.selected)}, \"correctOption\": {S(h.q.correct)}, \"optionOrder\": {S(h.shownOrder)}, \"isCorrect\": {B(h.isCorrect)}, ");
                 sb.Append($"\"responseTimeSeconds\": {(h.responseTime >= 0 ? F(h.responseTime) : "null")}, ");
                 sb.Append($"\"wrongAnswers\": {h.wrongAnswers}, \"resolved\": {B(h.solved)}, \"criticalError\": {B(h.critical)}}}");
                 sb.Append(i < records.Count - 1 ? ",\n" : "\n");

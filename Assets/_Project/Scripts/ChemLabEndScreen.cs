@@ -126,13 +126,13 @@ namespace ChemLab
                 var o = h.q.Option(h.selected);
                 string choice = o != null ? L10n.LowerFirst(o.text).TrimEnd('.') : h.selected;
                 issues.Add((true, $"{h.data.id} — {h.data.title}",
-                    L10n.T("end.issueCritical", h.selected, choice, h.CriticalReason)));
+                    L10n.T("end.issueCritical", h.Shown(h.selected), choice, h.CriticalReason)));
             }
             foreach (var h in recs.Where(x => !x.detected))
                 issues.Add((h.data.mandatoryCritical, $"{h.data.id} — {h.data.title}", h.data.missedFeedback ?? L10n.T("end.missedDefault")));
             foreach (var h in recs.Where(x => x.detected && !x.critical && x.isCorrect != true))
                 issues.Add((h.data.mandatoryCritical, $"{h.data.id} — {h.data.title}",
-                    h.selected == null ? L10n.T("end.noAnswer") : L10n.T("end.issueWrong", h.selected, h.q.correct, h.Explanation)));
+                    h.selected == null ? L10n.T("end.noAnswer") : L10n.T("end.issueWrong", h.Shown(h.selected), h.Shown(h.q.correct), h.Explanation)));
 
             // Issue list: each block is measured so short and long texts stack without gaps or overlap.
             float boxTop = -H / 2f + 380f;           // top of the final decision box (room for 4-5 lines in longer languages)
@@ -225,10 +225,10 @@ namespace ChemLab
             foreach (var h in recs)
             {
                 var ok = h.q.Option(h.q.correct);
-                string mine = h.selected == null ? L10n.T(h.detected ? "end.notAnswered" : "end.missed") : h.selected == h.q.correct ? L10n.T("end.correct") : L10n.T("end.youChose", h.selected);
+                string mine = h.selected == null ? L10n.T(h.detected ? "end.notAnswered" : "end.missed") : h.selected == h.q.correct ? L10n.T("end.correct") : L10n.T("end.youChose", h.Shown(h.selected));
                 string col = h.selected == h.q.correct ? K.Hex(K.Ok) : h.selected == null ? K.Hex(K.TextDim) : K.Hex(K.Bad);
                 sb.Append($"<b>{h.data.id} {h.data.title}</b>  <color={col}>({mine})</color>\n");
-                sb.Append($"<size=85%><color={K.Hex(K.Accent)}>{h.q.correct}. {ok?.text}</color>\n<color={K.Hex(K.TextDim)}>{h.Explanation}</color></size>\n\n");
+                sb.Append($"<size=85%><color={K.Hex(K.Accent)}>{h.Shown(h.q.correct)}. {ok?.text}</color>\n<color={K.Hex(K.TextDim)}>{h.Explanation}</color></size>\n\n");
             }
             var body = K.Label(t, "Body", sb.ToString(), new Vector2(0, 0), new Vector2(920, 1260), 22, K.Text, TextAlignmentOptions.TopLeft);
             body.overflowMode = TextOverflowModes.Truncate;
