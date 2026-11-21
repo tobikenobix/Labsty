@@ -10,8 +10,9 @@ using K = ChemLab.ChemLabUIKit;
 namespace ChemLab
 {
     /// <summary>
-    /// Scene 3: the assessment report card (a kit sign plate with three tabs: result, details, explanations) and a
-    /// static "Basel Leaderboard" mockup. Reads the run stored in ChemLabRun (JSON/CSV export already written).
+    /// The assessment report card (a kit sign plate with three tabs: result, details, explanations) and a static
+    /// "Basel Leaderboard" mockup. The lobby adds it when a run has just ended (ChemLabRun.ShowResults) and sets the
+    /// anchors; it reads the run stored in ChemLabRun (JSON/CSV export already written).
     /// </summary>
     public class ChemLabEndScreen : MonoBehaviour
     {
@@ -30,10 +31,11 @@ namespace ChemLab
             ("N. Brunner", "St. Johann", 72, "07:00"),
         };
 
-        void Awake()
+        // Start, not Awake: the lobby sets the anchors right after AddComponent
+        void Start()
         {
-            if (ChemLabRun.LastResult == null) BuildNoRun();
-            else { BuildReportCard(); BuildLeaderboard(); }
+            BuildReportCard();
+            BuildLeaderboard();
         }
 
         // No A binding here: A submits answers in the lab, so a reflex press would throw away the report. Ray-click the button.
@@ -387,16 +389,7 @@ namespace ChemLab
             explNext.interactable = explPage < explPages.Count - 1;
         }
 
-        // ================= no run / leaderboard =================
-
-        void BuildNoRun()
-        {
-            results = K.Panel(transform, "Panel_NoRun", new Vector2(900, 420));
-            K.Label(results.transform, "Title", L10n.T("end.noRunTitle"), new Vector2(0, 120), new Vector2(800, 70), 48, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
-            K.Label(results.transform, "Body", L10n.T("end.noRunBody"), new Vector2(0, 20), new Vector2(800, 90), 28, K.TextDim, TextAlignmentOptions.Center);
-            K.Button(results.transform, "Lobby", L10n.T("end.goLobby"), new Vector2(0, -120), new Vector2(420, 84), K.Style.Primary, Lobby);
-            if (resultsAnchor != null) results.transform.SetPositionAndRotation(resultsAnchor.position, resultsAnchor.rotation);
-        }
+        // ================= leaderboard =================
 
         void BuildLeaderboard()
         {

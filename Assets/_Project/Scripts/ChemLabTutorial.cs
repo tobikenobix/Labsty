@@ -12,7 +12,7 @@ namespace ChemLab
     /// The practice room between the lobby and the lab. Seven steps, in a fixed order, each rehearsing something the lab
     /// asks for: teleport, turn, a safe object (false clicks), a hazard question, a dangerous answer on purpose, the task
     /// panel (X), and Finish on the task panel, which here opens the lab. One instruction card docks at each station and
-    /// the next floor ring glows. "Skip to the lab" works at any time. Nothing here is scored or exported.
+    /// the next floor ring glows; the "How the inspection works" board stands beside the first card. "Skip to the lab" works at any time. Nothing here is scored or exported.
     /// </summary>
     public class ChemLabTutorial : MonoBehaviour
     {
@@ -21,6 +21,8 @@ namespace ChemLab
         public Transform[] stepAnchors;
         [Tooltip("Floor rings: 1 = first teleport, 2 = spill bench, 3 = lab door.")]
         public ChemLabTeleportNode[] rings;
+        [Tooltip("The \"How the inspection works\" board beside the first card.")]
+        public Transform teachingAnchor;
 
         const int Teleport = 0, Turn = 1, Decoy = 2, Acid = 3, Spill = 4, Panel = 5, Finish = 6, StepCount = 7;
         int cur;
@@ -55,6 +57,7 @@ namespace ChemLab
             acidQ = Question("acid");
             spillQ = Question("spill");
             BuildCard();
+            BuildTeaching();
             BuildTablet();
             BuildToast();
             BuildPrompt();
@@ -320,6 +323,42 @@ namespace ChemLab
             K.FitOneLine(K.ButtonLabel(skip), 20);
             enterBtn = K.Button(t, "Enter", L10n.T("tut.enter"), new Vector2(215, -190), new Vector2(390, 80), K.Style.Primary, ShowPrompt, 28);
             K.FitOneLine(K.ButtonLabel(enterBtn), 20);
+        }
+
+        /// <summary>"How the inspection works": one row per rule, each led by the sign it refers to in the lab.</summary>
+        void BuildTeaching()
+        {
+            var size = new Vector2(780, 960);
+            var teaching = K.Panel(transform, "Panel_Teaching", size, 0.0012f, blocksRays: false);   // ~0.92 deg body-text x-height at 1.1 m
+            var t = teaching.transform;
+            K.FitOneLine(K.Label(t, "Title", L10n.T("tch.title"), new Vector2(0, 410), new Vector2(700, 60), 42, K.Text, TextAlignmentOptions.Left, FontStyles.Bold), 30);
+            K.Img(t, "RuleTop", new Vector2(0, 362), new Vector2(700, 2), K.Rule).raycastTarget = false;
+
+            var icon = new Vector2(-305, 0);
+            RectTransform Row(int i, string key)
+            {
+                float y = 300 - i * 118;
+                var row = new GameObject("Row" + i, typeof(RectTransform)).GetComponent<RectTransform>();
+                row.SetParent(t, false);
+                row.anchoredPosition = new Vector2(0, y);
+                row.sizeDelta = new Vector2(700, 110);
+                var l = K.Label(row, "Text", L10n.T(key), new Vector2(50, 0), new Vector2(580, 108), 28, K.Text, TextAlignmentOptions.MidlineLeft);
+                l.enableAutoSizing = true; l.fontSizeMin = 22; l.fontSizeMax = 28;
+                K.Img(t, "Rule" + i, new Vector2(0, y - 59), new Vector2(700, 2), K.Rule).raycastTarget = false;
+                return row;
+            }
+            K.WarningSign(Row(0, "tch.find"), icon, 76f);
+            K.KeyDisc(Row(1, "tch.answer"), "A", icon, 66f, K.Accent);
+            K.SignDisc(Row(2, "tch.right"), "Icon", icon, 70f, K.Ok, check: true);
+            K.SignDisc(Row(3, "tch.wrong"), "Icon", icon, 70f, K.Bad, check: false, cross: true);
+            K.Chip(Row(4, "tch.critical"), "Icon", L10n.T("q.dangerous"), icon + new Vector2(2, 0), new Vector2(100, 40), K.Bad, Color.white);   // -353..-253: inside the plate margin, left of the text column (-240)
+            var o = Row(5, "tch.outline");
+            var sample = K.Img(o, "Icon", icon, new Vector2(64, 64), K.SurfaceHi, K.Rounded);
+            sample.pixelsPerUnitMultiplier = 2f;
+            K.Outline(sample.transform, new Vector2(64, 64), K.Accent, 1f);
+            var score = K.Label(t, "Score", L10n.T("tch.score"), new Vector2(0, -415), new Vector2(700, 80), 26, K.TextDim, TextAlignmentOptions.TopLeft);
+            score.enableAutoSizing = true; score.fontSizeMin = 22; score.fontSizeMax = 26;
+            if (teachingAnchor != null) teaching.transform.SetPositionAndRotation(teachingAnchor.position, teachingAnchor.rotation);
         }
 
         /// <summary>Task panel on the left controller, laid out as the lab's (demo timer, one row per practice hazard) plus the current step.</summary>

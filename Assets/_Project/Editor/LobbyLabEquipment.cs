@@ -11,7 +11,8 @@ using UnityEngine.SceneManagement;
 /// flask (Lab.fbx glassware), first-aid cabinet, coffee cup, coat stand + coat, fire extinguisher, the room model's
 /// emergency shower / eyewash and door, and the room's floor, wall and ceiling materials.
 /// Idempotent: anything already swapped is left alone. Run from the menu on the open lobby, or let
-/// ChemLabSceneBuilder call <see cref="Apply"/> when it rebuilds the lobby.
+/// ChemLabSceneBuilder call <see cref="Apply"/> when it rebuilds the lobby. The practice room uses the same parts
+/// (<see cref="ApplyTutorial"/>, <see cref="LabBench"/>, <see cref="LabFlask"/>).
 /// </summary>
 public static class LobbyLabEquipment
 {
@@ -55,14 +56,181 @@ public static class LobbyLabEquipment
         if (Extinguisher(decor.Find("FireExtinguisher"), scene, undo)) n++;
 
         // fixtures and surfaces taken from the lab's room model (Lab Environment.prefab)
-        var room = AssetDatabase.LoadAssetAtPath<GameObject>(RoomPrefab);
-        if (room == null) { Debug.LogError("[ChemLab] Missing " + RoomPrefab); return n; }
-        var lab = new RoomInfo(room);
-        if (!lab.ok) { Debug.LogError("[ChemLab] No floor (Plane018) in " + RoomPrefab); return n; }
+        var lab = Lab();
+        if (lab == null) return n;
         if (Shower(decor.Find("SafetyShower"), lab, undo)) n++;
         if (Door(decor.Find("LabDoor"), lab, undo)) n++;
-        n += Surfaces(env, lab);
+        n += Surfaces(env, lab, new Vector2(2f * LobbyHalf, 2f * LobbyHalf), "LobbyRoom");
         return n;
+    }
+
+    // ===================================================================== practice room (ChemLabSceneBuilder.BuildTutorial)
+
+    /// <summary>
+    /// Practice room box (SimpleRoom of <paramref name="size"/>): the lab's wall and ceiling materials, the navy vinyl
+    /// the lab scene lays on its floor, and the lab door.
+    /// </summary>
+    public static void ApplyTutorial(Transform env, Vector2 size)
+    {
+        var lab = Lab();
+        if (lab == null) return;
+        Surfaces(env, lab, size, "TutorialRoom", Load<Material>("Assets/_Project/LabEnvironment/Materials/Lab_Seat_NavyVinyl.mat"));
+        Door(env.Find("LabDoor"), lab, false, size.y / 2f);
+    }
+
+    const string LabScene = "Assets/_Project/Scenes/ChemistryLab.unity";
+
+    /// <summary>
+    /// A piece of the lab's centre island (white worktop over grey cabinets, as the lab scene shows it: room model
+    /// Object1111191261 and its handle rail Cylinder094 with the scene's materials): the longest stretch with no post
+    /// (rising above 1.05 m) and no sink (dipping into the worktop), 0.12 m clear of both. It stands behind
+    /// <paramref name="at"/>, long side against that wall (its back is out of reach anyway), white end panels on the cuts.
+    /// </summary>
+    public static Transform LabBench(Transform at, Vector3 inward, float wallHalf)
+    {
+        // the lab scene holds the materials it sets on the room model (the island's white); open it beside this one
+        var open = SceneManager.GetSceneByPath(LabScene);
+        var labScene = open.isLoaded ? open : EditorSceneManager.OpenScene(LabScene, OpenSceneMode.Additive);
+        try
+        {
+            var all = labScene.GetRootGameObjects().Where(g => g.name == "Environment").SelectMany(g => g.GetComponentsInChildren<Renderer>()).ToList();
+            var island = all.FirstOrDefault(r => r.name.StartsWith("Object1111191261"));
+            if (island == null) { Debug.LogError("[ChemLab] Lab island Object1111191261 not found in " + LabScene); return null; }
+            var parts = all.Where(r => r == island || r.name.StartsWith("Cylinder094")).ToList();
+
+            // the lab is aligned to the world there: the island runs along Z, floor at y = 0
+            float midX = island.bounds.center.x;
+            var stops = new List<float> { island.bounds.min.z, island.bounds.max.z };
+            foreach (var v in island.GetComponent<MeshFilter>().sharedMesh.vertices)
+            {
+                var w = island.transform.TransformPoint(v);
+                if (w.y > 1.05f || (w.y > 0.3f && w.y < 0.75f && Mathf.Abs(w.x - midX) < 0.6f)) stops.Add(w.z);
+            }
+            stops.Sort();
+            int best = 0;
+            for (int i = 1; i + 1 < stops.Count; i++) if (stops[i + 1] - stops[i] > stops[best + 1] - stops[best]) best = i;
+            float lo = stops[best] + 0.12f, hi = stops[best + 1] - 0.12f;
+
+            var bench = new GameObject("LabBench").transform;
+            bench.SetParent(at, false);
+            var rot = Quaternion.LookRotation(Vector3.Cross(inward, Vector3.up));   // the island's long axis (Z) runs along the wall
+            var anchor = new Vector3(midX, 0f, (lo + hi) / 2f);
+            foreach (var r in parts)
+            {
+                var t = r.transform;
+                var go = new GameObject(t.name);
+                go.transform.SetParent(bench, false);
+                go.transform.localPosition = rot * (t.position - anchor);
+                go.transform.localRotation = rot * t.rotation;
+                go.transform.localScale = t.lossyScale;
+                go.AddComponent<MeshFilter>().sharedMesh = Clip(r.GetComponent<MeshFilter>().sharedMesh, p => t.TransformPoint(p).z, lo, hi);
+                go.AddComponent<MeshRenderer>().sharedMaterials = r.sharedMaterials;
+            }
+            // on the floor below at, back against the wall
+            bench.position = new Vector3(at.position.x, 0f, at.position.z);
+            bench.rotation = Quaternion.identity;
+            var b = RendererBounds(bench);
+            bench.position += inward * (-wallHalf - (Vector3.Dot(b.center, inward) - Extent(b, inward)));
+            b = RendererBounds(bench);
+            var fwd = rot * Vector3.forward;   // the long axis, where the cut ends are
+            var side = new Vector3(Mathf.Abs(fwd.x), 0f, Mathf.Abs(fwd.z));
+            foreach (float dir in new[] { -1f, 1f })
+            {
+                var cap = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                Object.DestroyImmediate(cap.GetComponent<Collider>());
+                cap.name = "EndPanel";
+                cap.transform.SetParent(bench, false);
+                cap.transform.position = b.center + side * dir * (Vector3.Dot(b.extents, side) - 0.01f);
+                cap.transform.localScale = Vector3.Scale(b.size, Vector3.one - side) + side * 0.02f;
+                cap.GetComponent<Renderer>().sharedMaterial = island.sharedMaterials[0];
+            }
+            foreach (var c in bench.GetComponentsInChildren<Transform>()) GameObjectUtility.SetStaticEditorFlags(c.gameObject, StaticEditorFlags.BatchingStatic);
+            Debug.Log($"[ChemLab] LabBench: {hi - lo:0.00} m of the lab island (z {lo:0.00}..{hi:0.00}).");
+            return bench;
+        }
+        finally
+        {
+            if (!open.isLoaded) EditorSceneManager.CloseScene(labScene, true);
+        }
+    }
+
+    struct V { public Vector3 p, n; public Vector2 uv; }
+
+    /// <summary>Copy of the mesh with every triangle cut to along(vertex) in [lo, hi] (along maps a mesh vertex to a length).</summary>
+    static Mesh Clip(Mesh src, System.Func<Vector3, float> along, float lo, float hi)
+    {
+        var vs = src.vertices; var ns = src.normals; var uvs = src.uv;
+        bool hasN = ns.Length == vs.Length, hasUv = uvs.Length == vs.Length;
+        var P = new List<Vector3>(); var N = new List<Vector3>(); var U = new List<Vector2>();
+        var subs = new List<int>[src.subMeshCount];
+        V Lerp(V a, V b, float k) => new V { p = Vector3.Lerp(a.p, b.p, k), n = Vector3.Lerp(a.n, b.n, k), uv = Vector2.Lerp(a.uv, b.uv, k) };
+        List<V> Cut(List<V> poly, System.Func<V, float> d)   // Sutherland-Hodgman against one plane, d >= 0 is kept
+        {
+            var o = new List<V>();
+            for (int i = 0; i < poly.Count; i++)
+            {
+                V a = poly[i], b = poly[(i + 1) % poly.Count];
+                float da = d(a), db = d(b);
+                if (da >= 0f) o.Add(a);
+                if ((da >= 0f) != (db >= 0f)) o.Add(Lerp(a, b, da / (da - db)));
+            }
+            return o;
+        }
+        for (int s = 0; s < src.subMeshCount; s++)
+        {
+            subs[s] = new List<int>();
+            var tri = src.GetTriangles(s);
+            for (int i = 0; i + 2 < tri.Length; i += 3)
+            {
+                var poly = new List<V>(3);
+                for (int k = 0; k < 3; k++)
+                {
+                    int j = tri[i + k];
+                    poly.Add(new V { p = vs[j], n = hasN ? ns[j] : Vector3.zero, uv = hasUv ? uvs[j] : Vector2.zero });
+                }
+                poly = Cut(poly, v => along(v.p) - lo);
+                if (poly.Count >= 3) poly = Cut(poly, v => hi - along(v.p));
+                for (int k = 1; k + 1 < poly.Count; k++)
+                    foreach (var v in new[] { poly[0], poly[k], poly[k + 1] })
+                    {
+                        subs[s].Add(P.Count);
+                        P.Add(v.p); N.Add(v.n.normalized); U.Add(v.uv);
+                    }
+            }
+        }
+        var m = new Mesh { name = src.name + "_cut" };
+        if (P.Count > 65000) m.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+        m.SetVertices(P);
+        if (hasUv) m.SetUVs(0, U);
+        m.subMeshCount = subs.Length;
+        for (int s = 0; s < subs.Length; s++) m.SetTriangles(subs[s], s);
+        if (hasN) m.SetNormals(N); else m.RecalculateNormals();
+        if (hasUv) m.RecalculateTangents();
+        m.RecalculateBounds();
+        return m;
+    }
+
+    /// <summary>
+    /// The lab's glass flask (the mesh on its MidShelfGlassware shelf, same size), tipped <paramref name="tip"/> degrees
+    /// about the parent's Z, its lowest point resting at <paramref name="localPos"/>.
+    /// </summary>
+    public static Transform LabFlask(string name, Transform parent, Vector3 localPos, float tip)
+    {
+        var f = MeshObject(name, parent, MeshById(LabFbx, FlaskMeshId), Load<Material>(MatDir + "Lab_Glass.mat"), false);
+        f.localRotation = Quaternion.Euler(0, 0, tip) * new Quaternion(-0.67287f, -0.21736157f, -0.21736224f, 0.6728697f);   // upright as in Flask()
+        f.localScale = Vector3.one * 1.64107f;
+        SitOn(f, parent);
+        f.localPosition += localPos;
+        return f;
+    }
+
+    static RoomInfo Lab()
+    {
+        var room = AssetDatabase.LoadAssetAtPath<GameObject>(RoomPrefab);
+        if (room == null) { Debug.LogError("[ChemLab] Missing " + RoomPrefab); return null; }
+        var lab = new RoomInfo(room);
+        if (!lab.ok) { Debug.LogError("[ChemLab] No floor (Plane018) in " + RoomPrefab); return null; }
+        return lab;
     }
 
     // ===================================================================== room model fixtures + surfaces
@@ -82,13 +250,13 @@ public static class LobbyLabEquipment
     }
 
     // primitive door -> the lab's door model; the LAB 404 sign moves above it
-    static bool Door(Transform g, RoomInfo lab, bool undo)
+    static bool Door(Transform g, RoomInfo lab, bool undo, float wallHalf = LobbyHalf)
     {
         if (g == null || g.Find("Leaf") == null) return false;
         var parts = lab.Fixture("_Door_");
         if (parts == null) return false;
         Remove(g, undo, "PostL", "PostR", "Lintel", "Leaf", "Window", "PushBar");
-        var door = Place(lab, parts, "Door", g, Vector3.back, undo);      // north wall, room is -Z
+        var door = Place(lab, parts, "Door", g, Vector3.back, undo, wallHalf);      // north wall, room is -Z
         float top = RendererBounds(door).max.y;
         foreach (var n in new[] { "Sign", "SignText" })
         {
@@ -101,9 +269,9 @@ public static class LobbyLabEquipment
     /// <summary>
     /// Copies the lab parts into a new group under <paramref name="parent"/>, turned so the side that faced into the
     /// lab faces into the lobby (<paramref name="inward"/>), standing on the floor at the same height and with the
-    /// same gap to the wall as in the lab (lobby walls are square, inner faces LobbyHalf from the centre).
+    /// same gap to the wall as in the lab (the wall's inner face is <paramref name="wallHalf"/> from the room centre).
     /// </summary>
-    static Transform Place(RoomInfo lab, List<Renderer> parts, string name, Transform parent, Vector3 inward, bool undo)
+    static Transform Place(RoomInfo lab, List<Renderer> parts, string name, Transform parent, Vector3 inward, bool undo, float wallHalf = LobbyHalf)
     {
         var b = Union(parts);
         var labIn = lab.InwardNormal(b.center, out float gap, b);
@@ -128,16 +296,16 @@ public static class LobbyLabEquipment
         holder.rotation = Quaternion.identity;
         var lb = RendererBounds(holder);
         float back = Vector3.Dot(lb.center, inward) - Extent(lb, inward);
-        float want = -LobbyHalf + Mathf.Clamp(gap, 0f, 0.3f);   // inner wall face, measured along the inward axis
+        float want = -wallHalf + Mathf.Clamp(gap, 0f, 0.3f);   // inner wall face, measured along the inward axis
         holder.position += inward * (want - back);
         foreach (Transform c in holder.GetComponentsInChildren<Transform>()) GameObjectUtility.SetStaticEditorFlags(c.gameObject, StaticEditorFlags.BatchingStatic);
         Created(holder.gameObject, undo);
-        Debug.Log($"[ChemLab] Lobby: {name} from the lab room model ({parts.Count} parts, {lb.size.x:0.00} x {lb.size.y:0.00} x {lb.size.z:0.00} m).");
+        Debug.Log($"[ChemLab] {name} from the lab room model ({parts.Count} parts, {lb.size.x:0.00} x {lb.size.y:0.00} x {lb.size.z:0.00} m).");
         return holder;
     }
 
     // floor, walls and ceiling get the lab's materials, re-tiled so a texture repeat is the same size in metres
-    static int Surfaces(Transform env, RoomInfo lab)
+    static int Surfaces(Transform env, RoomInfo lab, Vector2 size, string prefix, Material floorAsIs = null)
     {
         int n = 0;
         float floorRepeat = 1f, ceilRepeat = 1f, wallRepeat = 1f;
@@ -147,10 +315,12 @@ public static class LobbyLabEquipment
         var wallR = lab.RendererWithTexture("_Wall_");
         if (wallR != null) wall = lab.SurfaceMaterial(wallR, out wallRepeat);
 
-        float w = 2f * LobbyHalf, h = 3f;
-        n += Assign(env, new[] { "Floor" }, floor, "LobbyRoom_Floor", new Vector2(w, w) / floorRepeat);
-        n += Assign(env, new[] { "Ceiling" }, ceiling, "LobbyRoom_Ceiling", new Vector2(w, w) / ceilRepeat);
-        n += Assign(env, new[] { "Wall_N", "Wall_S", "Wall_E", "Wall_W" }, wall, "LobbyRoom_Wall", new Vector2(w, h) / wallRepeat);
+        // ponytail: one wall material for all four walls, tiled for their mean length (a 7 x 9 m room stretches the paint ~12%)
+        float w = (size.x + size.y) / 2f, h = 3f;
+        if (floorAsIs != null) { env.Find("Floor").GetComponent<Renderer>().sharedMaterial = floorAsIs; n++; }   // a plain colour: no tiling
+        else n += Assign(env, new[] { "Floor" }, floor, prefix + "_Floor", size / floorRepeat);
+        n += Assign(env, new[] { "Ceiling" }, ceiling, prefix + "_Ceiling", size / ceilRepeat);
+        n += Assign(env, new[] { "Wall_N", "Wall_S", "Wall_E", "Wall_W" }, wall, prefix + "_Wall", new Vector2(w, h) / wallRepeat);
         return n;
     }
 
@@ -199,7 +369,8 @@ public static class LobbyLabEquipment
             var world = axes.Select((a, i) => t.TransformVector(a * mb.size[i])).ToArray();
             var order = Enumerable.Range(0, 3).OrderBy(i => world[i].magnitude).ToArray();   // thin, short, long
             center = t.TransformPoint(mb.center);
-            up = world[order[0]].normalized; if (up.y < 0) up = -up;
+            // a flat floor mesh has no thickness, so its thin axis maps to a zero vector: take the normal of the floor instead
+            up = Vector3.Cross(world[order[2]], world[order[1]]).normalized; if (up.y < 0) up = -up;
             across = world[order[1]].normalized; halfAcross = world[order[1]].magnitude / 2f;
             along = world[order[2]].normalized; halfAlong = world[order[2]].magnitude / 2f;
             ok = true;

@@ -8,13 +8,12 @@ using UnityEngine;
 
 namespace ChemLab
 {
-    /// <summary>Data that travels between the scenes (Lobby -> Tutorial -> Lab -> End) and the run export.</summary>
+    /// <summary>Data that travels between the scenes (Lobby -> Tutorial -> Lab -> Lobby with the results) and the run export.</summary>
     public static class ChemLabRun
     {
         public const string LobbyScene = "ChemLab_Lobby";
         public const string TutorialScene = "ChemLab_Tutorial";
         public const string LabScene = "ChemistryLab";
-        public const string EndScene = "ChemLab_End";
 
         public static string Language => L10n.Code;   // the selected locale is the single source
         public static string StudentId = "";   // typed on the lobby keypad; "no_id" when the lab scene is started directly
@@ -31,6 +30,8 @@ namespace ChemLab
         }
 
         // filled by the lab when the run ends, read by the end screen
+        /// <summary>Set by the lab as it hands over to the lobby: the lobby shows this run's report instead of the start panel.</summary>
+        public static bool ShowResults;
         public static ChemLabResult LastResult;
         public static List<HazardRecord> LastRecords;
         public static LabConfig LastConfig;
