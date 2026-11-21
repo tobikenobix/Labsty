@@ -67,7 +67,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488393
-    m_Localized: "Behoben <b>{0}/{1}</b>     <color={2}>X ausblenden  \xB7  Y beenden</color>"
+    m_Localized: "Behoben <b>{0}/{1}</b>\n<color={2}>X ausblenden  \xB7  Y Hinweise</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488394
@@ -84,15 +84,15 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4457488397
     m_Localized: "<b>WASD</b> gehen\n<b>Rechte Maustaste halten</b> umsehen\n<b>Linksklick</b>
-      ausw\xE4hlen\n<b>Enter</b> absenden   <b>Esc</b> schlie\xDFen\n<b>H</b> Steuerung  
-      <b>F</b> beenden"
+      ausw\xE4hlen\n<b>Enter</b> absenden   <b>Esc</b> schlie\xDFen\n<b>H</b> Aufgabenanzeige
+      (mit Beenden)"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488398
     m_Localized: "<b><color={0}>Trigger</color></b>  ausw\xE4hlen / pr\xFCfen\n<b>Stick
       nach vorn</b>  zielen, loslassen zum Teleportieren\n<b>Stick links/rechts</b> 
       45\xB0 drehen    <b>zur\xFCck</b>  umdrehen\n<b>A</b>  absenden    <b>B</b> 
-      schlie\xDFen\n<b>X</b>  diese Karte    <b>Y / Menu</b>  beenden"
+      schlie\xDFen\n<b>X</b>  Aufgabenanzeige    <b>Y</b>  Hinweise"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488399
@@ -152,7 +152,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488418
-    m_Localized: "Entwickelt von Studierenden der TUM und ETH"
+    m_Localized: Entwickelt von Studierenden der TUM und ETH
     m_Metadata:
       m_Items: []
   - m_Id: 4457488419
@@ -292,11 +292,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488456
-    m_Localized: "Sie haben {0} gew\xE4hlt: {1}. Dies ist eine kritisch unsichere Wahl, denn {2}"
+    m_Localized: "Sie haben {0} gew\xE4hlt: {1}. Dies ist eine kritisch unsichere
+      Wahl, denn {2}"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488457
-    m_Localized: "Sie haben diese Gefahr nicht gefunden."
+    m_Localized: Sie haben diese Gefahr nicht gefunden.
     m_Metadata:
       m_Items: []
   - m_Id: 4457488458
@@ -344,15 +345,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488469
-    m_Localized: "Sie haben {0}/100 Punkte erreicht, aber eine sicherheitskritische Anforderung nicht erf\xFCllt. Arbeiten Sie die Verfahren zu {1} erneut durch und wiederholen Sie die Bewertung."
+    m_Localized: "Sie haben {0}/100 Punkte erreicht, aber eine sicherheitskritische
+      Anforderung nicht erf\xFCllt. Arbeiten Sie die Verfahren zu {1} erneut durch
+      und wiederholen Sie die Bewertung."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488470
-    m_Localized: "Mit {0}/100 haben Sie die Mindestanforderungen nicht erf\xFCllt. Befassen Sie sich erneut mit {1} und wiederholen Sie die Bewertung."
+    m_Localized: "Mit {0}/100 haben Sie die Mindestanforderungen nicht erf\xFCllt.
+      Befassen Sie sich erneut mit {1} und wiederholen Sie die Bewertung."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488471
-    m_Localized: "Sie haben mit {0}/100 und ohne sicherheitskritische Fehler Ihre Kompetenz nachgewiesen."
+    m_Localized: Sie haben mit {0}/100 und ohne sicherheitskritische Fehler Ihre
+      Kompetenz nachgewiesen.
     m_Metadata:
       m_Items: []
   - m_Id: 4457488472
@@ -380,7 +385,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488478
-    m_Localized: "nicht gefunden"
+    m_Localized: nicht gefunden
     m_Metadata:
       m_Items: []
   - m_Id: 4457488479
@@ -533,7 +538,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232969
-    m_Localized: "<b>Drehen</b> Sie sich zum Labortisch"
+    m_Localized: <b>Drehen</b> Sie sich zum Labortisch
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232970
@@ -554,23 +559,28 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232974
-    m_Localized: "Stick zweimal kurz nach rechts (2 \xD7 45\xB0), um den Tisch rechts von Ihnen anzusehen. Nach hinten ziehen: umdrehen."
+    m_Localized: "Stick zweimal kurz nach rechts (2 \xD7 45\xB0), um den Tisch rechts
+      von Ihnen anzusehen. Nach hinten ziehen: umdrehen."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232975
-    m_Localized: "Zeigen Sie auf die geschlossene, beschriftete Flasche und ziehen Sie den Trigger. Nicht alles im Labor ist eine Gefahr."
+    m_Localized: Zeigen Sie auf die geschlossene, beschriftete Flasche und ziehen
+      Sie den Trigger. Nicht alles im Labor ist eine Gefahr.
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232976
-    m_Localized: "Pr\xFCfen Sie die offene Flasche daneben, w\xE4hlen Sie mit dem Trigger eine Antwort und dr\xFCcken Sie A. Richtig: gr\xFCner Haken."
+    m_Localized: "Pr\xFCfen Sie die offene Flasche daneben, w\xE4hlen Sie mit dem
+      Trigger eine Antwort und dr\xFCcken Sie A. Richtig: gr\xFCner Haken."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232977
-    m_Localized: "Teleportieren Sie sich zum n\xE4chsten Ring und pr\xFCfen Sie die Pf\xFCtze. W\xE4hlen Sie absichtlich \u201EMit der blo\xDFen Hand aufwischen.\u201C, dann die sichere Antwort."
+    m_Localized: "Teleportieren Sie sich zum n\xE4chsten Ring und pr\xFCfen Sie die
+      Pf\xFCtze. W\xE4hlen Sie absichtlich \u201EMit der blo\xDFen Hand aufwischen.\u201C,
+      dann die sichere Antwort."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232982
-    m_Localized: "<color={0}>X ausblenden  \xB7  Y beenden</color>"
+    m_Localized: "<color={0}>X ausblenden  \xB7  Y Hinweise</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232984
@@ -621,8 +631,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10469640233000
-    m_Localized: 'Punkte: 3 pro gefundener Gefahr, 7 pro richtiger erster Antwort.
-      Mit Y vorzeitig beenden.'
+    m_Localized: "Punkte: 3 pro gefundener Gefahr, 7 pro richtiger erster Antwort.
+      Vorzeitig beenden: \u201EBeenden\u201C in der Aufgabenanzeige."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640233001
@@ -723,7 +733,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000004
-    m_Localized: "Teleportieren Sie sich zur T\xFCr und dr\xFCcken Sie Y oder Men\xFC: So beenden Sie im Labor vorzeitig."
+    m_Localized: "Teleportieren Sie sich zur T\xFCr, zielen Sie mit dem anderen Controller
+      auf \u201EBeenden\u201C in der Aufgabenanzeige und dr\xFCcken Sie den Trigger:
+      So beenden Sie im Labor vorzeitig."
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000005
@@ -731,23 +743,24 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000006
-    m_Localized: "Direkt ins Labor"
+    m_Localized: Direkt ins Labor
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000007
-    m_Localized: "Ins Labor"
+    m_Localized: Ins Labor
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000008
-    m_Localized: "Zuerst: {0}"
+    m_Localized: 'Zuerst: {0}'
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000009
-    m_Localized: "verbleibend (Demo)"
+    m_Localized: verbleibend (Demo)
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000010
-    m_Localized: "Sieht gut aus: geschlossen und beschriftet. Im Labor kostet ab dem 4. Fehlalarm jeder 1 Punkt."
+    m_Localized: 'Sieht gut aus: geschlossen und beschriftet. Im Labor kostet ab
+      dem 4. Fehlalarm jeder 1 Punkt.'
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000011
@@ -759,7 +772,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000013
-    m_Localized: "Eine Flasche Salzs\xE4ure steht offen auf dem Labortisch. Was ist die sicherste Ma\xDFnahme?"
+    m_Localized: "Eine Flasche Salzs\xE4ure steht offen auf dem Labortisch. Was ist
+      die sicherste Ma\xDFnahme?"
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000014
@@ -771,7 +785,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000016
-    m_Localized: "Offen lassen: Vielleicht braucht sie noch jemand."
+    m_Localized: 'Offen lassen: Vielleicht braucht sie noch jemand.'
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000017
@@ -787,7 +801,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000020
-    m_Localized: "Eine klare Fl\xFCssigkeit ist auf dem Tisch versch\xFCttet. Sie wissen nicht, was es ist. Was tun Sie?"
+    m_Localized: "Eine klare Fl\xFCssigkeit ist auf dem Tisch versch\xFCttet. Sie
+      wissen nicht, was es ist. Was tun Sie?"
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000021
@@ -795,7 +810,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000022
-    m_Localized: "Andere fernhalten, die Aufsicht informieren und mit Handschuhen das Notfallset verwenden."
+    m_Localized: Andere fernhalten, die Aufsicht informieren und mit Handschuhen
+      das Notfallset verwenden.
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000023
@@ -803,11 +819,13 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000024
-    m_Localized: "Nicht sicher: Eine unbekannte Fl\xFCssigkeit kann die Haut ver\xE4tzen oder reagieren."
+    m_Localized: "Nicht sicher: Eine unbekannte Fl\xFCssigkeit kann die Haut ver\xE4tzen
+      oder reagieren."
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000025
-    m_Localized: "Richtig! W\xE4hlen Sie in diesem Schritt zuerst absichtlich \u201EMit der blo\xDFen Hand aufwischen.\u201C"
+    m_Localized: "Richtig! W\xE4hlen Sie in diesem Schritt zuerst absichtlich \u201EMit
+      der blo\xDFen Hand aufwischen.\u201C"
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000026
@@ -815,7 +833,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000027
-    m_Localized: "Im Labor reicht diese Abfrage Ihre Inspektion ein und beendet den Durchgang. Hier bringt A Sie ins Labor: Dort startet die Zeit."
+    m_Localized: 'Im Labor reicht diese Abfrage Ihre Inspektion ein und beendet den
+      Durchgang. Hier bringt A Sie ins Labor: Dort startet die Zeit.'
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000028
@@ -823,15 +842,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000101
-    m_Localized: "Nochmals ansehen ({0})"
+    m_Localized: Nochmals ansehen ({0})
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000102
-    m_Localized: "Richtig ({0})"
+    m_Localized: Richtig ({0})
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000103
-    m_Localized: "Richtig: {0}"
+    m_Localized: 'Richtig: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 225540404404224
+    m_Localized: "Beenden\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 225540488290304
+    m_Localized: Hinweise
     m_Metadata:
       m_Items: []
   references:

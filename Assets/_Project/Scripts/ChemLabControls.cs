@@ -16,13 +16,14 @@ namespace ChemLab
     ///   Grip                           also inspects the object you point at
     ///   A (right)                      confirm / submit answer
     ///   B (right)                      close panel
-    ///   X (left)                       show / hide the controls card
-    ///   Y or Menu (left)               finish the lab early
+    ///   X (left)                       show / hide the task panel
+    ///   Y (left)                       show / hide the controller button hints
+    /// Finishing early is the Finish button on the task panel (no shortcut), pressed with the other controller's ray.
     /// When no headset is active (Play in Editor without Link), a keyboard + mouse fallback is enabled.
     /// </summary>
     public class ChemLabControls : MonoBehaviour
     {
-        public static event Action Confirm, Back, ToggleHelp, Finish;
+        public static event Action Confirm, Back, TogglePanel, ToggleHints;
         /// <summary>Set by the active scene UI: when true, trigger presses go to UI buttons only.</summary>
         public static Func<bool> BlockInspect;
         public static bool DesktopMode { get; private set; }
@@ -58,14 +59,12 @@ namespace ChemLab
         {
             leftTrigger = Make("Inspect L", "<XRController>{LeftHand}/{TriggerButton}");
             rightTrigger = Make("Inspect R", "<XRController>{RightHand}/{TriggerButton}");
-            // confirm / back sit on the main hand's face buttons, panel / finish on the other hand (left-handed mode swaps them);
-            // the Menu button exists only on the left controller, so it always finishes
+            // confirm / back sit on the main hand's face buttons, panel / hints on the other hand (left-handed mode swaps them)
             string main = ChemLabRun.LeftHanded ? "{LeftHand}" : "{RightHand}", other = ChemLabRun.LeftHanded ? "{RightHand}" : "{LeftHand}";
             aBtn = Make("Confirm", $"<XRController>{main}/{{PrimaryButton}}", "<Keyboard>/enter", "<Keyboard>/numpadEnter");
             bBtn = Make("Back", $"<XRController>{main}/{{SecondaryButton}}", "<Keyboard>/escape", "<Keyboard>/backspace");
-            xBtn = Make("Help", $"<XRController>{other}/{{PrimaryButton}}", "<Keyboard>/h");
-            yBtn = Make("Finish", $"<XRController>{other}/{{SecondaryButton}}", "<XRController>{LeftHand}/{MenuButton}",
-                        "<XRController>{LeftHand}/menu", "<Keyboard>/f");
+            xBtn = Make("Panel", $"<XRController>{other}/{{PrimaryButton}}", "<Keyboard>/h");
+            yBtn = Make("Hints", $"<XRController>{other}/{{SecondaryButton}}");   // no keyboard key: desktop mode has no hints
         }
 
         IEnumerator Start()
@@ -116,8 +115,8 @@ namespace ChemLab
             if (leftTrigger.WasPressedThisFrame()) TryInspect(InteractorHandedness.Left);
             if (aBtn.WasPressedThisFrame()) Confirm?.Invoke();
             if (bBtn.WasPressedThisFrame()) Back?.Invoke();
-            if (xBtn.WasPressedThisFrame()) ToggleHelp?.Invoke();
-            if (yBtn.WasPressedThisFrame()) Finish?.Invoke();
+            if (xBtn.WasPressedThisFrame()) TogglePanel?.Invoke();
+            if (yBtn.WasPressedThisFrame()) ToggleHints?.Invoke();
             if (DesktopMode) DesktopUpdate();
         }
 

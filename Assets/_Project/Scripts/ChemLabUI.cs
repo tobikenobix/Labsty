@@ -17,24 +17,23 @@ namespace ChemLab
     {
         [Tooltip("Left controller transform; the tablet HUD is attached to it.")]
         public Transform leftHandAnchor;
-        [Tooltip("Optional wall-mounted Finish panel position.")]
-        public Transform finishStationAnchor;
 
         ChemLabSession S => ChemLabSession.Instance;
 
         ChemLabQuestionPanel question;
-        ChemLabControllerLabels labels;
+        // labels on the main hand, and on the hand holding the task panel (only shown while the panel is hidden: they would sit inside it)
+        ChemLabControllerLabels labels, panelHandLabels;
+        bool hints = true, running;
 
         // message panel
         Canvas msg; TextMeshProUGUI msgTitle, msgBody; Button msgBtn1, msgBtn2; System.Action msgAct1, msgAct2;
 
-        // toast / banner / help / tablet / station
+        // toast / banner / help / tablet
         Canvas toast; TextMeshProUGUI toastText; Coroutine toastCo;
         GameObject toastOk, toastInfo, toastBad, toastWarn;
         Canvas help;
         Canvas tablet; TextMeshProUGUI tabTimer, tabFooter; K.Bar tabTimeBar;
         readonly List<(string cat, TextMeshProUGUI count, K.Bar bar)> tabRows = new List<(string, TextMeshProUGUI, K.Bar)>();
-        Canvas station;
 
         public bool QuestionOpen => question != null && question.IsOpen;
         public bool ModalOpen => QuestionOpen || (msg != null && msg.gameObject.activeSelf);
@@ -46,25 +45,25 @@ namespace ChemLab
             BuildToast();
             BuildHelp();
             BuildTablet();
-            BuildStation();
             K.MouseModeEnabled += AttachTablet;
             labels = ChemLabControllerLabels.Create(
                 new ChemLabControllerLabels.Item(false, "Button_B", "B", L10n.T("lbl.close")),
                 new ChemLabControllerLabels.Item(false, "Button_A", "A", L10n.T("lbl.submit")),
                 new ChemLabControllerLabels.Item(false, "ThumbStick", null, L10n.T("lbl.stick")),
                 new ChemLabControllerLabels.Item(false, "Trigger", null, L10n.T("lbl.trigger")),
-                new ChemLabControllerLabels.Item(false, "Bumper", null, L10n.T("lbl.grip")),
-                new ChemLabControllerLabels.Item(true, "Button_B", "Y", L10n.T("lbl.finish")),
+                new ChemLabControllerLabels.Item(false, "Bumper", null, L10n.T("lbl.grip")));
+            panelHandLabels = ChemLabControllerLabels.Create(
+                new ChemLabControllerLabels.Item(true, "Button_B", "Y", L10n.T("lbl.hints")),
                 new ChemLabControllerLabels.Item(true, "Button_A", "X", L10n.T("lbl.panel")),
                 new ChemLabControllerLabels.Item(true, "ThumbStick", null, L10n.T("lbl.stick")),
                 new ChemLabControllerLabels.Item(true, "Trigger", null, L10n.T("lbl.trigger")),
                 new ChemLabControllerLabels.Item(true, "Bumper", null, L10n.T("lbl.grip")));
-            labels.Visible = false;
+            RefreshLabels();
         }
 
         void OnDestroy() => K.MouseModeEnabled -= AttachTablet;
-        void OnEnable() => ChemLabControls.ToggleHelp += ToggleHelp;
-        void OnDisable() => ChemLabControls.ToggleHelp -= ToggleHelp;
+        void OnEnable() { ChemLabControls.TogglePanel += TogglePanel; ChemLabControls.ToggleHints += ToggleHints; }
+        void OnDisable() { ChemLabControls.TogglePanel -= TogglePanel; ChemLabControls.ToggleHints -= ToggleHints; }
 
         int hudSecond = -1;
 
@@ -89,16 +88,16 @@ namespace ChemLab
         public void ShowRunStarted(float seconds)
         {
             if (tabRows.Count == 0) BuildTabletRows();
+            running = true;
             SetTaskPanel(true);
-            station.gameObject.SetActive(true);
             UpdateHud();
             Toast(L10n.T("lab.started", K.Mmss(seconds), S.HazardCount), 3.5f, K.Accent);
         }
 
         public void ShowRunEnded(string title)
         {
+            running = false;
             SetTaskPanel(false);
-            station.gameObject.SetActive(false);
             ShowMessage(title, L10n.T("lab.calculating"), null, null);
         }
 
@@ -151,19 +150,34 @@ namespace ChemLab
             toastCo = StartCoroutine(HideAfter(toast.gameObject, seconds));
         }
 
-        /// <summary>X (H on the keyboard): show / hide the task panel and the controller button labels.</summary>
-        public void ToggleHelp()
+        bool Live => S != null && (S.phase == Phase.Running || S.phase == Phase.FinishPrompt);
+
+        /// <summary>X (H on the keyboard): show / hide the task panel.</summary>
+        void TogglePanel()
         {
-            if (S == null || (S.phase != Phase.Running && S.phase != Phase.FinishPrompt)) return;
-            SetTaskPanel(!tablet.gameObject.activeSelf);
+            if (Live) SetTaskPanel(!tablet.gameObject.activeSelf);
+        }
+
+        /// <summary>Y: show / hide the controller button hints.</summary>
+        void ToggleHints()
+        {
+            if (!Live) return;
+            hints = !hints;
+            RefreshLabels();
         }
 
         void SetTaskPanel(bool on)
         {
             tablet.gameObject.SetActive(on);
-            labels.Visible = on;
+            RefreshLabels();
             // no controllers to label in desktop mode: the keyboard card comes and goes with the panel instead
             ShowHelpCard(on && ChemLabControls.DesktopMode && !QuestionOpen);
+        }
+
+        void RefreshLabels()
+        {
+            labels.Visible = running && hints;
+            panelHandLabels.Visible = running && hints && !tablet.gameObject.activeSelf;
         }
 
         void ShowHelpCard(bool on)
@@ -254,7 +268,9 @@ namespace ChemLab
             K.Label(tablet.transform, "TimerCaption", L10n.T("tab.remaining"), new Vector2(150, 150), new Vector2(240, 40), 24, K.TextDim, TextAlignmentOptions.Right);
             tabTimeBar = K.ProgressBar(tablet.transform, "TimeBar", new Vector2(0, 108), new Vector2(560, 12), K.Accent);
 
-            tabFooter = K.Label(tablet.transform, "Footer", "", new Vector2(0, -238), new Vector2(560, 44), 23, K.Text, TextAlignmentOptions.Left);
+            // footer: count + X / Y hint on the left, Finish (pressed with the other controller's ray) on the right
+            tabFooter = K.Label(tablet.transform, "Footer", "", new Vector2(-115, -228), new Vector2(330, 64), 22, K.Text, TextAlignmentOptions.Left);
+            K.Button(tablet.transform, "Finish", L10n.T("tab.finish"), new Vector2(170, -228), new Vector2(220, 60), K.Style.Ghost, () => S.RequestFinish(), 24);
             AttachTablet();
             tablet.gameObject.SetActive(false);
         }
@@ -274,16 +290,6 @@ namespace ChemLab
         }
 
         void AttachTablet() { if (tablet != null) K.AttachTablet(tablet.transform, leftHandAnchor); }
-
-        void BuildStation()
-        {
-            station = K.Panel(transform, "Panel_FinishStation", new Vector2(620, 330));
-            K.Label(station.transform, "Title", L10n.T("station.title"), new Vector2(0, 100), new Vector2(560, 60), 38, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
-            K.Label(station.transform, "Body", L10n.T("station.body"), new Vector2(0, 30), new Vector2(560, 60), 24, K.TextDim, TextAlignmentOptions.Center);
-            K.Button(station.transform, "Finish", L10n.T("station.finish"), new Vector2(0, -85), new Vector2(400, 84), K.Style.Primary, () => S.RequestFinish());
-            if (finishStationAnchor != null) station.transform.SetPositionAndRotation(finishStationAnchor.position, finishStationAnchor.rotation);
-            station.gameObject.SetActive(false);
-        }
 
         IEnumerator HideAfter(GameObject go, float s)
         {

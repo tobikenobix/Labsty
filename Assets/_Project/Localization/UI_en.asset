@@ -66,7 +66,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488393
-    m_Localized: "Resolved <b>{0}/{1}</b>     <color={2}>X hide  \xB7  Y finish</color>"
+    m_Localized: "Resolved <b>{0}/{1}</b>\n<color={2}>X hide panel  \xB7  Y hints</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488394
@@ -92,14 +92,14 @@ MonoBehaviour:
       <b>Enter</b> submit   <b>Esc</b> close
 
       <b>H</b>
-      controls   <b>F</b> finish'
+      task panel (Finish is on it)'
     m_Metadata:
       m_Items: []
   - m_Id: 4457488398
     m_Localized: "<b><color={0}>Trigger</color></b>  select / inspect\n<b>Stick forward</b> 
       aim, release to teleport\n<b>Stick left/right</b>  turn 45\xB0    <b>back</b> 
-      turn around\n<b>A</b>  submit    <b>B</b>  close\n<b>X</b>  this card    <b>Y
-      / Menu</b>  finish"
+      turn around\n<b>A</b>  submit    <b>B</b>  close\n<b>X</b>  task panel    <b>Y</b> 
+      button hints"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488399
@@ -159,7 +159,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488418
-    m_Localized: "Made by TUM and ETH students"
+    m_Localized: Made by TUM and ETH students
     m_Metadata:
       m_Items: []
   - m_Id: 4457488419
@@ -299,11 +299,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488456
-    m_Localized: "You chose {0}: {1}. This is a critical unsafe choice because {2}"
+    m_Localized: 'You chose {0}: {1}. This is a critical unsafe choice because {2}'
     m_Metadata:
       m_Items: []
   - m_Id: 4457488457
-    m_Localized: "You did not find this hazard."
+    m_Localized: You did not find this hazard.
     m_Metadata:
       m_Items: []
   - m_Id: 4457488458
@@ -311,11 +311,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488459
-    m_Localized: "You chose {0} instead of {1}. {2}"
+    m_Localized: You chose {0} instead of {1}. {2}
     m_Metadata:
       m_Items: []
   - m_Id: 4457488460
-    m_Localized: "+ {0} more: see Explanations"
+    m_Localized: '+ {0} more: see Explanations'
     m_Metadata:
       m_Items: []
   - m_Id: 4457488461
@@ -351,23 +351,25 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488469
-    m_Localized: "You scored {0}/100, but a safety-critical requirement was not met. Review the {1} procedure and take the assessment again."
+    m_Localized: You scored {0}/100, but a safety-critical requirement was not met.
+      Review the {1} procedure and take the assessment again.
     m_Metadata:
       m_Items: []
   - m_Id: 4457488470
-    m_Localized: "With {0}/100 you did not meet the minimum requirements. Review {1} and take the assessment again."
+    m_Localized: With {0}/100 you did not meet the minimum requirements. Review {1}
+      and take the assessment again.
     m_Metadata:
       m_Items: []
   - m_Id: 4457488471
-    m_Localized: "You showed competence with {0}/100 and no safety-critical mistakes."
+    m_Localized: You showed competence with {0}/100 and no safety-critical mistakes.
     m_Metadata:
       m_Items: []
   - m_Id: 4457488472
-    m_Localized: "You also missed this hazard: {0}."
+    m_Localized: 'You also missed this hazard: {0}.'
     m_Metadata:
       m_Items: []
   - m_Id: 4457488473
-    m_Localized: "You also missed these hazards: {0}."
+    m_Localized: 'You also missed these hazards: {0}.'
     m_Metadata:
       m_Items: []
   - m_Id: 4457488474
@@ -387,7 +389,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488478
-    m_Localized: "not found"
+    m_Localized: not found
     m_Metadata:
       m_Items: []
   - m_Id: 4457488479
@@ -539,19 +541,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232969
-    m_Localized: "<b>Turn</b> to face the bench"
+    m_Localized: <b>Turn</b> to face the bench
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232970
-    m_Localized: "<b>Inspect</b> the closed bottle"
+    m_Localized: <b>Inspect</b> the closed bottle
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232971
-    m_Localized: "<b>Answer</b> for the open acid bottle"
+    m_Localized: <b>Answer</b> for the open acid bottle
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232972
-    m_Localized: "<b>Try a dangerous answer</b> at the spill"
+    m_Localized: <b>Try a dangerous answer</b> at the spill
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232973
@@ -560,23 +562,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232974
-    m_Localized: "Flick a stick to the right twice (2 \xD7 45\xB0) to face the bench on your right. Pulling it back turns you around."
+    m_Localized: "Flick a stick to the right twice (2 \xD7 45\xB0) to face the bench
+      on your right. Pulling it back turns you around."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232975
-    m_Localized: "Point at the closed, labelled bottle on the bench and pull the trigger. Not everything in the lab is a hazard."
+    m_Localized: Point at the closed, labelled bottle on the bench and pull the trigger.
+      Not everything in the lab is a hazard.
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232976
-    m_Localized: "Inspect the open bottle next to it, pick an answer with the trigger, then press A. Right answers get a green check."
+    m_Localized: Inspect the open bottle next to it, pick an answer with the trigger,
+      then press A. Right answers get a green check.
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232977
-    m_Localized: "Teleport to the next ring and inspect the spill. Pick \u201CWipe it up with your bare hand.\u201D on purpose, then choose the safe answer."
+    m_Localized: "Teleport to the next ring and inspect the spill. Pick \u201CWipe
+      it up with your bare hand.\u201D on purpose, then choose the safe answer."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232982
-    m_Localized: "<color={0}>X hide  \xB7  Y finish</color>"
+    m_Localized: "<color={0}>X hide panel  \xB7  Y hints</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232984
@@ -626,8 +632,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10469640233000
-    m_Localized: 'Score: 3 points per hazard found, 7 per correct first answer. Press
-      Y to finish early.'
+    m_Localized: 'Score: 3 points per hazard found, 7 per correct first answer. To
+      finish early, use Finish on your task panel.'
     m_Metadata:
       m_Items: []
   - m_Id: 10469640233001
@@ -724,11 +730,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000003
-    m_Localized: "<b>Finish</b> at the lab door"
+    m_Localized: <b>Finish</b> at the lab door
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000004
-    m_Localized: "Teleport to the door and press Y or Menu: in the lab, that is how you finish early."
+    m_Localized: 'Teleport to the door, point your other controller at Finish on
+      the task panel and pull the trigger: in the lab, that is how you finish early.'
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000005
@@ -736,107 +743,121 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000006
-    m_Localized: "Skip to the lab"
+    m_Localized: Skip to the lab
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000007
-    m_Localized: "Enter the lab"
+    m_Localized: Enter the lab
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000008
-    m_Localized: "First: {0}"
+    m_Localized: 'First: {0}'
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000009
-    m_Localized: "remaining (demo)"
+    m_Localized: remaining (demo)
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000010
-    m_Localized: "Looks OK: closed and labelled. In the lab, false alarms after the 3rd cost 1 point each."
+    m_Localized: 'Looks OK: closed and labelled. In the lab, false alarms after the
+      3rd cost 1 point each.'
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000011
-    m_Localized: "Practice: open acid bottle"
+    m_Localized: 'Practice: open acid bottle'
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000012
-    m_Localized: "Acid bottle"
+    m_Localized: Acid bottle
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000013
-    m_Localized: "A bottle of hydrochloric acid stands open on the bench. What is the safest action?"
+    m_Localized: A bottle of hydrochloric acid stands open on the bench. What is
+      the safest action?
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000014
-    m_Localized: "Smell it to find out how strong it is."
+    m_Localized: Smell it to find out how strong it is.
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000015
-    m_Localized: "Close it and put it back in the acid cabinet."
+    m_Localized: Close it and put it back in the acid cabinet.
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000016
-    m_Localized: "Leave it open: someone may still be using it."
+    m_Localized: 'Leave it open: someone may still be using it.'
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000017
-    m_Localized: "Not safe: open acid gives off fumes and can be knocked over."
+    m_Localized: 'Not safe: open acid gives off fumes and can be knocked over.'
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000018
-    m_Localized: "Practice: spill on the bench"
+    m_Localized: 'Practice: spill on the bench'
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000019
-    m_Localized: "Spill"
+    m_Localized: Spill
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000020
-    m_Localized: "A clear liquid has spilled across the bench. You don't know what it is. What do you do?"
+    m_Localized: A clear liquid has spilled across the bench. You don't know what
+      it is. What do you do?
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000021
-    m_Localized: "Wipe it up with your bare hand."
+    m_Localized: Wipe it up with your bare hand.
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000022
-    m_Localized: "Keep others away, tell the supervisor and use the spill kit with gloves."
+    m_Localized: Keep others away, tell the supervisor and use the spill kit with
+      gloves.
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000023
-    m_Localized: "Cover it with paper towels and carry on."
+    m_Localized: Cover it with paper towels and carry on.
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000024
-    m_Localized: "Not safe: an unknown liquid can burn your skin or react."
+    m_Localized: 'Not safe: an unknown liquid can burn your skin or react.'
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000025
-    m_Localized: "Right! For this step, first pick \u201CWipe it up with your bare hand.\u201D on purpose."
+    m_Localized: "Right! For this step, first pick \u201CWipe it up with your bare
+      hand.\u201D on purpose."
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000026
-    m_Localized: "Ready for the lab?"
+    m_Localized: Ready for the lab?
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000027
-    m_Localized: "In the lab, this prompt submits your inspection and ends the run. Here, A takes you into the lab: the timer starts there."
+    m_Localized: 'In the lab, this prompt submits your inspection and ends the run.
+      Here, A takes you into the lab: the timer starts there.'
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000028
-    m_Localized: "Next: a short practice room (about 3 minutes), then the lab."
+    m_Localized: 'Next: a short practice room (about 3 minutes), then the lab.'
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000101
-    m_Localized: "To review ({0})"
+    m_Localized: To review ({0})
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000102
-    m_Localized: "Correct ({0})"
+    m_Localized: Correct ({0})
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000103
-    m_Localized: "Right answer: {0}"
+    m_Localized: 'Right answer: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 225540404404224
+    m_Localized: "Finish\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 225540488290304
+    m_Localized: button hints
     m_Metadata:
       m_Items: []
   references:
