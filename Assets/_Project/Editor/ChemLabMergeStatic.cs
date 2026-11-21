@@ -9,14 +9,14 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// The teammate's lab is ~2,000 separate meshes, so the lab scene issued ~2,300 draw calls per eye pass.
 /// When the ChemistryLab scene is built (and when it enters Play Mode in the Editor) this merges the lab's
-/// renderers per material and per 4 m floor cell into one mesh each. Colliders are left untouched.
+/// renderers per material and per 12 m floor cell into one mesh each. Colliders are left untouched.
 /// Runs on the processed copy of the scene only: ChemistryLab.unity and the lab prefab are never modified.
 /// </summary>
 class ChemLabMergeStatic : IProcessSceneWithReport
 {
     const string SceneName = "ChemistryLab";
     const string EnvName = "Lab Environment (teammate)";
-    const float Cell = 4f;   // ponytail: coarse grid keeps some frustum culling; smaller cells = more draws, better culling
+    const float Cell = 12f;  // ponytail: floor is ~245 draws at 0° (100 lab materials + ~120 unmerged props); below that needs fewer materials, not a bigger cell
 
     public int callbackOrder => 0;
 
