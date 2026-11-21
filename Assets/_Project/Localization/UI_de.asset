@@ -67,7 +67,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488393
-    m_Localized: "Behoben <b>{0}/{1}</b>     <color={2}>X ausblenden  \xB7  Y beenden</color>"
+    m_Localized: "Behoben <b>{0}/{1}</b>\n<color={2}>X ausblenden  \xB7  Y Hinweise</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488394
@@ -84,15 +84,15 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4457488397
     m_Localized: "<b>WASD</b> gehen\n<b>Rechte Maustaste halten</b> umsehen\n<b>Linksklick</b>
-      ausw\xE4hlen\n<b>Enter</b> absenden   <b>Esc</b> schlie\xDFen\n<b>H</b> Steuerung  
-      <b>F</b> beenden"
+      ausw\xE4hlen\n<b>Enter</b> absenden   <b>Esc</b> schlie\xDFen\n<b>H</b> Aufgabenanzeige
+      (mit Beenden)"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488398
     m_Localized: "<b><color={0}>Trigger</color></b>  ausw\xE4hlen / pr\xFCfen\n<b>Stick
       nach vorn</b>  zielen, loslassen zum Teleportieren\n<b>Stick links/rechts</b> 
       45\xB0 drehen    <b>zur\xFCck</b>  umdrehen\n<b>A</b>  absenden    <b>B</b> 
-      schlie\xDFen\n<b>X</b>  diese Karte    <b>Y / Menu</b>  beenden"
+      schlie\xDFen\n<b>X</b>  Aufgabenanzeige    <b>Y</b>  Hinweise"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488399
@@ -580,7 +580,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232982
-    m_Localized: "<color={0}>X ausblenden  \xB7  Y beenden</color>"
+    m_Localized: "<color={0}>X ausblenden  \xB7  Y Hinweise</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232984
@@ -631,8 +631,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10469640233000
-    m_Localized: 'Punkte: 3 pro gefundener Gefahr, 7 pro richtiger erster Antwort.
-      Mit Y vorzeitig beenden.'
+    m_Localized: "Punkte: 3 pro gefundener Gefahr, 7 pro richtiger erster Antwort.
+      Vorzeitig beenden: \u201EBeenden\u201C in der Aufgabenanzeige."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640233001
@@ -733,7 +733,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000004
-    m_Localized: "Teleportieren Sie sich zur T\xFCr und dr\xFCcken Sie Y oder Men\xFC:
+    m_Localized: "Teleportieren Sie sich zur T\xFCr, zielen Sie mit dem anderen Controller
+      auf \u201EBeenden\u201C in der Aufgabenanzeige und dr\xFCcken Sie den Trigger:
       So beenden Sie im Labor vorzeitig."
     m_Metadata:
       m_Items: []
@@ -859,6 +860,14 @@ MonoBehaviour:
   - m_Id: 225512097046528
     m_Localized: "Entwicklermodus: W\xE4hlen Sie eine Gefahr, um zu sehen, wo sie
       platziert werden kann. Dieser Durchgang wird nicht gespeichert."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227090677882880
+    m_Localized: "Beenden\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227090765963264
+    m_Localized: Hinweise
     m_Metadata:
       m_Items: []
   references:

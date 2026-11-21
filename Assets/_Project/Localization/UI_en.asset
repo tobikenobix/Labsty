@@ -66,7 +66,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488393
-    m_Localized: "Resolved <b>{0}/{1}</b>     <color={2}>X hide  \xB7  Y finish</color>"
+    m_Localized: "Resolved <b>{0}/{1}</b>\n<color={2}>X hide panel  \xB7  Y hints</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488394
@@ -92,14 +92,14 @@ MonoBehaviour:
       <b>Enter</b> submit   <b>Esc</b> close
 
       <b>H</b>
-      controls   <b>F</b> finish'
+      task panel (Finish is on it)'
     m_Metadata:
       m_Items: []
   - m_Id: 4457488398
     m_Localized: "<b><color={0}>Trigger</color></b>  select / inspect\n<b>Stick forward</b> 
       aim, release to teleport\n<b>Stick left/right</b>  turn 45\xB0    <b>back</b> 
-      turn around\n<b>A</b>  submit    <b>B</b>  close\n<b>X</b>  this card    <b>Y
-      / Menu</b>  finish"
+      turn around\n<b>A</b>  submit    <b>B</b>  close\n<b>X</b>  task panel    <b>Y</b> 
+      button hints"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488399
@@ -582,7 +582,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232982
-    m_Localized: "<color={0}>X hide  \xB7  Y finish</color>"
+    m_Localized: "<color={0}>X hide panel  \xB7  Y hints</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232984
@@ -632,8 +632,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10469640233000
-    m_Localized: 'Score: 3 points per hazard found, 7 per correct first answer. Press
-      Y to finish early.'
+    m_Localized: 'Score: 3 points per hazard found, 7 per correct first answer. To
+      finish early, use Finish on your task panel.'
     m_Metadata:
       m_Items: []
   - m_Id: 10469640233001
@@ -734,8 +734,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000004
-    m_Localized: 'Teleport to the door and press Y or Menu: in the lab, that is how
-      you finish early.'
+    m_Localized: 'Teleport to the door, point your other controller at Finish on
+      the task panel and pull the trigger: in the lab, that is how you finish early.'
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000005
@@ -859,6 +859,14 @@ MonoBehaviour:
   - m_Id: 225512097046528
     m_Localized: 'Developer mode: select a hazard to see where it can be placed.
       This run is not saved.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227090677882880
+    m_Localized: "Finish\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227090765963264
+    m_Localized: button hints
     m_Metadata:
       m_Items: []
   references:

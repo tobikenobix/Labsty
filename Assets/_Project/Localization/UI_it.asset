@@ -67,7 +67,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488393
-    m_Localized: "Risolti <b>{0}/{1}</b>     <color={2}>X nascondi  \xB7  Y termina</color>"
+    m_Localized: "Risolti <b>{0}/{1}</b>\n<color={2}>X nascondi  \xB7  Y suggerimenti</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488394
@@ -83,24 +83,16 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488397
-    m_Localized: '<b>WASD</b> camminare
-
-      <b>Tasto destro premuto</b> guardarsi
-      intorno
-
-      <b>Clic sinistro</b> selezionare
-
-      <b>Enter</b> inviare  
-      <b>Esc</b> chiudere
-
-      <b>H</b> comandi   <b>F</b> terminare'
+    m_Localized: "<b>WASD</b> camminare\n<b>Tasto destro premuto</b> guardarsi intorno\n<b>Clic
+      sinistro</b> selezionare\n<b>Enter</b> inviare   <b>Esc</b> chiudere\n<b>H</b>
+      pannello attivit\xE0 (con Termina)"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488398
     m_Localized: "<b><color={0}>Grilletto</color></b>  selezionare / ispezionare\n<b>Levetta
       avanti</b>  mirare, rilasciare per teletrasportarsi\n<b>Levetta sx/dx</b> 
       ruotare di 45\xB0    <b>indietro</b>  girarsi\n<b>A</b>  inviare    <b>B</b> 
-      chiudere\n<b>X</b>  questa scheda    <b>Y / Menu</b>  terminare"
+      chiudere\n<b>X</b>  pannello attivit\xE0    <b>Y</b>  suggerimenti"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488399
@@ -586,7 +578,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232982
-    m_Localized: "<color={0}>X nascondi  \xB7  Y termina</color>"
+    m_Localized: "<color={0}>X nascondi  \xB7  Y suggerimenti</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232984
@@ -636,8 +628,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10469640233000
-    m_Localized: 'Punteggio: 3 punti per pericolo trovato, 7 per prima risposta giusta.
-      Y per terminare prima.'
+    m_Localized: "Punteggio: 3 punti per pericolo trovato, 7 per prima risposta giusta.
+      Per terminare prima: Termina nel pannello attivit\xE0."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640233001
@@ -738,8 +730,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000004
-    m_Localized: "Si teletrasporti alla porta e prema Y o Menu: cos\xEC si termina
-      in anticipo in laboratorio."
+    m_Localized: "Si teletrasporti alla porta, punti l'altro controller su Termina
+      nel pannello attivit\xE0 e prema il grilletto: cos\xEC si termina in anticipo
+      in laboratorio."
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000005
@@ -864,6 +857,14 @@ MonoBehaviour:
   - m_Id: 225512097046528
     m_Localized: "Modalit\xE0 sviluppatore: selezioni un pericolo per vedere dove
       pu\xF2 essere posizionato. Questa sessione non viene salvata."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227090677882880
+    m_Localized: "Termina\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227090765963264
+    m_Localized: suggerimenti
     m_Metadata:
       m_Items: []
   references:

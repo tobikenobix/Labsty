@@ -815,6 +815,14 @@ MonoBehaviour:
     m_Key: lab.devMode
     m_Metadata:
       m_Items: []
+  - m_Id: 227090677882880
+    m_Key: tab.finish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227090765963264
+    m_Key: lbl.hints
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

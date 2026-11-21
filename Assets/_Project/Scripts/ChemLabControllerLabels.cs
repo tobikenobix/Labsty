@@ -31,8 +31,12 @@ namespace ChemLab
         // ponytail: metres in the head's frame; tune on device if a label covers the hand.
         // Scale 0.0004 gives ~8 mm capitals, about 1 deg at a hand's distance (VR minimum).
         const float Out = 0.12f, Top = 0.065f, Step = 0.032f, Scale = 0.0004f, PlateW = 320f, PlateH = 70f;
+        // Labels re-order by how high their button sits so leader lines don't cross; 1 cm dead band stops flicker,
+        // slide speed ~0.15 s.
+        const float SwapBand = 0.01f, Slide = 20f;
 
-        readonly List<Tag> tags = new List<Tag>();
+        // one column per controller, kept in on-screen button order (top first)
+        readonly List<Tag>[] columns = { new List<Tag>(), new List<Tag>() };
         Transform root;
         static Material lineMat;
 
@@ -89,7 +93,7 @@ namespace ChemLab
                 tag.line.useWorldSpace = true;
                 tag.line.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 tag.line.receiveShadows = false;
-                tags.Add(tag);
+                columns[it.left ? 0 : 1].Add(tag);
             }
         }
 
@@ -105,18 +109,31 @@ namespace ChemLab
             bool show = cam != null && !ChemLabControls.DesktopMode;
             if (root.gameObject.activeSelf != show) root.gameObject.SetActive(show);
             if (!show) return;
-            float half = PlateW / 2f * Scale;
-            foreach (var t in tags)
+            float half = PlateW / 2f * Scale, k = 1f - Mathf.Exp(-Slide * Time.deltaTime);
+            var head = cam.transform;
+            foreach (var col in columns)
             {
-                bool on = t.part != null && t.part.gameObject.activeInHierarchy;
-                t.plate.gameObject.SetActive(on);
-                t.line.enabled = on;
-                if (!on) continue;
-                var pos = t.ctrl.position + cam.transform.right * (t.side * Out) + cam.transform.up * t.dy;
-                t.plate.SetPositionAndRotation(pos, Quaternion.LookRotation(pos - cam.transform.position, cam.transform.up));
-                t.line.SetPosition(0, pos - t.plate.right * (t.side * half));   // the plate's edge nearest the controller
-                t.line.SetPosition(1, t.part.bounds.center);
+                // insertion sort, swapping only when the lower button is clearly higher
+                for (int i = 1; i < col.Count; i++)
+                    for (int j = i; j > 0 && Height(col[j], head) > Height(col[j - 1], head) + SwapBand; j--)
+                        (col[j], col[j - 1]) = (col[j - 1], col[j]);
+                int rank = 0;
+                foreach (var t in col)
+                {
+                    bool on = t.part != null && t.part.gameObject.activeInHierarchy;
+                    t.plate.gameObject.SetActive(on);
+                    t.line.enabled = on;
+                    if (!on) continue;
+                    t.dy = Mathf.Lerp(t.dy, Top - rank++ * Step, k);
+                    var pos = t.ctrl.position + head.right * (t.side * Out) + head.up * t.dy;
+                    t.plate.SetPositionAndRotation(pos, Quaternion.LookRotation(pos - head.position, head.up));
+                    t.line.SetPosition(0, pos - t.plate.right * (t.side * half));   // the plate's edge nearest the controller
+                    t.line.SetPosition(1, t.part.bounds.center);
+                }
             }
         }
+
+        static float Height(Tag t, Transform head) =>
+            t.part == null ? float.MinValue : Vector3.Dot(t.part.bounds.center - head.position, head.up);
     }
 }

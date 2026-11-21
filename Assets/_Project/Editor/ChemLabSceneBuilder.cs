@@ -134,23 +134,19 @@ public static class ChemLabSceneBuilder
 
         // Movement: left stick walks, right stick turns (no teleport nodes in the lab)
         Vector3 startPos;
-        Transform finishAnchor = new GameObject("FinishStationAnchor").transform;
         if (team)
         {
             startPos = new Vector3(0.9f, 0, 0.2f);
-            finishAnchor.SetPositionAndRotation(new Vector3(1.65f, 1.45f, -1.5f), Quaternion.LookRotation(Vector3.back));
         }
         else
         {
             startPos = new Vector3(-1.5f, 0, -2.6f);
-            finishAnchor.SetPositionAndRotation(new Vector3(-0.3f, 1.45f, -3.93f), Quaternion.LookRotation(Vector3.back));
         }
 
         var leftHand = Systems(startPos, 0f);
 
         var game = new GameObject("ChemLab Game");
         var ui = game.AddComponent<ChemLabUI>();
-        ui.finishStationAnchor = finishAnchor;
         ui.leftHandAnchor = leftHand;
         game.AddComponent<ChemLabSession>();
         game.AddComponent<ChemLabControls>();

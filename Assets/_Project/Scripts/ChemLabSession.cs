@@ -77,7 +77,6 @@ namespace ChemLab
             ChemLabInspectable.Inspected += OnInspect;
             ChemLabControls.Confirm += Confirm;
             ChemLabControls.Back += Back;
-            ChemLabControls.Finish += RequestFinish;
             ChemLabControls.BlockInspect = () => ui != null && ui.ModalOpen;
         }
 
@@ -86,7 +85,6 @@ namespace ChemLab
             ChemLabInspectable.Inspected -= OnInspect;
             ChemLabControls.Confirm -= Confirm;
             ChemLabControls.Back -= Back;
-            ChemLabControls.Finish -= RequestFinish;
             ChemLabControls.BlockInspect = null;
         }
 

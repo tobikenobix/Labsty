@@ -66,7 +66,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488393
-    m_Localized: "R\xE9solus <b>{0}/{1}</b>     <color={2}>X masquer  \xB7  Y terminer</color>"
+    m_Localized: "R\xE9solus <b>{0}/{1}</b>\n<color={2}>X masquer  \xB7  Y aide</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488394
@@ -84,14 +84,14 @@ MonoBehaviour:
   - m_Id: 4457488397
     m_Localized: "<b>WASD</b> marcher\n<b>Clic droit maintenu</b> pour regarder\n<b>Clic
       gauche</b> pour s\xE9lectionner\n<b>Enter</b> valider   <b>Esc</b> fermer\n<b>H</b>
-      commandes   <b>F</b> terminer"
+      panneau des t\xE2ches (avec Terminer)"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488398
     m_Localized: "<b><color={0}>G\xE2chette</color></b>  s\xE9lectionner / inspecter\n<b>Stick
       vers l'avant</b>  viser, rel\xE2cher pour se t\xE9l\xE9porter\n<b>Stick gauche/droite</b> 
       pivoter de 45\xB0    <b>arri\xE8re</b>  demi-tour\n<b>A</b>  valider    <b>B</b> 
-      fermer\n<b>X</b>  cette fiche    <b>Y / Menu</b>  terminer"
+      fermer\n<b>X</b>  panneau des t\xE2ches    <b>Y</b>  aide"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488399
@@ -581,7 +581,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232982
-    m_Localized: "<color={0}>X masquer  \xB7  Y terminer</color>"
+    m_Localized: "<color={0}>X masquer  \xB7  Y aide</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232984
@@ -635,7 +635,7 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 10469640233000
     m_Localized: "Score : 3 points par danger trouv\xE9, 7 par premi\xE8re r\xE9ponse
-      juste. Y pour terminer plus t\xF4t."
+      juste. Pour terminer plus t\xF4t : Terminer sur le panneau des t\xE2ches."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640233001
@@ -734,8 +734,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000004
-    m_Localized: "T\xE9l\xE9portez-vous jusqu'\xE0 la porte et appuyez sur Y ou Menu
-      : c'est ainsi qu'on termine plus t\xF4t au labo."
+    m_Localized: "T\xE9l\xE9portez-vous jusqu'\xE0 la porte, visez Terminer sur le
+      panneau des t\xE2ches avec l'autre manette et appuyez sur la g\xE2chette :
+      c'est ainsi qu'on termine plus t\xF4t au labo."
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000005
@@ -860,6 +861,14 @@ MonoBehaviour:
   - m_Id: 225512097046528
     m_Localized: "Mode d\xE9veloppeur : s\xE9lectionnez un danger pour voir o\xF9
       il peut \xEAtre plac\xE9. Cette session n'est pas enregistr\xE9e."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227090677882880
+    m_Localized: "Terminer\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227090765963264
+    m_Localized: aide
     m_Metadata:
       m_Items: []
   references:

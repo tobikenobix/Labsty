@@ -32,7 +32,7 @@ namespace ChemLab
         // names a button goes here, or gets its own "key.lh" entry when it also says which controller (see tut.h6.lh).
         static readonly HashSet<string> ButtonTexts = new HashSet<string>
         {
-            "q.hint", "tab.footer", "help.vr", "station.body", "end.closeB",
+            "q.hint", "tab.footer", "help.vr", "end.closeB",
             "tut.h4", "tut.h7", "tut.footer", "tut.finishBody", "tch.answer", "tch.score",
         };
 

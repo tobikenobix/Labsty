@@ -11,7 +11,7 @@ namespace ChemLab
     /// <summary>
     /// The practice room between the lobby and the lab. Seven steps, in a fixed order, each rehearsing something the lab
     /// asks for: teleport, turn, a safe object (false clicks), a hazard question, a dangerous answer on purpose, the task
-    /// panel (X), and finishing with Y / Menu, which here opens the lab. One instruction card docks at each station and
+    /// panel (X), and Finish on the task panel, which here opens the lab. One instruction card docks at each station and
     /// the next floor ring glows. "Skip to the lab" works at any time. Nothing here is scored or exported.
     /// </summary>
     public class ChemLabTutorial : MonoBehaviour
@@ -33,7 +33,9 @@ namespace ChemLab
         Button enterBtn;
         readonly (TextMeshProUGUI count, K.Bar bar)[] tabRows = new (TextMeshProUGUI, K.Bar)[2];
         ChemLabQuestionPanel practice;
-        ChemLabControllerLabels labels;
+        // labels on the main hand, and on the hand holding the task panel (only shown while the panel is hidden: they would sit inside it)
+        ChemLabControllerLabels labels, panelHandLabels;
+        bool hints = true;
         QuestionData acidQ, spillQ;
         ChemLabInspectable open;   // the practice hazard whose question is showing
         int openStep;
@@ -60,11 +62,13 @@ namespace ChemLab
                 new ChemLabControllerLabels.Item(false, "Button_B", "B", L10n.T("lbl.close")),
                 new ChemLabControllerLabels.Item(false, "Button_A", "A", L10n.T("lbl.submit")),
                 new ChemLabControllerLabels.Item(false, "ThumbStick", null, L10n.T("lbl.stick")),
-                new ChemLabControllerLabels.Item(false, "Trigger", null, L10n.T("lbl.trigger")),
-                new ChemLabControllerLabels.Item(true, "Button_B", "Y", L10n.T("lbl.finish")),
+                new ChemLabControllerLabels.Item(false, "Trigger", null, L10n.T("lbl.trigger")));
+            panelHandLabels = ChemLabControllerLabels.Create(
+                new ChemLabControllerLabels.Item(true, "Button_B", "Y", L10n.T("lbl.hints")),
                 new ChemLabControllerLabels.Item(true, "Button_A", "X", L10n.T("lbl.panel")),
                 new ChemLabControllerLabels.Item(true, "ThumbStick", null, L10n.T("lbl.stick")),
                 new ChemLabControllerLabels.Item(true, "Trigger", null, L10n.T("lbl.trigger")));
+            RefreshLabels();
             K.MouseModeEnabled += AttachTablet;
         }
 
@@ -94,8 +98,8 @@ namespace ChemLab
             ChemLabInspectable.Inspected += OnInspected;
             ChemLabControls.Confirm += Confirm;
             ChemLabControls.Back += Back;
-            ChemLabControls.ToggleHelp += TogglePanel;
-            ChemLabControls.Finish += OnFinish;
+            ChemLabControls.TogglePanel += TogglePanel;
+            ChemLabControls.ToggleHints += ToggleHints;
             ChemLabControls.BlockInspect = () => practice.IsOpen || PromptOpen;
         }
 
@@ -105,8 +109,8 @@ namespace ChemLab
             ChemLabInspectable.Inspected -= OnInspected;
             ChemLabControls.Confirm -= Confirm;
             ChemLabControls.Back -= Back;
-            ChemLabControls.ToggleHelp -= TogglePanel;
-            ChemLabControls.Finish -= OnFinish;
+            ChemLabControls.TogglePanel -= TogglePanel;
+            ChemLabControls.ToggleHints -= ToggleHints;
             ChemLabControls.BlockInspect = null;
         }
 
@@ -241,18 +245,31 @@ namespace ChemLab
             open = null;
         }
 
-        /// <summary>X: hide / show the task panel and the button labels; on its step, hiding and showing again completes it.</summary>
+        /// <summary>X: hide / show the task panel; on its step, hiding and showing again completes it.</summary>
         void TogglePanel()
         {
             bool show = !tablet.gameObject.activeSelf;
             tablet.gameObject.SetActive(show);
-            labels.Visible = show;
+            RefreshLabels();
             if (cur != Panel) return;
             if (!show) panelHidden = true;
             else if (panelHidden) Complete(Panel, L10n.T("tut.toastPanel"));
         }
 
-        /// <summary>Y / Menu: in the lab this asks to submit; here, on the last step, it asks to enter the lab.</summary>
+        /// <summary>Y: show / hide the controller button hints.</summary>
+        void ToggleHints()
+        {
+            hints = !hints;
+            RefreshLabels();
+        }
+
+        void RefreshLabels()
+        {
+            labels.Visible = hints;
+            panelHandLabels.Visible = hints && !tablet.gameObject.activeSelf;
+        }
+
+        /// <summary>The task panel's Finish button: in the lab this asks to submit; here, on the last step, it asks to enter the lab.</summary>
         void OnFinish()
         {
             if (practice.IsOpen || PromptOpen) return;
@@ -325,7 +342,9 @@ namespace ChemLab
             }
             tabStep = K.Label(t, "Step", "", new Vector2(0, -150), new Vector2(560, 96), 26, K.Text, TextAlignmentOptions.TopLeft);
             tabStep.enableAutoSizing = true; tabStep.fontSizeMin = 20; tabStep.fontSizeMax = 26;
-            K.Label(t, "Footer", L10n.T("tut.footer", K.Hex(K.TextDim)), new Vector2(0, -238), new Vector2(560, 44), 23, K.Text, TextAlignmentOptions.Left);
+            // footer as in the lab: X / Y hint on the left, Finish (pressed with the other controller's ray) on the right
+            K.Label(t, "Footer", L10n.T("tut.footer", K.Hex(K.TextDim)), new Vector2(-115, -232), new Vector2(330, 44), 22, K.Text, TextAlignmentOptions.Left);
+            K.Button(t, "Finish", L10n.T("tab.finish"), new Vector2(170, -232), new Vector2(220, 56), K.Style.Ghost, OnFinish, 24);
             AttachTablet();
         }
 
