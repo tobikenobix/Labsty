@@ -49,7 +49,7 @@ class ChemLabMergeStatic : IProcessSceneWithReport
             var mesh = new Mesh { name = $"Merged_{g.Key.Item1.name}_{g.Key.Item2}_{g.Key.Item3}" };
             long verts = combine.Sum(ci => (long)ci.mesh.vertexCount);
             if (verts > 65535) mesh.indexFormat = IndexFormat.UInt32;
-            mesh.CombineMeshes(combine, true, true);   // ponytail: stays CPU-readable (~+20 MB RAM in the player); fine on Quest 3
+            mesh.CombineMeshes(combine, true, true);   // readable here; ChemLabReleaseMeshData drops the CPU copy in the player
             if (mesh.vertexCount != verts)
             {
                 // Source meshes are Read/Write off. Their data is available when the scene is built or opened in the
@@ -71,6 +71,7 @@ class ChemLabMergeStatic : IProcessSceneWithReport
             mr.receiveShadows = list[0].receiveShadows;
             foreach (var r in list) Object.DestroyImmediate(r);
         }
+        root.gameObject.AddComponent<ChemLab.ChemLabReleaseMeshData>();
         Debug.Log($"[ChemLab] Merged lab meshes: {before} renderers -> {after} ({groups.Count} material/cell groups).");
     }
 }
