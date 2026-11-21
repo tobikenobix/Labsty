@@ -42,13 +42,17 @@ namespace ChemLab
             PlayerPrefs.Save();
         }
 
-        /// <summary>The hazards for one run: a random pick of HazardsPerRun among the switched-on ones, in id order.</summary>
+        /// <summary>
+        /// The hazards for one run: HazardsPerRun of the switched-on ones, in id order. Safety-critical hazards are
+        /// picked first (so a run can't pass without meeting them), the remaining slots at random.
+        /// </summary>
         public static List<HazardData> PickHazards(HazardData[] all)
         {
             var usable = all.Where(h => h.questions != null && h.questions.Length > 0).ToList();   // LabConfig.Load logs the others
             var on = usable.Where(h => !DisabledHazards.Contains(h.id)).ToList();
             if (on.Count == 0) on = usable;   // never an empty lab, even with stale settings
-            return on.OrderBy(_ => UnityEngine.Random.value).Take(Mathf.Clamp(HazardsPerRun, 1, on.Count)).OrderBy(h => h.id).ToList();
+            return on.OrderBy(h => h.mandatoryCritical ? 0 : 1).ThenBy(_ => UnityEngine.Random.value)
+                .Take(Mathf.Clamp(HazardsPerRun, 1, on.Count)).OrderBy(h => h.id).ToList();
         }
 
         // ---------- question pool ----------

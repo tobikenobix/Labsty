@@ -207,7 +207,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488430
-    m_Localized: 'Safety-critical: must be answered correctly to pass.'
+    m_Localized: 'Safety-critical: always in the run and must be answered correctly.'
     m_Metadata:
       m_Items: []
   - m_Id: 4457488431

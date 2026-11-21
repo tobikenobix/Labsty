@@ -201,7 +201,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488430
-    m_Localized: 'Sicherheitskritisch: muss zum Bestehen richtig beantwortet werden.'
+    m_Localized: 'Sicherheitskritisch: immer dabei, zum Bestehen richtig beantworten.'
     m_Metadata:
       m_Items: []
   - m_Id: 4457488431

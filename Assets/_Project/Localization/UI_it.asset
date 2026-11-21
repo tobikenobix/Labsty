@@ -209,8 +209,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488430
-    m_Localized: 'Critico per la sicurezza: per superare la prova serve la risposta
-      corretta.'
+    m_Localized: 'Critico: sempre presente, serve la risposta corretta per superare.'
     m_Metadata:
       m_Items: []
   - m_Id: 4457488431
