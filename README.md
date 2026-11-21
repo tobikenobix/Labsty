@@ -56,16 +56,16 @@ PRISM stations built from the same pattern:
 | `EvaluationStation` | Ratings and the three-way decision |
 | `InsightPanel` | The session summary, drawn with rich text bars |
 
-Logging: one CSV per session at `Application.persistentDataPath/logs`, on the Quest under `Android/data/de.tum.xrhackathon.starter/files/logs`. Columns: timestamp, time since start, event, step, object, head position and yaw, session, participant, condition. Pull the files with Meta Quest Developer Hub (File Manager) or `adb pull`.
+Logging: one CSV per session at `Application.persistentDataPath/logs`, on the Quest under `Android/data/de.tum.xrhackathon.labsty/files/logs`. Columns: timestamp, time since start, event, step, object, head position and yaw, session, participant, condition. Pull the files with Meta Quest Developer Hub (File Manager) or `adb pull`.
 
 ## ChemLab score files
 
-Every finished lab run writes three files named after the session, `session_yyyyMMdd_HHmmss.json`, `_hazards.csv` and `_summary.csv`, to `Application.persistentDataPath/ChemLabSessions`. On the Quest that is `/sdcard/Android/data/de.tum.xrhackathon.starter/files/ChemLabSessions`. A run that is left before the end screen writes nothing. If writing fails, the end screen shows no "Exported" line and the error is in the log.
+Every finished lab run writes three files named after the session, `session_yyyyMMdd_HHmmss.json`, `_hazards.csv` and `_summary.csv`, to `Application.persistentDataPath/ChemLabSessions`. On the Quest that is `/sdcard/Android/data/de.tum.xrhackathon.labsty/files/ChemLabSessions`. A run that is left before the end screen writes nothing. If writing fails, the end screen shows no "Exported" line and the error is in the log.
 
 Pull all runs with the headset connected over USB:
 
 ```
-adb pull /sdcard/Android/data/de.tum.xrhackathon.starter/files/ChemLabSessions ./sessions
+adb pull /sdcard/Android/data/de.tum.xrhackathon.labsty/files/ChemLabSessions ./sessions
 ```
 
 Meta Quest Developer Hub (File Manager) works too. The folder changes if the package name in Player Settings changes.
