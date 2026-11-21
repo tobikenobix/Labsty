@@ -143,16 +143,8 @@ MonoBehaviour:
     m_Localized: Sehr gut! Stick nach vorn teleportiert, links/rechts dreht.
     m_Metadata:
       m_Items: []
-  - m_Id: 4457488412
-    m_Localized: "Alles klar. Dr\xFCcken Sie Labor starten, sobald Sie bereit sind."
-    m_Metadata:
-      m_Items: []
   - m_Id: 4457488413
     m_Localized: Erledigt
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488416
-    m_Localized: Labor starten  (A)
     m_Metadata:
       m_Items: []
   - m_Id: 4457488417
@@ -543,28 +535,24 @@ MonoBehaviour:
     m_Localized: "absenden \xB7 Labor starten"
     m_Metadata:
       m_Items: []
-  - m_Id: 10469640232967
-    m_Localized: "EINF\xDCHRUNG  \xB7  5 SCHRITTE"
-    m_Metadata:
-      m_Items: []
   - m_Id: 10469640232968
     m_Localized: <b>Teleportieren</b> Sie sich auf den leuchtenden Ring
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232969
-    m_Localized: <b>Drehen</b> Sie sich auf der Stelle
+    m_Localized: "<b>Drehen</b> Sie sich zum Labortisch"
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232970
-    m_Localized: "<b>Pr\xFCfen</b> Sie die Kaffeetasse"
+    m_Localized: "<b>Pr\xFCfen</b> Sie die geschlossene Flasche"
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232971
-    m_Localized: "<b>Beantworten</b> Sie die \xDCbungsfrage"
+    m_Localized: "<b>Beantworten</b> Sie die Frage zur offenen S\xE4ure"
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232972
-    m_Localized: Aufgabenanzeige <b>aus- und einblenden</b>
+    m_Localized: "<b>W\xE4hlen Sie eine gef\xE4hrliche Antwort</b> zur Pf\xFCtze"
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232973
@@ -573,71 +561,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232974
-    m_Localized: "Stick kurz nach links oder rechts: 45\xB0 drehen. Nach hinten ziehen:
-      umdrehen."
+    m_Localized: "Stick zweimal kurz nach rechts (2 \xD7 45\xB0), um den Tisch rechts von Ihnen anzusehen. Nach hinten ziehen: umdrehen."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232975
-    m_Localized: Zeigen Sie auf die Tasse auf dem Sockel und ziehen Sie den Trigger.
+    m_Localized: "Zeigen Sie auf die geschlossene, beschriftete Flasche und ziehen Sie den Trigger. Nicht alles im Labor ist eine Gefahr."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232976
-    m_Localized: "Antwort mit dem Trigger w\xE4hlen, dann A dr\xFCcken. Richtig:
-      gr\xFCner Haken. Falsch: rotes Kreuz."
+    m_Localized: "Pr\xFCfen Sie die offene Flasche daneben, w\xE4hlen Sie mit dem Trigger eine Antwort und dr\xFCcken Sie A. Richtig: gr\xFCner Haken."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232977
-    m_Localized: "Dr\xFCcken Sie X am linken Controller, um die Aufgabenanzeige auszublenden,
-      und erneut X, um sie zur\xFCckzuholen."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232978
-    m_Localized: "Alles bereit. Dr\xFCcken Sie {0} oder A."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232979
-    m_Localized: "EINF\xDCHRUNG"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232980
-    m_Localized: '{0} / {1}'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232981
-    m_Localized: Schritte erledigt
+    m_Localized: "Teleportieren Sie sich zum n\xE4chsten Ring und pr\xFCfen Sie die Pf\xFCtze. W\xE4hlen Sie absichtlich \u201EMit der blo\xDFen Hand aufwischen.\u201C, dann die sichere Antwort."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232982
-    m_Localized: "<color={0}>X ausblenden  \xB7  A Labor starten</color>"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232983
-    m_Localized: "\xDCbung: Kaffeetasse im Labor"
+    m_Localized: "<color={0}>X ausblenden  \xB7  Y beenden</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232984
     m_Localized: "\xDCbungsfrage  /  ohne Wertung"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232985
-    m_Localized: "Jemand hat eine Kaffeetasse auf dem Labortisch stehen lassen. Was
-      ist die sicherste Ma\xDFnahme?"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232986
-    m_Localized: Den Kaffee schnell austrinken, damit er weg ist.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232987
-    m_Localized: "Aus dem Labor bringen: Essen und Trinken geh\xF6ren nie dorthin."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232988
-    m_Localized: An den Rand des Tisches schieben, weg von den Proben.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232989
-    m_Localized: 'Nicht sicher: Essen und Trinken sind im Labor nie erlaubt.'
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232990
@@ -715,14 +659,6 @@ MonoBehaviour:
     m_Localized: "{0} / {1} Punkte (-{2} f\xFCr Fehlalarme)"
     m_Metadata:
       m_Items: []
-  - m_Id: 171324625379328
-    m_Localized: "AUSW\xC4HLEN"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 171324663128064
-    m_Localized: HIERHER GEHEN
-    m_Metadata:
-      m_Items: []
   - m_Id: 174458764517376
     m_Localized: STUDIERENDEN-ID
     m_Metadata:
@@ -755,11 +691,6 @@ MonoBehaviour:
     m_Localized: Links
     m_Metadata:
       m_Items: []
-  - m_Id: 175657374965762
-    m_Localized: "Dr\xFCcken Sie A am rechten Controller, um die Aufgabenanzeige
-      auszublenden, und erneut A, um sie zur\xFCckzuholen."
-    m_Metadata:
-      m_Items: []
   - m_Id: 180335206719488
     m_Localized: Details
     m_Metadata:
@@ -778,6 +709,124 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 180335294799875
     m_Localized: Weiter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000000
+    m_Localized: Aufgabenanzeige <b>aus- und einblenden</b>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000001
+    m_Localized: "Dr\xFCcken Sie X am linken Controller, um die Aufgabenanzeige auszublenden,
+      und erneut X, um sie zur\xFCckzuholen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000002
+    m_Localized: "Dr\xFCcken Sie A am rechten Controller, um die Aufgabenanzeige
+      auszublenden, und erneut A, um sie zur\xFCckzuholen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000003
+    m_Localized: "<b>Beenden</b> Sie an der Labort\xFCr"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000004
+    m_Localized: "Teleportieren Sie sich zur T\xFCr und dr\xFCcken Sie Y oder Men\xFC: So beenden Sie im Labor vorzeitig."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000005
+    m_Localized: "EINF\xDCHRUNG  \xB7  SCHRITT {0} VON {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000006
+    m_Localized: "Direkt ins Labor"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000007
+    m_Localized: "Ins Labor"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000008
+    m_Localized: "Zuerst: {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000009
+    m_Localized: "verbleibend (Demo)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000010
+    m_Localized: "Sieht gut aus: geschlossen und beschriftet. Im Labor kostet ab dem 4. Fehlalarm jeder 1 Punkt."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000011
+    m_Localized: "\xDCbung: offene S\xE4ureflasche"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000012
+    m_Localized: "S\xE4ureflasche"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000013
+    m_Localized: "Eine Flasche Salzs\xE4ure steht offen auf dem Labortisch. Was ist die sicherste Ma\xDFnahme?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000014
+    m_Localized: "Daran riechen, um zu pr\xFCfen, wie stark sie ist."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000015
+    m_Localized: "Verschlie\xDFen und zur\xFCck in den S\xE4ureschrank stellen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000016
+    m_Localized: "Offen lassen: Vielleicht braucht sie noch jemand."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000017
+    m_Localized: "Nicht sicher: Offene S\xE4ure gast aus und kann umkippen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000018
+    m_Localized: "\xDCbung: Pf\xFCtze auf dem Labortisch"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000019
+    m_Localized: "Pf\xFCtze"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000020
+    m_Localized: "Eine klare Fl\xFCssigkeit ist auf dem Tisch versch\xFCttet. Sie wissen nicht, was es ist. Was tun Sie?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000021
+    m_Localized: "Mit der blo\xDFen Hand aufwischen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000022
+    m_Localized: "Andere fernhalten, die Aufsicht informieren und mit Handschuhen das Notfallset verwenden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000023
+    m_Localized: "Mit Papiert\xFCchern abdecken und weiterarbeiten."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000024
+    m_Localized: "Nicht sicher: Eine unbekannte Fl\xFCssigkeit kann die Haut ver\xE4tzen oder reagieren."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000025
+    m_Localized: "Richtig! W\xE4hlen Sie in diesem Schritt zuerst absichtlich \u201EMit der blo\xDFen Hand aufwischen.\u201C"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000026
+    m_Localized: "Bereit f\xFCrs Labor?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000027
+    m_Localized: "Im Labor reicht diese Abfrage Ihre Inspektion ein und beendet den Durchgang. Hier bringt A Sie ins Labor: Dort startet die Zeit."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000028
+    m_Localized: "Danach: ein kurzer \xDCbungsraum (etwa 3 Minuten), dann das Labor."
     m_Metadata:
       m_Items: []
   references:

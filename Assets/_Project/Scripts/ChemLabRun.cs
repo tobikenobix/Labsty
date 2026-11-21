@@ -8,10 +8,11 @@ using UnityEngine;
 
 namespace ChemLab
 {
-    /// <summary>Data that travels between the three scenes (Lobby -> Lab -> End) and the run export.</summary>
+    /// <summary>Data that travels between the scenes (Lobby -> Tutorial -> Lab -> End) and the run export.</summary>
     public static class ChemLabRun
     {
         public const string LobbyScene = "ChemLab_Lobby";
+        public const string TutorialScene = "ChemLab_Tutorial";
         public const string LabScene = "ChemistryLab";
         public const string EndScene = "ChemLab_End";
 
