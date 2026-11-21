@@ -139,6 +139,7 @@ namespace ChemLab
             stroke.raycastTarget = false;
             stroke.transform.SetSiblingIndex(1);
             if (accentLine) Band(go.transform, size, 24f, Accent);
+            canvases.RemoveAll(x => x == null);   // statics outlive scene reloads; drop destroyed canvases
             canvases.Add(c);
             return c;
         }
@@ -378,7 +379,11 @@ namespace ChemLab
 
         static float BaseScale(Transform panel)
         {
-            if (!baseScales.TryGetValue(panel, out var s)) baseScales[panel] = s = panel.localScale.x;
+            if (!baseScales.TryGetValue(panel, out var s))
+            {
+                foreach (var dead in new List<Transform>(baseScales.Keys)) if (dead == null) baseScales.Remove(dead);   // outlives scene reloads
+                baseScales[panel] = s = panel.localScale.x;
+            }
             return s;
         }
 
