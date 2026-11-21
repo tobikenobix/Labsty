@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -22,8 +23,8 @@ namespace ChemLab
         [Tooltip("Wall posters, in order: chemicals warning, no food or drink, lab coat and glasses, eyewash.")]
         public Transform[] posterAnchors;
 
-        Canvas main, teaching, toast, hazards, idPad;
-        TextMeshProUGUI toastText, sub, perRunCaption, idText;
+        Canvas main, teaching, hazards, idPad;
+        TextMeshProUGUI sub, perRunCaption, idText;
         HazardData[] allHazards;
         readonly List<(string id, RectTransform sign, TextMeshProUGUI title, TextMeshProUGUI off, Image critical, bool mandatory)> hzRows =
             new List<(string, RectTransform, TextMeshProUGUI, TextMeshProUGUI, Image, bool)>();
@@ -34,16 +35,16 @@ namespace ChemLab
         readonly Button[] langBtns = new Button[4];
         readonly Button[] handBtns = new Button[2];
         static readonly string[] Langs = { "DE", "FR", "IT", "EN" };
-        Coroutine toastCo;
+        static Pose? rigPose;   // carried over the language / hand reload so the view stays where the player turned it
 
         void Awake()
         {
+            RestoreRig();
             ChemLabRun.StudentId = "";   // every lobby visit asks again, so the next student never inherits an ID
             allHazards = LabConfig.Load().hazards;
             BuildMain();
             BuildTeaching();
             BuildPosters();
-            BuildToast();
             BuildHazards();
             BuildIdPad();
             ChemLabControllerLabels.Create(
@@ -89,7 +90,7 @@ namespace ChemLab
         {
             if (lang == ChemLabRun.Language) return;
             L10n.Set(lang);
-            SceneManager.LoadScene(ChemLabRun.LobbyScene);   // ponytail: a reload rebuilds every code-built panel in the new language
+            ReloadLobby();   // ponytail: a reload rebuilds every code-built panel in the new language
         }
 
         /// <summary>Left-handed mode swaps controllers for the task panel and the face buttons; a reload rebuilds labels and bindings.</summary>
@@ -97,7 +98,28 @@ namespace ChemLab
         {
             if (left == ChemLabRun.LeftHanded) return;
             ChemLabRun.SetLeftHanded(left);
+            ReloadLobby();
+        }
+
+        /// <summary>Reload the lobby but keep the rig where it is: the fresh rig would otherwise undo snap turns and teleports.</summary>
+        void ReloadLobby()
+        {
+            var o = FindFirstObjectByType<XROrigin>();
+            if (o != null) rigPose = new Pose(o.transform.position, o.transform.rotation);
             SceneManager.LoadScene(ChemLabRun.LobbyScene);
+        }
+
+        static void RestoreRig()
+        {
+            var o = rigPose.HasValue ? FindFirstObjectByType<XROrigin>() : null;
+            if (o != null)
+            {
+                var cc = o.GetComponent<CharacterController>();   // a CharacterController would snap the rig back
+                if (cc != null) cc.enabled = false;
+                o.transform.SetPositionAndRotation(rigPose.Value.position, rigPose.Value.rotation);
+                if (cc != null) cc.enabled = true;
+            }
+            rigPose = null;   // only the reload reuses it; arriving from the lab spawns normally
         }
 
         void RefreshLanguage()
@@ -288,7 +310,7 @@ namespace ChemLab
         {
             if (!ChemLabRun.DisabledHazards.Remove(id))
             {
-                if (allHazards.Count(h => !ChemLabRun.DisabledHazards.Contains(h.id)) <= 1) { Toast(L10n.T("hz.lastOn"), K.Warn); return; }
+                if (allHazards.Count(h => !ChemLabRun.DisabledHazards.Contains(h.id)) <= 1) { perRunCaption.text = $"<color={K.Hex(K.Bad)}>{L10n.T("hz.lastOn")}</color>"; return; }   // said on the panel, not in a toast over it
                 ChemLabRun.DisabledHazards.Add(id);
             }
             ChemLabRun.SaveHazardSettings();
@@ -409,28 +431,6 @@ namespace ChemLab
                 cap.enableAutoSizing = true; cap.fontSizeMin = 32; cap.fontSizeMax = 52;
                 p.transform.SetPositionAndRotation(posterAnchors[i].position, posterAnchors[i].rotation);
             }
-        }
-
-        void BuildToast()
-        {
-            toast = K.Panel(transform, "Panel_Toast", new Vector2(820, 96), 0.0008f, accentLine: false, blocksRays: false);
-            toastText = K.Label(toast.transform, "Text", "", new Vector2(0, 0), new Vector2(760, 84), 28, K.Text, TextAlignmentOptions.Center);
-            toast.gameObject.SetActive(false);
-        }
-
-        void Toast(string text, Color col)
-        {
-            toastText.text = $"<color={K.Hex(col)}><b>|</b></color>  {text}";
-            K.PlaceInFront(toast.transform, 0.85f, -0.3f);
-            toast.gameObject.SetActive(true);
-            if (toastCo != null) StopCoroutine(toastCo);
-            toastCo = StartCoroutine(Hide());
-        }
-
-        IEnumerator Hide()
-        {
-            yield return new WaitForSeconds(2.8f);
-            toast.gameObject.SetActive(false);
         }
 
         /// <summary>A stylised Quest controller drawn with UI shapes, trigger highlighted.</summary>

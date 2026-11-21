@@ -214,7 +214,7 @@ namespace ChemLab
                 foreach (var h in i.hovering)
                 {
                     if (HandOf(h) == hand) return i;
-                    if (any == null) any = i;
+                    if (any == null && HandOf(h) == InteractorHandedness.None) any = i;   // never the other hand's target
                 }
             return any;
         }

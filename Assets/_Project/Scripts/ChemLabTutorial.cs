@@ -116,6 +116,10 @@ namespace ChemLab
             if (cur == Turn && origin != null && Mathf.Abs(Mathf.DeltaAngle(Yaw, turnYaw)) > 30f) Complete(Turn, L10n.T("tut.toastTurn"));
             K.KeepInView(practice.canvas.transform, 0.95f, -0.05f);
             K.KeepInView(prompt.transform, 1.0f, 0f);
+            // one plate in front at a time: the card and any toast step aside while the practice question or the prompt is open
+            bool plate = practice.IsOpen || PromptOpen;
+            if (card.gameObject.activeSelf == plate) card.gameObject.SetActive(!plate);
+            if (plate && toast.gameObject.activeSelf) toast.gameObject.SetActive(false);
         }
 
         // ================= steps =================
@@ -150,7 +154,9 @@ namespace ChemLab
         void Dock()
         {
             var a = stepAnchors != null && cur < stepAnchors.Length ? stepAnchors[cur] : null;
-            if (a != null) card.transform.SetPositionAndRotation(a.position, a.rotation);
+            if (a == null) return;
+            card.transform.SetPositionAndRotation(a.position, a.rotation);
+            card.transform.localScale = Vector3.one * K.BaseScale(card.transform);   // undo PlaceInFront's shrink when it was cramped
         }
 
         void SetRow(int i, bool done)
@@ -202,7 +208,7 @@ namespace ChemLab
             if (sel == q.correct)
             {
                 // the spill step is about seeing a dangerous answer, so the right one waits until that has happened
-                if (openStep == Spill && !sawDanger) { Toast(L10n.T("tut.spillFirst"), K.Warn); sel = null; practice.Highlight(null); return; }
+                if (openStep == Spill && !sawDanger) { sel = null; practice.Highlight(null); practice.ShowNote(L10n.T("tut.spillFirst")); return; }   // on the plate, not a toast over it
                 ChemLabAudio.Correct();
                 practice.Close();
                 open.Fix();

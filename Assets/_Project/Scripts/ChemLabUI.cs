@@ -78,6 +78,7 @@ namespace ChemLab
             }
             K.KeepInView(question.canvas.transform, 0.95f, -0.05f);
             K.KeepInView(msg.transform, 1.0f, 0f);
+            if (toast.gameObject.activeSelf && (QuestionOpen || msg.gameObject.activeSelf)) toast.gameObject.SetActive(false);   // no toast over an open plate
         }
 
         // ================= API used by ChemLabSession =================
@@ -123,7 +124,9 @@ namespace ChemLab
 
         public void PressPrimary()
         {
-            if (msg.gameObject.activeSelf && msgBtn1.gameObject.activeSelf) msgAct1?.Invoke();
+            if (!msg.gameObject.activeSelf) return;
+            if (msgBtn2.gameObject.activeSelf) msgAct2?.Invoke();   // A = the primary (right) button, as on the tutorial prompt
+            else if (msgBtn1.gameObject.activeSelf) msgAct1?.Invoke();
         }
 
         public void Toast(string text, float seconds = 2.2f, Color? dot = null)
@@ -188,8 +191,8 @@ namespace ChemLab
             msg = K.Panel(transform, "Panel_Message", new Vector2(900, 460), 0.00112f);   // 27-unit body at 1.0 m: ~0.9 deg x-height
             msgTitle = K.Label(msg.transform, "Title", "", new Vector2(0, 150), new Vector2(820, 70), 44, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
             msgBody = K.Label(msg.transform, "Body", "", new Vector2(0, 30), new Vector2(800, 160), 27, K.TextDim, TextAlignmentOptions.Center);
-            msgBtn1 = K.Button(msg.transform, "Btn1", "", new Vector2(-200, -150), new Vector2(360, 80), K.Style.Ghost, () => msgAct1?.Invoke());
-            msgBtn2 = K.Button(msg.transform, "Btn2", "", new Vector2(200, -150), new Vector2(360, 80), K.Style.Primary, () => msgAct2?.Invoke());
+            msgBtn1 = K.Button(msg.transform, "Btn1", "", new Vector2(-200, -150), new Vector2(360, 80), K.Style.Ghost, () => msgAct1?.Invoke(), key: "B");
+            msgBtn2 = K.Button(msg.transform, "Btn2", "", new Vector2(200, -150), new Vector2(360, 80), K.Style.Primary, () => msgAct2?.Invoke(), key: "A");
             msg.gameObject.SetActive(false);
         }
 

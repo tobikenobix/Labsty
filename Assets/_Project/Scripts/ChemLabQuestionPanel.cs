@@ -22,7 +22,8 @@ namespace ChemLab
         readonly Opt[] opts = new Opt[4];
         readonly Button submit;
         QuestionData q;
-        readonly Dictionary<string, bool> struck = new Dictionary<string, bool>();   // ruled-out key -> was it dangerous
+        Dictionary<string, bool> struck = new Dictionary<string, bool>();   // ruled-out key -> was it dangerous, for the open question
+        readonly Dictionary<QuestionData, Dictionary<string, bool>> struckBy = new Dictionary<QuestionData, Dictionary<string, bool>>();   // kept when a question reopens
 
         /// <summary>One answer row: a ruled line with a sign disc (key letter) and the option text.</summary>
         class Opt
@@ -94,7 +95,7 @@ namespace ChemLab
         public void Show(string titleText, string metaText, QuestionData question, Vector3 towards, string order = null)
         {
             q = question;
-            struck.Clear();
+            if (!struckBy.TryGetValue(question, out struck)) struckBy[question] = struck = new Dictionary<string, bool>();
             if (order == null || order.Length != q.options.Length)
                 order = string.Concat(q.options.Select(o => o.key).OrderBy(_ => UnityEngine.Random.value));
             Order = order;
@@ -133,6 +134,9 @@ namespace ChemLab
                             (critical ? L10n.T("q.wrongCritical") : L10n.T("q.wrong"));
             SetSubmit(null);
         }
+
+        /// <summary>A neutral note in the feedback line, e.g. a tutorial instruction about this question.</summary>
+        public void ShowNote(string text) => feedback.text = text;
 
         public void Close()
         {

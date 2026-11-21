@@ -378,7 +378,7 @@ namespace ChemLab
         static readonly Dictionary<Transform, float> baseScales = new Dictionary<Transform, float>();
         static readonly RaycastHit[] hitBuf = new RaycastHit[16];
 
-        static float BaseScale(Transform panel)
+        public static float BaseScale(Transform panel)
         {
             if (!baseScales.TryGetValue(panel, out var s))
             {
