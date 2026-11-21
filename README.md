@@ -60,7 +60,7 @@ Logging: one CSV per session at `Application.persistentDataPath/logs`, on the Qu
 
 ## ChemLab score files
 
-Every finished lab run writes two files named after the session, `session_yyyyMMdd_HHmmss.json` and `.csv`, to `Application.persistentDataPath/ChemLabSessions`. On the Quest that is `/sdcard/Android/data/de.tum.xrhackathon.starter/files/ChemLabSessions`. A run that is left before the end screen writes nothing. If writing fails, the end screen shows no "Exported" line and the error is in the log.
+Every finished lab run writes three files named after the session, `session_yyyyMMdd_HHmmss.json`, `_hazards.csv` and `_summary.csv`, to `Application.persistentDataPath/ChemLabSessions`. On the Quest that is `/sdcard/Android/data/de.tum.xrhackathon.starter/files/ChemLabSessions`. A run that is left before the end screen writes nothing. If writing fails, the end screen shows no "Exported" line and the error is in the log.
 
 Pull all runs with the headset connected over USB:
 
@@ -84,7 +84,12 @@ JSON, one object per run:
 | `minimumScoreAchieved` … `safetyReviewRequired` | The pass conditions behind the outcome |
 | `hazards[]` | One entry per hazard: `id`, `questionId`, `category`, `status`, `mandatoryCritical`, `detected`, `detectedAt`, `selectedOption` (first answer), `correctOption`, `optionOrder` (the keys in the shuffled order the student saw them; rows are lettered A-D by position, the option fields keep the keys from hazards.json), `isCorrect`, `responseTimeSeconds`, `wrongAnswers`, `resolved`, `criticalError` |
 
-CSV: one row per hazard with the columns `session_id, student_id, hazard_id, question_id, category, detected, detected_at, first_answer, correct_answer, first_attempt_correct, wrong_answers, resolved, critical_error, response_time`. After an empty line follows a one-row summary: `session_id, hazards_found, hazards_missed, wrong_answers, completion_time, score, outcome`. Times are seconds with one decimal and a dot.
+CSV, two flat tables so the files of many runs can be concatenated (header once):
+
+- `_hazards.csv`, one row per hazard: `session_id, student_id, attempt, hazard_id, question_id, category, detected, detected_at, first_answer, correct_answer, first_attempt_correct, wrong_answers, resolved, critical_error, response_time`
+- `_summary.csv`, one row per run: `session_id, student_id, attempt, language, hazards_in_run, hazards_found, hazards_missed, wrong_answers, false_clicks, false_click_penalty, completion_time, timed_out, score, outcome`
+
+Times are seconds with one decimal and a dot. Fields that contain a comma or quote are quoted as in RFC 4180.
 
 ## First build in ten steps
 

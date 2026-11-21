@@ -70,7 +70,14 @@ namespace ChemLab
             return h.questions[i];
         }
 
-        /// <summary>Writes session_xxx.json (full detail) and session_xxx.csv (one row per hazard + summary row).</summary>
+        /// <summary>RFC 4180 field: quoted (with doubled quotes) only when it holds a comma, quote or line break.</summary>
+        static string Csv(object v)
+        {
+            var s = Convert.ToString(v, CultureInfo.InvariantCulture) ?? "";
+            return s.IndexOfAny(new[] { ',', '"', '\n', '\r' }) < 0 ? s : "\"" + s.Replace("\"", "\"\"") + "\"";
+        }
+
+        /// <summary>Writes session_xxx.json (full detail), session_xxx_hazards.csv (one row per hazard) and session_xxx_summary.csv (one row).</summary>
         public static void Export(string sessionId, bool practice, ChemLabResult r, IReadOnlyList<HazardRecord> records)
         {
             string F(float v) => v.ToString("0.0", CultureInfo.InvariantCulture);
@@ -100,6 +107,7 @@ namespace ChemLab
             sb.Append($"  \"detectionPoints\": {r.detectionPoints},\n");
             sb.Append($"  \"decisionPoints\": {r.decisionPoints},\n");
             sb.Append($"  \"falsePositiveClicks\": {r.falseClicks},\n");
+            sb.Append($"  \"falseClickPenalty\": {r.falsePenalty},\n");
             sb.Append($"  \"outcome\": {S(r.outcome.ToString())},\n");
             sb.Append($"  \"minimumScoreAchieved\": {B(r.minScoreOk)},\n");
             sb.Append($"  \"minimumDetectionAchieved\": {B(r.minDetectionOk)},\n");
@@ -107,7 +115,6 @@ namespace ChemLab
             sb.Append($"  \"allCriticalHazardsCorrect\": {B(r.allCriticalHazardsCorrect)},\n");
             sb.Append($"  \"noCriticalUnsafeChoice\": {B(r.noCriticalChoice)},\n");
             sb.Append($"  \"safetyReviewRequired\": {B(r.outcome == Outcome.SafetyReviewRequired)},\n");
-            sb.Append($"  \"falseClickPenalty\": {r.falsePenalty},\n");
             sb.Append("  \"hazards\": [\n");
             for (int i = 0; i < records.Count; i++)
             {
@@ -123,15 +130,18 @@ namespace ChemLab
             }
             sb.Append("  ]\n}\n");
 
+            // Two flat CSVs (one row per hazard, one row per run) so files from many runs concatenate into clean tables.
+            string Row(params object[] v) => string.Join(",", v.Select(Csv));
             var csv = new StringBuilder();
-            csv.AppendLine("session_id,student_id,hazard_id,question_id,category,detected,detected_at,first_answer,correct_answer,first_attempt_correct,wrong_answers,resolved,critical_error,response_time");
+            csv.AppendLine("session_id,student_id,attempt,hazard_id,question_id,category,detected,detected_at,first_answer,correct_answer,first_attempt_correct,wrong_answers,resolved,critical_error,response_time");
             foreach (var h in records)
-                csv.AppendLine(string.Join(",", sessionId, StudentId, h.data.id, h.q.id, "\"" + h.data.exportCategory + "\"", h.detected ? 1 : 0,
+                csv.AppendLine(Row(sessionId, StudentId, Attempt, h.data.id, h.q.id, h.data.exportCategory, h.detected ? 1 : 0,
                     h.detected ? F(h.detectedAt) : "", h.selected ?? "", h.q.correct, h.isCorrect == true ? 1 : 0, h.wrongAnswers,
                     h.solved ? 1 : 0, h.critical ? 1 : 0, h.responseTime >= 0 ? F(h.responseTime) : ""));
-            csv.AppendLine();
-            csv.AppendLine("session_id,hazards_found,hazards_missed,wrong_answers,completion_time,score,outcome");
-            csv.AppendLine(string.Join(",", sessionId, found.Count, missed.Count, wrong, F(r.duration), r.score, r.outcome));
+            var summary = new StringBuilder();
+            summary.AppendLine("session_id,student_id,attempt,language,hazards_in_run,hazards_found,hazards_missed,wrong_answers,false_clicks,false_click_penalty,completion_time,timed_out,score,outcome");
+            summary.AppendLine(Row(sessionId, StudentId, Attempt, Language, records.Count, found.Count, missed.Count, wrong, r.falseClicks, r.falsePenalty,
+                F(r.duration), LastTimedOut ? 1 : 0, r.score, r.outcome));
 
             LastJsonPath = LastCsvPath = null;   // the end screen shows "exported" only for a path set after a successful write
             try
@@ -139,13 +149,14 @@ namespace ChemLab
                 var dir = Path.Combine(Application.persistentDataPath, "ChemLabSessions");
                 Directory.CreateDirectory(dir);
                 var json = Path.Combine(dir, sessionId + ".json");
-                var csvPath = Path.Combine(dir, sessionId + ".csv");
+                var csvPath = Path.Combine(dir, sessionId + "_hazards.csv");
                 File.WriteAllText(json, sb.ToString());
                 File.WriteAllText(csvPath, csv.ToString());
+                File.WriteAllText(Path.Combine(dir, sessionId + "_summary.csv"), summary.ToString());
                 LastJsonPath = json;
                 LastCsvPath = csvPath;
                 r.savedPath = LastJsonPath;
-                Debug.Log("[ChemLab] Run exported: " + LastJsonPath + " and .csv\n" + sb);
+                Debug.Log("[ChemLab] Run exported: " + LastJsonPath + " and _hazards.csv / _summary.csv\n" + sb);
             }
             catch (Exception e)
             {
