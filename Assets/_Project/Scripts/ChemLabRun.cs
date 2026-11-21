@@ -11,9 +11,9 @@ namespace ChemLab
     /// <summary>Data that travels between the scenes (Lobby -> Tutorial -> Lab -> Lobby with the results) and the run export.</summary>
     public static class ChemLabRun
     {
-        public const string LobbyScene = "ChemLab_Lobby";
-        public const string TutorialScene = "ChemLab_Tutorial";
-        public const string LabScene = "ChemistryLab";
+        public const string LobbyScene = "Lobby";
+        public const string TutorialScene = "Tutorial";
+        public const string LabScene = "Lab";
 
         public static string Language => L10n.Code;   // the selected locale is the single source
         public static string StudentId = "";   // typed on the lobby keypad; "no_id" when the lab scene is started directly

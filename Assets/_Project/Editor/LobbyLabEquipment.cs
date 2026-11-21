@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Swaps the lobby's primitive placeholder equipment for the models the lab scene (ChemistryLab.unity) uses, with
+/// Swaps the lobby's primitive placeholder equipment for the models the lab scene (Lab.unity) uses, with
 /// the same meshes, materials, rotations and sizes, so both rooms look alike:
 /// flask (Lab.fbx glassware), first-aid cabinet, coffee cup, coat stand + coat, fire extinguisher, the room model's
 /// emergency shower / eyewash and door, and the room's floor, wall and ceiling materials.
@@ -16,7 +16,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public static class LobbyLabEquipment
 {
-    const string LobbyPath = "Assets/_Project/Scenes/ChemLab_Lobby.unity";
+    const string LobbyPath = "Assets/_Project/Scenes/Lobby.unity";
     const string MatDir = "Assets/_Project/Materials/";
     const string LabFbx = "Assets/_Project/LabEnvironment/Lab.fbx";
     const long FlaskMeshId = 7969386909851093774;            // the lab's MidShelfGlassware flasks
@@ -78,7 +78,7 @@ public static class LobbyLabEquipment
         Door(env.Find("LabDoor"), lab, false, size.y / 2f);
     }
 
-    const string LabScene = "Assets/_Project/Scenes/ChemistryLab.unity";
+    const string LabScene = "Assets/_Project/Scenes/Lab.unity";
 
     /// <summary>
     /// A piece of the lab's centre island (white worktop over grey cabinets, as the lab scene shows it: room model

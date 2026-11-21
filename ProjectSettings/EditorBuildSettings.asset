@@ -6,13 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Project/Scenes/ChemLab_Lobby.unity
+    path: Assets/_Project/Scenes/Lobby.unity
     guid: 59ba5c72daa488c45a7dd316974d3373
   - enabled: 1
-    path: Assets/_Project/Scenes/ChemLab_Tutorial.unity
+    path: Assets/_Project/Scenes/Tutorial.unity
     guid: d19d3abf76e9bfd4c917aad5e85876b1
   - enabled: 1
-    path: Assets/_Project/Scenes/ChemistryLab.unity
+    path: Assets/_Project/Scenes/Lab.unity
     guid: 27699e277519c17429a26d82f37a64c2
   - enabled: 0
     path: Assets/_Project/Scenes/Playground.unity

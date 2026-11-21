@@ -19,7 +19,7 @@ using UnityEngine.XR.Interaction.Toolkit.UI;
 
 /// <summary>
 /// Menu: Chemistry Lab > Build Lab Scene.
-/// Generates Assets/_Project/Scenes/ChemistryLab.unity: a 10 x 8 m lab built from
+/// Generates Assets/_Project/Scenes/Lab.unity: a 10 x 8 m lab built from
 /// primitives, the XRI starter VR rig, the 10 hazards, decoy objects, grabbable glassware and the game manager.
 /// Each hazard is a parent object (e.g. "H06_UnlabeledBottle") with one BoxCollider; replace its child
 /// meshes with real models from ChemistryLab/Models whenever you have them.
@@ -27,9 +27,9 @@ using UnityEngine.XR.Interaction.Toolkit.UI;
 public static class ChemLabSceneBuilder
 {
     const string Root = "Assets/_Project";
-    const string LobbyPath = Root + "/Scenes/ChemLab_Lobby.unity";
-    const string TutorialPath = Root + "/Scenes/ChemLab_Tutorial.unity";
-    const string ScenePath = Root + "/Scenes/ChemistryLab.unity";
+    const string LobbyPath = Root + "/Scenes/Lobby.unity";
+    const string TutorialPath = Root + "/Scenes/Tutorial.unity";
+    const string ScenePath = Root + "/Scenes/Lab.unity";
     const string RigPath = "Assets/Samples/XR Interaction Toolkit/3.6.1/Starter Assets/Prefabs/XR Origin (XR Rig).prefab";
     const string VignettePath = "Assets/Samples/XR Interaction Toolkit/3.6.1/Starter Assets/TunnelingVignette/TunnelingVignette.prefab";
 
@@ -41,7 +41,7 @@ public static class ChemLabSceneBuilder
         if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
         BuildAll();
         EditorUtility.DisplayDialog("Chemistry Lab", "Built 3 scenes:\n" + LobbyPath + "\n" + TutorialPath + "\n" + ScenePath +
-            "\n\nOpen ChemLab_Lobby and press Play (with Quest Link), or Build & Run to the Quest 3.", "OK");
+            "\n\nOpen Lobby and press Play (with Quest Link), or Build & Run to the Quest 3.", "OK");
     }
 
     /// <summary>For batch mode: -executeMethod ChemLabSceneBuilder.BuildBatch</summary>
