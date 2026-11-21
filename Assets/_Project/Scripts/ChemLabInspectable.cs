@@ -116,6 +116,19 @@ namespace ChemLab
                 o.sharedMaterials = arr;
             }
             if (m >= Mark.Wrong) ShowSign(m == Mark.Correct);
+            if (m == Mark.Wrong && isActiveAndEnabled) StartCoroutine(BlinkOutline());
+        }
+
+        /// <summary>Wrong answers flash the outline twice, so they differ from correct ones by more than red vs green.</summary>
+        System.Collections.IEnumerator BlinkOutline()
+        {
+            var step = new WaitForSeconds(0.225f);
+            for (int i = 0; i < 4 && State == Mark.Wrong; i++)   // a quick correct answer ends the flashing
+            {
+                foreach (var o in outlines) if (o != null) o.enabled = i % 2 == 1;
+                yield return step;
+            }
+            foreach (var o in outlines) if (o != null) o.enabled = true;
         }
 
         static Material OutlineMat(Mark m)
