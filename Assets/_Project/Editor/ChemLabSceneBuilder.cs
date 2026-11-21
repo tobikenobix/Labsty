@@ -107,6 +107,9 @@ public static class ChemLabSceneBuilder
         BuildDecoys(decoys);
         BuildHazards(hazards);
         if (team) RelayoutForTeammateLab(lab, decoys, hazards);
+        // random placement zones are hand-tuned in their prefab (HazardZone), not generated here
+        var zones = AssetDatabase.LoadAssetAtPath<GameObject>(Root + "/Prefabs/HazardZones.prefab");
+        if (team && zones != null) PrefabUtility.InstantiatePrefab(zones);
 
         // Movement: left stick walks, right stick turns (no teleport nodes in the lab)
         Vector3 startPos;

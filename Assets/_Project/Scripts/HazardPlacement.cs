@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -9,6 +10,55 @@ namespace ChemLab
     {
         const float Lift = 0.01f;     // hazard floats this far above the surface during the overlap test
         const float Shrink = 0.95f;   // overlap test uses 95% of the hazard's collider, so touching neighbours is fine
+        // ponytail: tuning knobs, no inspector for them; raise Tries if a big, cluttered zone often falls back
+        const int Tries = 20;            // random samples per hazard before it stays at its authored spot
+        const float MinSpacing = 0.5f;   // metres between a moved hazard and any other hazard of the run
+        const int PerArea = 2;           // most moved hazards in one area, so a run can't pile them all onto one bench
+
+        /// <summary>
+        /// Moves each hazard of the run that has zones to a random free spot in one of them (one hazard per zone).
+        /// Hazards without zones, or with no free spot after Tries samples, stay where the scene puts them.
+        /// The same seed and scene give the same placement.
+        /// </summary>
+        public static void Place(IList<HazardRecord> records, int seed)
+        {
+            var rng = new System.Random(seed);
+            var zones = UnityEngine.Object.FindObjectsByType<HazardZone>(FindObjectsSortMode.None).OrderBy(z => z.name).ToList();
+            var hazards = UnityEngine.Object.FindObjectsByType<ChemLabInspectable>(FindObjectsSortMode.None)
+                .Where(i => i.kind == ChemLabInspectable.Kind.Hazard && records.Any(r => r.data.id == i.hazardId)).ToList();
+            var used = new HashSet<HazardZone>();
+            var perArea = new Dictionary<string, int>();
+            int InArea(string a) => perArea.TryGetValue(a, out int n) ? n : 0;
+            Physics.SyncTransforms();
+
+            foreach (var rec in records.OrderBy(r => r.data.id, StringComparer.Ordinal))
+            {
+                var h = hazards.FirstOrDefault(i => i.hazardId == rec.data.id);
+                var cands = zones.Where(z => z.Accepts(rec.data.id) && !used.Contains(z) && InArea(z.area) < PerArea).ToList();
+                if (h == null || h.GetComponent<BoxCollider>() == null || cands.Count == 0) continue;
+                if (ChemLabRun.PlacementDifficulty is HazardZone.Level lvl && cands.Any(z => z.difficulty == lvl))
+                    cands = cands.Where(z => z.difficulty == lvl).ToList();
+
+                // zones in random order, Tries samples each: every zone gets an equal chance however cluttered it is
+                bool moved = false;
+                foreach (var z in cands.OrderBy(_ => rng.Next()).ToList())
+                for (int t = 1; t <= Tries && !moved; t++)   // stops every remaining zone too once moved
+                {
+                    if (!TryPose(z, h, (float)rng.NextDouble(), (float)rng.NextDouble(), (float)rng.NextDouble(), out var p, out var r)) continue;
+                    if (hazards.Any(o => o != h && Vector3.Distance(o.transform.position, p) < MinSpacing)) continue;
+                    h.transform.SetPositionAndRotation(p, r);
+                    Physics.SyncTransforms();   // later hazards' overlap tests must see this one
+                    used.Add(z);
+                    perArea[z.area] = InArea(z.area) + 1;
+                    rec.zoneName = z.name;
+                    rec.zoneArea = z.area;
+                    rec.zoneDifficulty = z.difficulty.ToString();
+                    Debug.Log($"[ChemLab] {rec.data.id} -> {z.name} ({z.area} / {z.difficulty}) at {p.ToString("F2")}, try {t}");
+                    moved = true;
+                }
+                if (!moved) Debug.LogWarning($"[ChemLab] {rec.data.id}: no free spot in {cands.Count} zone(s) after {Tries} tries each, stays at its authored spot");
+            }
+        }
 
         /// <summary>
         /// Pose for `hazard` at point (u, v) of `zone` (0..1 across its x / z) with yaw fraction t (0..1 of yawMin..yawMax).

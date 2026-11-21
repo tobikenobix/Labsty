@@ -65,6 +65,10 @@ namespace ChemLab
             foreach (var i in FindObjectsByType<ChemLabInspectable>(FindObjectsSortMode.None))
                 if (i.kind == ChemLabInspectable.Kind.Hazard && active.All(h => h.id != i.hazardId)) i.FixInstant();
             sessionId = "session_" + DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            // after FixInstant, so the left-out hazards' colliders no longer block spots
+            int seed = ChemLabRun.LastPlacementSeed = ChemLabRun.PlacementSeed >= 0 ? ChemLabRun.PlacementSeed : Environment.TickCount & int.MaxValue;
+            Debug.Log($"[ChemLab] {sessionId} placement seed {seed}" + (ChemLabRun.RandomizePlacement ? "" : " (randomizing off)"));
+            if (ChemLabRun.RandomizePlacement) HazardPlacement.Place(records, seed);
             ChemLabRun.BeginAttempt();
         }
 
