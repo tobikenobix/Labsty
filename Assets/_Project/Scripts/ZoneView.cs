@@ -19,7 +19,7 @@ namespace ChemLab
         static bool on;
         InputAction toggle;
         Material withZones, noZones, selectedMat, fitMat, blockedMat;
-        Material[] levelMats;
+        Material zoneMat;
         Mesh cube, sphere;
         List<ChemLabInspectable> hazards = new List<ChemLabInspectable>();
         List<HazardZone> zones = new List<HazardZone>();
@@ -48,7 +48,7 @@ namespace ChemLab
             selectedMat = M(new Color(0f, 0.9f, 1f, 0.5f));
             fitMat = M(new Color(0.1f, 0.9f, 0.3f, 0.9f));
             blockedMat = M(new Color(1f, 0.2f, 0.2f, 0.9f));
-            levelMats = new[] { M(new Color(0.12f, 0.75f, 0.38f, 0.18f)), M(new Color(0.95f, 0.62f, 0.05f, 0.18f)), M(new Color(0.92f, 0.25f, 0.25f, 0.18f)) };
+            zoneMat = M(new Color(0.95f, 0.62f, 0.05f, 0.18f));
             cube = Resources.GetBuiltinResource<Mesh>("Cube.fbx");
             sphere = Resources.GetBuiltinResource<Mesh>("Sphere.fbx");
             SceneManager.sceneLoaded += (_, _) => { if (on) Refresh(); };
@@ -79,7 +79,7 @@ namespace ChemLab
             }
             if (selected == null) return;
             foreach (var z in zones.Where(z => z != null && z.Accepts(selected.hazardId)))
-                Draw(cube, levelMats[(int)z.difficulty], Matrix4x4.TRS(z.transform.position, z.transform.rotation, z.size));
+                Draw(cube, zoneMat, Matrix4x4.TRS(z.transform.position, z.transform.rotation, z.size));
             foreach (var (pos, ok) in spots)
                 Draw(sphere, ok ? fitMat : blockedMat, Matrix4x4.TRS(pos, Quaternion.identity, Vector3.one * 0.025f));
         }
@@ -106,7 +106,7 @@ namespace ChemLab
             {
                 int fit = 0, n = 0;
                 foreach (var (p, _, ok) in HazardPlacement.Grid(z, item)) { spots.Add((p, ok)); n++; if (ok) fit++; }
-                parts.Add($"{z.name} ({z.difficulty}) {fit}/{n} fit");
+                parts.Add($"{z.name} {fit}/{n} fit");
             }
             Debug.Log($"[ZoneView] {item.hazardId}: " + (mine.Count == 0 ? "no zones, stays at its scene spot" : string.Join(", ", parts)));
         }

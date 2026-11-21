@@ -80,8 +80,6 @@ namespace ChemLab
         public static bool RandomizePlacement = true;
         /// <summary>-1 = new random seed each run. Set it to a seed from the log / export to replay that run's placement.</summary>
         public static int PlacementSeed = -1;
-        /// <summary>Only use zones of this difficulty when a hazard has one (otherwise any); null = any.</summary>
-        public static HazardZone.Level? PlacementDifficulty;
         /// <summary>Seed the current / last run used.</summary>
         public static int LastPlacementSeed;
 
@@ -169,7 +167,7 @@ namespace ChemLab
                 sb.Append($"\"detectedAt\": {(h.detected ? F(h.detectedAt) : "null")}, ");
                 sb.Append($"\"selectedOption\": {S(h.selected)}, \"correctOption\": {S(h.q.correct)}, \"optionOrder\": {S(h.shownOrder)}, \"isCorrect\": {B(h.isCorrect)}, ");
                 sb.Append($"\"responseTimeSeconds\": {(h.responseTime >= 0 ? F(h.responseTime) : "null")}, ");
-                sb.Append($"\"wrongAnswers\": {h.wrongAnswers}, \"resolved\": {B(h.solved)}, \"criticalError\": {B(h.critical)}, \"zone\": {S(h.zoneName)}, \"zoneDifficulty\": {S(h.zoneDifficulty)}}}");
+                sb.Append($"\"wrongAnswers\": {h.wrongAnswers}, \"resolved\": {B(h.solved)}, \"criticalError\": {B(h.critical)}, \"zone\": {S(h.zoneName)}}}");
                 sb.Append(i < records.Count - 1 ? ",\n" : "\n");
             }
             sb.Append("  ]\n}\n");
@@ -177,11 +175,11 @@ namespace ChemLab
             // Two flat CSVs (one row per hazard, one row per run) so files from many runs concatenate into clean tables.
             string Row(params object[] v) => string.Join(",", v.Select(Csv));
             var csv = new StringBuilder();
-            csv.AppendLine("session_id,student_id,attempt,hazard_id,question_id,category,detected,detected_at,first_answer,correct_answer,first_attempt_correct,wrong_answers,resolved,critical_error,response_time,zone,zone_difficulty");
+            csv.AppendLine("session_id,student_id,attempt,hazard_id,question_id,category,detected,detected_at,first_answer,correct_answer,first_attempt_correct,wrong_answers,resolved,critical_error,response_time,zone");
             foreach (var h in records)
                 csv.AppendLine(Row(sessionId, StudentId, Attempt, h.data.id, h.q.id, h.data.exportCategory, h.detected ? 1 : 0,
                     h.detected ? F(h.detectedAt) : "", h.selected ?? "", h.q.correct, h.isCorrect == true ? 1 : 0, h.wrongAnswers,
-                    h.solved ? 1 : 0, h.critical ? 1 : 0, h.responseTime >= 0 ? F(h.responseTime) : "", h.zoneName ?? "", h.zoneDifficulty ?? ""));
+                    h.solved ? 1 : 0, h.critical ? 1 : 0, h.responseTime >= 0 ? F(h.responseTime) : "", h.zoneName ?? ""));
             var summary = new StringBuilder();
             summary.AppendLine("session_id,student_id,attempt,language,hazards_in_run,hazards_found,hazards_missed,wrong_answers,false_clicks,false_click_penalty,completion_time,timed_out,score,outcome,placement_seed");
             summary.AppendLine(Row(sessionId, StudentId, Attempt, Language, records.Count, found.Count, missed.Count, wrong, r.falseClicks, r.falsePenalty,
