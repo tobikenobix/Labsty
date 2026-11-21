@@ -50,14 +50,12 @@ namespace ChemLab
                 new ChemLabControllerLabels.Item(false, "Button_B", "B", L10n.T("lbl.close")),
                 new ChemLabControllerLabels.Item(false, "Button_A", "A", L10n.T("lbl.submit")),
                 new ChemLabControllerLabels.Item(false, "ThumbStick", null, L10n.T("lbl.stick")),
-                new ChemLabControllerLabels.Item(false, "Trigger", null, L10n.T("lbl.trigger")),
-                new ChemLabControllerLabels.Item(false, "Bumper", null, L10n.T("lbl.grip")));
+                new ChemLabControllerLabels.Item(false, "Trigger", null, L10n.T("lbl.trigger")));
             panelHandLabels = ChemLabControllerLabels.Create(
                 new ChemLabControllerLabels.Item(true, "Button_B", "Y", L10n.T("lbl.hints")),
                 new ChemLabControllerLabels.Item(true, "Button_A", "X", L10n.T("lbl.panel")),
                 new ChemLabControllerLabels.Item(true, "ThumbStick", null, L10n.T("lbl.stick")),
-                new ChemLabControllerLabels.Item(true, "Trigger", null, L10n.T("lbl.trigger")),
-                new ChemLabControllerLabels.Item(true, "Bumper", null, L10n.T("lbl.grip")));
+                new ChemLabControllerLabels.Item(true, "Trigger", null, L10n.T("lbl.trigger")));
             RefreshLabels();
         }
 

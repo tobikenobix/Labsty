@@ -356,22 +356,32 @@ namespace ChemLab
             fwd.y = 0f;
             if (fwd.sqrMagnitude < 1e-4f) fwd = Vector3.forward;
             fwd.Normalize();
-            // Straight ahead first; when that is cramped (standing against a shelf), turn up to 50 deg either way for room.
+            var (pos, rot, t) = BestSpot(panel, head.position, fwd, dist, yOffset);
+            panel.SetPositionAndRotation(pos, rot);
+            panel.localScale = Vector3.one * BaseScale(panel) * t;
+        }
+
+        /// <summary>
+        /// Where a panel `dist` ahead of the head goes: straight ahead first; when that is cramped (standing against a
+        /// shelf or a wall), turn up to 80 deg either way for room. t = the pull-in / shrink factor (MinFraction..1).
+        /// </summary>
+        static (Vector3 pos, Quaternion rot, float t) BestSpot(Transform panel, Vector3 head, Vector3 fwd, float dist, float yOffset)
+        {
             Vector3 bestPos = Vector3.zero; Quaternion bestRot = Quaternion.identity; float best = -1f;
             foreach (var yaw in SideYaws)
             {
                 var dir = Quaternion.Euler(0f, yaw, 0f) * fwd;
-                var pos = head.position + dir * dist + Vector3.up * yOffset;
+                var pos = head + dir * dist + Vector3.up * yOffset;
                 var rot = Quaternion.LookRotation(dir, Vector3.up);
-                float t = ClearFraction(panel, head.position, pos, rot);
-                if (t > best + 0.1f) { best = t; bestRot = rot; bestPos = head.position + (pos - head.position) * Mathf.Max(t, MinFraction); }
+                float t = ClearFraction(panel, head, pos, rot);
+                if (t > best + 0.1f) { best = t; bestRot = rot; bestPos = head + (pos - head) * Mathf.Max(t, MinFraction); }
                 if (best >= 1f) break;
             }
-            panel.SetPositionAndRotation(bestPos, bestRot);
-            panel.localScale = Vector3.one * BaseScale(panel) * Mathf.Max(best, MinFraction);
+            return (bestPos, bestRot, Mathf.Max(best, MinFraction));
         }
 
-        static readonly float[] SideYaws = { 0f, 25f, -25f, 50f, -50f };
+        // ponytail: 80 deg is the widest turn still in peripheral view; past that a panel against a wall stays cramped
+        static readonly float[] SideYaws = { 0f, 25f, -25f, 50f, -50f, 80f, -80f };
 
         // ---------- keep panels out of walls, benches and shelves ----------
         const float ClearMargin = 0.05f;   // gap left between a pulled-in panel and the obstacle
@@ -436,9 +446,7 @@ namespace ChemLab
             // ponytail: 1.6 m keeps 24pt text near 0.9 deg (VR minimum); farther and it stops being readable
             if (angle < 55f && toPanel.magnitude < 1.6f && Mathf.Abs(toPanel.y) < 1.2f) return;
             flatFwd.Normalize();
-            Vector3 target = head.position + flatFwd * dist + Vector3.up * yOffset;
-            float t = Mathf.Max(ClearFraction(panel, head.position, target, Quaternion.LookRotation(flatFwd)), MinFraction);
-            target = head.position + (target - head.position) * t;
+            var (target, _, t) = BestSpot(panel, head.position, flatFwd, dist, yOffset);
             panel.position = Vector3.Lerp(panel.position, target, Time.deltaTime * 4f);
             panel.localScale = Vector3.Lerp(panel.localScale, Vector3.one * BaseScale(panel) * t, Time.deltaTime * 4f);
             Vector3 look = panel.position - head.position;

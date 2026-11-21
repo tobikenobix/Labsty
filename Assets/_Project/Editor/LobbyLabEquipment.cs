@@ -257,6 +257,7 @@ public static class LobbyLabEquipment
         if (parts == null) return false;
         Remove(g, undo, "PostL", "PostR", "Lintel", "Leaf", "Window", "PushBar");
         var door = Place(lab, parts, "Door", g, Vector3.back, undo, wallHalf);      // north wall, room is -Z
+        DoorCollider(door, undo);
         float top = RendererBounds(door).max.y;
         foreach (var n in new[] { "Sign", "SignText" })
         {
@@ -264,6 +265,20 @@ public static class LobbyLabEquipment
             if (s != null) s.position = new Vector3(s.position.x, Mathf.Max(s.position.y, top + 0.2f), s.position.z);
         }
         return true;
+    }
+
+    /// <summary>
+    /// One box over the whole door model: it stands 20 cm proud of the wall, and panels (ChemLabUIKit.ClearFraction)
+    /// only keep clear of colliders, so without it they slid into the door.
+    /// </summary>
+    public static void DoorCollider(Transform door, bool undo)
+    {
+        var b = RendererBounds(door);
+        var c = door.GetComponent<BoxCollider>();
+        if (c == null) c = undo ? Undo.AddComponent<BoxCollider>(door.gameObject) : door.gameObject.AddComponent<BoxCollider>();
+        c.center = door.InverseTransformPoint(b.center);
+        var size = door.InverseTransformVector(b.size);
+        c.size = new Vector3(Mathf.Abs(size.x), Mathf.Abs(size.y), Mathf.Abs(size.z));
     }
 
     /// <summary>

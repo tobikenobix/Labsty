@@ -13,7 +13,6 @@ namespace ChemLab
     ///   Either thumbstick forward      aim a teleport arc onto the floor, release to jump (no continuous walking)
     ///   Either thumbstick left/right   snap turn 45 deg; pull back = turn around
     ///   Trigger                        select: inspect the object you point at, press UI buttons
-    ///   Grip                           also inspects the object you point at
     ///   A (right)                      confirm / submit answer
     ///   B (right)                      close panel
     ///   X (left)                       show / hide the task panel

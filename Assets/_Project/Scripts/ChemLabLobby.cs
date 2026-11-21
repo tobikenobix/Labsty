@@ -471,7 +471,6 @@ namespace ChemLab
             K.Label(root, "LStick", L10n.T("ctrl.stick"), new Vector2(-170, 60), new Vector2(150, 70), 20, K.TextDim, TextAlignmentOptions.Right, FontStyles.Bold);
             K.Label(root, "LA", ChemLabRun.Btn("A"), new Vector2(45, 5), new Vector2(36, 36), 20, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
             K.Label(root, "LB", ChemLabRun.Btn("B"), new Vector2(65, 50), new Vector2(36, 36), 20, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
-            K.Label(root, "LGrip", L10n.T("ctrl.grip"), new Vector2(-160, -95), new Vector2(110, 40), 20, K.TextDim, TextAlignmentOptions.Right, FontStyles.Bold);
             return root;
         }
     }

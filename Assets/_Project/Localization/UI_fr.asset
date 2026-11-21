@@ -222,10 +222,6 @@ MonoBehaviour:
     m_Localized: "STICK\n<size=70%>t\xE9l\xE9porter / pivoter</size>"
     m_Metadata:
       m_Items: []
-  - m_Id: 4457488439
-    m_Localized: GRIP
-    m_Metadata:
-      m_Items: []
   - m_Id: 4457488440
     m_Localized: "ID {0} \xB7 Session {1}"
     m_Metadata:
@@ -503,10 +499,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 10469552152576
     m_Localized: "<b>G\xE2chette</b>  s\xE9lectionner"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232960
-    m_Localized: <b>Grip</b>  inspecter
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232961

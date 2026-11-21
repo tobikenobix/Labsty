@@ -10,7 +10,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 namespace ChemLab
 {
     /// <summary>
-    /// The one reusable hazard/inspectable component. Point + Trigger (or Grip) inspects it.
+    /// The one reusable hazard/inspectable component. Point + Trigger inspects it.
     /// Hazard = one of the 10 assessed hazards. Tutorial = the lobby coffee cup.
     /// Decoy = ordinary lab object, so the controller ray reacts to many things and does
     /// not give away where the hazards are.
@@ -49,8 +49,6 @@ namespace ChemLab
             interactable = GetComponent<XRSimpleInteractable>();
             interactable.hoverEntered.AddListener(a => { if (!IsGaze(a.interactorObject)) hovering.Add(a.interactorObject); });
             interactable.hoverExited.AddListener(a => hovering.Remove(a.interactorObject));
-            // Grip on the object also counts as inspecting it.
-            interactable.selectEntered.AddListener(a => { if (!IsGaze(a.interactorObject)) Inspect(); });
         }
 
         void OnEnable() => all.Add(this);

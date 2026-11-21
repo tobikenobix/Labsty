@@ -10,7 +10,7 @@ namespace ChemLab
 {
     /// <summary>
     /// Developer mode in the lab (lobby > Choose hazards > Developer mode, ChemLabRun.DeveloperMode): every hazard
-    /// of the run gets a yellow box, solved ones too. Select one the usual way (trigger / grip / mouse click): it
+    /// of the run gets a yellow box, solved ones too. Select one the usual way (trigger / mouse click): it
     /// turns cyan and its HazardZones appear with their spots, green = it fits there, red = blocked or no surface
     /// (same spots as the Scene view, HazardPlacement.Grid). Selecting never opens a question or counts.
     /// Only active in the lab scene, so the lobby and tutorial inspect as usual. In the Editor, Z also toggles it.

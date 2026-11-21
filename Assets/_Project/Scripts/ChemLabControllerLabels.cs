@@ -9,7 +9,7 @@ namespace ChemLab
     /// Sign-style labels for the real buttons of both controllers. Each controller gets a column of labels on its
     /// outer side, laid out in the head's frame (so the column never folds up when the controller tilts), facing the
     /// head, with a thin leader line from each label to its button. Buttons are found by the part names of the
-    /// XRI starter rig's controller model ("Left/Right Controller Visual"): Trigger, Bumper (grip), ThumbStick,
+    /// XRI starter rig's controller model ("Left/Right Controller Visual"): Trigger, ThumbStick,
     /// Button_A (A / X) and Button_B (B / Y). Hidden in desktop mode, where there are no controllers.
     /// </summary>
     public class ChemLabControllerLabels : MonoBehaviour

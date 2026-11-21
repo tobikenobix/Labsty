@@ -207,10 +207,6 @@ MonoBehaviour:
     m_Key: ctrl.stick
     m_Metadata:
       m_Items: []
-  - m_Id: 4457488439
-    m_Key: ctrl.grip
-    m_Metadata:
-      m_Items: []
   - m_Id: 4457488440
     m_Key: end.kicker
     m_Metadata:
@@ -481,10 +477,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 10469552152576
     m_Key: lbl.trigger
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232960
-    m_Key: lbl.grip
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232961
