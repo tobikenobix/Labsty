@@ -185,6 +185,7 @@ public static class ChemLabSceneBuilder
             WallAnchor("Poster_Eyewash", new Vector3(-3.98f, 1.95f, 0.35f), Vector3.left),
         };
         game.AddComponent<ChemLabControls>();
+        LobbyLabEquipment.Apply(scene);   // same equipment models as the lab scene
         EditorSceneManager.SaveScene(scene, LobbyPath);
     }
 
@@ -1183,7 +1184,7 @@ public static class ChemLabSceneBuilder
 
     const string ModelDir = Root + "/Models/Hazards/";
 
-    static Transform Model(string model, string name, Transform parent, Vector3 localPos, Vector3 fit, Vector3 euler, float smooth = 0.3f)
+    internal static Transform Model(string model, string name, Transform parent, Vector3 localPos, Vector3 fit, Vector3 euler, float smooth = 0.3f)
         => Model(model, name, parent, localPos, fit, euler, out _, smooth);
 
     /// <summary>
@@ -1191,7 +1192,7 @@ public static class ChemLabSceneBuilder
     /// (metres, in the model's own axes; 0 = ignore that axis), bottom-centre at localPos, rotated by euler.
     /// <paramref name="size"/> is the fitted size in the model's axes.
     /// </summary>
-    static Transform Model(string model, string name, Transform parent, Vector3 localPos, Vector3 fit, Vector3 euler, out Vector3 size, float smooth = 0.3f)
+    internal static Transform Model(string model, string name, Transform parent, Vector3 localPos, Vector3 fit, Vector3 euler, out Vector3 size, float smooth = 0.3f)
     {
         string dir = ModelDir + model + "/";
         var src = AssetDatabase.LoadAssetAtPath<GameObject>(dir + model + "_low.fbx") ?? AssetDatabase.LoadAssetAtPath<GameObject>(dir + model + ".fbx");
