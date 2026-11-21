@@ -60,6 +60,23 @@ namespace ChemLab
             }
         }
 
+        public const int GridSide = 8;
+
+        /// <summary>
+        /// The zone's GridSide x GridSide preview spots for `hazard`, with fixed yaws so they don't flicker.
+        /// One source for the Scene-view dots, the in-app ZoneView and the 200-seed check.
+        /// </summary>
+        public static IEnumerable<(Vector3 pos, Quaternion rot, bool ok)> Grid(HazardZone zone, ChemLabInspectable hazard)
+        {
+            var rng = new System.Random(0);
+            for (int i = 0; i < GridSide; i++)
+                for (int j = 0; j < GridSide; j++)
+                {
+                    bool ok = TryPose(zone, hazard, (i + 0.5f) / GridSide, (j + 0.5f) / GridSide, (float)rng.NextDouble(), out var p, out var r);
+                    yield return (p, r, ok);
+                }
+        }
+
         /// <summary>
         /// Pose for `hazard` at point (u, v) of `zone` (0..1 across its x / z) with yaw fraction t (0..1 of yawMin..yawMax).
         /// False when there is no flat surface under the point or something overlaps the hazard there.

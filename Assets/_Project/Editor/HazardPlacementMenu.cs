@@ -59,7 +59,7 @@ public static class HazardPlacementMenu
         {
             var (seen, fit) = Seen(z, hazards);
             if (fit > 0 && seen == 0) hidden.Add(z.name);
-            sb.AppendLine($"  {z.name} ({z.difficulty}): used {hits[z.name]}x, {fit}/64 grid spots fit, {seen} of those visible from the aisles");
+            sb.AppendLine($"  {z.name} ({z.difficulty}): used {hits[z.name]}x, {fit}/{HazardPlacement.GridSide * HazardPlacement.GridSide} grid spots fit, {seen} of those visible from the aisles");
         }
         var report = sb.ToString();
         if (fallbacks.Values.Any(n => n > 0) || hidden.Count > 0) Debug.LogWarning(report); else Debug.Log(report);
@@ -70,7 +70,7 @@ public static class HazardPlacementMenu
     static readonly List<Vector3> Aisle = Enumerable.Range(0, 15).SelectMany(z => new[] { new Vector3(-1.7f, 1.6f, z), new Vector3(1.7f, 1.6f, z) }).ToList();
 
     /// <summary>
-    /// The zone's 8 x 8 preview grid for its first hazard: how many spots fit, and how many of those have a clear line
+    /// The zone's preview grid for its first hazard: how many spots fit, and how many of those have a clear line
     /// from at least one aisle point to the hazard's centre.
     /// </summary>
     static (int seen, int fit) Seen(HazardZone z, List<ChemLabInspectable> hazards)
@@ -78,16 +78,14 @@ public static class HazardPlacementMenu
         var h = hazards.FirstOrDefault(i => z.Accepts(i.hazardId));
         var box = h != null ? h.GetComponent<BoxCollider>() : null;
         if (box == null) return (0, 0);
-        var rng = new System.Random(0);   // same yaws as the Scene-view dots
         int seen = 0, fit = 0;
-        for (int i = 0; i < 8; i++)
-            for (int j = 0; j < 8; j++)
-            {
-                if (!HazardPlacement.TryPose(z, h, (i + 0.5f) / 8, (j + 0.5f) / 8, (float)rng.NextDouble(), out var p, out var r)) continue;
-                fit++;
-                var target = p + r * Vector3.Scale(box.center, h.transform.lossyScale);
-                if (Aisle.Any(eye => !Physics.Linecast(eye, target, ~0, QueryTriggerInteraction.Ignore))) seen++;
-            }
+        foreach (var (p, r, ok) in HazardPlacement.Grid(z, h))
+        {
+            if (!ok) continue;
+            fit++;
+            var target = p + r * Vector3.Scale(box.center, h.transform.lossyScale);
+            if (Aisle.Any(eye => !Physics.Linecast(eye, target, ~0, QueryTriggerInteraction.Ignore))) seen++;
+        }
         return (seen, fit);
     }
 

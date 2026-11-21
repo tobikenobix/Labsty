@@ -29,7 +29,6 @@ namespace ChemLab
 
 #if UNITY_EDITOR
         static readonly Color[] LevelColors = { new Color(0.12f, 0.75f, 0.38f), new Color(0.95f, 0.62f, 0.05f), new Color(0.92f, 0.25f, 0.25f) };
-        const int Grid = 8;   // preview samples per side
 
         void OnDrawGizmos()
         {
@@ -50,28 +49,26 @@ namespace ChemLab
             var hazard = FindObjectsByType<ChemLabInspectable>(FindObjectsSortMode.None).FirstOrDefault(i => i.hazardId == id);
             if (hazard == null || hazard.GetComponent<BoxCollider>() == null) return;
             Physics.SyncTransforms();
-            var rng = new System.Random(0);   // same yaws every repaint, so the dots don't flicker
-            int ok = 0;
+            int ok = 0, n = 0;
             bool shown = false;
-            for (int i = 0; i < Grid; i++)
-                for (int j = 0; j < Grid; j++)
+            foreach (var (p, r, valid) in HazardPlacement.Grid(this, hazard))
+            {
+                n++;
+                if (valid) ok++;
+                Gizmos.color = valid ? Color.green : Color.red;
+                Gizmos.DrawSphere(p, 0.012f);
+                if (valid && !shown)   // one example footprint so the hazard's size is visible
                 {
-                    bool valid = HazardPlacement.TryPose(this, hazard, (i + 0.5f) / Grid, (j + 0.5f) / Grid, (float)rng.NextDouble(), out var p, out var r);
-                    if (valid) ok++;
-                    Gizmos.color = valid ? Color.green : Color.red;
-                    Gizmos.DrawSphere(p, 0.012f);
-                    if (valid && !shown)   // one example footprint so the hazard's size is visible
-                    {
-                        shown = true;
-                        var box = hazard.GetComponent<BoxCollider>();
-                        var s = hazard.transform.lossyScale;
-                        Gizmos.matrix = Matrix4x4.TRS(p + r * Vector3.Scale(box.center, s), r, Vector3.one);
-                        Gizmos.color = Color.cyan;
-                        Gizmos.DrawWireCube(Vector3.zero, Vector3.Scale(box.size, s));
-                        Gizmos.matrix = Matrix4x4.identity;
-                    }
+                    shown = true;
+                    var box = hazard.GetComponent<BoxCollider>();
+                    var s = hazard.transform.lossyScale;
+                    Gizmos.matrix = Matrix4x4.TRS(p + r * Vector3.Scale(box.center, s), r, Vector3.one);
+                    Gizmos.color = Color.cyan;
+                    Gizmos.DrawWireCube(Vector3.zero, Vector3.Scale(box.size, s));
+                    Gizmos.matrix = Matrix4x4.identity;
                 }
-            UnityEditor.Handles.Label(transform.position - Vector3.up * (size.y / 2f + 0.05f), $"{id}: {ok * 100 / (Grid * Grid)}% of spots fit");
+            }
+            UnityEditor.Handles.Label(transform.position - Vector3.up * (size.y / 2f + 0.05f), $"{id}: {ok * 100 / n}% of spots fit");
         }
 #endif
     }
