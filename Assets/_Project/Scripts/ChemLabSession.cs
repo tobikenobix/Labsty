@@ -13,7 +13,7 @@ namespace ChemLab
 
     public class ChemLabResult
     {
-        public int detected, correct, answered, score, falseClicks, wrongAnswers;
+        public int detected, correct, answered, score, falseClicks, falsePenalty, wrongAnswers;
         public int detectionPoints, decisionPoints, maxDetectionPoints, maxDecisionPoints;
         public float duration;
         // two-layer assessment: numerical performance + mandatory safety conditions
@@ -27,7 +27,8 @@ namespace ChemLab
     /// Click hazard -> 4-option panel. Correct: chime + green check over the hazard. Wrong: buzz + one-line feedback + red cross,
     /// logged as a mistake. Every inspected object keeps an outline, so the player can see what they have already checked.
     /// The run ends when all hazards are resolved, the timer hits 0, or the player finishes early (Y / Menu).
-    /// Scoring: 3 points per hazard found + 7 per FIRST answer correct (= 100), plus pass / retraining / safety-review rules.
+    /// Scoring: 3 points per hazard found + 7 per FIRST answer correct (= 100), minus 1 per false alarm after the third,
+    /// plus pass / retraining / safety-review rules.
     /// </summary>
     public class ChemLabSession : MonoBehaviour
     {
@@ -45,6 +46,7 @@ namespace ChemLab
         public int ResolvedCount => records.Count(r => r.solved);
         public int HazardCount => records.Count;
 
+        const int FreeFalseClicks = 3;   // false alarms allowed before they cost points
         readonly List<HazardRecord> records = new List<HazardRecord>();
         ChemLabUI ui;
         float startTime, endTime;
@@ -115,7 +117,8 @@ namespace ChemLab
             {
                 falseClicks++;
                 item.SetMark(ChemLabInspectable.Mark.Checked);
-                ui.Toast(string.IsNullOrEmpty(item.displayName) ? L10n.T("lab.looksOk") : L10n.T("lab.itemOk", L10n.TOr("decoy." + item.displayName, item.displayName)));
+                if (falseClicks == FreeFalseClicks) ui.Toast(L10n.T("lab.falseWarn", FreeFalseClicks), 3.5f, ChemLabUIKit.Warn);   // the rule is announced before it costs anything
+                else ui.Toast(string.IsNullOrEmpty(item.displayName) ? L10n.T("lab.looksOk") : L10n.T("lab.itemOk", L10n.TOr("decoy." + item.displayName, item.displayName)));
                 return;
             }
 
@@ -263,7 +266,9 @@ namespace ChemLab
                 wrongAnswers = records.Sum(x => x.wrongAnswers),
             };
             // Hazard recognition and safety decision-making are scored separately.
-            r.detectionPoints = sc.pointsPerDetection * r.detected;
+            // Clicking everything isn't detection: past FreeFalseClicks, each false alarm costs one detection point.
+            r.falsePenalty = Mathf.Max(0, falseClicks - FreeFalseClicks);
+            r.detectionPoints = Mathf.Max(0, sc.pointsPerDetection * r.detected - r.falsePenalty);
             r.decisionPoints = sc.pointsPerCorrectDecision * r.correct;
             r.maxDetectionPoints = sc.pointsPerDetection * records.Count;
             r.maxDecisionPoints = sc.pointsPerCorrectDecision * records.Count;

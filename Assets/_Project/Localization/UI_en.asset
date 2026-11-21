@@ -707,6 +707,15 @@ MonoBehaviour:
     m_Localized: Emergency eyewash
     m_Metadata:
       m_Items: []
+  - m_Id: 170661547859968
+    m_Localized: 'Looks OK. That''s {0} false alarms: from now on, each one costs
+      1 point.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170661610774528
+    m_Localized: '{0} / {1} points (-{2} for false alarms)'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

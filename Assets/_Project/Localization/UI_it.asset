@@ -710,6 +710,15 @@ MonoBehaviour:
     m_Localized: Lavaocchi di emergenza
     m_Metadata:
       m_Items: []
+  - m_Id: 170661547859968
+    m_Localized: 'Sembra a posto. {0} falsi allarmi: d''ora in poi ognuno costa 1
+      punto.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170661610774528
+    m_Localized: '{0} / {1} punti (-{2} per falsi allarmi)'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

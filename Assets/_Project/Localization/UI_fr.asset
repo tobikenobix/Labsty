@@ -706,6 +706,15 @@ MonoBehaviour:
     m_Localized: Douche oculaire d'urgence
     m_Metadata:
       m_Items: []
+  - m_Id: 170661547859968
+    m_Localized: "Rien \xE0 signaler. {0} fausses alertes : d\xE9sormais, chacune
+      co\xFBte 1 point."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170661610774528
+    m_Localized: '{0} / {1} points (-{2} pour fausses alertes)'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

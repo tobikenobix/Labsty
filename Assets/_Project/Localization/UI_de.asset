@@ -706,6 +706,15 @@ MonoBehaviour:
     m_Localized: Notfall-Augendusche
     m_Metadata:
       m_Items: []
+  - m_Id: 170661547859968
+    m_Localized: 'Sieht gut aus. Das war der {0}. Fehlalarm: ab jetzt kostet jeder
+      1 Punkt.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170661610774528
+    m_Localized: "{0} / {1} Punkte (-{2} f\xFCr Fehlalarme)"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

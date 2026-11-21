@@ -78,7 +78,7 @@ JSON, one object per run:
 | `language`, `mode` | `EN`/`DE`/`FR`/`IT`; `mode` is always `assessment` |
 | `completion_time`, `timed_out` | Seconds from lab start to the end; true when the timer ran out |
 | `hazardsInRun`, `hazards_found`, `hazards_missed` | How many hazards were in this run, and the ids found and missed |
-| `wrong_answers`, `falsePositiveClicks` | All wrong submissions; clicks on objects that are not hazards (not scored) |
+| `wrong_answers`, `falsePositiveClicks`, `falseClickPenalty` | All wrong submissions; clicks on objects that are not hazards; detection points lost to them (1 per false click after the third) |
 | `score`, `detectionPoints`, `decisionPoints` | Points per hazard found plus points per first answer correct (weights in the lab config); `score` is the percentage of the points this run offered |
 | `outcome` | `Pass`, `RetrainingRequired` or `SafetyReviewRequired` |
 | `minimumScoreAchieved` … `safetyReviewRequired` | The pass conditions behind the outcome |

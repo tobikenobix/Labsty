@@ -97,7 +97,9 @@ namespace ChemLab
                 Txt("StatB", big, x, sy - 44, 500, 58, 44, Ink, TextAlignmentOptions.Left, FontStyles.Bold);
                 Txt("StatS", small, x, sy - 104, 500, 40, 28, InkDim, TextAlignmentOptions.Left);
             }
-            Stat(L + 20, L10n.T("end.detection"), $"{r.detected}/{total}", L10n.T("end.points", r.detectionPoints, r.maxDetectionPoints));
+            Stat(L + 20, L10n.T("end.detection"), $"{r.detected}/{total}", r.falsePenalty > 0
+                ? L10n.T("end.pointsPenalty", r.detectionPoints, r.maxDetectionPoints, r.falsePenalty)
+                : L10n.T("end.points", r.detectionPoints, r.maxDetectionPoints));
             Stat(L + inner / 2f + 20, L10n.T("end.decisions"), $"{r.correct}/{r.answered}", L10n.T("end.points", r.decisionPoints, r.maxDecisionPoints));
             HRule(sy - 172);
 

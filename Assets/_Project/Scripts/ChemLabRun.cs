@@ -107,6 +107,7 @@ namespace ChemLab
             sb.Append($"  \"allCriticalHazardsCorrect\": {B(r.allCriticalHazardsCorrect)},\n");
             sb.Append($"  \"noCriticalUnsafeChoice\": {B(r.noCriticalChoice)},\n");
             sb.Append($"  \"safetyReviewRequired\": {B(r.outcome == Outcome.SafetyReviewRequired)},\n");
+            sb.Append($"  \"falseClickPenalty\": {r.falsePenalty},\n");
             sb.Append("  \"hazards\": [\n");
             for (int i = 0; i < records.Count; i++)
             {
