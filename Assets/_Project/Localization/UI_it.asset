@@ -160,7 +160,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488418
-    m_Localized: "TUM \xB7 ETH  \u2014  INIZIATIVA SICUREZZA NEI LABORATORI"
+    m_Localized: "Realizzato da studenti di TUM ed ETH"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488419
@@ -237,7 +237,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488440
-    m_Localized: "{0} \xB7 SESSIONE {1}"
+    m_Localized: "ID {0} \xB7 Sessione {1}"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488441
@@ -301,12 +301,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488456
-    m_Localized: "La persona valutata ha scelto {0}: {1}. Si tratta di una scelta
-      critica non sicura, perch\xE9 {2}"
+    m_Localized: "Ha scelto {0}: {1}. Si tratta di una scelta critica non sicura, perch\xE9 {2}"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488457
-    m_Localized: La persona valutata non ha rilevato questo pericolo.
+    m_Localized: "Non ha trovato questo pericolo."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488458
@@ -314,11 +313,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488459
-    m_Localized: La persona valutata ha scelto {0} invece di {1}. {2}
+    m_Localized: "Ha scelto {0} invece di {1}. {2}"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488460
-    m_Localized: '+ altri {0}: vedere le spiegazioni'
+    m_Localized: "+ altri {0}: vedi Spiegazioni"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488461
@@ -354,26 +353,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488469
-    m_Localized: Nonostante il punteggio di {0}/100, la persona valutata deve ripassare
-      le procedure di {1} e sostenere una nuova valutazione.
+    m_Localized: "Ha ottenuto {0}/100, ma un requisito critico per la sicurezza non \xE8 stato soddisfatto. Ripassi le procedure di {1} e ripeta la valutazione."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488470
-    m_Localized: Con {0}/100 i requisiti minimi non sono stati raggiunti. La persona
-      valutata dovrebbe ripassare le procedure di {1} e sostenere una nuova valutazione.
+    m_Localized: "Con {0}/100 non ha raggiunto i requisiti minimi. Ripassi le procedure di {1} e ripeta la valutazione."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488471
-    m_Localized: La persona valutata ha dimostrato competenza con {0}/100 e nessun
-      errore critico per la sicurezza.
+    m_Localized: "Ha dimostrato competenza con {0}/100 e nessun errore critico per la sicurezza."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488472
-    m_Localized: 'Nel feedback va incluso anche il pericolo non rilevato: {0}.'
+    m_Localized: "Non ha rilevato anche questo pericolo: {0}."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488473
-    m_Localized: 'Nel feedback vanno inclusi anche i pericoli non rilevati: {0}.'
+    m_Localized: "Non ha rilevato anche questi pericoli: {0}."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488474
@@ -393,7 +389,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488478
-    m_Localized: non rilevato
+    m_Localized: "non trovato"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488479
@@ -831,6 +827,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 190000000000028
     m_Localized: "Poi: una breve sala di prova (circa 3 minuti), poi il laboratorio."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000101
+    m_Localized: "Da rivedere ({0})"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000102
+    m_Localized: "Corrette ({0})"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000103
+    m_Localized: "Risposta giusta: {0}"
     m_Metadata:
       m_Items: []
   references:

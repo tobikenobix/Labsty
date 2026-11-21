@@ -94,8 +94,7 @@ namespace ChemLab
             feedback = K.Label(t, "Feedback", "", new Vector2(31, -289), new Vector2(830, 86), 28, K.Text, TextAlignmentOptions.Left);
             feedback.enableAutoSizing = true; feedback.fontSizeMin = 22; feedback.fontSizeMax = 28;
             // Close is the quiet way out (narrow, soft rim); Submit takes the room because it is the action
-            var close = K.Button(t, "Close", L10n.T("common.close"), new Vector2(-315, -389), new Vector2(290, 66), K.Style.Ghost, () => onClose(), key: "B");
-            close.transform.Find("Outline").GetComponent<Image>().color = K.Stroke;
+            K.Button(t, "Close", L10n.T("common.close"), new Vector2(-315, -389), new Vector2(290, 66), K.Style.Ghost, () => onClose(), key: "B");
             submit = K.Button(t, "Submit", L10n.T("q.submit"), new Vector2(155, -389), new Vector2(610, 66), K.Style.Primary, () => onSubmit(), key: "A");
             canvas.gameObject.SetActive(false);
         }

@@ -56,9 +56,6 @@ namespace ChemLab
         public static void Set(string code) =>
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.GetLocale(code.ToLowerInvariant());
 
-        /// <summary>Lower-cases a term for use mid-sentence, except in German where nouns keep their capital.</summary>
-        public static string Lower(string s) => Code == "DE" ? s : s.ToLowerInvariant();
-
         /// <summary>Lower-cases only the first letter (an answer quoted mid-sentence); German keeps it.</summary>
         public static string LowerFirst(string s) => string.IsNullOrEmpty(s) || Code == "DE" ? s : char.ToLowerInvariant(s[0]) + s.Substring(1);
     }

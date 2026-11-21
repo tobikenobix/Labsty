@@ -152,7 +152,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488418
-    m_Localized: "TUM \xB7 ETH  \u2014  INITIATIVE S\xC9CURIT\xC9 AU LABO"
+    m_Localized: "R\xE9alis\xE9 par des \xE9tudiants de la TUM et de l'ETH"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488419
@@ -227,7 +227,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488440
-    m_Localized: "{0} \xB7 SESSION {1}"
+    m_Localized: "ID {0} \xB7 Session {1}"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488441
@@ -291,12 +291,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488456
-    m_Localized: "La personne \xE9valu\xE9e a choisi {0} : {1}. C'est un choix dangereux
-      critique, car {2}"
+    m_Localized: "Vous avez choisi {0} : {1}. C'est un choix dangereux critique, car {2}"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488457
-    m_Localized: "La personne \xE9valu\xE9e n'a pas d\xE9tect\xE9 ce danger."
+    m_Localized: "Vous n'avez pas trouv\xE9 ce danger."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488458
@@ -304,11 +303,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488459
-    m_Localized: "La personne \xE9valu\xE9e a choisi {0} au lieu de {1}. {2}"
+    m_Localized: "Vous avez choisi {0} au lieu de {1}. {2}"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488460
-    m_Localized: "+ {0} de plus : voir \xAB Revoir les explications \xBB"
+    m_Localized: "+ {0} autres : voir Explications"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488461
@@ -345,28 +344,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488469
-    m_Localized: "Malgr\xE9 un score de {0}/100, la personne \xE9valu\xE9e doit revoir
-      la proc\xE9dure de s\xE9curit\xE9 et passer une nouvelle \xE9valuation. \xC0
-      revoir : {1}."
+    m_Localized: "Vous avez obtenu {0}/100, mais une exigence critique pour la s\xE9curit\xE9 n'est pas remplie. Revoyez la proc\xE9dure et repassez l'\xE9valuation. \xC0 revoir : {1}."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488470
-    m_Localized: "Avec {0}/100, les exigences minimales ne sont pas remplies. La
-      personne \xE9valu\xE9e devrait revoir les th\xE8mes concern\xE9s et passer
-      une nouvelle \xE9valuation. \xC0 revoir : {1}."
+    m_Localized: "Avec {0}/100, vous n'atteignez pas les exigences minimales. Revoyez les th\xE8mes concern\xE9s et repassez l'\xE9valuation. \xC0 revoir : {1}."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488471
-    m_Localized: "La personne \xE9valu\xE9e a d\xE9montr\xE9 sa comp\xE9tence avec
-      {0}/100 et aucune erreur critique pour la s\xE9curit\xE9."
+    m_Localized: "Vous avez d\xE9montr\xE9 votre comp\xE9tence avec {0}/100 et aucune erreur critique pour la s\xE9curit\xE9."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488472
-    m_Localized: "Le danger manqu\xE9 ({0}) doit aussi figurer dans le retour."
+    m_Localized: "Vous avez aussi manqu\xE9 ce danger : {0}."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488473
-    m_Localized: "Les dangers manqu\xE9s ({0}) doivent aussi figurer dans le retour."
+    m_Localized: "Vous avez aussi manqu\xE9 ces dangers : {0}."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488474
@@ -386,7 +380,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488478
-    m_Localized: "manqu\xE9"
+    m_Localized: "non trouv\xE9"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488479
@@ -826,6 +820,18 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 190000000000028
     m_Localized: "Ensuite : une courte salle d'entra\xEEnement (environ 3 minutes), puis le labo."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000101
+    m_Localized: "\xC0 revoir ({0})"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000102
+    m_Localized: "Correct ({0})"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000103
+    m_Localized: "Bonne r\xE9ponse : {0}"
     m_Metadata:
       m_Items: []
   references:
