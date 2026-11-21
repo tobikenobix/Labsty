@@ -28,6 +28,7 @@ public static class ChemLabSceneBuilder
 {
     const string Root = "Assets/_Project";
     const string LobbyPath = Root + "/Scenes/ChemLab_Lobby.unity";
+    const string TutorialPath = Root + "/Scenes/ChemLab_Tutorial.unity";
     const string ScenePath = Root + "/Scenes/ChemistryLab.unity";
     const string EndPath = Root + "/Scenes/ChemLab_End.unity";
     const string RigPath = "Assets/Samples/XR Interaction Toolkit/3.6.1/Starter Assets/Prefabs/XR Origin (XR Rig).prefab";
@@ -40,7 +41,7 @@ public static class ChemLabSceneBuilder
     {
         if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
         BuildAll();
-        EditorUtility.DisplayDialog("Chemistry Lab", "Built 3 scenes:\n" + LobbyPath + "\n" + ScenePath + "\n" + EndPath +
+        EditorUtility.DisplayDialog("Chemistry Lab", "Built 4 scenes:\n" + LobbyPath + "\n" + TutorialPath + "\n" + ScenePath + "\n" + EndPath +
             "\n\nOpen ChemLab_Lobby and press Play (with Quest Link), or Build & Run to the Quest 3.", "OK");
     }
 
@@ -64,6 +65,24 @@ public static class ChemLabSceneBuilder
         Debug.Log("[ChemLab] Built the Lobby scene.");
     }
 
+    /// <summary>Rebuilds only the tutorial room and puts it after the lobby in Build Settings (the lab stays untouched).</summary>
+    [MenuItem("Chemistry Lab/Build Tutorial Scene")]
+    public static void BuildTutorialMenu()
+    {
+        if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
+        BuildTutorialOnly();
+    }
+
+    public static void BuildTutorialOnly()
+    {
+        SharedMaterials();
+        BuildTutorial();
+        AddTutorialToBuild();
+        AssetDatabase.SaveAssets();
+        EditorSceneManager.OpenScene(TutorialPath);
+        Debug.Log("[ChemLab] Built the Tutorial scene.");
+    }
+
     static void SharedMaterials()
     {
         mats.Clear();
@@ -81,12 +100,14 @@ public static class ChemLabSceneBuilder
         SharedMaterials();
         BuildLab();
         BuildLobby();
+        BuildTutorial();
         BuildEnd();
-        EditorBuildSettings.scenes = new[] { LobbyPath, ScenePath, EndPath }.Select(x => new EditorBuildSettingsScene(x, true))
-            .Concat(EditorBuildSettings.scenes.Where(s => s.path != LobbyPath && s.path != ScenePath && s.path != EndPath)).ToArray();
+        var ours = new[] { LobbyPath, TutorialPath, ScenePath, EndPath };
+        EditorBuildSettings.scenes = ours.Select(x => new EditorBuildSettingsScene(x, true))
+            .Concat(EditorBuildSettings.scenes.Where(s => !ours.Contains(s.path))).ToArray();
         AssetDatabase.SaveAssets();
         EditorSceneManager.OpenScene(LobbyPath);
-        Debug.Log("[ChemLab] Built Lobby, Lab and End scenes.");
+        Debug.Log("[ChemLab] Built Lobby, Tutorial, Lab and End scenes.");
     }
 
     // ===================================================================== scene 2: lab
@@ -143,38 +164,17 @@ public static class ChemLabSceneBuilder
         SimpleRoom(env, 8f, 8f);
 
         var start = new Vector3(0, 0, -2.4f);
-        // practice target: walk onto the glowing ring with the left stick
-        var nodes = new GameObject("Walk Target").transform;
-        var practice = Node(nodes, "Walk here", new Vector3(1.9f, 0, -1.2f), -30f, teleport: false);
-        practice.localScale = new Vector3(1.2f, 1f, 1.2f);
-
-        // coffee cup on a pedestal: practise selecting
-        var ped = Group("Pedestal", env, new Vector3(-1.9f, 0, -1.3f));
-        Cyl("Column", ped, new Vector3(0, 0.5f, 0), 0.45f, 1.0f, M("Pedestal", new Color(0.92f, 0.93f, 0.95f), smooth: 0.7f));
-        Cyl("Top", ped, new Vector3(0, 1.01f, 0), 0.55f, 0.03f, M("PedestalTop", new Color(0.12f, 0.15f, 0.2f), smooth: 0.8f));
-        var pr = Cyl("GlowRing", ped, new Vector3(0, 1.03f, 0), 0.5f, 0.005f, M("NodeGlow", Color.cyan));
-        Object.DestroyImmediate(pr.GetComponent<Collider>());
-        Label("Tag", ped, "SELECT ME", new Vector3(0, 1.45f, 0), Quaternion.Euler(0, 40f, 0), 0.8f, new Color(0f, 0.6f, 0.55f));
-        var cup = Group("Coffee Cup (practice)", env, new Vector3(-1.9f, 1.025f, -1.3f));
-        Cyl("Cup", cup, new Vector3(0, 0.065f, 0), 0.085f, 0.13f, M("CupPaper", new Color(0.95f, 0.92f, 0.85f)));
-        Cyl("Sleeve", cup, new Vector3(0, 0.06f, 0), 0.088f, 0.05f, M("CupSleeve", new Color(0.45f, 0.3f, 0.18f)));
-        Cyl("Lid", cup, new Vector3(0, 0.135f, 0), 0.09f, 0.012f, M("CupLid", new Color(0.2f, 0.15f, 0.12f)));
-        MakeInspectable(cup.gameObject, ChemLabInspectable.Kind.Tutorial, null, "Coffee cup");
-        var bc = cup.GetComponent<BoxCollider>();
-        bc.size *= 2.2f;   // generous target for first-timers
-
         LobbyDecor(env);
 
-        var leftHand = Systems(start, 0f);
+        Systems(start, 0f);
         var game = new GameObject("ChemLab Lobby");
         var lobby = game.AddComponent<ChemLabLobby>();
-        lobby.leftHandAnchor = leftHand;
         // 1.05 m / 1.10 m from the start spot, and the lobby draws these panels 1.15x / 1.2x larger: 28-unit body
         // text gets an x-height of ~0.92 deg, above Meta's 0.9 deg minimum (was 0.68 / 0.62 deg at 1.24 / 1.35 m)
         lobby.mainPanelAnchor = Anchor("MainPanelAnchor", new Vector3(-0.38f, 1.5f, -1.42f), start);
         lobby.teachingPanelAnchor = Anchor("TeachingPanelAnchor", new Vector3(0.69f, 1.45f, -1.55f), start);
-        // kiosk stands under both panels, ending at their lower edge (main: 900 x 0.00115 tall, teaching: 960 x 0.0012)
-        Stand(env, lobby.mainPanelAnchor, 1.5f - 0.52f);
+        // kiosk stands under both panels, ending at their lower edge (main: 600 x 0.00115 tall, teaching: 960 x 0.0012)
+        Stand(env, lobby.mainPanelAnchor, 1.5f - 0.345f);
         Stand(env, lobby.teachingPanelAnchor, 1.45f - 0.58f);
         // wall posters face into the room (anchor forward points into the wall)
         lobby.posterAnchors = new[]
@@ -220,16 +220,7 @@ public static class ChemLabSceneBuilder
         var metal = M("Metal", Color.grey);
 
         // --- north wall: door to the lab (west of the window) with hazard tape in front
-        var door = Group("LabDoor", d, new Vector3(-3.2f, 0, 3.98f));
-        var frame = M("DoorFrame", new Color(0.25f, 0.28f, 0.32f));
-        Box("PostL", door, new Vector3(-0.56f, 1.1f, 0), new Vector3(0.08f, 2.2f, 0.06f), frame);
-        Box("PostR", door, new Vector3(0.56f, 1.1f, 0), new Vector3(0.08f, 2.2f, 0.06f), frame);
-        Box("Lintel", door, new Vector3(0, 2.24f, 0), new Vector3(1.2f, 0.08f, 0.06f), frame);
-        Box("Leaf", door, new Vector3(0, 1.08f, 0.01f), new Vector3(1.04f, 2.12f, 0.04f), M("DoorSteel", new Color(0.55f, 0.63f, 0.7f), metallic: 0.3f, smooth: 0.5f));
-        Box("Window", door, new Vector3(0.2f, 1.55f, -0.012f), new Vector3(0.3f, 0.5f, 0.01f), glass);
-        Box("PushBar", door, new Vector3(0, 1.0f, -0.04f), new Vector3(0.8f, 0.04f, 0.04f), metal);
-        Box("Sign", door, new Vector3(0, 2.52f, -0.01f), new Vector3(0.9f, 0.26f, 0.02f), M("SignBlue", new Color(0.08f, 0.28f, 0.54f)));
-        Label("SignText", door, "LAB 404  ·  BSL-1", new Vector3(0, 2.52f, -0.025f), Quaternion.identity, 0.9f, Color.white);
+        LabDoor(d, new Vector3(-3.2f, 0, 3.98f));
         var tape = M("HazardTape", new Color(0.98f, 0.66f, 0f), emissive: false);
         for (int i = 0; i < 6; i++)
             Box("Tape", d, new Vector3(-3.7f + i * 0.2f, 0.003f, 3.45f), new Vector3(0.1f, 0.006f, 0.08f), i % 2 == 0 ? tape : M("TapeBlack", new Color(0.08f, 0.08f, 0.08f)));
@@ -337,6 +328,105 @@ public static class ChemLabSceneBuilder
         Model("CoffeeCup", "Cup1", cups, Vector3.zero, new Vector3(0.09f, 0.13f, 0.09f), Vector3.zero);
         Model("CoffeeCup", "Cup2", cups, new Vector3(0.14f, 0, 0.05f), new Vector3(0.09f, 0.13f, 0.09f), new Vector3(0, 40f, 0));
         foreach (var c in cups.GetComponentsInChildren<Collider>()) Object.DestroyImmediate(c);
+    }
+
+    /// <summary>Steel door into the lab (on a north wall, facing -Z) with the LAB 404 sign above it.</summary>
+    static Transform LabDoor(Transform parent, Vector3 pos)
+    {
+        var door = Group("LabDoor", parent, pos);
+        var frame = M("DoorFrame", new Color(0.25f, 0.28f, 0.32f));
+        Box("PostL", door, new Vector3(-0.56f, 1.1f, 0), new Vector3(0.08f, 2.2f, 0.06f), frame);
+        Box("PostR", door, new Vector3(0.56f, 1.1f, 0), new Vector3(0.08f, 2.2f, 0.06f), frame);
+        Box("Lintel", door, new Vector3(0, 2.24f, 0), new Vector3(1.2f, 0.08f, 0.06f), frame);
+        Box("Leaf", door, new Vector3(0, 1.08f, 0.01f), new Vector3(1.04f, 2.12f, 0.04f), M("DoorSteel", new Color(0.55f, 0.63f, 0.7f), metallic: 0.3f, smooth: 0.5f));
+        Box("Window", door, new Vector3(0.2f, 1.55f, -0.012f), new Vector3(0.3f, 0.5f, 0.01f), M("Glass", Color.white));
+        Box("PushBar", door, new Vector3(0, 1.0f, -0.04f), new Vector3(0.8f, 0.04f, 0.04f), M("Metal", Color.grey));
+        Box("Sign", door, new Vector3(0, 2.52f, -0.01f), new Vector3(0.9f, 0.26f, 0.02f), M("SignBlue", new Color(0.08f, 0.28f, 0.54f)));
+        Label("SignText", door, "LAB 404  ·  BSL-1", new Vector3(0, 2.52f, -0.025f), Quaternion.identity, 0.9f, Color.white);
+        return door;
+    }
+
+    // ===================================================================== scene 1b: tutorial room
+
+    /// <summary>
+    /// The practice room (7 x 9 m) between the lobby and the lab: start in the south, ring 1 beside bench A (east wall: a
+    /// closed acetone bottle as the safe object, an open HCl bottle as practice hazard), ring 2 beside bench B (west
+    /// wall: a spill), ring 3 in front of the lab door (north wall). One card anchor per step, ~1.1 m from where the
+    /// player stands for it, so the card's 30-unit body text stays near 0.95 deg x-height.
+    /// </summary>
+    static void BuildTutorial()
+    {
+        var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+        BuildLighting(bright: true);
+        var env = new GameObject("Environment").transform;
+        SimpleRoom(env, 7f, 9f);
+        Object.DestroyImmediate(env.Find("LightWall").gameObject);   // the door takes the middle of the north wall
+        LabDoor(env, new Vector3(0, 0, 4.48f));
+
+        var start = new Vector3(0, 0, -3.6f);
+        Vector3 r1 = new Vector3(1.6f, 0, -1.5f), r2 = new Vector3(-1.6f, 0, 1.2f), r3 = new Vector3(0, 0, 3.3f);
+        var ringRoot = new GameObject("Rings").transform;
+        ChemLabTeleportNode Ring(string name, Vector3 pos, float yaw)
+        {
+            var n = Node(ringRoot, name, pos, yaw, teleport: false);   // the floor takes the teleport arc, as in the lab
+            Object.DestroyImmediate(n.Find("Tag").gameObject);           // the glow is the sign; the card says what to do
+            var node = n.GetComponent<ChemLabTeleportNode>();
+            node.nameTag = null;
+            return node;
+        }
+        var rings = new[] { Ring("Ring1", r1, 90f), Ring("Ring2", r2, -90f), Ring("Ring3", r3, 0f) };
+
+        // bench A (east): safe closed bottle + open acid bottle with its cap lying beside it
+        Bench("BenchA", env, new Vector3(3.1f, 0, -1.5f), new Vector2(0.7f, 2.0f));
+        var practice = new GameObject("Practice items").transform;
+        var decoy = Group("Safe_ClosedBottle", practice, new Vector3(3.0f, 0.9f, -1.85f));
+        Model("AcetoneBottle", "Bottle", decoy, Vector3.zero, new Vector3(0.12f, 0.24f, 0.12f), new Vector3(0, 90f, 0), 0.6f);   // label towards ring 1 (west)
+        MakeInspectable(decoy.gameObject, ChemLabInspectable.Kind.Decoy, null, "Decoy");
+        var acid = Group("Practice_OpenAcid", practice, new Vector3(3.0f, 0.9f, -1.2f));
+        Model("HClBottle", "Bottle", acid, Vector3.zero, new Vector3(0.14f, 0.27f, 0.14f), new Vector3(0, 90f, 0), 0.6f);
+        var cap = Cyl("Cap", acid, new Vector3(-0.05f, 0.015f, 0.14f), 0.05f, 0.03f, M("CapRed", new Color(0.8f, 0.1f, 0.1f)));
+        cap.transform.localRotation = Quaternion.Euler(90f, 0, 0);   // lying on its side
+        MakeInspectable(acid.gameObject, ChemLabInspectable.Kind.Tutorial, null, "Acid");
+
+        // bench B (west): a clear spill with the tipped beaker it came from
+        Bench("BenchB", env, new Vector3(-3.1f, 0, 1.2f), new Vector2(0.7f, 2.0f));
+        var spill = Group("Practice_Spill", practice, new Vector3(-2.95f, 0.9f, 1.05f));
+        var wet = M("SpillClear", new Color(0.7f, 0.85f, 1f, 0.55f), transparent: true, smooth: 0.95f);
+        Cyl("Puddle", spill, new Vector3(0, 0.003f, 0), 0.42f, 0.004f, wet);
+        Cyl("Puddle2", spill, new Vector3(0.08f, 0.003f, 0.24f), 0.22f, 0.004f, wet);
+        var beaker = Cyl("Beaker", spill, new Vector3(0.02f, 0.045f, -0.26f), 0.09f, 0.14f, M("Glass", Color.white));
+        beaker.transform.localRotation = Quaternion.Euler(0, 0, 90f);   // tipped over
+        MakeInspectable(spill.gameObject, ChemLabInspectable.Kind.Tutorial, null, "Spill");
+        var sc = spill.GetComponent<BoxCollider>();
+        sc.size = new Vector3(sc.size.x, 0.12f, sc.size.z);   // a puddle is flat; give the ray something to hit
+        sc.center = new Vector3(sc.center.x, 0.05f, sc.center.z);
+
+        var leftHand = Systems(start, 0f);
+        var game = new GameObject("ChemLab Tutorial");
+        var tut = game.AddComponent<ChemLabTutorial>();
+        tut.leftHandAnchor = leftHand;
+        tut.rings = rings;
+        var bench = Anchor("Card_BenchA", new Vector3(2.55f, 1.55f, -0.95f), r1);
+        var spillCard = Anchor("Card_Spill", new Vector3(-2.55f, 1.55f, 1.75f), r2);
+        tut.stepAnchors = new[]
+        {
+            Anchor("Card_Start", new Vector3(-0.4f, 1.5f, -2.55f), start),   // 1 teleport
+            Anchor("Card_Ring1", new Vector3(1.6f, 1.5f, -0.4f), r1),       // 2 turn (straight ahead on arrival)
+            bench, bench,                                                     // 3 safe bottle, 4 acid
+            spillCard, spillCard,                                             // 5 spill, 6 task panel
+            Anchor("Card_Door", new Vector3(0.85f, 1.5f, 4.0f), r3),        // 7 finish
+        };
+        game.AddComponent<ChemLabControls>();
+        EditorSceneManager.SaveScene(scene, TutorialPath);
+    }
+
+    /// <summary>Puts the tutorial right after the lobby in Build Settings (adds it once).</summary>
+    static void AddTutorialToBuild()
+    {
+        var list = EditorBuildSettings.scenes.Where(s => s.path != TutorialPath).ToList();
+        int lobby = list.FindIndex(s => s.path == LobbyPath);
+        list.Insert(lobby + 1, new EditorBuildSettingsScene(TutorialPath, true));
+        EditorBuildSettings.scenes = list.ToArray();
     }
 
     // ===================================================================== scene 3: end
@@ -494,7 +584,8 @@ public static class ChemLabSceneBuilder
     static void SimpleRoom(Transform env, float w, float d)
     {
         var floorTex = FloorTexture();
-        Box("Floor", env, new Vector3(0, -0.05f, 0), new Vector3(w, 0.1f, d), M("LobbyFloor", new Color(0.86f, 0.88f, 0.9f), smooth: 0.65f, tex: floorTex, tiling: new Vector2(w / 2f, d / 2f)));
+        // the tiling lives on the material, so a room of another size gets its own floor material
+        Box("Floor", env, new Vector3(0, -0.05f, 0), new Vector3(w, 0.1f, d), M(w == 8f && d == 8f ? "LobbyFloor" : $"LobbyFloor_{w}x{d}", new Color(0.86f, 0.88f, 0.9f), smooth: 0.65f, tex: floorTex, tiling: new Vector2(w / 2f, d / 2f)));
         Box("Ceiling", env, new Vector3(0, 3.05f, 0), new Vector3(w, 0.1f, d), M("Ceiling", Color.white));
         var wall = M("LobbyWall", new Color(0.95f, 0.96f, 0.97f));
         Box("Wall_N", env, new Vector3(0, 1.5f, d / 2f + 0.05f), new Vector3(w, 3f, 0.1f), wall);

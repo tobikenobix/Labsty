@@ -29,11 +29,11 @@ namespace ChemLab
         static string Get(string key, object[] args) => LocalizationSettings.StringDatabase.GetLocalizedString(UiTable, key, args);
 
         // ponytail: the UI texts that name controller buttons (A/B/X/Y), checked in all four languages. A new text that
-        // names a button goes here, or gets its own "key.lh" entry when it also says which controller (see tut.h5.lh).
+        // names a button goes here, or gets its own "key.lh" entry when it also says which controller (see tut.h6.lh).
         static readonly HashSet<string> ButtonTexts = new HashSet<string>
         {
-            "q.hint", "tab.footer", "help.vr", "station.body", "lobby.startReady", "end.closeB",
-            "tut.h4", "tut.hDone", "tut.footer", "tch.answer", "tch.score",
+            "q.hint", "tab.footer", "help.vr", "station.body", "end.closeB",
+            "tut.h4", "tut.h7", "tut.footer", "tut.finishBody", "tch.answer", "tch.score",
         };
 
         /// <summary>UI text, or `fallback` when the table has no such key (e.g. decoy names added to a scene later).</summary>
