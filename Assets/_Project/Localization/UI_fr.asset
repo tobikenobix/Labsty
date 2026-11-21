@@ -715,6 +715,14 @@ MonoBehaviour:
     m_Localized: '{0} / {1} points (-{2} pour fausses alertes)'
     m_Metadata:
       m_Items: []
+  - m_Id: 171324625379328
+    m_Localized: "S\xC9LECTIONNE-MOI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 171324663128064
+    m_Localized: MARCHE ICI
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

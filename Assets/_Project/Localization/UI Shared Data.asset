@@ -679,6 +679,14 @@ MonoBehaviour:
     m_Key: end.pointsPenalty
     m_Metadata:
       m_Items: []
+  - m_Id: 171324625379328
+    m_Key: sign.selectMe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 171324663128064
+    m_Key: sign.walkHere
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

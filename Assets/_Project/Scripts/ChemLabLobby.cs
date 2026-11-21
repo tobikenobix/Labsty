@@ -94,6 +94,20 @@ namespace ChemLab
             origin = FindFirstObjectByType<XROrigin>();
             if (origin != null) startYaw = origin.transform.eulerAngles.y;
             cup = FindObjectsByType<ChemLabInspectable>(FindObjectsSortMode.None).FirstOrDefault(i => i.kind == ChemLabInspectable.Kind.Tutorial);
+            LocalizeHintSigns();
+        }
+
+        // ponytail: the builder bakes these two instructions as English 3D text; swapping them here by their text saves a
+        // scene rebuild. A new instruction sign has to be added to this map (decorative signs stay English on purpose).
+        static readonly Dictionary<string, string> HintSigns = new Dictionary<string, string>
+        {
+            { "SELECT ME", "sign.selectMe" }, { "WALK HERE", "sign.walkHere" },
+        };
+
+        static void LocalizeHintSigns()
+        {
+            foreach (var t in FindObjectsByType<TextMeshPro>(FindObjectsSortMode.None))
+                if (HintSigns.TryGetValue(t.text, out var key)) t.text = L10n.T(key);
         }
 
         void OnDestroy() => K.MouseModeEnabled -= AttachTablet;

@@ -719,6 +719,14 @@ MonoBehaviour:
     m_Localized: '{0} / {1} punti (-{2} per falsi allarmi)'
     m_Metadata:
       m_Items: []
+  - m_Id: 171324625379328
+    m_Localized: SELEZIONAMI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 171324663128064
+    m_Localized: CAMMINA QUI
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
