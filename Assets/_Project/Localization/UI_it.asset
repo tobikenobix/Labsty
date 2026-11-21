@@ -160,7 +160,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488418
-    m_Localized: "Realizzato da studenti di TUM ed ETH"
+    m_Localized: Realizzato da studenti di TUM ed ETH
     m_Metadata:
       m_Items: []
   - m_Id: 4457488419
@@ -301,11 +301,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488456
-    m_Localized: "Ha scelto {0}: {1}. Si tratta di una scelta critica non sicura, perch\xE9 {2}"
+    m_Localized: "Ha scelto {0}: {1}. Si tratta di una scelta critica non sicura,
+      perch\xE9 {2}"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488457
-    m_Localized: "Non ha trovato questo pericolo."
+    m_Localized: Non ha trovato questo pericolo.
     m_Metadata:
       m_Items: []
   - m_Id: 4457488458
@@ -313,11 +314,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488459
-    m_Localized: "Ha scelto {0} invece di {1}. {2}"
+    m_Localized: Ha scelto {0} invece di {1}. {2}
     m_Metadata:
       m_Items: []
   - m_Id: 4457488460
-    m_Localized: "+ altri {0}: vedi Spiegazioni"
+    m_Localized: '+ altri {0}: vedi Spiegazioni'
     m_Metadata:
       m_Items: []
   - m_Id: 4457488461
@@ -353,23 +354,26 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488469
-    m_Localized: "Ha ottenuto {0}/100, ma un requisito critico per la sicurezza non \xE8 stato soddisfatto. Ripassi le procedure di {1} e ripeta la valutazione."
+    m_Localized: "Ha ottenuto {0}/100, ma un requisito critico per la sicurezza non
+      \xE8 stato soddisfatto. Ripassi le procedure di {1} e ripeta la valutazione."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488470
-    m_Localized: "Con {0}/100 non ha raggiunto i requisiti minimi. Ripassi le procedure di {1} e ripeta la valutazione."
+    m_Localized: Con {0}/100 non ha raggiunto i requisiti minimi. Ripassi le procedure
+      di {1} e ripeta la valutazione.
     m_Metadata:
       m_Items: []
   - m_Id: 4457488471
-    m_Localized: "Ha dimostrato competenza con {0}/100 e nessun errore critico per la sicurezza."
+    m_Localized: Ha dimostrato competenza con {0}/100 e nessun errore critico per
+      la sicurezza.
     m_Metadata:
       m_Items: []
   - m_Id: 4457488472
-    m_Localized: "Non ha rilevato anche questo pericolo: {0}."
+    m_Localized: 'Non ha rilevato anche questo pericolo: {0}.'
     m_Metadata:
       m_Items: []
   - m_Id: 4457488473
-    m_Localized: "Non ha rilevato anche questi pericoli: {0}."
+    m_Localized: 'Non ha rilevato anche questi pericoli: {0}.'
     m_Metadata:
       m_Items: []
   - m_Id: 4457488474
@@ -389,7 +393,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488478
-    m_Localized: "non trovato"
+    m_Localized: non trovato
     m_Metadata:
       m_Items: []
   - m_Id: 4457488479
@@ -541,19 +545,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232969
-    m_Localized: "<b>Ruoti</b> verso il banco"
+    m_Localized: <b>Ruoti</b> verso il banco
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232970
-    m_Localized: "<b>Ispezioni</b> la bottiglia chiusa"
+    m_Localized: <b>Ispezioni</b> la bottiglia chiusa
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232971
-    m_Localized: "<b>Risponda</b> per la bottiglia di acido aperta"
+    m_Localized: <b>Risponda</b> per la bottiglia di acido aperta
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232972
-    m_Localized: "<b>Provi una risposta pericolosa</b> sulla fuoriuscita"
+    m_Localized: <b>Provi una risposta pericolosa</b> sulla fuoriuscita
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232973
@@ -562,19 +566,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232974
-    m_Localized: "Sposti due volte una levetta a destra (2 \xD7 45\xB0) per guardare il banco alla sua destra. Tirandola indietro si gira del tutto."
+    m_Localized: "Sposti due volte una levetta a destra (2 \xD7 45\xB0) per guardare
+      il banco alla sua destra. Tirandola indietro si gira del tutto."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232975
-    m_Localized: "Punti la bottiglia chiusa ed etichettata sul banco e prema il grilletto. Non tutto in laboratorio \xE8 un pericolo."
+    m_Localized: "Punti la bottiglia chiusa ed etichettata sul banco e prema il grilletto.
+      Non tutto in laboratorio \xE8 un pericolo."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232976
-    m_Localized: "Ispezioni la bottiglia aperta accanto, scelga una risposta con il grilletto, poi prema A. Giusta: spunta verde."
+    m_Localized: 'Ispezioni la bottiglia aperta accanto, scelga una risposta con
+      il grilletto, poi prema A. Giusta: spunta verde.'
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232977
-    m_Localized: "Si teletrasporti all'anello successivo e ispezioni la fuoriuscita. Scelga apposta \xABAsciugarla a mani nude.\xBB, poi la risposta sicura."
+    m_Localized: "Si teletrasporti all'anello successivo e ispezioni la fuoriuscita.
+      Scelga apposta \xABAsciugarla a mani nude.\xBB, poi la risposta sicura."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232982
@@ -726,11 +734,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000003
-    m_Localized: "<b>Termini</b> alla porta del laboratorio"
+    m_Localized: <b>Termini</b> alla porta del laboratorio
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000004
-    m_Localized: "Si teletrasporti alla porta e prema Y o Menu: cos\xEC si termina in anticipo in laboratorio."
+    m_Localized: "Si teletrasporti alla porta e prema Y o Menu: cos\xEC si termina
+      in anticipo in laboratorio."
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000005
@@ -738,35 +747,37 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000006
-    m_Localized: "Vai al laboratorio"
+    m_Localized: Vai al laboratorio
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000007
-    m_Localized: "Entra in laboratorio"
+    m_Localized: Entra in laboratorio
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000008
-    m_Localized: "Prima: {0}"
+    m_Localized: 'Prima: {0}'
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000009
-    m_Localized: "rimanenti (demo)"
+    m_Localized: rimanenti (demo)
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000010
-    m_Localized: "Sembra a posto: chiusa ed etichettata. In laboratorio ogni falso allarme dopo il 3\xB0 costa 1 punto."
+    m_Localized: "Sembra a posto: chiusa ed etichettata. In laboratorio ogni falso
+      allarme dopo il 3\xB0 costa 1 punto."
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000011
-    m_Localized: "Prova: bottiglia di acido aperta"
+    m_Localized: 'Prova: bottiglia di acido aperta'
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000012
-    m_Localized: "Bottiglia di acido"
+    m_Localized: Bottiglia di acido
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000013
-    m_Localized: "Una bottiglia di acido cloridrico \xE8 aperta sul banco. Qual \xE8 l'azione pi\xF9 sicura?"
+    m_Localized: "Una bottiglia di acido cloridrico \xE8 aperta sul banco. Qual \xE8
+      l'azione pi\xF9 sicura?"
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000014
@@ -774,11 +785,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000015
-    m_Localized: "Chiuderla e riporla nell'armadio degli acidi."
+    m_Localized: Chiuderla e riporla nell'armadio degli acidi.
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000016
-    m_Localized: "Lasciarla aperta: forse qualcuno la sta ancora usando."
+    m_Localized: 'Lasciarla aperta: forse qualcuno la sta ancora usando.'
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000017
@@ -786,59 +797,73 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000018
-    m_Localized: "Prova: fuoriuscita sul banco"
+    m_Localized: 'Prova: fuoriuscita sul banco'
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000019
-    m_Localized: "Fuoriuscita"
+    m_Localized: Fuoriuscita
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000020
-    m_Localized: "Un liquido trasparente si \xE8 versato sul banco. Non sa cosa sia. Che cosa fa?"
+    m_Localized: "Un liquido trasparente si \xE8 versato sul banco. Non sa cosa sia.
+      Che cosa fa?"
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000021
-    m_Localized: "Asciugarla a mani nude."
+    m_Localized: Asciugarla a mani nude.
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000022
-    m_Localized: "Allontanare gli altri, avvisare il responsabile e usare il kit per sversamenti con i guanti."
+    m_Localized: Allontanare gli altri, avvisare il responsabile e usare il kit per
+      sversamenti con i guanti.
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000023
-    m_Localized: "Coprirla con carta assorbente e continuare."
+    m_Localized: Coprirla con carta assorbente e continuare.
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000024
-    m_Localized: "Non sicuro: un liquido sconosciuto pu\xF2 ustionare la pelle o reagire."
+    m_Localized: "Non sicuro: un liquido sconosciuto pu\xF2 ustionare la pelle o
+      reagire."
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000025
-    m_Localized: "Giusto! In questo passo scelga prima apposta \xABAsciugarla a mani nude.\xBB"
+    m_Localized: "Giusto! In questo passo scelga prima apposta \xABAsciugarla a mani
+      nude.\xBB"
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000026
-    m_Localized: "Pronto per il laboratorio?"
+    m_Localized: Pronto per il laboratorio?
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000027
-    m_Localized: "In laboratorio questa richiesta invia l'ispezione e chiude la prova. Qui A la porta in laboratorio: l\xEC parte il tempo."
+    m_Localized: "In laboratorio questa richiesta invia l'ispezione e chiude la prova.
+      Qui A la porta in laboratorio: l\xEC parte il tempo."
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000028
-    m_Localized: "Poi: una breve sala di prova (circa 3 minuti), poi il laboratorio."
+    m_Localized: 'Poi: una breve sala di prova (circa 3 minuti), poi il laboratorio.'
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000101
-    m_Localized: "Da rivedere ({0})"
+    m_Localized: Da rivedere ({0})
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000102
-    m_Localized: "Corrette ({0})"
+    m_Localized: Corrette ({0})
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000103
-    m_Localized: "Risposta giusta: {0}"
+    m_Localized: 'Risposta giusta: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 225511996383232
+    m_Localized: "Modalit\xE0 sviluppatore"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 225512097046528
+    m_Localized: "Modalit\xE0 sviluppatore: selezioni un pericolo per vedere dove
+      pu\xF2 essere posizionato. Questa sessione non viene salvata."
     m_Metadata:
       m_Items: []
   references:

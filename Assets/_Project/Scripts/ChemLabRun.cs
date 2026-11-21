@@ -82,6 +82,11 @@ namespace ChemLab
         public static int PlacementSeed = -1;
         /// <summary>Seed the current / last run used.</summary>
         public static int LastPlacementSeed;
+        /// <summary>
+        /// Lobby "Developer mode": in the lab ZoneView highlights the hazards and shows where each can be placed;
+        /// the run is not exported. Deliberately not saved, so it is off again after an app restart.
+        /// </summary>
+        public static bool DeveloperMode;
 
         /// <summary>
         /// The hazards for one run: HazardsPerRun of the switched-on ones, in id order. Safety-critical hazards are

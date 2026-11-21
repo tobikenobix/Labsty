@@ -291,7 +291,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488456
-    m_Localized: "Vous avez choisi {0} : {1}. C'est un choix dangereux critique, car {2}"
+    m_Localized: 'Vous avez choisi {0} : {1}. C''est un choix dangereux critique,
+      car {2}'
     m_Metadata:
       m_Items: []
   - m_Id: 4457488457
@@ -303,11 +304,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488459
-    m_Localized: "Vous avez choisi {0} au lieu de {1}. {2}"
+    m_Localized: Vous avez choisi {0} au lieu de {1}. {2}
     m_Metadata:
       m_Items: []
   - m_Id: 4457488460
-    m_Localized: "+ {0} autres : voir Explications"
+    m_Localized: '+ {0} autres : voir Explications'
     m_Metadata:
       m_Items: []
   - m_Id: 4457488461
@@ -344,15 +345,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488469
-    m_Localized: "Vous avez obtenu {0}/100, mais une exigence critique pour la s\xE9curit\xE9 n'est pas remplie. Revoyez la proc\xE9dure et repassez l'\xE9valuation. \xC0 revoir : {1}."
+    m_Localized: "Vous avez obtenu {0}/100, mais une exigence critique pour la s\xE9curit\xE9
+      n'est pas remplie. Revoyez la proc\xE9dure et repassez l'\xE9valuation. \xC0
+      revoir : {1}."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488470
-    m_Localized: "Avec {0}/100, vous n'atteignez pas les exigences minimales. Revoyez les th\xE8mes concern\xE9s et repassez l'\xE9valuation. \xC0 revoir : {1}."
+    m_Localized: "Avec {0}/100, vous n'atteignez pas les exigences minimales. Revoyez
+      les th\xE8mes concern\xE9s et repassez l'\xE9valuation. \xC0 revoir : {1}."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488471
-    m_Localized: "Vous avez d\xE9montr\xE9 votre comp\xE9tence avec {0}/100 et aucune erreur critique pour la s\xE9curit\xE9."
+    m_Localized: "Vous avez d\xE9montr\xE9 votre comp\xE9tence avec {0}/100 et aucune
+      erreur critique pour la s\xE9curit\xE9."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488472
@@ -533,7 +538,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232969
-    m_Localized: "<b>Pivotez</b> vers la paillasse"
+    m_Localized: <b>Pivotez</b> vers la paillasse
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232970
@@ -554,19 +559,25 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232974
-    m_Localized: "Poussez deux fois un stick vers la droite (2 \xD7 45\xB0) pour faire face \xE0 la paillasse \xE0 votre droite. Tirez-le vers l'arri\xE8re pour faire demi-tour."
+    m_Localized: "Poussez deux fois un stick vers la droite (2 \xD7 45\xB0) pour
+      faire face \xE0 la paillasse \xE0 votre droite. Tirez-le vers l'arri\xE8re
+      pour faire demi-tour."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232975
-    m_Localized: "Pointez le flacon ferm\xE9 et \xE9tiquet\xE9 sur la paillasse et appuyez sur la g\xE2chette. Tout n'est pas un danger au labo."
+    m_Localized: "Pointez le flacon ferm\xE9 et \xE9tiquet\xE9 sur la paillasse et
+      appuyez sur la g\xE2chette. Tout n'est pas un danger au labo."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232976
-    m_Localized: "Inspectez le flacon ouvert \xE0 c\xF4t\xE9, choisissez une r\xE9ponse avec la g\xE2chette, puis appuyez sur A. Bonne r\xE9ponse : coche verte."
+    m_Localized: "Inspectez le flacon ouvert \xE0 c\xF4t\xE9, choisissez une r\xE9ponse
+      avec la g\xE2chette, puis appuyez sur A. Bonne r\xE9ponse : coche verte."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232977
-    m_Localized: "T\xE9l\xE9portez-vous sur l'anneau suivant et inspectez le d\xE9versement. Choisissez expr\xE8s \xAB L'essuyer \xE0 mains nues. \xBB, puis la r\xE9ponse s\xFBre."
+    m_Localized: "T\xE9l\xE9portez-vous sur l'anneau suivant et inspectez le d\xE9versement.
+      Choisissez expr\xE8s \xAB L'essuyer \xE0 mains nues. \xBB, puis la r\xE9ponse
+      s\xFBre."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232982
@@ -723,7 +734,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000004
-    m_Localized: "T\xE9l\xE9portez-vous jusqu'\xE0 la porte et appuyez sur Y ou Menu : c'est ainsi qu'on termine plus t\xF4t au labo."
+    m_Localized: "T\xE9l\xE9portez-vous jusqu'\xE0 la porte et appuyez sur Y ou Menu
+      : c'est ainsi qu'on termine plus t\xF4t au labo."
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000005
@@ -731,15 +743,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000006
-    m_Localized: "Passer au labo"
+    m_Localized: Passer au labo
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000007
-    m_Localized: "Entrer au labo"
+    m_Localized: Entrer au labo
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000008
-    m_Localized: "D'abord : {0}"
+    m_Localized: 'D''abord : {0}'
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000009
@@ -747,19 +759,21 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000010
-    m_Localized: "Rien \xE0 signaler : ferm\xE9 et \xE9tiquet\xE9. Au labo, chaque fausse alerte apr\xE8s la 3e co\xFBte 1 point."
+    m_Localized: "Rien \xE0 signaler : ferm\xE9 et \xE9tiquet\xE9. Au labo, chaque
+      fausse alerte apr\xE8s la 3e co\xFBte 1 point."
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000011
-    m_Localized: "Exercice : flacon d'acide ouvert"
+    m_Localized: 'Exercice : flacon d''acide ouvert'
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000012
-    m_Localized: "Flacon d'acide"
+    m_Localized: Flacon d'acide
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000013
-    m_Localized: "Un flacon d'acide chlorhydrique est ouvert sur la paillasse. Quelle est l'action la plus s\xFBre ?"
+    m_Localized: "Un flacon d'acide chlorhydrique est ouvert sur la paillasse. Quelle
+      est l'action la plus s\xFBre ?"
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000014
@@ -787,7 +801,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000020
-    m_Localized: "Un liquide incolore s'est r\xE9pandu sur la paillasse. Vous ne savez pas ce que c'est. Que faites-vous ?"
+    m_Localized: "Un liquide incolore s'est r\xE9pandu sur la paillasse. Vous ne
+      savez pas ce que c'est. Que faites-vous ?"
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000021
@@ -795,11 +810,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000022
-    m_Localized: "\xC9loigner les autres, pr\xE9venir le responsable et utiliser le kit antid\xE9versement avec des gants."
+    m_Localized: "\xC9loigner les autres, pr\xE9venir le responsable et utiliser
+      le kit antid\xE9versement avec des gants."
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000023
-    m_Localized: "La couvrir d'essuie-tout et continuer."
+    m_Localized: La couvrir d'essuie-tout et continuer.
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000024
@@ -807,7 +823,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000025
-    m_Localized: "Exact ! Pour cette \xE9tape, choisissez d'abord expr\xE8s \xAB L'essuyer \xE0 mains nues. \xBB"
+    m_Localized: "Exact ! Pour cette \xE9tape, choisissez d'abord expr\xE8s \xAB
+      L'essuyer \xE0 mains nues. \xBB"
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000026
@@ -815,11 +832,13 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000027
-    m_Localized: "Au labo, cette fen\xEAtre envoie votre inspection et termine la session. Ici, A vous emm\xE8ne au labo : le chrono y d\xE9marre."
+    m_Localized: "Au labo, cette fen\xEAtre envoie votre inspection et termine la
+      session. Ici, A vous emm\xE8ne au labo : le chrono y d\xE9marre."
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000028
-    m_Localized: "Ensuite : une courte salle d'entra\xEEnement (environ 3 minutes), puis le labo."
+    m_Localized: "Ensuite : une courte salle d'entra\xEEnement (environ 3 minutes),
+      puis le labo."
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000101
@@ -827,11 +846,20 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000102
-    m_Localized: "Correct ({0})"
+    m_Localized: Correct ({0})
     m_Metadata:
       m_Items: []
   - m_Id: 190000000000103
     m_Localized: "Bonne r\xE9ponse : {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 225511996383232
+    m_Localized: "Mode d\xE9veloppeur"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 225512097046528
+    m_Localized: "Mode d\xE9veloppeur : s\xE9lectionnez un danger pour voir o\xF9
+      il peut \xEAtre plac\xE9. Cette session n'est pas enregistr\xE9e."
     m_Metadata:
       m_Items: []
   references:
