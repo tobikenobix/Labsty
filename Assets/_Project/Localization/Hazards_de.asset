@@ -120,7 +120,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931286
-    m_Localized: Jemanden bitten, beim Entladen auf den Wagen zu achten.
+    m_Localized: "Den Wagen dort lassen und eine Erinnerung stellen, ihn sp\u00e4ter wegzur\u00e4umen."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931287
@@ -210,8 +210,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931307
-    m_Localized: "Der Becher k\xF6nnte das Erkennen von Ger\xE4ten in der N\xE4he
-      erschweren."
+    m_Localized: "Der Becher k\u00f6nnte umkippen und auf das Experiment auslaufen."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931308
@@ -219,12 +218,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931309
-    m_Localized: "Der Deckel k\xF6nnte die gr\xFCndliche Reinigung des Tischs verhindern."
+    m_Localized: "Die W\u00e4rme des Kaffees k\u00f6nnte Proben in der N\u00e4he beeinflussen."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931310
-    m_Localized: "Essen und Getr\xE4nke k\xF6nnen zu Exposition oder Kontamination
-      f\xFChren."
+    m_Localized: "R\u00fcckst\u00e4nde von H\u00e4nden und Becher gelangen in den Mund."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931311
@@ -287,7 +285,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931325
-    m_Localized: "Die Kartons k\xF6nnen unterschiedliche Produktetiketten haben."
+    m_Localized: "Die Kartons k\u00f6nnten eingedr\u00fcckt und ihr Inhalt besch\u00e4digt werden."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931326
@@ -311,7 +309,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931331
-    m_Localized: Zugelassene Regale nutzen und sichere Stapelgrenzen einhalten.
+    m_Localized: "In Regale stellen: schwere Kartons nach unten, nichts \u00fcber Schulterh\u00f6he stapeln."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931332
@@ -348,7 +346,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931340
-    m_Localized: "Nicht sicher: Laborkittel geh\xF6ren an den vorgesehenen Kittelst\xE4nder."
+    m_Localized: "Nicht sicher: Ein getragener Kittel geh\u00f6rt an den Haken, kontaminiert in einen Beutel."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931341
@@ -369,12 +367,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931345
-    m_Localized: "Den Kittel in einen Schrank zu pers\xF6nlichen Gegenst\xE4nden
-      legen."
+    m_Localized: "Den Kittel mit Tasche und Jacke in den Spind legen."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931346
-    m_Localized: "Den Kittel am vorgesehenen Aufbewahrungsort f\xFCr PSA aufh\xE4ngen."
+    m_Localized: "Den Kittel an den Kittelhaken h\u00e4ngen, weg von Sitzen und Taschen."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931347
@@ -386,11 +383,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931349
-    m_Localized: Das vorgesehene Sammel- oder Dekontaminationsverfahren befolgen.
+    m_Localized: "Den Kittel ausziehen, in einem Beutel verschlie\u00dfen und die Laborleitung informieren."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931350
-    m_Localized: Den Kittel zusammenlegen und in einer privaten Schublade aufbewahren.
+    m_Localized: "Den Kittel mit nach Hause nehmen und mit der normalen W\u00e4sche waschen."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931351
@@ -412,7 +409,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931355
-    m_Localized: "Sie k\xF6nnen Kontamination auf gemeinsam genutzte Fl\xE4chen \xFCbertragen."
+    m_Localized: "R\u00fcckst\u00e4nde k\u00f6nnen auf den Stuhl und die n\u00e4chste Person \u00fcbergehen."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931356
@@ -445,7 +442,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931363
-    m_Localized: "Nicht sicher: Benutzte Handschuhe geh\xF6ren in den Laborabfallbeh\xE4lter."
+    m_Localized: "Nicht sicher: Alles aus der Laborarbeit geh\u00f6rt in den Laborabfall, nicht in den Hausm\u00fcll."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931364
@@ -463,8 +460,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931367
-    m_Localized: "Die Verfahren f\xFCr Laborabfall befolgen und den vorgesehenen
-      Beh\xE4lter nutzen."
+    m_Localized: "Sie in den gekennzeichneten Laborabfallbeh\u00e4lter umlegen."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931368
@@ -495,8 +491,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931374
-    m_Localized: "Die Anweisungen f\xFCr Laborabfall pr\xFCfen oder geschultes Personal
-      fragen."
+    m_Localized: "Das Abfallschild an den Beh\u00e4ltern lesen oder die Laborleitung fragen."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931375
@@ -595,8 +590,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931396
-    m_Localized: "Eine gesicherte Identifizierung verlangen, bevor jemand die Fl\xFCssigkeit
-      verwendet."
+    m_Localized: "Sie nicht verwenden und beiseitestellen, bis die Laborleitung sie identifiziert."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931397
@@ -626,8 +620,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931403
-    m_Localized: "Die Chemikalie wird nach den Laborvorschriften ordnungsgem\xE4\xDF
-      identifiziert und beschriftet."
+    m_Localized: "Sie wird identifiziert und vollst\u00e4ndig beschriftet: Name, Gefahren und Datum."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931404
@@ -701,8 +694,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931420
-    m_Localized: "Eine zugelassene Schutzbrille mit Korrektur oder eine geeignete
-      \xDCberbrille verwenden."
+    m_Localized: "Eine Schutzbrille \u00fcber der eigenen Brille tragen oder eine Schutzbrille mit Korrektur."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931421
@@ -715,8 +707,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931423
-    m_Localized: "Kopfh\xF6rer d\xFCrfen nur bei T\xE4tigkeiten mit geringem Risiko
-      verwendet werden."
+    m_Localized: "Sie sind nur ein Problem, wenn die Musik laut ist."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931424
@@ -764,8 +755,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931434
-    m_Localized: "Nicht sicher: Besch\xE4digte Kabel m\xFCssen au\xDFer Betrieb genommen
-      und gemeldet werden."
+    m_Localized: "Nicht sicher: Defekte Kabel und \u00fcberlastete Mehrfachsteckdosen ausstecken und beheben lassen."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931435
@@ -789,13 +779,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931439
-    m_Localized: "Das Ger\xE4t weiter nutzen und die Temperatur der Mehrfachsteckdose
-      beobachten."
+    m_Localized: "Das Ger\u00e4t weiter nutzen, aber die besch\u00e4digte Stelle nicht ber\u00fchren."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931440
-    m_Localized: "Die Nutzung beenden, den Strom sicher trennen, als au\xDFer Betrieb
-      kennzeichnen und melden."
+    m_Localized: "Ausschalten, ausstecken, mit \u201eNicht benutzen\u201c kennzeichnen und melden."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931441
@@ -809,8 +797,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931443
-    m_Localized: "Qualifiziertes Personal die Last und die Stromanschl\xFCsse pr\xFCfen
-      lassen."
+    m_Localized: "Die Ger\u00e4te auf getrennte Wandsteckdosen verteilen; melden, wenn es nicht genug gibt."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931444
@@ -842,7 +829,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931450
-    m_Localized: Nachdem qualifiziertes Personal es repariert und freigegeben hat.
+    m_Localized: "Nachdem eine Elektrofachkraft es repariert und als sicher gepr\u00fcft hat."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931451
@@ -929,8 +916,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931469
-    m_Localized: "Den Mangel melden und das Auff\xFCllen \xFCber die zust\xE4ndigen
-      Personen veranlassen."
+    m_Localized: "Der zust\u00e4ndigen Person sagen, was fehlt, damit es aufgef\u00fcllt wird."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931470
@@ -939,8 +925,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931471
-    m_Localized: "Der Kasten ist zug\xE4nglich, richtig best\xFCckt und das Material
-      ist verwendbar."
+    m_Localized: "Er ist leicht erreichbar, nichts fehlt und nichts ist abgelaufen."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931472
@@ -1012,7 +997,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931487
-    m_Localized: "Im vorgesehenen bodennahen Lager f\xFCr \xE4tzende Stoffe mit Auffangwanne."
+    m_Localized: "Unten im S\u00e4ureschrank, in einer Auffangwanne."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931488
@@ -1025,8 +1010,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931490
-    m_Localized: "Stoffe nach chemischer Vertr\xE4glichkeit und Laborvorschriften
-      getrennt lagern."
+    m_Localized: "S\u00e4uren getrennt von brennbaren Stoffen und allem lagern, womit sie reagieren."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931491
@@ -1051,8 +1035,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931496
-    m_Localized: "Eine herunterfallende oder auslaufende Flasche k\xF6nnte zu Exposition
-      und Reaktionen f\xFChren."
+    m_Localized: "F\u00e4llt sie herunter, kann S\u00e4ure ins Gesicht spritzen und mit anderen Flaschen reagieren."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931497
@@ -1065,9 +1048,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914296393728
-    m_Localized: "Den Wagen nur so weit zu schieben, dass man vorbeikommt, oder ein
-      Schild daran anzubringen, l\xE4sst den Fluchtweg verengt. Nur im Lager ist
-      der Ausgang bei einer Evakuierung voll nutzbar."
+    m_Localized: "Bei einer Evakuierung dr\u00e4ngen viele Menschen gleichzeitig hinaus, vielleicht durch Rauch. Ein halb verstellter Ausgang oder ein Schild am Wagen hilft ihnen nicht, der Wagen muss weg."
     m_Metadata:
       m_Items: []
   - m_Id: 177914380279808
@@ -1092,8 +1073,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668417
-    m_Localized: "H\xE4nde und Becheroberfl\xE4chen nehmen im Labor R\xFCckst\xE4nde
-      auf, sodass auch ein geschlossener Becher sie zum Mund bringt."
+    m_Localized: "Der Deckel h\u00e4lt den Kaffee drin, aber keine Chemikalien fern. R\u00fcckst\u00e4nde an Handschuhen, H\u00e4nden und der Au\u00dfenseite des Bechers gelangen mit dem n\u00e4chsten Schluck in den Mund."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668418
@@ -1108,34 +1088,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668420
-    m_Localized: "Regale, die f\xFCr die Last ausgelegt sind und innerhalb ihrer
-      H\xF6hengrenzen genutzt werden, verhindern instabile Stapel von vornherein."
+    m_Localized: "Schwere Kartons unten und niedrige Stapel k\u00f6nnen auf niemanden kippen. Klebeband oder Folie halten einen schlechten Stapel nur zusammen, bis er f\u00e4llt."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668421
-    m_Localized: "Ein vorgesehener Haken h\xE4lt m\xF6gliche Kontamination von Sitzen
-      und sauberen Bereichen fern."
+    m_Localized: "Ein getragener Kittel kann Chemikalienr\u00fcckst\u00e4nde tragen. Am Haken ber\u00fchrt er keine Sitze, Taschen oder Ihre eigene Kleidung."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668422
-    m_Localized: "Aussch\xFCtteln oder erneutes Tragen verteilt die Kontamination.
-      Ein kontaminierter Kittel durchl\xE4uft das Sammel- oder Dekontaminationsverfahren
-      des Labors."
+    m_Localized: "Ein kontaminierter Kittel wird sofort ausgezogen und vom Labor gereinigt. Aussch\u00fctteln, erneutes Tragen oder Waschen zu Hause verteilt die Chemikalie."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668423
-    m_Localized: "St\xFChle werden gemeinsam genutzt und mit blo\xDFer Haut ber\xFChrt,
-      so gelangen R\xFCckst\xE4nde vom Kittel zu anderen Personen."
+    m_Localized: "Dort kann sich als N\u00e4chstes jeder in normaler Kleidung hinsetzen. R\u00fcckst\u00e4nde am Kittel gehen auf den Stuhl \u00fcber und dann auf diese Person."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668424
-    m_Localized: "Im Labor getragene Handschuhe k\xF6nnen Chemikalienr\xFCckst\xE4nde
-      tragen und geh\xF6ren deshalb in den Laborabfall."
+    m_Localized: "Laborhandschuhe k\u00f6nnen Chemikalienr\u00fcckst\u00e4nde tragen. Im normalen M\u00fcll landen sie beim Reinigungspersonal und im Hausm\u00fcll, wo niemand mit Chemikalien rechnet."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668425
-    m_Localized: "Raten kann gef\xE4hrlichen Abfall in den falschen Beh\xE4lter bringen.
-      Pr\xFCfen Sie die Abfallanweisungen oder fragen Sie geschultes Personal."
+    m_Localized: "Raten kann gef\u00e4hrlichen Abfall in den falschen Beh\u00e4lter bringen. Das Abfallschild oder die Laborleitung sagt Ihnen, wohin er geh\u00f6rt."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668426
@@ -1150,13 +1123,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668428
-    m_Localized: "Viele gef\xE4hrliche Fl\xFCssigkeiten sind klar und geruchlos.
-      Aussehen oder ein Test im Ausguss identifizieren nie eine Chemikalie."
+    m_Localized: "S\u00e4uren, Bleichmittel und viele L\u00f6sungsmittel sehen aus wie Wasser, und im Ausguss k\u00f6nnen sie reagieren oder D\u00e4mpfe freisetzen. Das Aussehen verr\u00e4t nichts."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668429
-    m_Localized: "Eine Flasche kommt erst ins Lager zur\xFCck, wenn ihr Inhalt identifiziert
-      und sie korrekt beschriftet ist."
+    m_Localized: "Alle verlassen sich auf das Etikett, um zu wissen, was in einer Flasche ist. Bis sie identifiziert und beschriftet ist, steht die n\u00e4chste Person vor demselben R\u00e4tsel."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668430
@@ -1165,9 +1136,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668431
-    m_Localized: "Normale Brillen sind, egal wie dick, nicht f\xFCr Schl\xE4ge oder
-      Spritzer ausgelegt. Verwenden Sie eine Schutzbrille mit Korrektur oder eine
-      \xDCberbrille."
+    m_Localized: "Normale Brillen halten keine Spritzer oder Glassplitter ab und sind seitlich offen. Eine Schutzbrille passt dar\u00fcber."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668432
@@ -1176,19 +1145,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668433
-    m_Localized: "Freiliegende Dr\xE4hte k\xF6nnen Stromschl\xE4ge oder Br\xE4nde
-      verursachen. Trennen Sie die Stromversorgung und kennzeichnen Sie das Ger\xE4t,
-      damit es bis zur Reparatur niemand benutzt."
+    m_Localized: "Freiliegende Dr\u00e4hte k\u00f6nnen einen Stromschlag oder Brand verursachen. Ausgesteckt und gekennzeichnet benutzt es niemand versehentlich, bevor es repariert ist."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668434
-    m_Localized: "Weitere Adapter oder das Einschalten der Ger\xE4te nacheinander
-      beheben keinen \xFCberlasteten Stromkreis. Fachpersonal kann die Last pr\xFCfen."
+    m_Localized: "Zu viele starke Ger\u00e4te an einer Mehrfachsteckdose \u00fcberhitzen sie und k\u00f6nnen einen Brand ausl\u00f6sen. Getrennte Wandsteckdosen teilen die Last, eine zweite Mehrfachsteckdose nicht."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668435
-    m_Localized: "Erst eine Reparatur und Freigabe durch Fachpersonal macht das Ger\xE4t
-      wieder sicher nutzbar."
+    m_Localized: "Klebeband oder ein erfolgreicher Testlauf reparieren kein besch\u00e4digtes Kabel. Nur eine fachgerechte Reparatur und Pr\u00fcfung machen es wieder sicher."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668436
@@ -1202,19 +1167,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668438
-    m_Localized: "Eine Routinekontrolle umfasst Zugang, Vollst\xE4ndigkeit und ob
-      das Material noch haltbar und brauchbar ist."
+    m_Localized: "Ein verstellter, halb leerer oder abgelaufener Kasten l\u00e4sst Sie genau dann im Stich, wenn sich jemand verletzt."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668439
-    m_Localized: "Unten gelagert kann ein \xE4tzender Stoff nicht aus der H\xF6he
-      fallen, und die Auffangwanne h\xE4lt jedes Leck zur\xFCck."
+    m_Localized: "Unten kann sie auf niemanden fallen, und die Auffangwanne f\u00e4ngt jedes Leck auf."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668440
-    m_Localized: "Unvertr\xE4gliche Chemikalien k\xF6nnen zusammen gelagert reagieren,
-      wenn eine ausl\xE4uft. Trennen Sie sie nach Vertr\xE4glichkeit, nicht nach
-      Flaschengr\xF6\xDFe oder Farbe."
+    m_Localized: "Laufen unvertr\u00e4gliche Chemikalien ineinander, k\u00f6nnen sie hei\u00df werden, D\u00e4mpfe bilden oder brennen. Sortieren Sie danach, was womit reagiert, nicht nach Gr\u00f6\u00dfe oder Farbe."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668441

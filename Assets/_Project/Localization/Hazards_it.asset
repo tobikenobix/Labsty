@@ -122,7 +122,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931286
-    m_Localized: Chiedere a qualcuno di sorvegliare il carrello durante lo scarico.
+    m_Localized: "Lasciarlo l\u00ec e impostare un promemoria per spostarlo pi\u00f9 tardi."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931287
@@ -211,8 +211,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931307
-    m_Localized: La tazza potrebbe ostacolare l'identificazione delle apparecchiature
-      vicine.
+    m_Localized: "La tazza potrebbe rovesciarsi sull'esperimento."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931308
@@ -220,11 +219,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931309
-    m_Localized: Il coperchio potrebbe impedire una corretta pulizia del bancone.
+    m_Localized: "Il calore del caff\u00e8 potrebbe alterare i campioni vicini."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931310
-    m_Localized: Cibo e bevande possono causare esposizione o contaminazione.
+    m_Localized: "I residui delle mani e della tazza finiscono in bocca."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931311
@@ -288,7 +287,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931325
-    m_Localized: Gli scatoloni potrebbero avere etichette di prodotti diverse.
+    m_Localized: "Gli scatoloni potrebbero schiacciarsi e danneggiare il contenuto."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931326
@@ -313,8 +312,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931331
-    m_Localized: Usare scaffalature approvate e rispettare i limiti di impilamento
-      sicuro.
+    m_Localized: "Metterli sugli scaffali: scatoloni pesanti in basso, niente sopra le spalle."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931332
@@ -351,7 +349,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931340
-    m_Localized: 'Non sicuro: i camici vanno sull''appendiabiti designato.'
+    m_Localized: "Non sicuro: un camice usato va appeso, o in un sacchetto se contaminato."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931341
@@ -371,12 +369,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931345
-    m_Localized: Mettere il camice in un armadietto insieme agli effetti personali.
+    m_Localized: "Metterlo nell'armadietto con borsa e giacca."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931346
-    m_Localized: Appendere il camice nel punto designato per la conservazione dei
-      DPI.
+    m_Localized: "Appenderlo al gancio dei camici, lontano da sedie e borse."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931347
@@ -388,11 +385,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931349
-    m_Localized: Seguire la procedura designata di raccolta o decontaminazione.
+    m_Localized: "Toglierlo, chiuderlo in un sacchetto e avvisare il responsabile."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931350
-    m_Localized: Piegare il camice e riporlo in un cassetto personale.
+    m_Localized: "Portarlo a casa e lavarlo con il bucato normale."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931351
@@ -413,7 +410,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931355
-    m_Localized: Possono trasferire contaminazione alle superfici condivise.
+    m_Localized: "I residui possono passare sulla sedia e sulla persona successiva."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931356
@@ -446,8 +443,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931363
-    m_Localized: 'Non sicuro: i guanti usati vanno nel contenitore per rifiuti di
-      laboratorio.'
+    m_Localized: "Non sicuro: ci\u00f2 che \u00e8 stato usato in laboratorio va nei rifiuti di laboratorio."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931364
@@ -465,8 +461,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931367
-    m_Localized: Seguire le procedure per i rifiuti di laboratorio e usare il contenitore
-      designato.
+    m_Localized: "Spostarli nel contenitore contrassegnato per i rifiuti di laboratorio."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931368
@@ -496,8 +491,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931374
-    m_Localized: Consultare le istruzioni per i rifiuti di laboratorio o chiedere
-      al personale formato.
+    m_Localized: "Leggere il cartello dei rifiuti vicino ai contenitori o chiedere al responsabile."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931375
@@ -594,8 +588,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931396
-    m_Localized: Esigere un'identificazione verificata prima che chiunque usi il
-      liquido.
+    m_Localized: "Non usarlo e metterlo da parte finch\u00e9 il responsabile non lo identifica."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931397
@@ -624,8 +617,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931403
-    m_Localized: La sostanza viene correttamente identificata ed etichettata secondo
-      le procedure del laboratorio.
+    m_Localized: "Viene identificata e riceve un'etichetta completa: nome, pericoli e data."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931404
@@ -700,7 +692,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931420
-    m_Localized: Usare occhiali di sicurezza graduati approvati o sovraocchiali adeguati.
+    m_Localized: "Indossare occhiali protettivi sopra i propri occhiali, oppure occhiali di sicurezza graduati."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931421
@@ -713,7 +705,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931423
-    m_Localized: "Le cuffie si possono usare solo durante attivit\xE0 a basso rischio."
+    m_Localized: "Sono un problema solo se la musica \u00e8 alta."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931424
@@ -759,7 +751,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931434
-    m_Localized: 'Non sicuro: i cavi danneggiati vanno messi fuori servizio e segnalati.'
+    m_Localized: "Non sicuro: cavi danneggiati e adattatori sovraccarichi vanno scollegati e sistemati."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931435
@@ -781,12 +773,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931439
-    m_Localized: Continuare a usare l'apparecchio controllando la temperatura dell'adattatore.
+    m_Localized: "Continuare a usarlo senza toccare la parte danneggiata."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931440
-    m_Localized: Smettere di usarlo, isolare la corrente in sicurezza, metterlo fuori
-      servizio e segnalarlo.
+    m_Localized: "Spegnerlo, scollegarlo, etichettarlo \u00abNon usare\u00bb e segnalarlo."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931441
@@ -800,8 +791,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931443
-    m_Localized: Chiedere al personale qualificato di verificare il carico e i collegamenti
-      elettrici.
+    m_Localized: "Distribuirli su prese a muro separate; segnalarlo se non bastano."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931444
@@ -830,8 +820,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931450
-    m_Localized: Dopo che personale qualificato lo ha riparato e ne ha approvato
-      l'uso.
+    m_Localized: "Dopo che un elettricista lo ha riparato e ha verificato che sia sicuro."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931451
@@ -915,8 +904,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931469
-    m_Localized: Segnalare la carenza e far organizzare il rifornimento dal personale
-      responsabile.
+    m_Localized: "Dire a chi gestisce il kit cosa manca, cos\u00ec che venga rifornito."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931470
@@ -925,7 +913,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931471
-    m_Localized: "Il kit \xE8 accessibile, ben rifornito e il materiale \xE8 utilizzabile."
+    m_Localized: "\u00c8 facile da raggiungere, non manca nulla e nulla \u00e8 scaduto."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931472
@@ -995,8 +983,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931487
-    m_Localized: Nel deposito designato per corrosivi in basso, con contenimento
-      secondario.
+    m_Localized: "In basso nell'armadio per acidi, dentro una vasca di contenimento."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931488
@@ -1010,8 +997,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931490
-    m_Localized: "Separare le sostanze in base alla compatibilit\xE0 chimica e alle
-      procedure del laboratorio."
+    m_Localized: "Tenere gli acidi lontano dagli infiammabili e da tutto ci\u00f2 con cui reagiscono."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931491
@@ -1039,7 +1025,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931496
-    m_Localized: Un flacone che cade o perde potrebbe causare esposizione e reazioni.
+    m_Localized: "Se cade, l'acido pu\u00f2 schizzare in faccia e reagire con altri flaconi."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931497
@@ -1053,9 +1039,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914296393728
-    m_Localized: Spostare il carrello quanto basta per passare, o metterci un cartello,
-      lascia la via di fuga ristretta. Solo il deposito lascia l'uscita pienamente
-      utilizzabile durante un'evacuazione.
+    m_Localized: "In un'evacuazione molte persone escono di corsa tutte insieme, magari nel fumo. Un'uscita bloccata a met\u00e0 o un cartello sul carrello non le aiutano: il carrello va tolto."
     m_Metadata:
       m_Items: []
   - m_Id: 177914380279808
@@ -1080,8 +1064,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668417
-    m_Localized: Mani e superficie della tazza raccolgono residui in laboratorio,
-      quindi anche una tazza chiusa li porta alla bocca.
+    m_Localized: "Il coperchio tiene dentro il caff\u00e8, non fuori le sostanze chimiche. I residui su guanti, mani ed esterno della tazza arrivano alla bocca con il sorso successivo."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668418
@@ -1095,33 +1078,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668420
-    m_Localized: Scaffali adatti al carico, usati entro i limiti di altezza, impediscono
-      fin dall'inizio che le pile diventino instabili.
+    m_Localized: "Scatoloni pesanti in basso e pile basse non possono cadere addosso a nessuno. Nastro o pellicola tengono insieme una pila instabile solo finch\u00e9 non cade."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668421
-    m_Localized: Un gancio dedicato tiene l'eventuale contaminazione lontana dai
-      sedili e dalle zone pulite.
+    m_Localized: "Un camice usato pu\u00f2 portare residui chimici. Sul suo gancio non tocca sedie, borse o i Suoi vestiti."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668422
-    m_Localized: Scuoterlo o indossarlo di nuovo diffonde la contaminazione. Un camice
-      contaminato segue la procedura di raccolta o di decontaminazione del laboratorio.
+    m_Localized: "Un camice contaminato si toglie subito e viene pulito dal laboratorio. Scuoterlo, indossarlo di nuovo o lavarlo a casa diffonde la sostanza."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668423
-    m_Localized: Le sedie sono condivise e toccate a pelle nuda, quindi i residui
-      di un camice passano ad altre persone.
+    m_Localized: "Chiunque pu\u00f2 sedersi l\u00ec dopo, con abiti normali. I residui del camice passano sulla sedia e poi su quella persona."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668424
-    m_Localized: I guanti usati in laboratorio possono portare residui chimici, quindi
-      vanno nei rifiuti di laboratorio.
+    m_Localized: "I guanti di laboratorio possono portare residui chimici. Nel cestino normale arrivano al personale delle pulizie e nei rifiuti domestici, dove nessuno si aspetta sostanze chimiche."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668425
-    m_Localized: "Andare a intuito pu\xF2 far finire rifiuti pericolosi nel contenitore
-      sbagliato. Controlli le istruzioni sui rifiuti o chieda al personale formato."
+    m_Localized: "Andare a intuito pu\u00f2 far finire rifiuti pericolosi nel contenitore sbagliato. Il cartello dei rifiuti o il responsabile Le dice dove vanno."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668426
@@ -1135,13 +1112,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668428
-    m_Localized: Molti liquidi pericolosi sono trasparenti e inodori. L'aspetto,
-      o una prova nel lavandino, non identifica mai una sostanza chimica.
+    m_Localized: "Acidi, candeggina e molti solventi sembrano acqua, e nel lavandino possono reagire o liberare fumi. L'aspetto non dice nulla."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668429
-    m_Localized: "Una bottiglia torna in magazzino solo dopo che il contenuto \xE8
-      stato identificato ed \xE8 etichettata correttamente."
+    m_Localized: "Tutti si fidano dell'etichetta per sapere cosa c'\u00e8 in una bottiglia. Finch\u00e9 non \u00e8 identificata ed etichettata, la persona successiva si trova davanti allo stesso dubbio."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668430
@@ -1150,8 +1125,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668431
-    m_Localized: Gli occhiali normali, per quanto spessi, non sono certificati contro
-      urti e schizzi. Usi occhiali di sicurezza graduati o sovraocchiali.
+    m_Localized: "Gli occhiali normali non fermano schizzi o schegge di vetro e lasciano scoperti i lati. Gli occhiali protettivi si indossano sopra."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668432
@@ -1160,19 +1134,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668433
-    m_Localized: "I fili scoperti possono causare scosse o incendi. Isoli l'alimentazione
-      e contrassegni l'apparecchio, cos\xEC che nessuno lo usi prima della riparazione."
+    m_Localized: "I fili scoperti possono dare la scossa o causare un incendio. Scollegato ed etichettato, nessuno pu\u00f2 usarlo per sbaglio prima della riparazione."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668434
-    m_Localized: "Aggiungere adattatori o accendere gli apparecchi uno alla volta
-      non risolve un circuito sovraccarico. Il personale qualificato pu\xF2 verificare
-      il carico."
+    m_Localized: "Troppi apparecchi potenti su un adattatore lo surriscaldano e possono causare un incendio. Prese a muro separate dividono il carico; un altro adattatore sposta solo il problema."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668435
-    m_Localized: Solo una riparazione e un'approvazione da parte di personale qualificato
-      rendono l'apparecchio di nuovo sicuro.
+    m_Localized: "Nastro adesivo o una prova riuscita non riparano un cavo danneggiato. Solo una riparazione vera e un controllo lo rendono di nuovo sicuro."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668436
@@ -1186,19 +1156,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668438
-    m_Localized: "Un controllo di routine riguarda l'accesso, la completezza e se
-      il materiale \xE8 ancora valido e utilizzabile."
+    m_Localized: "Un kit bloccato, mezzo vuoto o scaduto La lascia senza aiuto proprio quando qualcuno si fa male."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668439
-    m_Localized: "Conservato in basso, un corrosivo non pu\xF2 cadere dall'alto e
-      la vasca di contenimento trattiene qualsiasi perdita."
+    m_Localized: "In basso non pu\u00f2 cadere addosso a nessuno, e la vasca di contenimento raccoglie qualsiasi perdita."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668440
-    m_Localized: "Sostanze incompatibili conservate insieme possono reagire se una
-      perde. Le separi in base alla compatibilit\xE0, non alla dimensione o al colore
-      della bottiglia."
+    m_Localized: "Se sostanze incompatibili si mescolano perdendo, possono scaldarsi, liberare fumi o prendere fuoco. Le ordini in base a cosa reagisce con cosa, non per dimensione o colore."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668441

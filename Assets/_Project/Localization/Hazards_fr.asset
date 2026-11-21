@@ -123,7 +123,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931286
-    m_Localized: "Demander \xE0 quelqu'un de surveiller le chariot pendant le d\xE9chargement."
+    m_Localized: "Le laisser l\u00e0 et programmer un rappel pour le d\u00e9placer plus tard."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931287
@@ -213,8 +213,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931307
-    m_Localized: "La tasse pourrait g\xEAner l'identification des \xE9quipements
-      voisins."
+    m_Localized: "La tasse pourrait se renverser sur l'exp\u00e9rience."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931308
@@ -222,12 +221,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931309
-    m_Localized: "Le couvercle pourrait emp\xEAcher un nettoyage correct de la paillasse."
+    m_Localized: "La chaleur du caf\u00e9 pourrait alt\u00e9rer les \u00e9chantillons voisins."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931310
-    m_Localized: "La nourriture et les boissons peuvent entra\xEEner une exposition
-      ou une contamination."
+    m_Localized: "Les r\u00e9sidus de vos mains et de la tasse finissent dans votre bouche."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931311
@@ -291,7 +289,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931325
-    m_Localized: "Les cartons peuvent porter des \xE9tiquettes de produits diff\xE9rentes."
+    m_Localized: "Les cartons pourraient s'\u00e9craser et ab\u00eemer leur contenu."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931326
@@ -315,8 +313,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931331
-    m_Localized: "Utiliser des \xE9tag\xE8res homologu\xE9es et respecter les limites
-      d'empilage."
+    m_Localized: "Les ranger sur des \u00e9tag\u00e8res : cartons lourds en bas, rien au-dessus des \u00e9paules."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931332
@@ -355,8 +352,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931340
-    m_Localized: "Ce n'est pas s\xFBr : les blouses se rangent sur le portemanteau
-      pr\xE9vu."
+    m_Localized: "Ce n'est pas s\u00fbr : une blouse port\u00e9e se suspend, ou va dans un sac si contamin\u00e9e."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931341
@@ -377,11 +373,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931345
-    m_Localized: La ranger dans un placard avec des effets personnels.
+    m_Localized: "La mettre dans votre casier avec votre sac et votre veste."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931346
-    m_Localized: "La suspendre \xE0 l'emplacement pr\xE9vu pour les EPI."
+    m_Localized: "La suspendre \u00e0 la pat\u00e8re des blouses, loin des si\u00e8ges et des sacs."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931347
@@ -393,11 +389,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931349
-    m_Localized: "Suivre la proc\xE9dure pr\xE9vue de collecte ou de d\xE9contamination."
+    m_Localized: "L'enlever, la fermer dans un sac et pr\u00e9venir le responsable."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931350
-    m_Localized: La plier et la ranger dans un tiroir personnel.
+    m_Localized: "La rapporter chez soi et la laver avec le linge habituel."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931351
@@ -420,7 +416,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931355
-    m_Localized: "Elles peuvent transf\xE9rer une contamination aux surfaces partag\xE9es."
+    m_Localized: "Des r\u00e9sidus peuvent passer sur la chaise et sur la personne suivante."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931356
@@ -454,8 +450,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931363
-    m_Localized: "Ce n'est pas s\xFBr : les gants usag\xE9s vont dans le conteneur
-      \xE0 d\xE9chets de laboratoire."
+    m_Localized: "Ce n'est pas s\u00fbr : tout ce qui a servi au labo va dans les d\u00e9chets de laboratoire."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931364
@@ -473,8 +468,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931367
-    m_Localized: "Suivre les proc\xE9dures de d\xE9chets du labo et utiliser le conteneur
-      pr\xE9vu."
+    m_Localized: "Les mettre dans la poubelle de d\u00e9chets de laboratoire signal\u00e9e."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931368
@@ -504,8 +498,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931374
-    m_Localized: "Consulter les consignes de d\xE9chets du labo ou demander au personnel
-      form\xE9."
+    m_Localized: "Lire l'affiche de tri pr\u00e8s des poubelles ou demander au responsable."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931375
@@ -608,8 +601,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931396
-    m_Localized: "Exiger une identification v\xE9rifi\xE9e avant toute utilisation
-      du liquide."
+    m_Localized: "Ne pas l'utiliser et le mettre de c\u00f4t\u00e9 jusqu'\u00e0 ce que le responsable l'identifie."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931397
@@ -638,8 +630,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931403
-    m_Localized: "Le produit est correctement identifi\xE9 et \xE9tiquet\xE9 selon
-      les proc\xE9dures du labo."
+    m_Localized: "Il est identifi\u00e9 et re\u00e7oit une \u00e9tiquette compl\u00e8te : nom, dangers et date."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931404
@@ -715,8 +706,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931420
-    m_Localized: "Utiliser des lunettes de s\xE9curit\xE9 correctrices homologu\xE9es
-      ou des surlunettes adapt\xE9es."
+    m_Localized: "Porter des surlunettes de protection ou des lunettes de s\u00e9curit\u00e9 correctrices."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931421
@@ -730,8 +720,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931423
-    m_Localized: "Le casque audio ne peut \xEAtre utilis\xE9 que pendant les activit\xE9s
-      \xE0 faible risque."
+    m_Localized: "Il n'y a de probl\u00e8me que si la musique est forte."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931424
@@ -779,8 +768,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931434
-    m_Localized: "Ce n'est pas s\xFBr : les c\xE2bles endommag\xE9s doivent \xEAtre
-      mis hors service et signal\xE9s."
+    m_Localized: "Ce n'est pas s\u00fbr : c\u00e2bles ab\u00eem\u00e9s et multiprises surcharg\u00e9es se d\u00e9branchent et se font r\u00e9parer."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931435
@@ -804,13 +792,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931439
-    m_Localized: "Continuer \xE0 utiliser l'appareil en surveillant la temp\xE9rature
-      de la multiprise."
+    m_Localized: "Continuer \u00e0 l'utiliser sans toucher la partie ab\u00eem\u00e9e."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931440
-    m_Localized: "Cesser de l'utiliser, couper l'alimentation en s\xE9curit\xE9,
-      l'\xE9tiqueter hors service et le signaler."
+    m_Localized: "L'\u00e9teindre, le d\u00e9brancher, l'\u00e9tiqueter \u00ab Ne pas utiliser \u00bb et le signaler."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931441
@@ -824,8 +810,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931443
-    m_Localized: "Demander \xE0 du personnel qualifi\xE9 de v\xE9rifier la charge
-      et les branchements."
+    m_Localized: "Les r\u00e9partir sur des prises murales s\u00e9par\u00e9es ; le signaler s'il n'y en a pas assez."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931444
@@ -855,8 +840,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931450
-    m_Localized: "Une fois r\xE9par\xE9 par du personnel qualifi\xE9, qui en autorise
-      l'utilisation."
+    m_Localized: "Apr\u00e8s qu'un \u00e9lectricien l'a r\u00e9par\u00e9 et a v\u00e9rifi\u00e9 qu'il est s\u00fbr."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931451
@@ -940,8 +924,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931469
-    m_Localized: "Signaler le manque et organiser le r\xE9approvisionnement via le
-      personnel responsable."
+    m_Localized: "Dire \u00e0 la personne qui g\u00e8re la trousse ce qui manque, pour qu'elle soit r\u00e9approvisionn\u00e9e."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931470
@@ -950,8 +933,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931471
-    m_Localized: "La trousse est accessible, bien approvisionn\xE9e et son contenu
-      est utilisable."
+    m_Localized: "Elle est facile d'acc\u00e8s, rien ne manque et rien n'est p\u00e9rim\u00e9."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931472
@@ -1025,8 +1007,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931487
-    m_Localized: "Dans le stockage bas pr\xE9vu pour les corrosifs, avec r\xE9tention
-      secondaire."
+    m_Localized: "En bas dans l'armoire \u00e0 acides, pos\u00e9 dans un bac de r\u00e9tention."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931488
@@ -1040,8 +1021,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931490
-    m_Localized: "S\xE9parer les substances selon leur compatibilit\xE9 chimique
-      et les proc\xE9dures du labo."
+    m_Localized: "Tenir les acides loin des inflammables et de tout ce avec quoi ils r\u00e9agissent."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931491
@@ -1069,8 +1049,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931496
-    m_Localized: "Un flacon qui tombe ou fuit pourrait causer une exposition et des
-      r\xE9actions."
+    m_Localized: "S'il tombe, l'acide peut \u00e9clabousser le visage et r\u00e9agir avec d'autres flacons."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931497
@@ -1084,9 +1063,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914296393728
-    m_Localized: "D\xE9placer le chariot juste assez pour passer, ou y poser un panneau,
-      laisse la voie d'\xE9vacuation r\xE9tr\xE9cie. Seul le rangement lib\xE8re
-      compl\xE8tement la sortie en cas d'\xE9vacuation."
+    m_Localized: "Lors d'une \u00e9vacuation, beaucoup de gens sortent en m\u00eame temps, parfois dans la fum\u00e9e. Une sortie \u00e0 moiti\u00e9 bloqu\u00e9e ou un panneau sur le chariot ne les aide pas : il faut l'enlever."
     m_Metadata:
       m_Items: []
   - m_Id: 177914380279808
@@ -1112,8 +1089,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668417
-    m_Localized: "Les mains et la surface du gobelet se chargent de r\xE9sidus dans
-      le laboratoire : m\xEAme ferm\xE9, le gobelet les porte \xE0 la bouche."
+    m_Localized: "Le couvercle garde le caf\u00e9 dedans, pas les produits dehors. Les r\u00e9sidus sur vos gants, vos mains et l'ext\u00e9rieur de la tasse arrivent \u00e0 votre bouche \u00e0 la prochaine gorg\u00e9e."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668418
@@ -1127,34 +1103,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668420
-    m_Localized: "Des \xE9tag\xE8res adapt\xE9es \xE0 la charge, utilis\xE9es dans
-      leurs limites de hauteur, emp\xEAchent d'embl\xE9e les piles de devenir instables."
+    m_Localized: "Des cartons lourds en bas et des piles basses ne peuvent tomber sur personne. Le ruban adh\u00e9sif ou le film ne tient une mauvaise pile que jusqu'\u00e0 ce qu'elle tombe."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668421
-    m_Localized: "Une pat\xE8re pr\xE9vue \xE0 cet effet tient une \xE9ventuelle
-      contamination \xE0 l'\xE9cart des si\xE8ges et des zones propres."
+    m_Localized: "Une blouse port\u00e9e peut garder des r\u00e9sidus chimiques. Sur sa pat\u00e8re, elle ne touche ni les si\u00e8ges, ni les sacs, ni vos v\u00eatements."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668422
-    m_Localized: "Le secouer ou le porter \xE0 nouveau propage la contamination.
-      Une blouse contamin\xE9e suit la proc\xE9dure de collecte ou de d\xE9contamination
-      du laboratoire."
+    m_Localized: "Une blouse contamin\u00e9e s'enl\u00e8ve tout de suite et est nettoy\u00e9e par le laboratoire. La secouer, la remettre ou la laver chez soi propage le produit."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668423
-    m_Localized: "Les chaises sont partag\xE9es et touch\xE9es \xE0 mains nues :
-      les r\xE9sidus d'une blouse passent ainsi \xE0 d'autres personnes."
+    m_Localized: "N'importe qui peut s'y asseoir ensuite, en v\u00eatements normaux. Les r\u00e9sidus de la blouse passent sur la chaise, puis sur cette personne."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668424
-    m_Localized: "Les gants utilis\xE9s au laboratoire peuvent porter des r\xE9sidus
-      chimiques : ils vont dans la fili\xE8re des d\xE9chets de laboratoire."
+    m_Localized: "Les gants de labo peuvent porter des r\u00e9sidus chimiques. Dans la poubelle normale, ils arrivent au personnel de nettoyage et aux ordures m\u00e9nag\u00e8res, sans pr\u00e9caution."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668425
-    m_Localized: "Deviner peut envoyer des d\xE9chets dangereux dans la mauvaise
-      poubelle. Consultez les consignes de tri ou demandez au personnel form\xE9."
+    m_Localized: "Deviner peut envoyer des d\u00e9chets dangereux dans la mauvaise poubelle. L'affiche de tri ou le responsable vous dit o\u00f9 ils vont."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668426
@@ -1168,13 +1137,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668428
-    m_Localized: "Beaucoup de liquides dangereux sont incolores et inodores. L'apparence,
-      ou un essai dans l'\xE9vier, n'identifie jamais un produit chimique."
+    m_Localized: "Les acides, l'eau de Javel et beaucoup de solvants ressemblent \u00e0 de l'eau, et dans l'\u00e9vier ils peuvent r\u00e9agir ou d\u00e9gager des vapeurs. L'apparence ne dit rien."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668429
-    m_Localized: "Un flacon ne retourne au stockage qu'une fois son contenu identifi\xE9
-      et correctement \xE9tiquet\xE9."
+    m_Localized: "Tout le monde se fie \u00e0 l'\u00e9tiquette pour savoir ce que contient un flacon. Tant qu'il n'est pas identifi\u00e9 et \u00e9tiquet\u00e9, la personne suivante fait face au m\u00eame inconnu."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668430
@@ -1183,9 +1150,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668431
-    m_Localized: "Des lunettes ordinaires, m\xEAme \xE9paisses, ne sont pas con\xE7ues
-      contre les chocs ni les \xE9claboussures. Utilisez des lunettes de s\xE9curit\xE9
-      correctrices ou des surlunettes."
+    m_Localized: "Des lunettes normales n'arr\u00eatent ni les \u00e9claboussures ni les \u00e9clats de verre, et laissent les c\u00f4t\u00e9s ouverts. Des lunettes de protection se portent par-dessus."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668432
@@ -1194,19 +1159,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668433
-    m_Localized: "Des fils \xE0 nu peuvent provoquer une \xE9lectrocution ou un incendie.
-      Coupez l'alimentation et signalez l'appareil pour que personne ne l'utilise
-      avant sa r\xE9paration."
+    m_Localized: "Des fils \u00e0 nu peuvent \u00e9lectrocuter ou provoquer un incendie. D\u00e9branch\u00e9 et \u00e9tiquet\u00e9, personne ne peut l'utiliser par erreur avant sa r\u00e9paration."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668434
-    m_Localized: "Ajouter des adaptateurs ou allumer les appareils un par un ne r\xE8gle
-      pas un circuit surcharg\xE9. Le personnel qualifi\xE9 peut v\xE9rifier la charge."
+    m_Localized: "Trop d'appareils puissants sur une multiprise la font chauffer et peuvent causer un incendie. Des prises murales s\u00e9par\u00e9es partagent la charge, une autre multiprise non."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668435
-    m_Localized: "Seules une r\xE9paration et une validation par du personnel qualifi\xE9
-      rendent l'appareil \xE0 nouveau s\xFBr."
+    m_Localized: "Du ruban adh\u00e9sif ou un essai r\u00e9ussi ne r\u00e9parent pas un c\u00e2ble endommag\u00e9. Seuls une vraie r\u00e9paration et un contr\u00f4le le rendent \u00e0 nouveau s\u00fbr."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668436
@@ -1220,19 +1181,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668438
-    m_Localized: "Un contr\xF4le de routine porte sur l'acc\xE8s, la compl\xE9tude
-      et la validit\xE9 des fournitures (date et \xE9tat)."
+    m_Localized: "Une trousse bloqu\u00e9e, \u00e0 moiti\u00e9 vide ou p\u00e9rim\u00e9e vous l\u00e2che justement quand quelqu'un est bless\u00e9."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668439
-    m_Localized: "Stock\xE9 en bas, un corrosif ne peut pas tomber de haut, et le
-      bac de r\xE9tention retient toute fuite."
+    m_Localized: "En bas, il ne peut tomber sur personne, et le bac de r\u00e9tention retient toute fuite."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668440
-    m_Localized: "Des produits incompatibles stock\xE9s ensemble peuvent r\xE9agir
-      si l'un fuit. S\xE9parez-les selon leur compatibilit\xE9, pas selon la taille
-      ou la couleur du flacon."
+    m_Localized: "Si des produits incompatibles se m\u00e9langent en fuyant, ils peuvent chauffer, d\u00e9gager des vapeurs ou prendre feu. Triez selon ce qui r\u00e9agit avec quoi, pas selon la taille ou la couleur."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668441

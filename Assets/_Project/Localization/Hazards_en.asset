@@ -116,7 +116,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931286
-    m_Localized: Ask someone to watch the cart during unloading.
+    m_Localized: "Leave it there and set a reminder to move it later."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931287
@@ -203,7 +203,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931307
-    m_Localized: The cup might interfere with identifying nearby equipment.
+    m_Localized: "It could tip over and spill onto the experiment."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931308
@@ -211,11 +211,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931309
-    m_Localized: The lid might prevent proper cleaning of the bench.
+    m_Localized: "The heat from the coffee could affect nearby samples."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931310
-    m_Localized: Food and drinks can lead to exposure or contamination.
+    m_Localized: "Residue from your hands and the cup ends up in your mouth."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931311
@@ -278,7 +278,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931325
-    m_Localized: The cartons may have different product labels.
+    m_Localized: "The boxes could get crushed and damage what's inside."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931326
@@ -302,7 +302,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931331
-    m_Localized: Use approved shelving and follow safe stacking limits.
+    m_Localized: "Put them on shelves: heavy boxes low, nothing stacked above shoulder height."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931332
@@ -339,7 +339,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931340
-    m_Localized: 'Not safe: lab coats belong on the designated coat rack.'
+    m_Localized: "Not safe: a used lab coat goes on its hook, or in a sealed bag if contaminated."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931341
@@ -359,11 +359,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931345
-    m_Localized: Place the coat in a cupboard with personal belongings.
+    m_Localized: "Put it in your locker with your bag and jacket."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931346
-    m_Localized: Hang the coat in the designated PPE storage location.
+    m_Localized: "Hang it on the lab coat hook, away from seats and bags."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931347
@@ -375,11 +375,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931349
-    m_Localized: Follow the designated collection or decontamination procedure.
+    m_Localized: "Take it off, seal it in a bag and tell your supervisor."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931350
-    m_Localized: Fold the coat and store it in a private drawer.
+    m_Localized: "Take it home and wash it with your normal laundry."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931351
@@ -399,7 +399,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931355
-    m_Localized: They may transfer contamination to shared surfaces.
+    m_Localized: "Residue can rub off onto the chair and the next person."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931356
@@ -432,7 +432,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931363
-    m_Localized: 'Not safe: used gloves go into the lab waste container.'
+    m_Localized: "Not safe: anything used in lab work goes in lab waste, not the normal bin."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931364
@@ -448,7 +448,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931367
-    m_Localized: Follow lab waste procedures and use the designated container.
+    m_Localized: "Move them into the marked lab waste bin."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931368
@@ -477,7 +477,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931374
-    m_Localized: Check the lab waste instructions or ask trained staff.
+    m_Localized: "Check the waste sign at the bins or ask your supervisor."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931375
@@ -569,7 +569,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931396
-    m_Localized: Require verified identification before anyone uses the liquid.
+    m_Localized: "Don't use it; set it aside until the supervisor identifies it."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931397
@@ -597,7 +597,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931403
-    m_Localized: The chemical is properly identified and labeled under lab procedures.
+    m_Localized: "It is identified and gets a full label: name, hazards and date."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931404
@@ -669,7 +669,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931420
-    m_Localized: Use approved prescription safety eyewear or suitable over-glasses.
+    m_Localized: "Wear safety goggles over your glasses, or prescription safety glasses."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931421
@@ -681,7 +681,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931423
-    m_Localized: Headphones can be used only during low-risk activities.
+    m_Localized: "They are only a problem when the music is loud."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931424
@@ -727,7 +727,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931434
-    m_Localized: 'Not safe: damaged cables must be taken out of service and reported.'
+    m_Localized: "Not safe: damaged cables and overloaded adapters must be unplugged and fixed."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931435
@@ -748,11 +748,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931439
-    m_Localized: Continue using the device while monitoring the adapter temperature.
+    m_Localized: "Keep using it, but don't touch the damaged part."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931440
-    m_Localized: Stop using it, safely isolate power, tag it out, and report it.
+    m_Localized: "Switch it off, unplug it, tag it 'Do not use' and report it."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931441
@@ -766,7 +766,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931443
-    m_Localized: Ask qualified staff to review the load and power connections.
+    m_Localized: "Spread them over separate wall sockets; report it if there aren't enough."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931444
@@ -794,7 +794,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931450
-    m_Localized: After qualified personnel repair it and approve its use.
+    m_Localized: "After an electrician repairs it and checks that it is safe."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931451
@@ -874,7 +874,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931469
-    m_Localized: Report the shortage and arrange restocking through responsible staff.
+    m_Localized: "Tell whoever looks after the kit what's missing so it gets restocked."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931470
@@ -882,7 +882,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931471
-    m_Localized: The kit is accessible, properly stocked, and its supplies are usable.
+    m_Localized: "It is easy to reach, nothing is missing and nothing has expired."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931472
@@ -951,7 +951,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931487
-    m_Localized: In designated low-level corrosives storage with secondary containment.
+    m_Localized: "Low down in the acid cabinet, standing in a spill tray."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931488
@@ -963,8 +963,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931490
-    m_Localized: Separate substances according to chemical compatibility and lab
-      procedures.
+    m_Localized: "Keep acids away from flammables and anything else they react with."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931491
@@ -989,7 +988,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1185931496
-    m_Localized: A falling or leaking bottle could cause exposure and reactions.
+    m_Localized: "If it falls, acid can splash your face and react with other bottles."
     m_Metadata:
       m_Items: []
   - m_Id: 1185931497
@@ -1001,9 +1000,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914296393728
-    m_Localized: Moving the cart just enough to pass, or putting a sign on it, still
-      leaves the escape route narrowed. Only storage leaves the exit fully usable
-      in an evacuation.
+    m_Localized: "In an evacuation many people rush out at once, maybe in smoke. A half-blocked exit or a sign on the cart doesn't help them, so the cart has to go."
     m_Metadata:
       m_Items: []
   - m_Id: 177914380279808
@@ -1027,8 +1024,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668417
-    m_Localized: Hands and cup surfaces pick up residue in the lab, so even a closed
-      cup carries it to your mouth.
+    m_Localized: "The lid keeps the coffee in, not the chemicals out. Residue on your gloves, hands and the outside of the cup reaches your mouth with the next sip."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668418
@@ -1041,33 +1037,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668420
-    m_Localized: Shelving rated for the load, used within its height limits, keeps
-      stacks from becoming unstable in the first place.
+    m_Localized: "Heavy boxes at the bottom and low stacks can't topple onto anyone. Tape or wrap only holds a bad stack together until it falls."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668421
-    m_Localized: A designated hook keeps possible contamination away from seats and
-      clean areas.
+    m_Localized: "A used coat can carry chemical residue. On its hook it doesn't touch seats, bags or your own clothes."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668422
-    m_Localized: Shaking it out or wearing it again spreads the contamination. A
-      contaminated coat goes through the lab's collection or decontamination procedure.
+    m_Localized: "A contaminated coat comes off right away and is cleaned by the lab. Shaking it out, wearing it again or washing it at home spreads the chemical."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668423
-    m_Localized: Chairs are shared and touched with bare skin, so residue on a coat
-      passes to other people.
+    m_Localized: "Anyone can sit there next, in normal clothes. Residue on the coat rubs off onto the chair and then onto them."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668424
-    m_Localized: Gloves used in the lab may carry chemical residue, so they belong
-      in the lab waste stream.
+    m_Localized: "Lab gloves may carry chemical residue. In the normal bin they reach cleaners and household trash, where nobody expects chemicals."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668425
-    m_Localized: Guessing can put hazardous waste in the wrong bin. Check the waste
-      instructions or ask trained staff.
+    m_Localized: "Guessing can put hazardous waste in the wrong bin. The waste sign or your supervisor tells you where it goes."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668426
@@ -1081,13 +1071,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668428
-    m_Localized: Many hazardous liquids are clear and odourless. Looks, or a test
-      in the sink, never identify a chemical.
+    m_Localized: "Acids, bleach and many solvents look just like water, and pouring some down the sink can react or give off fumes. Looking at it tells you nothing."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668429
-    m_Localized: A bottle goes back into storage only once it is identified and correctly
-      labelled.
+    m_Localized: "Everyone relies on the label to know what's in a bottle. Until it is identified and labelled, the next person faces the same unknown."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668430
@@ -1096,8 +1084,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668431
-    m_Localized: Ordinary glasses, however thick, are not rated for impact or splashes.
-      Use prescription safety glasses or over-glasses.
+    m_Localized: "Normal glasses aren't made to stop splashes or flying glass, and leave gaps at the sides. Goggles fit over them."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668432
@@ -1105,18 +1092,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668433
-    m_Localized: Exposed wires can cause shocks or fire. Isolate the power and tag
-      the device so no one uses it until it is repaired.
+    m_Localized: "Exposed wires can shock you or start a fire. Unplugged and tagged, nobody can use it by mistake before it is fixed."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668434
-    m_Localized: Adding adapters or switching devices on one by one does not fix
-      an overloaded circuit. Qualified staff can check the load.
+    m_Localized: "Too many high-power devices on one adapter overheat it and can start a fire. Separate wall sockets share the load; another adapter just moves the problem."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668435
-    m_Localized: Only a repair and approval by qualified personnel make the equipment
-      safe to use again.
+    m_Localized: "Tape or a test run that works doesn't fix a damaged cable. Only a proper repair and check make it safe again."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668436
@@ -1130,18 +1114,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668438
-    m_Localized: A routine check covers access, completeness, and whether supplies
-      are in date and usable.
+    m_Localized: "A kit that is blocked, half empty or out of date lets you down exactly when someone is hurt."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668439
-    m_Localized: Stored low, a corrosive cannot fall from height, and secondary containment
-      holds any leak.
+    m_Localized: "Low down it can't fall on anyone, and the spill tray catches any leak."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668440
-    m_Localized: Incompatible chemicals stored together can react if one leaks. Separate
-      them by compatibility, not by bottle size or colour.
+    m_Localized: "If incompatible chemicals leak into each other they can get hot, give off fumes or catch fire. Sort by what reacts with what, not by size or colour."
     m_Metadata:
       m_Items: []
   - m_Id: 177914388668441
