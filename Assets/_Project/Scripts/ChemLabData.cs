@@ -146,10 +146,7 @@ namespace ChemLab
         public int wrongAnswers;            // every wrong submission is logged as a mistake
         public bool solved;                 // eventually answered correctly -> hazard fixed in the scene
         public string shownOrder;           // option keys in the shuffled order the panel showed them, e.g. "CADB"
-        // set by HazardPlacement when the hazard was moved into a zone; null = it stayed at its authored spot
-        public string zoneName, zoneArea, zoneDifficulty;
-        public string Area => zoneArea == null ? data.area : L10n.Hazard("Area." + zoneArea, zoneArea);
-        public string Difficulty => zoneDifficulty == null ? data.difficulty : L10n.Hazard("Difficulty." + zoneDifficulty, zoneDifficulty);
+        public string zoneName;             // set by HazardPlacement when the hazard was moved into a zone; null = it stayed at its authored spot
 
         /// <summary>The letter the student saw for an option key (rows are lettered A-D by position after shuffling).</summary>
         public string Shown(string key)

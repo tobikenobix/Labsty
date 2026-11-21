@@ -850,11 +850,20 @@ MonoBehaviour:
     m_Localized: 'Risposta giusta: {0}'
     m_Metadata:
       m_Items: []
-  - m_Id: 225540404404224
+  - m_Id: 225511996383232
+    m_Localized: "Modalit\xE0 sviluppatore"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 225512097046528
+    m_Localized: "Modalit\xE0 sviluppatore: selezioni un pericolo per vedere dove
+      pu\xF2 essere posizionato. Questa sessione non viene salvata."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227090677882880
     m_Localized: "Termina\u2026"
     m_Metadata:
       m_Items: []
-  - m_Id: 225540488290304
+  - m_Id: 227090765963264
     m_Localized: suggerimenti
     m_Metadata:
       m_Items: []

@@ -59,7 +59,7 @@ public static class HazardPlacementMenu
         {
             var (seen, fit) = Seen(z, hazards);
             if (fit > 0 && seen == 0) hidden.Add(z.name);
-            sb.AppendLine($"  {z.name} ({z.difficulty}): used {hits[z.name]}x, {fit}/{HazardPlacement.GridSide * HazardPlacement.GridSide} grid spots fit, {seen} of those visible from the aisles");
+            sb.AppendLine($"  {z.name}: used {hits[z.name]}x, {fit}/{HazardPlacement.GridSide * HazardPlacement.GridSide} grid spots fit, {seen} of those visible from the aisles");
         }
         var report = sb.ToString();
         if (fallbacks.Values.Any(n => n > 0) || hidden.Count > 0) Debug.LogWarning(report); else Debug.Log(report);

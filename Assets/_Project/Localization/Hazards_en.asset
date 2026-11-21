@@ -1149,42 +1149,6 @@ MonoBehaviour:
       face and eyes, and react with what it lands on.
     m_Metadata:
       m_Items: []
-  - m_Id: 198768665288704
-    m_Localized: Main lab bench
-    m_Metadata:
-      m_Items: []
-  - m_Id: 198768791117824
-    m_Localized: Working area
-    m_Metadata:
-      m_Items: []
-  - m_Id: 198768799506432
-    m_Localized: Equipment area
-    m_Metadata:
-      m_Items: []
-  - m_Id: 198768799506433
-    m_Localized: Entrance
-    m_Metadata:
-      m_Items: []
-  - m_Id: 198768799506434
-    m_Localized: Chemical storage
-    m_Metadata:
-      m_Items: []
-  - m_Id: 198768807895040
-    m_Localized: Safety station
-    m_Metadata:
-      m_Items: []
-  - m_Id: 198768807895041
-    m_Localized: Easy
-    m_Metadata:
-      m_Items: []
-  - m_Id: 198768812089344
-    m_Localized: Medium
-    m_Metadata:
-      m_Items: []
-  - m_Id: 198768812089345
-    m_Localized: Very difficult
-    m_Metadata:
-      m_Items: []
   references:
     version: 2
     RefIds: []

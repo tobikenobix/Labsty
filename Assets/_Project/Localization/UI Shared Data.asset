@@ -807,11 +807,19 @@ MonoBehaviour:
     m_Key: end.rightAnswer
     m_Metadata:
       m_Items: []
-  - m_Id: 225540404404224
+  - m_Id: 225511996383232
+    m_Key: lobby.devMode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 225512097046528
+    m_Key: lab.devMode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227090677882880
     m_Key: tab.finish
     m_Metadata:
       m_Items: []
-  - m_Id: 225540488290304
+  - m_Id: 227090765963264
     m_Key: lbl.hints
     m_Metadata:
       m_Items: []

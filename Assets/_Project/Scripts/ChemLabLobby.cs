@@ -33,6 +33,7 @@ namespace ChemLab
         Button idGo;
         readonly Button[] langBtns = new Button[4];
         readonly Button[] handBtns = new Button[2];
+        Button devBtn;
         static readonly string[] Langs = { "DE", "FR", "IT", "EN" };
         static Pose? rigPose;   // carried over the language / hand reload so the view stays where the player turned it
 
@@ -131,6 +132,14 @@ namespace ChemLab
             }
             for (int i = 0; i < 4; i++) Paint(langBtns[i], Langs[i] == ChemLabRun.Language);
             for (int i = 0; i < 2; i++) Paint(handBtns[i], (i == 1) == ChemLabRun.LeftHanded);
+            if (devBtn != null) Paint(devBtn, ChemLabRun.DeveloperMode);
+        }
+
+        /// <summary>Developer mode: the lab highlights hazards and shows their placement zones, and the run is not exported.</summary>
+        void ToggleDeveloperMode()
+        {
+            ChemLabRun.DeveloperMode = !ChemLabRun.DeveloperMode;
+            RefreshLanguage();
         }
 
         // ================= builders =================
@@ -216,6 +225,8 @@ namespace ChemLab
             K.Label(t, "Legend", L10n.T("hz.legend"), new Vector2(23, -362), new Vector2(954, 40), 28, K.Text, TextAlignmentOptions.Left);
 
             K.Button(t, "SwitchAllOn", L10n.T("hz.allOn"), new Vector2(-335, -458), new Vector2(330, 72), K.Style.Ghost, SwitchAllHazardsOn);
+            devBtn = K.Button(t, "DeveloperMode", L10n.T("lobby.devMode"), new Vector2(0, -458), new Vector2(330, 72), K.Style.Ghost, ToggleDeveloperMode);
+            K.FitOneLine(K.ButtonLabel(devBtn), 20);
             K.Button(t, "Close", L10n.T("common.close"), new Vector2(335, -458), new Vector2(330, 72), K.Style.Ghost, CloseHazards, key: "B");
             hazards.gameObject.SetActive(false);
         }

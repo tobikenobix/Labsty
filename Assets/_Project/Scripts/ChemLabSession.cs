@@ -98,6 +98,7 @@ namespace ChemLab
             phase = Phase.Running;
             startTime = Time.time;
             ui.ShowRunStarted(Config.timeLimitSeconds);
+            if (ChemLabRun.DeveloperMode) ui.Toast(L10n.T("lab.devMode"), 6f, ChemLabUIKit.Warn);
         }
 
         void Update()
@@ -242,7 +243,8 @@ namespace ChemLab
 
             var result = Score(endTime - startTime);
             ChemLabRun.LastTimedOut = timedOut;
-            ChemLabRun.Export(sessionId, false, result, records);
+            if (ChemLabRun.DeveloperMode) ChemLabRun.LastJsonPath = ChemLabRun.LastCsvPath = null;   // developer runs never reach the student data
+            else ChemLabRun.Export(sessionId, false, result, records);
             ChemLabRun.LastResult = result;
             ChemLabRun.LastRecords = records.ToList();
             ChemLabRun.LastConfig = Config;

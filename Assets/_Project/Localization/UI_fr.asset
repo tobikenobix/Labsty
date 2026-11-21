@@ -854,11 +854,20 @@ MonoBehaviour:
     m_Localized: "Bonne r\xE9ponse : {0}"
     m_Metadata:
       m_Items: []
-  - m_Id: 225540404404224
+  - m_Id: 225511996383232
+    m_Localized: "Mode d\xE9veloppeur"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 225512097046528
+    m_Localized: "Mode d\xE9veloppeur : s\xE9lectionnez un danger pour voir o\xF9
+      il peut \xEAtre plac\xE9. Cette session n'est pas enregistr\xE9e."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227090677882880
     m_Localized: "Terminer\u2026"
     m_Metadata:
       m_Items: []
-  - m_Id: 225540488290304
+  - m_Id: 227090765963264
     m_Localized: aide
     m_Metadata:
       m_Items: []

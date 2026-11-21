@@ -852,11 +852,20 @@ MonoBehaviour:
     m_Localized: 'Right answer: {0}'
     m_Metadata:
       m_Items: []
-  - m_Id: 225540404404224
+  - m_Id: 225511996383232
+    m_Localized: Developer mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 225512097046528
+    m_Localized: 'Developer mode: select a hazard to see where it can be placed.
+      This run is not saved.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 227090677882880
     m_Localized: "Finish\u2026"
     m_Metadata:
       m_Items: []
-  - m_Id: 225540488290304
+  - m_Id: 227090765963264
     m_Localized: button hints
     m_Metadata:
       m_Items: []

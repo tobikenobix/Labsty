@@ -1206,42 +1206,6 @@ MonoBehaviour:
       su viso e occhi e reagire con ci\xF2 su cui cade."
     m_Metadata:
       m_Items: []
-  - m_Id: 198768665288704
-    m_Localized: Bancone principale
-    m_Metadata:
-      m_Items: []
-  - m_Id: 198768791117824
-    m_Localized: Zona di lavoro
-    m_Metadata:
-      m_Items: []
-  - m_Id: 198768799506432
-    m_Localized: Zona apparecchiature
-    m_Metadata:
-      m_Items: []
-  - m_Id: 198768799506433
-    m_Localized: Ingresso
-    m_Metadata:
-      m_Items: []
-  - m_Id: 198768799506434
-    m_Localized: Deposito sostanze chimiche
-    m_Metadata:
-      m_Items: []
-  - m_Id: 198768807895040
-    m_Localized: Postazione di sicurezza
-    m_Metadata:
-      m_Items: []
-  - m_Id: 198768807895041
-    m_Localized: Facile
-    m_Metadata:
-      m_Items: []
-  - m_Id: 198768812089344
-    m_Localized: Media
-    m_Metadata:
-      m_Items: []
-  - m_Id: 198768812089345
-    m_Localized: Molto difficile
-    m_Metadata:
-      m_Items: []
   references:
     version: 2
     RefIds: []
