@@ -287,7 +287,7 @@ namespace ChemLab
 
         void BuildMain()
         {
-            main = K.Panel(transform, "Panel_Lobby", new Vector2(1100, 900));
+            main = K.Panel(transform, "Panel_Lobby", new Vector2(1100, 900), MainScale);
             K.Label(main.transform, "Kicker", L10n.T("lobby.kicker"), new Vector2(0, 385), new Vector2(980, 40), 24, K.Accent, TextAlignmentOptions.Left, FontStyles.Bold);
             K.Label(main.transform, "Title", L10n.T("lobby.title"), new Vector2(0, 325), new Vector2(980, 80), 62, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
             sub = K.Label(main.transform, "Sub", "", new Vector2(0, 268), new Vector2(980, 40), 28, K.TextDim, TextAlignmentOptions.Left);
@@ -386,6 +386,8 @@ namespace ChemLab
 
         // ================= student id keypad =================
 
+        // Panel scales for ~0.92 deg body-text x-height at the anchors' 1.05 m / 1.10 m (builder places them).
+        const float MainScale = 0.00115f, TeachingScale = 0.0012f;
         const int MaxIdDigits = 12;
         string idDraft = "";
 
@@ -396,7 +398,7 @@ namespace ChemLab
         void BuildIdPad()
         {
             var size = new Vector2(1100, 900);
-            idPad = K.Panel(transform, "Panel_StudentId", size);
+            idPad = K.Panel(transform, "Panel_StudentId", size, MainScale);
             var t = idPad.transform;
             K.Label(t, "Kicker", L10n.T("lobby.idKicker"), new Vector2(0, 385), new Vector2(980, 40), 24, K.Accent, TextAlignmentOptions.Left, FontStyles.Bold);
             K.FitOneLine(K.Label(t, "Title", L10n.T("lobby.idTitle"), new Vector2(0, 325), new Vector2(980, 80), 56, K.Text, TextAlignmentOptions.Left, FontStyles.Bold), 40);
@@ -530,7 +532,7 @@ namespace ChemLab
         void BuildTeaching()
         {
             var size = new Vector2(780, 960);
-            teaching = K.Panel(transform, "Panel_Teaching", size, blocksRays: false);
+            teaching = K.Panel(transform, "Panel_Teaching", size, TeachingScale, blocksRays: false);
             var t = teaching.transform;
             K.FitOneLine(K.Label(t, "Title", L10n.T("tch.title"), new Vector2(0, 410), new Vector2(700, 60), 42, K.Text, TextAlignmentOptions.Left, FontStyles.Bold), 30);
             K.Img(t, "RuleTop", new Vector2(0, 362), new Vector2(700, 2), K.Rule).raycastTarget = false;
