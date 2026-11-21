@@ -218,9 +218,9 @@ namespace ChemLab
         void BuildExplanations()
         {
             var recs = ChemLabRun.LastRecords;
-            explain = K.Panel(transform, "Panel_Explanations", new Vector2(1000, 1250));
+            explain = K.Panel(transform, "Panel_Explanations", new Vector2(1000, 1460));   // same height as the report card; 10 hazards in DE/FR need ~1110 px at 22 pt
             var t = explain.transform;
-            K.Label(t, "Title", L10n.T("end.explTitle"), new Vector2(0, 570), new Vector2(920, 60), 42, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
+            K.Label(t, "Title", L10n.T("end.explTitle"), new Vector2(0, 675), new Vector2(920, 60), 42, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
             var sb = new StringBuilder();
             foreach (var h in recs)
             {
@@ -230,9 +230,9 @@ namespace ChemLab
                 sb.Append($"<b>{h.data.id} {h.data.title}</b>  <color={col}>({mine})</color>\n");
                 sb.Append($"<size=85%><color={K.Hex(K.Accent)}>{h.q.correct}. {ok?.text}</color>\n<color={K.Hex(K.TextDim)}>{h.Explanation}</color></size>\n\n");
             }
-            var body = K.Label(t, "Body", sb.ToString(), new Vector2(0, -20), new Vector2(920, 1080), 22, K.Text, TextAlignmentOptions.TopLeft);
+            var body = K.Label(t, "Body", sb.ToString(), new Vector2(0, 0), new Vector2(920, 1260), 22, K.Text, TextAlignmentOptions.TopLeft);
             body.overflowMode = TextOverflowModes.Truncate;
-            K.Button(t, "Close", L10n.T("end.closeB"), new Vector2(0, -575), new Vector2(360, 70), K.Style.Ghost, HideExplanations, 26);
+            K.Button(t, "Close", L10n.T("end.closeB"), new Vector2(0, -680), new Vector2(360, 70), K.Style.Ghost, HideExplanations, 26);
             explain.gameObject.SetActive(false);
         }
 
