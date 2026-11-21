@@ -81,10 +81,12 @@ namespace ChemLab
             Txt("Kicker", L10n.T("end.kicker", ChemLabRun.StudentId.ToUpper(), ChemLabRun.Attempt.ToString("000")), L, top, 600, 34, 22, InkDim, TextAlignmentOptions.Left);
             Txt("Title", L10n.T("end.title"), L, top - 34, 700, 64, 46, Ink, TextAlignmentOptions.Left, FontStyles.Bold);
             Txt("Score", $"{r.score}/100", R - 420, top - 4, 420, 90, 78, Ink, TextAlignmentOptions.Right, FontStyles.Bold);
-            var (chipText, chipCol) = r.outcome == Outcome.SafetyReviewRequired ? (L10n.T("end.chipReview"), Red)
-                                    : r.outcome == Outcome.RetrainingRequired ? (L10n.T("end.chipRetrain"), Amber) : (L10n.T("end.chipPassed"), Green);
+            // chipInk: darker text on the tinted chip, >= 4.5:1 (WCAG AA); the tint keeps the brighter hue
+            var (chipText, chipCol, chipInk) = r.outcome == Outcome.SafetyReviewRequired ? (L10n.T("end.chipReview"), Red, K.Bad)
+                                    : r.outcome == Outcome.RetrainingRequired ? (L10n.T("end.chipRetrain"), Amber, new Color(0.54f, 0.325f, 0f))
+                                    : (L10n.T("end.chipPassed"), Green, new Color(0.106f, 0.42f, 0.267f));
             float chipW = 34 + chipText.Length * 15f;
-            K.Chip(t, "Outcome", chipText, new Vector2(R - chipW / 2f, top - 122), new Vector2(chipW, 44), new Color(chipCol.r, chipCol.g, chipCol.b, 0.14f), chipCol)
+            K.Chip(t, "Outcome", chipText, new Vector2(R - chipW / 2f, top - 122), new Vector2(chipW, 44), new Color(chipCol.r, chipCol.g, chipCol.b, 0.14f), chipInk)
                 .fontStyle = FontStyles.Normal;
 
             // two stat columns
@@ -224,7 +226,7 @@ namespace ChemLab
             {
                 var ok = h.q.Option(h.q.correct);
                 string mine = h.selected == null ? L10n.T(h.detected ? "end.notAnswered" : "end.missed") : h.selected == h.q.correct ? L10n.T("end.correct") : L10n.T("end.youChose", h.selected);
-                string col = h.selected == h.q.correct ? K.Hex(K.Ok) : h.selected == null ? "#8b97a8" : K.Hex(K.Bad);
+                string col = h.selected == h.q.correct ? K.Hex(K.Ok) : h.selected == null ? K.Hex(K.TextDim) : K.Hex(K.Bad);
                 sb.Append($"<b>{h.data.id} {h.data.title}</b>  <color={col}>({mine})</color>\n");
                 sb.Append($"<size=85%><color={K.Hex(K.Accent)}>{h.q.correct}. {ok?.text}</color>\n<color={K.Hex(K.TextDim)}>{h.Explanation}</color></size>\n\n");
             }

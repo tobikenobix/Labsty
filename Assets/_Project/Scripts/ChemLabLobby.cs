@@ -415,7 +415,7 @@ namespace ChemLab
                 b.interactable = available;
                 K.SetButtonColor(b, chosen ? K.Accent : available ? K.Bg : K.Surface);
                 b.transform.Find("Outline").gameObject.SetActive(available && !chosen);
-                K.ButtonLabel(b).color = chosen ? Color.white : available ? K.Text : new Color(0.64f, 0.64f, 0.61f);
+                K.ButtonLabel(b).color = chosen ? Color.white : available ? K.Text : new Color(0.42f, 0.42f, 0.396f);   // #6B6B65, 4.6:1 on Surface
             }
             perRunCaption.text = L10n.T("hz.caption", perRun, on);
             sub.text = L10n.T("lobby.sub", perRun);
