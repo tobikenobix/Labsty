@@ -427,11 +427,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488486
-    m_Localized: "Classement de B\xE2le"
+    m_Localized: "Classement de d\xE9monstration"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488487
-    m_Localized: "Cette semaine \xB7 Inspection de s\xE9curit\xE9 du labo"
+    m_Localized: "Noms et scores fictifs, pas de vrais r\xE9sultats"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488488

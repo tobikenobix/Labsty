@@ -433,11 +433,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488486
-    m_Localized: Classifica di Basilea
+    m_Localized: Classifica dimostrativa
     m_Metadata:
       m_Items: []
   - m_Id: 4457488487
-    m_Localized: "Questa settimana \xB7 Ispezione di sicurezza"
+    m_Localized: Nomi e punteggi di esempio, non risultati reali
     m_Metadata:
       m_Items: []
   - m_Id: 4457488488

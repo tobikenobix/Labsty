@@ -265,8 +265,8 @@ namespace ChemLab
             board = K.Panel(transform, "Panel_Leaderboard", new Vector2(720, 1100));
             var t = board.transform;
             K.Label(t, "Kicker", L10n.T("board.kicker"), new Vector2(0, 495), new Vector2(640, 36), 20, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
-            K.Label(t, "Title", L10n.T("board.title"), new Vector2(0, 440), new Vector2(640, 70), 50, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
-            K.Label(t, "Sub", L10n.T("board.sub"), new Vector2(0, 390), new Vector2(640, 36), 24, K.TextDim, TextAlignmentOptions.Left);
+            K.FitOneLine(K.Label(t, "Title", L10n.T("board.title"), new Vector2(0, 440), new Vector2(640, 70), 50, K.Text, TextAlignmentOptions.Left, FontStyles.Bold), 36);
+            K.FitOneLine(K.Label(t, "Sub", L10n.T("board.sub"), new Vector2(0, 390), new Vector2(640, 36), 24, K.TextDim, TextAlignmentOptions.Left), 20);
 
             var rows = new List<(string name, string team, int score, string time, bool you)>();
             foreach (var m in Mock) rows.Add((m.name, m.team, m.score, m.time, false));

@@ -431,11 +431,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488486
-    m_Localized: Basel Leaderboard
+    m_Localized: Demo leaderboard
     m_Metadata:
       m_Items: []
   - m_Id: 4457488487
-    m_Localized: "This week \xB7 Lab Safety Inspection"
+    m_Localized: Sample names and scores, not real results
     m_Metadata:
       m_Items: []
   - m_Id: 4457488488
