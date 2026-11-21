@@ -30,7 +30,6 @@ public static class ChemLabSceneBuilder
     const string LobbyPath = Root + "/Scenes/ChemLab_Lobby.unity";
     const string TutorialPath = Root + "/Scenes/ChemLab_Tutorial.unity";
     const string ScenePath = Root + "/Scenes/ChemistryLab.unity";
-    const string EndPath = Root + "/Scenes/ChemLab_End.unity";
     const string RigPath = "Assets/Samples/XR Interaction Toolkit/3.6.1/Starter Assets/Prefabs/XR Origin (XR Rig).prefab";
     const string VignettePath = "Assets/Samples/XR Interaction Toolkit/3.6.1/Starter Assets/TunnelingVignette/TunnelingVignette.prefab";
 
@@ -41,7 +40,7 @@ public static class ChemLabSceneBuilder
     {
         if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
         BuildAll();
-        EditorUtility.DisplayDialog("Chemistry Lab", "Built 4 scenes:\n" + LobbyPath + "\n" + TutorialPath + "\n" + ScenePath + "\n" + EndPath +
+        EditorUtility.DisplayDialog("Chemistry Lab", "Built 3 scenes:\n" + LobbyPath + "\n" + TutorialPath + "\n" + ScenePath +
             "\n\nOpen ChemLab_Lobby and press Play (with Quest Link), or Build & Run to the Quest 3.", "OK");
     }
 
@@ -101,13 +100,12 @@ public static class ChemLabSceneBuilder
         BuildLab();
         BuildLobby();
         BuildTutorial();
-        BuildEnd();
-        var ours = new[] { LobbyPath, TutorialPath, ScenePath, EndPath };
+        var ours = new[] { LobbyPath, TutorialPath, ScenePath };
         EditorBuildSettings.scenes = ours.Select(x => new EditorBuildSettingsScene(x, true))
             .Concat(EditorBuildSettings.scenes.Where(s => !ours.Contains(s.path))).ToArray();
         AssetDatabase.SaveAssets();
         EditorSceneManager.OpenScene(LobbyPath);
-        Debug.Log("[ChemLab] Built Lobby, Tutorial, Lab and End scenes.");
+        Debug.Log("[ChemLab] Built Lobby, Tutorial and Lab scenes.");
     }
 
     // ===================================================================== scene 2: lab
@@ -168,13 +166,13 @@ public static class ChemLabSceneBuilder
         Systems(start, 0f);
         var game = new GameObject("ChemLab Lobby");
         var lobby = game.AddComponent<ChemLabLobby>();
-        // 1.05 m / 1.10 m from the start spot, and the lobby draws these panels 1.15x / 1.2x larger: 28-unit body
-        // text gets an x-height of ~0.92 deg, above Meta's 0.9 deg minimum (was 0.68 / 0.62 deg at 1.24 / 1.35 m)
+        // 1.05 m from the start spot, and the lobby draws the panel 1.15x larger: 28-unit body text gets an x-height
+        // of ~0.92 deg, above Meta's 0.9 deg minimum. After a run the report card takes this spot.
         lobby.mainPanelAnchor = Anchor("MainPanelAnchor", new Vector3(-0.38f, 1.5f, -1.42f), start);
-        lobby.teachingPanelAnchor = Anchor("TeachingPanelAnchor", new Vector3(0.69f, 1.45f, -1.55f), start);
-        // kiosk stands under both panels, ending at their lower edge (main: 600 x 0.00115 tall, teaching: 960 x 0.0012)
+        // the leaderboard beside the report card, only while a run's results are shown (no stand: nothing stands there before a run)
+        lobby.leaderboardAnchor = Anchor("LeaderboardAnchor", new Vector3(0.69f, 1.45f, -1.55f), start);
+        // kiosk stand under the start panel, ending at its lower edge (600 x 0.00115 tall); the taller report card hides it
         Stand(env, lobby.mainPanelAnchor, 1.5f - 0.345f);
-        Stand(env, lobby.teachingPanelAnchor, 1.45f - 0.58f);
         // wall posters face into the room (anchor forward points into the wall)
         lobby.posterAnchors = new[]
         {
@@ -200,7 +198,8 @@ public static class ChemLabSceneBuilder
     {
         var g = Group("Stand_" + panel.name, env, new Vector3(panel.position.x, 0, panel.position.z) + panel.forward * 0.04f);
         g.rotation = panel.rotation;
-        var dark = M("StandDark", new Color(0.2f, 0.22f, 0.25f), metallic: 0.4f, smooth: 0.5f);
+        // brushed steel, as the lobby stands were set by hand (commit 49e47aa)
+        var dark = AssetDatabase.LoadAssetAtPath<Material>("Assets/_Project/LabEnvironment/Materials/BrushedSteel.mat") ?? M("StandDark", new Color(0.2f, 0.22f, 0.25f), metallic: 0.4f, smooth: 0.5f);
         Cyl("Base", g, new Vector3(0, 0.01f, 0), 0.45f, 0.02f, dark);
         Cyl("Pole", g, new Vector3(0, height / 2f, 0), 0.05f, height, dark);
         Box("Bracket", g, new Vector3(0, height - 0.02f, 0), new Vector3(0.5f, 0.04f, 0.04f), dark);
@@ -348,10 +347,12 @@ public static class ChemLabSceneBuilder
     // ===================================================================== scene 1b: tutorial room
 
     /// <summary>
-    /// The practice room (7 x 9 m) between the lobby and the lab: start in the south, ring 1 beside bench A (east wall: a
-    /// closed acetone bottle as the safe object, an open HCl bottle as practice hazard), ring 2 beside bench B (west
-    /// wall: a spill), ring 3 in front of the lab door (north wall). One card anchor per step, ~1.1 m from where the
-    /// player stands for it, so the card's 30-unit body text stays near 0.95 deg x-height.
+    /// The practice room (7 x 9 m) between the lobby and the lab, dressed with the lab's own parts (floor, walls,
+    /// ceiling, door, island benches, flask; see LobbyLabEquipment): start in the south with the "How the inspection
+    /// works" board, ring 1 beside bench A (east wall: a closed acetone bottle as the safe object, an open HCl bottle as
+    /// practice hazard), ring 2 beside bench B (west wall: a spill), ring 3 in front of the lab door (north wall). One
+    /// card anchor per step, ~1.1 m from where the player stands for it, so the card's 30-unit body text stays near
+    /// 0.95 deg x-height.
     /// </summary>
     static void BuildTutorial()
     {
@@ -360,10 +361,24 @@ public static class ChemLabSceneBuilder
         var env = new GameObject("Environment").transform;
         SimpleRoom(env, 7f, 9f);
         Object.DestroyImmediate(env.Find("LightWall").gameObject);   // the door takes the middle of the north wall
+        foreach (var a in new[] { "Accent_N", "Accent_W", "Accent_E" }) Object.DestroyImmediate(env.Find(a).gameObject);   // lobby styling; the lab has none (and N ran across the door)
         LabDoor(env, new Vector3(0, 0, 4.48f));
+        LobbyLabEquipment.ApplyTutorial(env, new Vector2(7f, 9f));   // lab floor / wall / ceiling materials, lab door model
+
+        // a 1.55 m piece of the lab island against a side wall; returns its bounds (front edge, worktop height)
+        Bounds LabBench(string name, Vector3 pos, Vector3 inward)
+        {
+            var g = Group(name, env, pos);
+            if (LobbyLabEquipment.LabBench(g, inward, 3.5f) == null) Bench(name + "_Fallback", g, Vector3.zero, new Vector2(0.7f, 2.0f));
+            var rs = g.GetComponentsInChildren<Renderer>();
+            var bb = rs[0].bounds;
+            foreach (var r in rs) bb.Encapsulate(r.bounds);
+            return bb;
+        }
 
         var start = new Vector3(0, 0, -3.6f);
-        Vector3 r1 = new Vector3(1.6f, 0, -1.5f), r2 = new Vector3(-1.6f, 0, 1.2f), r3 = new Vector3(0, 0, 3.3f);
+        // the island pieces reach 1.7 m into the room (x = +-1.8), so the rings stand 0.9 m off the centre line
+        Vector3 r1 = new Vector3(0.9f, 0, -1.5f), r2 = new Vector3(-0.9f, 0, 1.2f), r3 = new Vector3(0, 0, 3.3f);
         var ringRoot = new GameObject("Rings").transform;
         ChemLabTeleportNode Ring(string name, Vector3 pos, float yaw)
         {
@@ -375,26 +390,26 @@ public static class ChemLabSceneBuilder
         }
         var rings = new[] { Ring("Ring1", r1, 90f), Ring("Ring2", r2, -90f), Ring("Ring3", r3, 0f) };
 
-        // bench A (east): safe closed bottle + open acid bottle with its cap lying beside it
-        Bench("BenchA", env, new Vector3(3.1f, 0, -1.5f), new Vector2(0.7f, 2.0f));
+        // bench A (east): safe closed bottle + open acid bottle with its cap lying beside it, 0.3 m behind the front edge
+        var benchA = LabBench("BenchA", new Vector3(3.1f, 0, -1.5f), Vector3.left);
+        float ax = benchA.min.x + 0.3f, ay = benchA.max.y;
         var practice = new GameObject("Practice items").transform;
-        var decoy = Group("Safe_ClosedBottle", practice, new Vector3(3.0f, 0.9f, -1.85f));
+        var decoy = Group("Safe_ClosedBottle", practice, new Vector3(ax, ay, -1.85f));
         Model("AcetoneBottle", "Bottle", decoy, Vector3.zero, new Vector3(0.12f, 0.24f, 0.12f), new Vector3(0, 90f, 0), 0.6f);   // label towards ring 1 (west)
         MakeInspectable(decoy.gameObject, ChemLabInspectable.Kind.Decoy, null, "Decoy");
-        var acid = Group("Practice_OpenAcid", practice, new Vector3(3.0f, 0.9f, -1.2f));
+        var acid = Group("Practice_OpenAcid", practice, new Vector3(ax, ay, -1.2f));
         Model("HClBottle", "Bottle", acid, Vector3.zero, new Vector3(0.14f, 0.27f, 0.14f), new Vector3(0, 90f, 0), 0.6f);
         var cap = Cyl("Cap", acid, new Vector3(-0.05f, 0.015f, 0.14f), 0.05f, 0.03f, M("CapRed", new Color(0.8f, 0.1f, 0.1f)));
         cap.transform.localRotation = Quaternion.Euler(90f, 0, 0);   // lying on its side
         MakeInspectable(acid.gameObject, ChemLabInspectable.Kind.Tutorial, null, "Acid");
 
-        // bench B (west): a clear spill with the tipped beaker it came from
-        Bench("BenchB", env, new Vector3(-3.1f, 0, 1.2f), new Vector2(0.7f, 2.0f));
-        var spill = Group("Practice_Spill", practice, new Vector3(-2.95f, 0.9f, 1.05f));
+        // bench B (west): a clear spill with the lab's glass flask it came from, lying on its side
+        var benchB = LabBench("BenchB", new Vector3(-3.1f, 0, 1.2f), Vector3.right);
+        var spill = Group("Practice_Spill", practice, new Vector3(benchB.max.x - 0.45f, benchB.max.y, 1.05f));
         var wet = M("SpillClear", new Color(0.7f, 0.85f, 1f, 0.55f), transparent: true, smooth: 0.95f);
         Cyl("Puddle", spill, new Vector3(0, 0.003f, 0), 0.42f, 0.004f, wet);
         Cyl("Puddle2", spill, new Vector3(0.08f, 0.003f, 0.24f), 0.22f, 0.004f, wet);
-        var beaker = Cyl("Beaker", spill, new Vector3(0.02f, 0.045f, -0.26f), 0.09f, 0.14f, M("Glass", Color.white));
-        beaker.transform.localRotation = Quaternion.Euler(0, 0, 90f);   // tipped over
+        LobbyLabEquipment.LabFlask("Flask", spill, new Vector3(0.02f, 0f, -0.3f), 90f);
         MakeInspectable(spill.gameObject, ChemLabInspectable.Kind.Tutorial, null, "Spill");
         var sc = spill.GetComponent<BoxCollider>();
         sc.size = new Vector3(sc.size.x, 0.12f, sc.size.z);   // a puddle is flat; give the ray something to hit
@@ -405,12 +420,16 @@ public static class ChemLabSceneBuilder
         var tut = game.AddComponent<ChemLabTutorial>();
         tut.leftHandAnchor = leftHand;
         tut.rings = rings;
-        var bench = Anchor("Card_BenchA", new Vector3(2.55f, 1.55f, -0.95f), r1);
-        var spillCard = Anchor("Card_Spill", new Vector3(-2.55f, 1.55f, 1.75f), r2);
+        // bench cards float over the island's front half, beside the items and above them (bottom edge ~1.24 m)
+        var bench = Anchor("Card_BenchA", new Vector3(1.85f, 1.55f, -0.85f), r1);
+        var spillCard = Anchor("Card_Spill", new Vector3(-1.85f, 1.55f, 1.85f), r2);
+        // the board stands right of the first card, as it did in the lobby (780 x 960 at 0.0012, on a kiosk stand)
+        tut.teachingAnchor = Anchor("TeachingBoardAnchor", new Vector3(0.69f, 1.45f, -2.75f), start);
+        Stand(env, tut.teachingAnchor, 1.45f - 0.58f);
         tut.stepAnchors = new[]
         {
             Anchor("Card_Start", new Vector3(-0.4f, 1.5f, -2.55f), start),   // 1 teleport
-            Anchor("Card_Ring1", new Vector3(1.6f, 1.5f, -0.4f), r1),       // 2 turn (straight ahead on arrival)
+            Anchor("Card_Ring1", new Vector3(0.9f, 1.5f, -0.4f), r1),       // 2 turn (straight ahead on arrival)
             bench, bench,                                                     // 3 safe bottle, 4 acid
             spillCard, spillCard,                                             // 5 spill, 6 task panel
             Anchor("Card_Door", new Vector3(0.85f, 1.5f, 4.0f), r3),        // 7 finish
@@ -426,25 +445,6 @@ public static class ChemLabSceneBuilder
         int lobby = list.FindIndex(s => s.path == LobbyPath);
         list.Insert(lobby + 1, new EditorBuildSettingsScene(TutorialPath, true));
         EditorBuildSettings.scenes = list.ToArray();
-    }
-
-    // ===================================================================== scene 3: end
-
-    static void BuildEnd()
-    {
-        var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-        BuildLighting(bright: true);
-        var env = new GameObject("Environment").transform;
-        SimpleRoom(env, 8f, 8f);
-        var start = new Vector3(0, 0, -2.4f);
-        Systems(start, 0f);
-        var game = new GameObject("ChemLab End Screen");
-        var end = game.AddComponent<ChemLabEndScreen>();
-        // report card 1.10 m from the start spot, drawn at 0.00118 scale by the end screen: 28-unit text ~0.92 deg
-        end.resultsAnchor = Anchor("ResultsAnchor", new Vector3(-0.29f, 1.5f, -1.34f), start);
-        end.leaderboardAnchor = Anchor("LeaderboardAnchor", new Vector3(1.05f, 1.5f, -1.45f), start);
-        game.AddComponent<ChemLabControls>();
-        EditorSceneManager.SaveScene(scene, EndPath);
     }
 
     // ===================================================================== shared scene pieces
@@ -579,7 +579,7 @@ public static class ChemLabSceneBuilder
         return t;
     }
 
-    /// <summary>Bright, clean onboarding room (lobby / end screen).</summary>
+    /// <summary>Bright, clean onboarding room (lobby / practice room).</summary>
     static void SimpleRoom(Transform env, float w, float d)
     {
         var floorTex = FloorTexture();

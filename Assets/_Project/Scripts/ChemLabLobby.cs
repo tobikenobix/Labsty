@@ -10,19 +10,22 @@ using K = ChemLab.ChemLabUIKit;
 namespace ChemLab
 {
     /// <summary>
-    /// Scene 1: the briefing room before the lab. Start panel (language, dominant hand, hazard choice and Start Lab), a
-    /// teaching panel on how the inspection works, and safety posters. Start Lab first asks for the student ID on a
-    /// keypad, then opens the practice room (ChemLabTutorial), which leads into the lab.
+    /// Scene 1: the briefing room before the lab, and where a run's results are shown after it. Start panel (language,
+    /// dominant hand, hazard choice and Start Lab) and safety posters. Start Lab first asks for the student ID on a
+    /// keypad, then opens the practice room (ChemLabTutorial), which leads into the lab. When the lab hands back
+    /// (ChemLabRun.ShowResults), the report card takes the start panel's place and the leaderboard stands beside it.
     /// </summary>
     public class ChemLabLobby : MonoBehaviour
     {
         public Transform mainPanelAnchor;
-        [UnityEngine.Serialization.FormerlySerializedAs("controllerPanelAnchor")]
-        public Transform teachingPanelAnchor;
+        [Tooltip("Where the leaderboard stands while a run's results are shown.")]
+        [UnityEngine.Serialization.FormerlySerializedAs("teachingPanelAnchor")]
+        public Transform leaderboardAnchor;
         [Tooltip("Wall posters, in order: chemicals warning, no food or drink, lab coat and glasses, eyewash.")]
         public Transform[] posterAnchors;
 
-        Canvas main, teaching, hazards, idPad;
+        Canvas main, hazards, idPad;
+        ChemLabEndScreen report;   // set while a run's results are shown
         TextMeshProUGUI sub, perRunCaption, idText;
         HazardData[] allHazards;
         readonly List<(string id, RectTransform sign, TextMeshProUGUI title, TextMeshProUGUI off, Image critical, bool mandatory)> hzRows =
@@ -40,22 +43,36 @@ namespace ChemLab
         void Awake()
         {
             RestoreRig();
-            ChemLabRun.StudentId = "";   // every lobby visit asks again, so the next student never inherits an ID
+            bool results = ChemLabRun.ShowResults && ChemLabRun.LastResult != null;
+            ChemLabRun.ShowResults = false;   // Back to lobby reloads the scene into the start panel
+            if (!results) ChemLabRun.StudentId = "";   // every visit to the start panel asks again, so the next student never inherits an ID
             allHazards = LabConfig.Load().hazards;
             BuildMain();
-            BuildTeaching();
             BuildPosters();
             BuildHazards();
             BuildIdPad();
-            ChemLabControllerLabels.Create(
+            var labels = new List<ChemLabControllerLabels.Item>
+            {
                 new ChemLabControllerLabels.Item(false, "Button_B", "B", L10n.T("lbl.close")),
-                new ChemLabControllerLabels.Item(false, "Button_A", "A", L10n.T("lbl.submitStart")),
                 new ChemLabControllerLabels.Item(false, "ThumbStick", null, L10n.T("lbl.stick")),
                 new ChemLabControllerLabels.Item(false, "Trigger", null, L10n.T("lbl.trigger")),
                 new ChemLabControllerLabels.Item(true, "ThumbStick", null, L10n.T("lbl.stick")),
-                new ChemLabControllerLabels.Item(true, "Trigger", null, L10n.T("lbl.trigger")));
+                new ChemLabControllerLabels.Item(true, "Trigger", null, L10n.T("lbl.trigger")),
+            };
+            if (!results) labels.Insert(1, new ChemLabControllerLabels.Item(false, "Button_A", "A", L10n.T("lbl.submitStart")));   // A does nothing on the report
+            ChemLabControllerLabels.Create(labels.ToArray());
             RefreshLanguage();
             RefreshHazards();
+            if (results) ShowReport();
+        }
+
+        /// <summary>The report card on the start panel's stand (one plate in front at a time) and the leaderboard beside it.</summary>
+        void ShowReport()
+        {
+            main.gameObject.SetActive(false);
+            report = gameObject.AddComponent<ChemLabEndScreen>();
+            report.resultsAnchor = mainPanelAnchor;
+            report.leaderboardAnchor = leaderboardAnchor;
         }
 
         void OnEnable()
@@ -78,7 +95,7 @@ namespace ChemLab
 
         void StartLab()
         {
-            if (HazardsOpen) return;   // A doesn't start the lab from behind another panel
+            if (HazardsOpen || report != null) return;   // A doesn't start the lab from behind another panel, nor throw the report away
             if (!IdOpen) { OpenIdPad(); return; }   // Start Lab asks for the student ID first
             if (idDraft.Length == 0) return;
             ChemLabRun.StudentId = idDraft;
@@ -233,8 +250,8 @@ namespace ChemLab
 
         // ================= student id keypad =================
 
-        // Panel scales for ~0.92 deg body-text x-height at the anchors' 1.05 m / 1.10 m (builder places them).
-        const float MainScale = 0.00115f, TeachingScale = 0.0012f;
+        // Panel scale for ~0.92 deg body-text x-height at the anchor's 1.05 m (builder places it).
+        const float MainScale = 0.00115f;
         const int MaxIdDigits = 12;
         string idDraft = "";
 
@@ -373,42 +390,6 @@ namespace ChemLab
             }
             perRunCaption.text = L10n.T("hz.caption", perRun, on);
             sub.text = L10n.T("lobby.sub", perRun);
-        }
-
-        /// <summary>"How the inspection works": one row per rule, each led by the sign it refers to in the lab.</summary>
-        void BuildTeaching()
-        {
-            var size = new Vector2(780, 960);
-            teaching = K.Panel(transform, "Panel_Teaching", size, TeachingScale, blocksRays: false);
-            var t = teaching.transform;
-            K.FitOneLine(K.Label(t, "Title", L10n.T("tch.title"), new Vector2(0, 410), new Vector2(700, 60), 42, K.Text, TextAlignmentOptions.Left, FontStyles.Bold), 30);
-            K.Img(t, "RuleTop", new Vector2(0, 362), new Vector2(700, 2), K.Rule).raycastTarget = false;
-
-            var icon = new Vector2(-305, 0);
-            RectTransform Row(int i, string key)
-            {
-                float y = 300 - i * 118;
-                var row = new GameObject("Row" + i, typeof(RectTransform)).GetComponent<RectTransform>();
-                row.SetParent(t, false);
-                row.anchoredPosition = new Vector2(0, y);
-                row.sizeDelta = new Vector2(700, 110);
-                var l = K.Label(row, "Text", L10n.T(key), new Vector2(50, 0), new Vector2(580, 108), 28, K.Text, TextAlignmentOptions.MidlineLeft);
-                l.enableAutoSizing = true; l.fontSizeMin = 22; l.fontSizeMax = 28;
-                K.Img(t, "Rule" + i, new Vector2(0, y - 59), new Vector2(700, 2), K.Rule).raycastTarget = false;
-                return row;
-            }
-            K.WarningSign(Row(0, "tch.find"), icon, 76f);
-            K.KeyDisc(Row(1, "tch.answer"), "A", icon, 66f, K.Accent);
-            K.SignDisc(Row(2, "tch.right"), "Icon", icon, 70f, K.Ok, check: true);
-            K.SignDisc(Row(3, "tch.wrong"), "Icon", icon, 70f, K.Bad, check: false, cross: true);
-            K.Chip(Row(4, "tch.critical"), "Icon", L10n.T("q.dangerous"), icon + new Vector2(2, 0), new Vector2(100, 40), K.Bad, Color.white);   // -353..-253: inside the plate margin, left of the text column (-240)
-            var o = Row(5, "tch.outline");
-            var sample = K.Img(o, "Icon", icon, new Vector2(64, 64), K.SurfaceHi, K.Rounded);
-            sample.pixelsPerUnitMultiplier = 2f;
-            K.Outline(sample.transform, new Vector2(64, 64), K.Accent, 1f);
-            var score = K.Label(t, "Score", L10n.T("tch.score"), new Vector2(0, -415), new Vector2(700, 80), 26, K.TextDim, TextAlignmentOptions.TopLeft);
-            score.enableAutoSizing = true; score.fontSizeMin = 22; score.fontSizeMax = 26;
-            if (teachingPanelAnchor != null) teaching.transform.SetPositionAndRotation(teachingPanelAnchor.position, teachingPanelAnchor.rotation);
         }
 
         static readonly string[] PosterKeys = { "poster.chem", "poster.food", "poster.ppe", "poster.eyewash" };

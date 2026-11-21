@@ -14,9 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/ChemistryLab.unity
     guid: 27699e277519c17429a26d82f37a64c2
-  - enabled: 1
-    path: Assets/_Project/Scenes/ChemLab_End.unity
-    guid: 309ba26f163bae54e84d0a08bb3d25f2
   - enabled: 0
     path: Assets/_Project/Scenes/Playground.unity
     guid: f8ba60d3a9431004590c0785f4a75461

@@ -258,8 +258,9 @@ namespace ChemLab
         IEnumerator LoadEnd()
         {
             yield return new WaitForSeconds(2.2f);
-            if (Application.CanStreamedLevelBeLoaded(ChemLabRun.EndScene)) SceneManager.LoadScene(ChemLabRun.EndScene);
-            else Debug.LogWarning("[ChemLab] End scene not in Build Settings. Run Chemistry Lab > Build All Scenes.");
+            ChemLabRun.ShowResults = true;   // the lobby opens on the report card
+            if (Application.CanStreamedLevelBeLoaded(ChemLabRun.LobbyScene)) SceneManager.LoadScene(ChemLabRun.LobbyScene);
+            else Debug.LogWarning("[ChemLab] Lobby scene not in Build Settings. Run Chemistry Lab > Build All Scenes.");
         }
 
         // ---------- scoring ----------
