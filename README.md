@@ -1,4 +1,4 @@
-# XR Hackathon Starter: PRISM, the XR Choice Lab
+# XR Hackathon Starter: Labsty, the XR Choice Lab
 
 Unity project for *Extended Reality for Value Creation in Businesses* (TUM School of Management and ETH Zürich, autumn 2026). Session 4 on 16 October and the hackathon in Bad Tölz (19 to 22 November) build on it.
 
