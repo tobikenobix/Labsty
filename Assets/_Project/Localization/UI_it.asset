@@ -720,11 +720,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 171324625379328
-    m_Localized: SELEZIONAMI
+    m_Localized: SELEZIONARE
     m_Metadata:
       m_Items: []
   - m_Id: 171324663128064
-    m_Localized: CAMMINA QUI
+    m_Localized: POSIZIONARSI QUI
     m_Metadata:
       m_Items: []
   references:
