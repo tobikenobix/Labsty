@@ -27,6 +27,7 @@ namespace ChemLab
         public static readonly Color AccentBlue = Accent;
         public static readonly Color SelectFill = Rgb("#E3EBF5");
         public static readonly Color Ok = Rgb("#237F52");          // safety green: safe / go
+        public static readonly Color OkFill = Rgb("#E3F1E8");      // row fill behind a green check (the Ok twin of SelectFill)
         public static readonly Color Warn = Rgb("#F9A800");        // safety yellow: fields only, never text on the plate
         public static readonly Color Bad = Rgb("#A52019");         // safety red: prohibited / dangerous
         public static readonly Color Text = Rgb("#141414");
