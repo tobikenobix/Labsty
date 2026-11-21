@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,51 +10,31 @@ using K = ChemLab.ChemLabUIKit;
 namespace ChemLab
 {
     /// <summary>
-    /// Scene 1: the briefing room before the lab. Start panel (language, hazard choice, a five-step tutorial and
-    /// Start Lab), a teaching panel on how the inspection works, safety posters, and the task panel on the left
-    /// controller with button labels on both controllers, as in the lab. Tutorial: teleport onto the ring, turn,
-    /// inspect the coffee cup, answer its practice question (check / cross marks as in the lab), hide and show the
-    /// task panel with X. Steps can be done in any order; Start Lab works at any time and first asks for the student ID on a keypad.
+    /// Scene 1: the briefing room before the lab. Start panel (language, dominant hand, hazard choice and Start Lab), a
+    /// teaching panel on how the inspection works, and safety posters. Start Lab first asks for the student ID on a
+    /// keypad, then opens the practice room (ChemLabTutorial), which leads into the lab.
     /// </summary>
     public class ChemLabLobby : MonoBehaviour
     {
         public Transform mainPanelAnchor;
         [UnityEngine.Serialization.FormerlySerializedAs("controllerPanelAnchor")]
         public Transform teachingPanelAnchor;
-        public Transform leftHandAnchor;
         [Tooltip("Wall posters, in order: chemicals warning, no food or drink, lab coat and glasses, eyewash.")]
         public Transform[] posterAnchors;
 
-        Canvas main, teaching, toast, hazards, tablet, idPad;
-        TextMeshProUGUI toastText, sub, perRunCaption, hint, tabCount, tabStep, idText;
-        K.Bar tabBar;
+        Canvas main, teaching, toast, hazards, idPad;
+        TextMeshProUGUI toastText, sub, perRunCaption, idText;
         HazardData[] allHazards;
         readonly List<(string id, RectTransform sign, TextMeshProUGUI title, TextMeshProUGUI off, Image critical, bool mandatory)> hzRows =
             new List<(string, RectTransform, TextMeshProUGUI, TextMeshProUGUI, Image, bool)>();
         readonly Button[] countBtns = new Button[10];
         bool HazardsOpen => hazards != null && hazards.gameObject.activeSelf;
         bool IdOpen => idPad != null && idPad.gameObject.activeSelf;
-        Button startBtn, idGo;
+        Button idGo;
         readonly Button[] langBtns = new Button[4];
         readonly Button[] handBtns = new Button[2];
         static readonly string[] Langs = { "DE", "FR", "IT", "EN" };
         Coroutine toastCo;
-
-        // ---- tutorial ----
-        const int Teleport = 0, Turn = 1, Inspect = 2, Answer = 3, Panel = 4, StepCount = 5;
-        readonly bool[] done = new bool[StepCount];
-        readonly (Image bg, Image disc, Image check, TextMeshProUGUI num, TextMeshProUGUI text)[] rows =
-            new (Image, Image, Image, TextMeshProUGUI, TextMeshProUGUI)[StepCount];
-        XROrigin origin;
-        float startYaw;
-        bool panelWasHidden;
-        ChemLabQuestionPanel practice;
-        ChemLabControllerLabels labels;
-        ChemLabInspectable cup;
-        QuestionData practiceQ;
-        string practiceSel;
-
-        int Current { get { for (int i = 0; i < StepCount; i++) if (!done[i]) return i; return StepCount; } }
 
         void Awake()
         {
@@ -66,168 +45,44 @@ namespace ChemLab
             BuildPosters();
             BuildToast();
             BuildHazards();
-            BuildTablet();
             BuildIdPad();
-            practice = new ChemLabQuestionPanel(transform, SelectPractice, SubmitPractice, ClosePractice);
-            practiceQ = new QuestionData
-            {
-                id = "P1", question = L10n.T("tut.q"), correct = "B",
-                options = new[]
-                {
-                    new OptionData { key = "A", text = L10n.T("tut.qA"), critical = true },
-                    new OptionData { key = "B", text = L10n.T("tut.qB") },
-                    new OptionData { key = "C", text = L10n.T("tut.qC") },
-                },
-            };
-            labels = ChemLabControllerLabels.Create(
+            ChemLabControllerLabels.Create(
                 new ChemLabControllerLabels.Item(false, "Button_B", "B", L10n.T("lbl.close")),
                 new ChemLabControllerLabels.Item(false, "Button_A", "A", L10n.T("lbl.submitStart")),
                 new ChemLabControllerLabels.Item(false, "ThumbStick", null, L10n.T("lbl.stick")),
                 new ChemLabControllerLabels.Item(false, "Trigger", null, L10n.T("lbl.trigger")),
-                new ChemLabControllerLabels.Item(true, "Button_A", "X", L10n.T("lbl.panel")),
                 new ChemLabControllerLabels.Item(true, "ThumbStick", null, L10n.T("lbl.stick")),
                 new ChemLabControllerLabels.Item(true, "Trigger", null, L10n.T("lbl.trigger")));
-            RefreshSteps();
             RefreshLanguage();
             RefreshHazards();
-            K.MouseModeEnabled += AttachTablet;
         }
-
-        void Start()
-        {
-            origin = FindFirstObjectByType<XROrigin>();
-            if (origin != null) startYaw = origin.transform.eulerAngles.y;
-            cup = FindObjectsByType<ChemLabInspectable>(FindObjectsSortMode.None).FirstOrDefault(i => i.kind == ChemLabInspectable.Kind.Tutorial);
-            LocalizeHintSigns();
-        }
-
-        // ponytail: the builder bakes these two instructions as English 3D text; swapping them here by their text saves a
-        // scene rebuild. A new instruction sign has to be added to this map (decorative signs stay English on purpose).
-        static readonly Dictionary<string, string> HintSigns = new Dictionary<string, string>
-        {
-            { "SELECT ME", "sign.selectMe" }, { "WALK HERE", "sign.walkHere" },
-        };
-
-        static void LocalizeHintSigns()
-        {
-            foreach (var t in FindObjectsByType<TextMeshPro>(FindObjectsSortMode.None))
-                if (HintSigns.TryGetValue(t.text, out var key)) t.text = L10n.T(key);
-        }
-
-        void OnDestroy() => K.MouseModeEnabled -= AttachTablet;
 
         void OnEnable()
         {
-            ChemLabTeleportNode.PlayerArrived += OnArrived;
-            ChemLabInspectable.Inspected += OnInspected;
-            ChemLabControls.Confirm += Confirm;
+            ChemLabControls.Confirm += StartLab;
             ChemLabControls.Back += Back;
-            ChemLabControls.ToggleHelp += TogglePanel;
-            ChemLabControls.BlockInspect = () => practice != null && practice.IsOpen;
         }
 
         void OnDisable()
         {
-            ChemLabTeleportNode.PlayerArrived -= OnArrived;
-            ChemLabInspectable.Inspected -= OnInspected;
-            ChemLabControls.Confirm -= Confirm;
+            ChemLabControls.Confirm -= StartLab;
             ChemLabControls.Back -= Back;
-            ChemLabControls.ToggleHelp -= TogglePanel;
-            ChemLabControls.BlockInspect = null;
-        }
-
-        void Update()
-        {
-            // turning counts once the rig has turned 30 deg away from where it started (snap turn is 45)
-            if (!done[Turn] && origin != null && Mathf.Abs(Mathf.DeltaAngle(origin.transform.eulerAngles.y, startYaw)) > 30f)
-                Complete(Turn, L10n.T("tut.toastTurn"));
-            K.KeepInView(practice.canvas.transform, 0.95f, -0.05f);
-        }
-
-        void Complete(int step, string toastText)
-        {
-            if (done[step]) return;
-            done[step] = true;
-            ChemLabAudio.Button();
-            Toast(Current == StepCount ? L10n.T("lobby.toastReady") : toastText, K.Ok);
-            RefreshSteps();
-        }
-
-        void OnArrived(ChemLabTeleportNode node)
-        {
-            if (node.nodeName == "Start") return;   // the node you spawn on doesn't count
-            Complete(Teleport, L10n.T("lobby.toastTeleport"));
-        }
-
-        void OnInspected(ChemLabInspectable item)
-        {
-            if (item.kind != ChemLabInspectable.Kind.Tutorial || practice.IsOpen) return;
-            if (done[Answer]) { Toast(L10n.T("lobby.toastReady"), K.Accent); return; }
-            item.SetMark(ChemLabInspectable.Mark.Checked);
-            if (!done[Inspect]) { done[Inspect] = true; RefreshSteps(); }
-            practiceSel = null;
-            practice.Show(L10n.T("tut.qTitle"), L10n.T("tut.qMeta"), practiceQ, item.transform.position);
-        }
-
-        void SelectPractice(string key)
-        {
-            practiceSel = key;
-            practice.Highlight(key);
-        }
-
-        void SubmitPractice()
-        {
-            if (practiceSel == null) return;
-            var opt = practiceQ.Option(practiceSel);
-            if (practiceSel == practiceQ.correct)
-            {
-                ChemLabAudio.Correct();
-                practice.Close();
-                if (cup != null) cup.Fix();
-                Complete(Answer, L10n.T("tut.toastCorrect"));
-            }
-            else
-            {
-                ChemLabAudio.Wrong(opt.critical);
-                if (cup != null) cup.SetMark(ChemLabInspectable.Mark.Wrong);
-                practice.ShowWrong(practiceSel, opt.critical, L10n.T("tut.qWrong"));
-                practiceSel = null;
-            }
-        }
-
-        void ClosePractice() => practice.Close();
-
-        /// <summary>X: hide / show the task panel and the button labels; showing it again after hiding completes the step.</summary>
-        void TogglePanel()
-        {
-            bool show = !tablet.gameObject.activeSelf;
-            tablet.gameObject.SetActive(show);
-            labels.Visible = show;
-            if (!show) panelWasHidden = true;
-            else if (panelWasHidden) Complete(Panel, L10n.T("tut.toastPanel"));
-        }
-
-        void Confirm()
-        {
-            if (practice.IsOpen) SubmitPractice();
-            else StartLab();
         }
 
         void Back()
         {
-            if (practice.IsOpen) ClosePractice();
-            else if (IdOpen) CloseIdPad();
+            if (IdOpen) CloseIdPad();
             else CloseHazards();
         }
 
         void StartLab()
         {
-            if (HazardsOpen || practice.IsOpen) return;   // A doesn't start the lab from behind another panel
+            if (HazardsOpen) return;   // A doesn't start the lab from behind another panel
             if (!IdOpen) { OpenIdPad(); return; }   // Start Lab asks for the student ID first
             if (idDraft.Length == 0) return;
             ChemLabRun.StudentId = idDraft;
-            if (Application.CanStreamedLevelBeLoaded(ChemLabRun.LabScene)) SceneManager.LoadScene(ChemLabRun.LabScene);
-            else Debug.LogWarning("[ChemLab] Lab scene not in Build Settings. Run Chemistry Lab > Build All Scenes.");
+            if (Application.CanStreamedLevelBeLoaded(ChemLabRun.TutorialScene)) SceneManager.LoadScene(ChemLabRun.TutorialScene);
+            else Debug.LogWarning("[ChemLab] Tutorial scene not in Build Settings. Run Chemistry Lab > Build Tutorial Scene.");
         }
 
         void SetLanguage(string lang)
@@ -256,80 +111,39 @@ namespace ChemLab
             for (int i = 0; i < 2; i++) Paint(handBtns[i], (i == 1) == ChemLabRun.LeftHanded);
         }
 
-        /// <summary>
-        /// Step rows in sign grammar: green check disc = done, blue disc on a blue-tinted row = the step to do now,
-        /// plain rim = later. The hint line explains the current step; the task panel mirrors it.
-        /// </summary>
-        void RefreshSteps()
-        {
-            int cur = Current;
-            for (int i = 0; i < StepCount; i++)
-            {
-                var r = rows[i];
-                bool isDone = done[i], isCur = i == cur;
-                r.bg.color = isCur ? K.SelectFill : K.Bg;
-                r.disc.color = isDone ? K.Ok : isCur ? K.Accent : Color.white;
-                r.check.gameObject.SetActive(isDone);
-                r.num.gameObject.SetActive(!isDone);
-                r.num.color = isCur ? Color.white : K.Text;
-                r.text.color = isDone ? K.TextDim : K.Text;
-            }
-            string doneText = L10n.T("tut.hDone", L10n.T("lobby.start"));
-            hint.text = cur < StepCount ? L10n.T("tut.h" + (cur + 1)) : doneText;
-            int count = done.Count(d => d);
-            tabCount.text = L10n.T("tut.progress", count, StepCount);
-            tabBar.Set(count / (float)StepCount);
-            tabStep.text = cur < StepCount ? L10n.T("tut.s" + (cur + 1)) : doneText;
-            K.ButtonLabel(startBtn).text = cur == StepCount ? L10n.T("lobby.startReady") : L10n.T("lobby.start");
-        }
-
         // ================= builders =================
 
+        /// <summary>Start panel (1100 x 600): title, one row of settings (language | dominant hand | hazards), what comes next, Start Lab.</summary>
         void BuildMain()
         {
-            main = K.Panel(transform, "Panel_Lobby", new Vector2(1100, 900), MainScale);
-            K.Label(main.transform, "Kicker", L10n.T("lobby.kicker"), new Vector2(0, 385), new Vector2(980, 40), 24, K.Accent, TextAlignmentOptions.Left, FontStyles.Bold);
-            K.Label(main.transform, "Title", L10n.T("lobby.title"), new Vector2(0, 325), new Vector2(980, 80), 62, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
-            sub = K.Label(main.transform, "Sub", "", new Vector2(0, 268), new Vector2(980, 40), 28, K.TextDim, TextAlignmentOptions.Left);
+            main = K.Panel(transform, "Panel_Lobby", new Vector2(1100, 600), MainScale);
+            K.Label(main.transform, "Kicker", L10n.T("lobby.kicker"), new Vector2(0, 235), new Vector2(980, 40), 24, K.Accent, TextAlignmentOptions.Left, FontStyles.Bold);
+            K.Label(main.transform, "Title", L10n.T("lobby.title"), new Vector2(0, 175), new Vector2(980, 80), 62, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
+            sub = K.Label(main.transform, "Sub", "", new Vector2(0, 118), new Vector2(980, 40), 28, K.TextDim, TextAlignmentOptions.Left);
 
-            K.Label(main.transform, "LangTitle", L10n.T("lobby.language"), new Vector2(0, 200), new Vector2(980, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
+            K.Label(main.transform, "LangTitle", L10n.T("lobby.language"), new Vector2(0, 50), new Vector2(980, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
             // one row, three columns: language | dominant hand | hazards
             for (int i = 0; i < 4; i++)
             {
                 string lang = Langs[i];
-                langBtns[i] = K.Button(main.transform, "Lang_" + lang, lang, new Vector2(-440 + i * 112, 145), new Vector2(100, 64), K.Style.Ghost, () => SetLanguage(lang), 28);
+                langBtns[i] = K.Button(main.transform, "Lang_" + lang, lang, new Vector2(-440 + i * 112, -5), new Vector2(100, 64), K.Style.Ghost, () => SetLanguage(lang), 28);
             }
-            K.Label(main.transform, "HandTitle", L10n.T("lobby.hand"), new Vector2(100, 200), new Vector2(260, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
+            K.Label(main.transform, "HandTitle", L10n.T("lobby.hand"), new Vector2(100, 50), new Vector2(260, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
             for (int i = 0; i < 2; i++)
             {
                 bool left = i == 1;
                 handBtns[i] = K.Button(main.transform, left ? "Hand_Left" : "Hand_Right", L10n.T(left ? "lobby.handLeft" : "lobby.handRight"),
-                    new Vector2(32.5f + i * 135, 145), new Vector2(125, 64), K.Style.Ghost, () => SetHand(left), 28);
+                    new Vector2(32.5f + i * 135, -5), new Vector2(125, 64), K.Style.Ghost, () => SetHand(left), 28);
                 K.FitOneLine(K.ButtonLabel(handBtns[i]), 20);
             }
-            K.Label(main.transform, "HazardsTitle", L10n.T("lobby.hazards"), new Vector2(370, 200), new Vector2(240, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
-            var choose = K.Button(main.transform, "ChooseHazards", L10n.T("lobby.chooseHazards"), new Vector2(370, 145), new Vector2(240, 64), K.Style.Ghost, OpenHazards, 28);
+            K.Label(main.transform, "HazardsTitle", L10n.T("lobby.hazards"), new Vector2(370, 50), new Vector2(240, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
+            var choose = K.Button(main.transform, "ChooseHazards", L10n.T("lobby.chooseHazards"), new Vector2(370, -5), new Vector2(240, 64), K.Style.Ghost, OpenHazards, 28);
             K.FitOneLine(K.ButtonLabel(choose), 20);
 
-            K.Label(main.transform, "TutorialTitle", L10n.T("tut.title"), new Vector2(0, 72), new Vector2(980, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
-            K.Img(main.transform, "RuleTop", new Vector2(0, 52), new Vector2(980, 2), K.Rule).raycastTarget = false;
-            for (int i = 0; i < StepCount; i++)
-            {
-                float y = 23 - i * 58;
-                var bg = K.Img(main.transform, "Step" + (i + 1), new Vector2(0, y), new Vector2(980, 54), K.Bg, K.Rounded);
-                bg.pixelsPerUnitMultiplier = 2f;
-                var disc = K.Img(bg.transform, "Disc", new Vector2(-458, 0), new Vector2(42, 42), Color.white, K.Circle);
-                K.Img(disc.transform, "Rim", Vector2.zero, new Vector2(42, 42), K.Text, K.Ring);
-                var check = K.Img(disc.transform, "Check", Vector2.zero, new Vector2(36, 36), Color.white, K.Check);
-                var num = K.Label(disc.transform, "Num", (i + 1).ToString(), new Vector2(0, -1), new Vector2(42, 42), 24, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
-                var text = K.FitOneLine(K.Label(bg.transform, "Text", L10n.T("tut.s" + (i + 1)), new Vector2(30, 0), new Vector2(880, 50), 28, K.Text, TextAlignmentOptions.MidlineLeft), 20);
-                foreach (var g in bg.GetComponentsInChildren<Graphic>()) g.raycastTarget = false;
-                K.Img(main.transform, "Rule" + (i + 1), new Vector2(0, y - 29), new Vector2(980, 2), K.Rule).raycastTarget = false;
-                rows[i] = (bg, disc, check, num, text);
-            }
-            hint = K.Label(main.transform, "Hint", "", new Vector2(0, -276), new Vector2(980, 76), 28, K.Accent, TextAlignmentOptions.MidlineLeft);
-            hint.enableAutoSizing = true; hint.fontSizeMin = 22; hint.fontSizeMax = 28;
-            startBtn = K.Button(main.transform, "StartLab", L10n.T("lobby.start"), new Vector2(0, -375), new Vector2(980, 84), K.Style.Primary, StartLab, 36);
+            K.Img(main.transform, "Rule", new Vector2(0, -68), new Vector2(980, 2), K.Rule).raycastTarget = false;
+            var next = K.Label(main.transform, "Next", L10n.T("lobby.next"), new Vector2(0, -120), new Vector2(980, 76), 28, K.Accent, TextAlignmentOptions.MidlineLeft);
+            next.enableAutoSizing = true; next.fontSizeMin = 22; next.fontSizeMax = 28;
+            K.Button(main.transform, "StartLab", L10n.T("lobby.start"), new Vector2(0, -225), new Vector2(980, 84), K.Style.Primary, StartLab, 36);
 
             if (mainPanelAnchor != null) main.transform.SetPositionAndRotation(mainPanelAnchor.position, mainPanelAnchor.rotation);
         }
@@ -596,23 +410,6 @@ namespace ChemLab
                 p.transform.SetPositionAndRotation(posterAnchors[i].position, posterAnchors[i].rotation);
             }
         }
-
-        /// <summary>Task panel on the left controller: tutorial progress and the step to do now (X hides / shows it).</summary>
-        void BuildTablet()
-        {
-            tablet = K.Panel(transform, "HUD_Tablet", new Vector2(620, 480), 0.0007f, blocksRays: false);
-            var t = tablet.transform;
-            K.Label(t, "Title", L10n.T("tut.panelTitle"), new Vector2(0, 196), new Vector2(560, 40), 24, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
-            tabCount = K.Label(t, "Count", "", new Vector2(0, 130), new Vector2(560, 90), 86, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
-            K.Label(t, "Caption", L10n.T("tut.caption"), new Vector2(110, 110), new Vector2(320, 40), 24, K.TextDim, TextAlignmentOptions.Right);
-            tabBar = K.ProgressBar(t, "Bar", new Vector2(0, 68), new Vector2(560, 12), K.Ok);
-            tabStep = K.Label(t, "Step", "", new Vector2(0, -50), new Vector2(560, 150), 30, K.Text, TextAlignmentOptions.TopLeft);
-            tabStep.enableAutoSizing = true; tabStep.fontSizeMin = 24; tabStep.fontSizeMax = 30;
-            K.Label(t, "Footer", L10n.T("tut.footer", K.Hex(K.TextDim)), new Vector2(0, -198), new Vector2(560, 44), 23, K.Text, TextAlignmentOptions.Left);
-            AttachTablet();
-        }
-
-        void AttachTablet() { if (tablet != null) K.AttachTablet(tablet.transform, leftHandAnchor); }
 
         void BuildToast()
         {

@@ -151,16 +151,8 @@ MonoBehaviour:
     m_Localized: Ottimo! Levetta avanti per teletrasportarsi, sx/dx per ruotare.
     m_Metadata:
       m_Items: []
-  - m_Id: 4457488412
-    m_Localized: Ci siamo. Prema Avvia lab quando vuole.
-    m_Metadata:
-      m_Items: []
   - m_Id: 4457488413
     m_Localized: Fatto
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488416
-    m_Localized: Avvia lab  (A)
     m_Metadata:
       m_Items: []
   - m_Id: 4457488417
@@ -548,28 +540,24 @@ MonoBehaviour:
     m_Localized: "inviare \xB7 avvia lab"
     m_Metadata:
       m_Items: []
-  - m_Id: 10469640232967
-    m_Localized: "TUTORIAL  \xB7  5 PASSI"
-    m_Metadata:
-      m_Items: []
   - m_Id: 10469640232968
     m_Localized: <b>Si teletrasporti</b> sull'anello luminoso
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232969
-    m_Localized: <b>Ruoti</b> sul posto
+    m_Localized: "<b>Ruoti</b> verso il banco"
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232970
-    m_Localized: "<b>Ispezioni</b> la tazza di caff\xE8"
+    m_Localized: "<b>Ispezioni</b> la bottiglia chiusa"
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232971
-    m_Localized: <b>Risponda</b> alla domanda di prova
+    m_Localized: "<b>Risponda</b> per la bottiglia di acido aperta"
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232972
-    m_Localized: "<b>Nasconda e mostri</b> il pannello attivit\xE0"
+    m_Localized: "<b>Provi una risposta pericolosa</b> sulla fuoriuscita"
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232973
@@ -578,71 +566,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232974
-    m_Localized: "Sposti una levetta a sinistra o a destra per ruotare di 45\xB0.
-      Tirandola indietro si gira del tutto."
+    m_Localized: "Sposti due volte una levetta a destra (2 \xD7 45\xB0) per guardare il banco alla sua destra. Tirandola indietro si gira del tutto."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232975
-    m_Localized: Punti la tazza sul piedistallo e prema il grilletto.
+    m_Localized: "Punti la bottiglia chiusa ed etichettata sul banco e prema il grilletto. Non tutto in laboratorio \xE8 un pericolo."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232976
-    m_Localized: 'Scelga una risposta con il grilletto, poi prema A. Giusta: spunta
-      verde. Sbagliata: croce rossa.'
+    m_Localized: "Ispezioni la bottiglia aperta accanto, scelga una risposta con il grilletto, poi prema A. Giusta: spunta verde."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232977
-    m_Localized: "Prema X sul controller sinistro per nascondere il pannello attivit\xE0,
-      poi di nuovo X per mostrarlo."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232978
-    m_Localized: Tutto pronto. Prema {0} oppure A.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232979
-    m_Localized: TUTORIAL
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232980
-    m_Localized: '{0} / {1}'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232981
-    m_Localized: passi fatti
+    m_Localized: "Si teletrasporti all'anello successivo e ispezioni la fuoriuscita. Scelga apposta \xABAsciugarla a mani nude.\xBB, poi la risposta sicura."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232982
-    m_Localized: "<color={0}>X nascondi  \xB7  A avvia lab</color>"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232983
-    m_Localized: "Prova: tazza di caff\xE8 in laboratorio"
+    m_Localized: "<color={0}>X nascondi  \xB7  Y termina</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232984
     m_Localized: Domanda di prova  /  senza punteggio
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232985
-    m_Localized: "Qualcuno ha lasciato una tazza di caff\xE8 sul banco. Qual \xE8
-      l'azione pi\xF9 sicura?"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232986
-    m_Localized: "Finire in fretta il caff\xE8 cos\xEC non c'\xE8 pi\xF9."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232987
-    m_Localized: 'Portarla fuori dal laboratorio: cibo e bevande non vi sono ammessi.'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232988
-    m_Localized: Spostarla sul bordo del banco, lontano dai campioni.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232989
-    m_Localized: 'Non sicuro: cibo e bevande non sono mai ammessi in laboratorio.'
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232990
@@ -719,14 +663,6 @@ MonoBehaviour:
     m_Localized: '{0} / {1} punti (-{2} per falsi allarmi)'
     m_Metadata:
       m_Items: []
-  - m_Id: 171324625379328
-    m_Localized: SELEZIONARE
-    m_Metadata:
-      m_Items: []
-  - m_Id: 171324663128064
-    m_Localized: POSIZIONARSI QUI
-    m_Metadata:
-      m_Items: []
   - m_Id: 174458764517376
     m_Localized: ID STUDENTE
     m_Metadata:
@@ -759,11 +695,6 @@ MonoBehaviour:
     m_Localized: Sinistra
     m_Metadata:
       m_Items: []
-  - m_Id: 175657374965762
-    m_Localized: "Prema A sul controller destro per nascondere il pannello attivit\xE0,
-      poi di nuovo A per mostrarlo."
-    m_Metadata:
-      m_Items: []
   - m_Id: 180335206719488
     m_Localized: Dettagli
     m_Metadata:
@@ -782,6 +713,124 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 180335294799875
     m_Localized: Successivo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000000
+    m_Localized: "<b>Nasconda e mostri</b> il pannello attivit\xE0"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000001
+    m_Localized: "Prema X sul controller sinistro per nascondere il pannello attivit\xE0,
+      poi di nuovo X per mostrarlo."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000002
+    m_Localized: "Prema A sul controller destro per nascondere il pannello attivit\xE0,
+      poi di nuovo A per mostrarlo."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000003
+    m_Localized: "<b>Termini</b> alla porta del laboratorio"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000004
+    m_Localized: "Si teletrasporti alla porta e prema Y o Menu: cos\xEC si termina in anticipo in laboratorio."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000005
+    m_Localized: "TUTORIAL  \xB7  PASSO {0} DI {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000006
+    m_Localized: "Vai al laboratorio"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000007
+    m_Localized: "Entra in laboratorio"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000008
+    m_Localized: "Prima: {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000009
+    m_Localized: "rimanenti (demo)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000010
+    m_Localized: "Sembra a posto: chiusa ed etichettata. In laboratorio ogni falso allarme dopo il 3\xB0 costa 1 punto."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000011
+    m_Localized: "Prova: bottiglia di acido aperta"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000012
+    m_Localized: "Bottiglia di acido"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000013
+    m_Localized: "Una bottiglia di acido cloridrico \xE8 aperta sul banco. Qual \xE8 l'azione pi\xF9 sicura?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000014
+    m_Localized: "Annusarla per capire quanto \xE8 forte."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000015
+    m_Localized: "Chiuderla e riporla nell'armadio degli acidi."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000016
+    m_Localized: "Lasciarla aperta: forse qualcuno la sta ancora usando."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000017
+    m_Localized: "Non sicuro: l'acido aperto libera vapori e pu\xF2 rovesciarsi."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000018
+    m_Localized: "Prova: fuoriuscita sul banco"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000019
+    m_Localized: "Fuoriuscita"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000020
+    m_Localized: "Un liquido trasparente si \xE8 versato sul banco. Non sa cosa sia. Che cosa fa?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000021
+    m_Localized: "Asciugarla a mani nude."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000022
+    m_Localized: "Allontanare gli altri, avvisare il responsabile e usare il kit per sversamenti con i guanti."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000023
+    m_Localized: "Coprirla con carta assorbente e continuare."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000024
+    m_Localized: "Non sicuro: un liquido sconosciuto pu\xF2 ustionare la pelle o reagire."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000025
+    m_Localized: "Giusto! In questo passo scelga prima apposta \xABAsciugarla a mani nude.\xBB"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000026
+    m_Localized: "Pronto per il laboratorio?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000027
+    m_Localized: "In laboratorio questa richiesta invia l'ispezione e chiude la prova. Qui A la porta in laboratorio: l\xEC parte il tempo."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000028
+    m_Localized: "Poi: una breve sala di prova (circa 3 minuti), poi il laboratorio."
     m_Metadata:
       m_Items: []
   references:

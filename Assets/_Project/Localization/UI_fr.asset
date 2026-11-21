@@ -143,16 +143,8 @@ MonoBehaviour:
       : pivoter."
     m_Metadata:
       m_Items: []
-  - m_Id: 4457488412
-    m_Localized: C'est bon. Appuyez sur Lancer le labo quand vous voulez.
-    m_Metadata:
-      m_Items: []
   - m_Id: 4457488413
     m_Localized: Fait
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488416
-    m_Localized: Lancer le labo  (A)
     m_Metadata:
       m_Items: []
   - m_Id: 4457488417
@@ -542,28 +534,24 @@ MonoBehaviour:
     m_Localized: "valider \xB7 lancer le labo"
     m_Metadata:
       m_Items: []
-  - m_Id: 10469640232967
-    m_Localized: "TUTORIEL  \xB7  5 \xC9TAPES"
-    m_Metadata:
-      m_Items: []
   - m_Id: 10469640232968
     m_Localized: "<b>T\xE9l\xE9portez-vous</b> sur l'anneau lumineux"
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232969
-    m_Localized: <b>Pivotez</b> sur place
+    m_Localized: "<b>Pivotez</b> vers la paillasse"
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232970
-    m_Localized: "<b>Inspectez</b> la tasse de caf\xE9"
+    m_Localized: "<b>Inspectez</b> le flacon ferm\xE9"
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232971
-    m_Localized: "<b>R\xE9pondez</b> \xE0 la question d'essai"
+    m_Localized: "<b>R\xE9pondez</b> pour le flacon d'acide ouvert"
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232972
-    m_Localized: "<b>Masquez et affichez</b> le panneau des t\xE2ches"
+    m_Localized: "<b>Essayez une r\xE9ponse dangereuse</b> sur le d\xE9versement"
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232973
@@ -572,72 +560,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232974
-    m_Localized: "Poussez un stick \xE0 gauche ou \xE0 droite pour pivoter de 45\xB0.
-      Tirez-le vers l'arri\xE8re pour faire demi-tour."
+    m_Localized: "Poussez deux fois un stick vers la droite (2 \xD7 45\xB0) pour faire face \xE0 la paillasse \xE0 votre droite. Tirez-le vers l'arri\xE8re pour faire demi-tour."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232975
-    m_Localized: "Pointez la tasse sur le socle et appuyez sur la g\xE2chette."
+    m_Localized: "Pointez le flacon ferm\xE9 et \xE9tiquet\xE9 sur la paillasse et appuyez sur la g\xE2chette. Tout n'est pas un danger au labo."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232976
-    m_Localized: "Choisissez une r\xE9ponse avec la g\xE2chette, puis appuyez sur
-      A. Bonne r\xE9ponse : coche verte. Mauvaise : croix rouge."
+    m_Localized: "Inspectez le flacon ouvert \xE0 c\xF4t\xE9, choisissez une r\xE9ponse avec la g\xE2chette, puis appuyez sur A. Bonne r\xE9ponse : coche verte."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232977
-    m_Localized: "Appuyez sur X (manette gauche) pour masquer le panneau des t\xE2ches,
-      puis de nouveau sur X pour le r\xE9afficher."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232978
-    m_Localized: "Tout est pr\xEAt. Appuyez sur {0} ou sur A."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232979
-    m_Localized: TUTORIEL
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232980
-    m_Localized: '{0} / {1}'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232981
-    m_Localized: "\xE9tapes faites"
+    m_Localized: "T\xE9l\xE9portez-vous sur l'anneau suivant et inspectez le d\xE9versement. Choisissez expr\xE8s \xAB L'essuyer \xE0 mains nues. \xBB, puis la r\xE9ponse s\xFBre."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232982
-    m_Localized: "<color={0}>X masquer  \xB7  A lancer le labo</color>"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232983
-    m_Localized: "Exercice : tasse de caf\xE9 au labo"
+    m_Localized: "<color={0}>X masquer  \xB7  Y terminer</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232984
     m_Localized: "Question d'essai  /  non not\xE9e"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232985
-    m_Localized: "Quelqu'un a laiss\xE9 une tasse de caf\xE9 sur la paillasse. Quelle
-      est l'action la plus s\xFBre ?"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232986
-    m_Localized: "Finir le caf\xE9 rapidement pour qu'il disparaisse."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232987
-    m_Localized: 'La sortir du labo : nourriture et boissons n''y ont pas leur place.'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232988
-    m_Localized: "La pousser au bord de la paillasse, loin des \xE9chantillons."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 10469640232989
-    m_Localized: "Pas s\xFBr : nourriture et boissons sont toujours interdites au
-      labo."
     m_Metadata:
       m_Items: []
   - m_Id: 10469640232990
@@ -715,14 +658,6 @@ MonoBehaviour:
     m_Localized: '{0} / {1} points (-{2} pour fausses alertes)'
     m_Metadata:
       m_Items: []
-  - m_Id: 171324625379328
-    m_Localized: "S\xC9LECTIONNEZ-MOI"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 171324663128064
-    m_Localized: PLACEZ-VOUS ICI
-    m_Metadata:
-      m_Items: []
   - m_Id: 174458764517376
     m_Localized: "IDENTIFIANT \xC9TUDIANT"
     m_Metadata:
@@ -755,11 +690,6 @@ MonoBehaviour:
     m_Localized: Gauche
     m_Metadata:
       m_Items: []
-  - m_Id: 175657374965762
-    m_Localized: "Appuyez sur A (manette droite) pour masquer le panneau des t\xE2ches,
-      puis de nouveau sur A pour le r\xE9afficher."
-    m_Metadata:
-      m_Items: []
   - m_Id: 180335206719488
     m_Localized: "D\xE9tails"
     m_Metadata:
@@ -778,6 +708,124 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 180335294799875
     m_Localized: Suivant
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000000
+    m_Localized: "<b>Masquez et affichez</b> le panneau des t\xE2ches"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000001
+    m_Localized: "Appuyez sur X (manette gauche) pour masquer le panneau des t\xE2ches,
+      puis de nouveau sur X pour le r\xE9afficher."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000002
+    m_Localized: "Appuyez sur A (manette droite) pour masquer le panneau des t\xE2ches,
+      puis de nouveau sur A pour le r\xE9afficher."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000003
+    m_Localized: "<b>Terminez</b> \xE0 la porte du labo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000004
+    m_Localized: "T\xE9l\xE9portez-vous jusqu'\xE0 la porte et appuyez sur Y ou Menu : c'est ainsi qu'on termine plus t\xF4t au labo."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000005
+    m_Localized: "TUTORIEL  \xB7  \xC9TAPE {0} SUR {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000006
+    m_Localized: "Passer au labo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000007
+    m_Localized: "Entrer au labo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000008
+    m_Localized: "D'abord : {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000009
+    m_Localized: "restants (d\xE9mo)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000010
+    m_Localized: "Rien \xE0 signaler : ferm\xE9 et \xE9tiquet\xE9. Au labo, chaque fausse alerte apr\xE8s la 3e co\xFBte 1 point."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000011
+    m_Localized: "Exercice : flacon d'acide ouvert"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000012
+    m_Localized: "Flacon d'acide"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000013
+    m_Localized: "Un flacon d'acide chlorhydrique est ouvert sur la paillasse. Quelle est l'action la plus s\xFBre ?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000014
+    m_Localized: "Le sentir pour savoir \xE0 quel point il est fort."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000015
+    m_Localized: "Le fermer et le ranger dans l'armoire \xE0 acides."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000016
+    m_Localized: "Le laisser ouvert : quelqu'un l'utilise peut-\xEAtre encore."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000017
+    m_Localized: "Pas s\xFBr : un acide ouvert d\xE9gage des vapeurs et peut se renverser."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000018
+    m_Localized: "Exercice : d\xE9versement sur la paillasse"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000019
+    m_Localized: "D\xE9versement"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000020
+    m_Localized: "Un liquide incolore s'est r\xE9pandu sur la paillasse. Vous ne savez pas ce que c'est. Que faites-vous ?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000021
+    m_Localized: "L'essuyer \xE0 mains nues."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000022
+    m_Localized: "\xC9loigner les autres, pr\xE9venir le responsable et utiliser le kit antid\xE9versement avec des gants."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000023
+    m_Localized: "La couvrir d'essuie-tout et continuer."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000024
+    m_Localized: "Pas s\xFBr : un liquide inconnu peut br\xFBler la peau ou r\xE9agir."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000025
+    m_Localized: "Exact ! Pour cette \xE9tape, choisissez d'abord expr\xE8s \xAB L'essuyer \xE0 mains nues. \xBB"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000026
+    m_Localized: "Pr\xEAt pour le labo ?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000027
+    m_Localized: "Au labo, cette fen\xEAtre envoie votre inspection et termine la session. Ici, A vous emm\xE8ne au labo : le chrono y d\xE9marre."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190000000000028
+    m_Localized: "Ensuite : une courte salle d'entra\xEEnement (environ 3 minutes), puis le labo."
     m_Metadata:
       m_Items: []
   references:
