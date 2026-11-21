@@ -53,7 +53,7 @@ namespace ChemLab
         }
 
         // ---------- sign shapes, baked once from signed-distance functions (white, tinted per use) ----------
-        static Sprite rounded, roundedOutline, softShadow, circle, ring, prohibition, check, triFill, triBorder, exclaim;
+        static Sprite rounded, roundedOutline, softShadow, circle, ring, prohibition, check, cross, triFill, triBorder, exclaim;
 
         public static Sprite Rounded => Get(ref rounded, () => Bake(64, 64, p => SdRoundRect(p, new Vector2(32, 32), new Vector2(32, 32), 22), 22));
         public static Sprite RoundedOutline => Get(ref roundedOutline, () => Bake(64, 64, p => Mathf.Abs(SdRoundRect(p, new Vector2(32, 32), new Vector2(32, 32), 22) + 3f) - 3f, 22));
@@ -65,6 +65,7 @@ namespace ChemLab
         public static Sprite Prohibition => Get(ref prohibition, () => Bake(128, 128, p =>
             Mathf.Min(Mathf.Abs((p - C128).magnitude - 56f) - 7f, SegDist(p, C128 + new Vector2(-39.6f, 39.6f), C128 + new Vector2(39.6f, -39.6f)) - 6f)));
         public static Sprite Check => Get(ref check, () => Bake(64, 64, p => Mathf.Min(SegDist(p, new Vector2(16, 33), new Vector2(27, 21)), SegDist(p, new Vector2(27, 21), new Vector2(48, 44))) - 4f));
+        public static Sprite CrossMark => Get(ref cross, () => Bake(64, 64, p => Mathf.Min(SegDist(p, new Vector2(19, 19), new Vector2(45, 45)), SegDist(p, new Vector2(19, 45), new Vector2(45, 19))) - 4.5f));
         static Sprite Exclaim => Get(ref exclaim, () => Bake(32, 96, p => Mathf.Min(SegDist(p, new Vector2(16, 84), new Vector2(16, 38)) - 6f, (p - new Vector2(16, 14)).magnitude - 7f)));
         static Sprite TriFill => Get(ref triFill, () => Bake(128, 112, SdWarningTriangle));
         static Sprite TriBorder => Get(ref triBorder, () => Bake(128, 112, p => Mathf.Abs(SdWarningTriangle(p) + 5.5f) - 5.5f));
@@ -183,13 +184,13 @@ namespace ChemLab
             return root.rectTransform;
         }
 
-        /// <summary>Round sign: filled disc with a white glyph (Check, or the exclamation mark; rotate 180 deg for "i").</summary>
-        public static Image SignDisc(Transform parent, string name, Vector2 pos, float d, Color col, bool check, bool info = false)
+        /// <summary>Round sign: filled disc with a white glyph (Check, Cross, or the exclamation mark; rotate 180 deg for "i").</summary>
+        public static Image SignDisc(Transform parent, string name, Vector2 pos, float d, Color col, bool check, bool info = false, bool cross = false)
         {
             var disc = Img(parent, name, pos, new Vector2(d, d), col, Circle);
             disc.raycastTarget = false;
-            var g = check ? Img(disc.transform, "Glyph", Vector2.zero, new Vector2(d * 0.8f, d * 0.8f), Color.white, Check)
-                          : Img(disc.transform, "Glyph", Vector2.zero, new Vector2(d * 0.17f, d * 0.52f), Color.white, Exclaim);
+            var g = check || cross ? Img(disc.transform, "Glyph", Vector2.zero, new Vector2(d * 0.8f, d * 0.8f), Color.white, check ? Check : CrossMark)
+                                   : Img(disc.transform, "Glyph", Vector2.zero, new Vector2(d * 0.17f, d * 0.52f), Color.white, Exclaim);
             g.raycastTarget = false;
             if (info) g.rectTransform.localRotation = Quaternion.Euler(0, 0, 180f);
             return disc;
@@ -436,6 +437,26 @@ namespace ChemLab
             Vector3 look = panel.position - head.position;
             look.y = 0f;
             if (look.sqrMagnitude > 1e-4f) panel.rotation = Quaternion.Slerp(panel.rotation, Quaternion.LookRotation(look), Time.deltaTime * 4f);
+        }
+
+        /// <summary>
+        /// Task panel on the left controller, tilted towards the eyes; in mouse mode it docks at the lower left of the view.
+        /// </summary>
+        public static void AttachTablet(Transform tablet, Transform leftHand)
+        {
+            if (leftHand != null && !MouseMode)
+            {
+                tablet.SetParent(leftHand, false);
+                tablet.localPosition = new Vector3(0f, 0.13f, 0.07f);   // raised along the tilt so the tablet clears the controller
+                tablet.localRotation = Quaternion.Euler(45f, 0f, 0f);
+            }
+            else if (Camera.main != null)
+            {
+                tablet.SetParent(Camera.main.transform, false);
+                tablet.localPosition = new Vector3(-0.28f, -0.14f, 0.65f);
+                tablet.localRotation = Quaternion.identity;
+                tablet.localScale = Vector3.one * 0.00045f;
+            }
         }
 
         public static string Mmss(float s)

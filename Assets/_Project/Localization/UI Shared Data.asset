@@ -131,24 +131,12 @@ MonoBehaviour:
     m_Key: lobby.toastTeleport
     m_Metadata:
       m_Items: []
-  - m_Id: 4457488411
-    m_Key: lobby.toastSelected
-    m_Metadata:
-      m_Items: []
   - m_Id: 4457488412
     m_Key: lobby.toastReady
     m_Metadata:
       m_Items: []
   - m_Id: 4457488413
     m_Key: lobby.done
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488414
-    m_Key: lobby.step1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488415
-    m_Key: lobby.step2
     m_Metadata:
       m_Items: []
   - m_Id: 4457488416
@@ -177,14 +165,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4457488422
     m_Key: lobby.chooseHazards
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488423
-    m_Key: lobby.warmup
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488424
-    m_Key: lobby.rules
     m_Metadata:
       m_Items: []
   - m_Id: 4457488425
@@ -225,14 +205,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4457488434
     m_Key: lobby.sub
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488435
-    m_Key: ctrl.title
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488436
-    m_Key: ctrl.caption
     m_Metadata:
       m_Items: []
   - m_Id: 4457488437
@@ -513,6 +485,190 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4461682700
     m_Key: decoy.Sink
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469552152576
+    m_Key: lbl.trigger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232960
+    m_Key: lbl.grip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232961
+    m_Key: lbl.stick
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232962
+    m_Key: lbl.submit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232963
+    m_Key: lbl.close
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232964
+    m_Key: lbl.panel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232965
+    m_Key: lbl.finish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232966
+    m_Key: lbl.submitStart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232967
+    m_Key: tut.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232968
+    m_Key: tut.s1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232969
+    m_Key: tut.s2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232970
+    m_Key: tut.s3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232971
+    m_Key: tut.s4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232972
+    m_Key: tut.s5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232973
+    m_Key: tut.h1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232974
+    m_Key: tut.h2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232975
+    m_Key: tut.h3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232976
+    m_Key: tut.h4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232977
+    m_Key: tut.h5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232978
+    m_Key: tut.hDone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232979
+    m_Key: tut.panelTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232980
+    m_Key: tut.progress
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232981
+    m_Key: tut.caption
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232982
+    m_Key: tut.footer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232983
+    m_Key: tut.qTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232984
+    m_Key: tut.qMeta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232985
+    m_Key: tut.q
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232986
+    m_Key: tut.qA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232987
+    m_Key: tut.qB
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232988
+    m_Key: tut.qC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232989
+    m_Key: tut.qWrong
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232990
+    m_Key: tut.toastCorrect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232991
+    m_Key: tut.toastTurn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232992
+    m_Key: tut.toastPanel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232993
+    m_Key: tch.title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232994
+    m_Key: tch.find
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232995
+    m_Key: tch.answer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232996
+    m_Key: tch.right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232997
+    m_Key: tch.wrong
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232998
+    m_Key: tch.critical
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232999
+    m_Key: tch.outline
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640233000
+    m_Key: tch.score
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640233001
+    m_Key: poster.chem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640233002
+    m_Key: poster.food
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640233003
+    m_Key: poster.ppe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640233004
+    m_Key: poster.eyewash
     m_Metadata:
       m_Items: []
   m_Metadata:

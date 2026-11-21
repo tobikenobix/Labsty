@@ -47,7 +47,24 @@ public static class ChemLabSceneBuilder
     /// <summary>For batch mode: -executeMethod ChemLabSceneBuilder.BuildBatch</summary>
     public static void BuildBatch() => BuildAll();
 
-    static void BuildAll()
+    /// <summary>Rebuilds only the lobby (the lab scene and its tuning stay untouched).</summary>
+    [MenuItem("Chemistry Lab/Build Lobby Scene")]
+    public static void BuildLobbyMenu()
+    {
+        if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
+        BuildLobbyOnly();
+    }
+
+    public static void BuildLobbyOnly()
+    {
+        SharedMaterials();
+        BuildLobby();
+        AssetDatabase.SaveAssets();
+        EditorSceneManager.OpenScene(LobbyPath);
+        Debug.Log("[ChemLab] Built the Lobby scene.");
+    }
+
+    static void SharedMaterials()
     {
         mats.Clear();
         // shared materials first (later calls with the same name reuse these)
@@ -57,7 +74,11 @@ public static class ChemLabSceneBuilder
         M("LiquidAmber", new Color(0.95f, 0.65f, 0.2f, 0.75f), transparent: true);
         M("Metal", new Color(0.6f, 0.62f, 0.65f), metallic: 0.7f, smooth: 0.6f);
         M("NodeGlow", new Color(0f, 0.85f, 0.75f, 0.6f), transparent: true, emissive: true);
+    }
 
+    static void BuildAll()
+    {
+        SharedMaterials();
         BuildLab();
         BuildLobby();
         BuildEnd();
@@ -142,14 +163,178 @@ public static class ChemLabSceneBuilder
         var bc = cup.GetComponent<BoxCollider>();
         bc.size *= 2.2f;   // generous target for first-timers
 
-        Systems(start, 0f);
+        LobbyDecor(env);
+
+        var leftHand = Systems(start, 0f);
         var game = new GameObject("ChemLab Lobby");
         var lobby = game.AddComponent<ChemLabLobby>();
+        lobby.leftHandAnchor = leftHand;
         // ~1.25 m from the start spot (was ~1.6 m): text cap height 0.51-0.68 deg -> ~0.67-0.9 deg
         lobby.mainPanelAnchor = Anchor("MainPanelAnchor", new Vector3(-0.45f, 1.5f, -1.25f), start);
-        lobby.controllerPanelAnchor = Anchor("ControllerPanelAnchor", new Vector3(0.75f, 1.45f, -1.4f), start);
+        lobby.teachingPanelAnchor = Anchor("TeachingPanelAnchor", new Vector3(0.85f, 1.45f, -1.35f), start);
+        // kiosk stands under both panels (main: 900 tall, teaching: 960 tall, both at 0.001 scale)
+        Stand(env, lobby.mainPanelAnchor, 1.5f - 0.45f);
+        Stand(env, lobby.teachingPanelAnchor, 1.45f - 0.48f);
+        // wall posters face into the room (anchor forward points into the wall)
+        lobby.posterAnchors = new[]
+        {
+            WallAnchor("Poster_Chemicals", new Vector3(3.98f, 1.95f, -0.6f), Vector3.right),
+            WallAnchor("Poster_NoFood", new Vector3(1.5f, 1.85f, -3.98f), Vector3.back),
+            WallAnchor("Poster_PPE", new Vector3(3.98f, 1.95f, 1.15f), Vector3.right),
+            WallAnchor("Poster_Eyewash", new Vector3(-3.98f, 1.95f, 0.35f), Vector3.left),
+        };
         game.AddComponent<ChemLabControls>();
         EditorSceneManager.SaveScene(scene, LobbyPath);
+    }
+
+    static Transform WallAnchor(string name, Vector3 pos, Vector3 intoWall)
+    {
+        var t = new GameObject(name).transform;
+        t.SetPositionAndRotation(pos, Quaternion.LookRotation(intoWall));
+        return t;
+    }
+
+    /// <summary>Kiosk stand under a floating panel: base plate and a pole ending at the panel's lower edge.</summary>
+    static void Stand(Transform env, Transform panel, float height)
+    {
+        var g = Group("Stand_" + panel.name, env, new Vector3(panel.position.x, 0, panel.position.z) + panel.forward * 0.04f);
+        g.rotation = panel.rotation;
+        var dark = M("StandDark", new Color(0.2f, 0.22f, 0.25f), metallic: 0.4f, smooth: 0.5f);
+        Cyl("Base", g, new Vector3(0, 0.01f, 0), 0.45f, 0.02f, dark);
+        Cyl("Pole", g, new Vector3(0, height / 2f, 0), 0.05f, height, dark);
+        Box("Bracket", g, new Vector3(0, height - 0.02f, 0), new Vector3(0.5f, 0.04f, 0.04f), dark);
+        foreach (var c in g.GetComponentsInChildren<Collider>()) Object.DestroyImmediate(c);
+    }
+
+    /// <summary>
+    /// Set dressing for the briefing room: the door into the lab, a demo bench under the window, an eyewash and
+    /// safety shower station, a fire extinguisher, a first-aid box, lab coats and goggles by the door, a flammables
+    /// cabinet, lockers and a coffee corner (where drinks belong). Big furniture keeps its collider; small props don't.
+    /// </summary>
+    static void LobbyDecor(Transform env)
+    {
+        var d = Group("Decor", env, Vector3.zero);
+        var glass = M("Glass", Color.white);
+        var metal = M("Metal", Color.grey);
+
+        // --- north wall: door to the lab (west of the window) with hazard tape in front
+        var door = Group("LabDoor", d, new Vector3(-3.2f, 0, 3.98f));
+        var frame = M("DoorFrame", new Color(0.25f, 0.28f, 0.32f));
+        Box("PostL", door, new Vector3(-0.56f, 1.1f, 0), new Vector3(0.08f, 2.2f, 0.06f), frame);
+        Box("PostR", door, new Vector3(0.56f, 1.1f, 0), new Vector3(0.08f, 2.2f, 0.06f), frame);
+        Box("Lintel", door, new Vector3(0, 2.24f, 0), new Vector3(1.2f, 0.08f, 0.06f), frame);
+        Box("Leaf", door, new Vector3(0, 1.08f, 0.01f), new Vector3(1.04f, 2.12f, 0.04f), M("DoorSteel", new Color(0.55f, 0.63f, 0.7f), metallic: 0.3f, smooth: 0.5f));
+        Box("Window", door, new Vector3(0.2f, 1.55f, -0.012f), new Vector3(0.3f, 0.5f, 0.01f), glass);
+        Box("PushBar", door, new Vector3(0, 1.0f, -0.04f), new Vector3(0.8f, 0.04f, 0.04f), metal);
+        Box("Sign", door, new Vector3(0, 2.52f, -0.01f), new Vector3(0.9f, 0.26f, 0.02f), M("SignBlue", new Color(0.08f, 0.28f, 0.54f)));
+        Label("SignText", door, "LAB 404  ·  BSL-1", new Vector3(0, 2.52f, -0.025f), Quaternion.identity, 0.9f, Color.white);
+        var tape = M("HazardTape", new Color(0.98f, 0.66f, 0f), emissive: false);
+        for (int i = 0; i < 6; i++)
+            Box("Tape", d, new Vector3(-3.7f + i * 0.2f, 0.003f, 3.45f), new Vector3(0.1f, 0.006f, 0.08f), i % 2 == 0 ? tape : M("TapeBlack", new Color(0.08f, 0.08f, 0.08f)));
+
+        // --- north wall: demo bench under the window, glassware and labeled bottles
+        Bench("DemoBench", d, new Vector3(0.7f, 0, 3.6f), new Vector2(3.0f, 0.7f));
+        var top = Group("BenchProps", d, new Vector3(0.7f, 0.9f, 3.6f));
+        for (int i = 0; i < 3; i++)
+        {
+            float x = -1.2f + i * 0.16f;
+            Cyl("Beaker", top, new Vector3(x, 0.07f, -0.1f), 0.09f, 0.14f, glass);
+            Cyl("Liquid", top, new Vector3(x, 0.04f, -0.1f), 0.08f, 0.07f, M(i == 0 ? "LiquidBlue" : i == 1 ? "LiquidGreen" : "LiquidAmber", Color.white));
+        }
+        var flask = Group("Flask", top, new Vector3(-0.55f, 0, -0.05f));
+        Sphere("Bulb", flask, new Vector3(0, 0.08f, 0), 0.15f, glass);
+        Cyl("Neck", flask, new Vector3(0, 0.2f, 0), 0.04f, 0.12f, glass);
+        Sphere("Liquid", flask, new Vector3(0, 0.06f, 0), 0.11f, M("LiquidBlue", Color.white));
+        var rack = Group("TubeRack", top, new Vector3(-0.1f, 0, -0.05f));
+        Box("Rack", rack, new Vector3(0, 0.03f, 0), new Vector3(0.28f, 0.06f, 0.1f), M("RackWhite", Color.white));
+        for (int i = 0; i < 5; i++)
+            Cyl("Tube", rack, new Vector3(-0.1f + i * 0.05f, 0.08f, 0), 0.018f, 0.12f, M(i % 2 == 0 ? "LiquidBlue" : "LiquidAmber", Color.white));
+        Model("AmberBottle", "Amber", top, new Vector3(0.35f, 0, 0.05f), new Vector3(0.1f, 0.24f, 0.1f), Vector3.zero, 0.7f);
+        Model("HClBottle", "HCl", top, new Vector3(0.55f, 0, 0.05f), new Vector3(0.12f, 0.26f, 0.12f), Vector3.zero, 0.6f);
+        Model("AcetoneBottle", "Acetone", top, new Vector3(0.75f, 0, 0.05f), new Vector3(0.12f, 0.24f, 0.12f), Vector3.zero, 0.6f);
+        var scope = Group("Microscope", top, new Vector3(1.15f, 0, -0.05f));
+        var white = M("RackWhite", Color.white);
+        Box("Foot", scope, new Vector3(0, 0.02f, 0), new Vector3(0.18f, 0.04f, 0.24f), white);
+        Box("Arm", scope, new Vector3(0, 0.17f, 0.08f), new Vector3(0.05f, 0.28f, 0.06f), white);
+        Box("Stage", scope, new Vector3(0, 0.12f, -0.01f), new Vector3(0.14f, 0.015f, 0.12f), M("Black", new Color(0.08f, 0.08f, 0.08f)));
+        Cyl("Tube", scope, new Vector3(0, 0.3f, 0.01f), 0.045f, 0.16f, white);
+        Cyl("Eyepiece", scope, new Vector3(0, 0.4f, 0.03f), 0.03f, 0.06f, M("Black", new Color(0.08f, 0.08f, 0.08f)));
+        foreach (var c in top.GetComponentsInChildren<Collider>()) Object.DestroyImmediate(c);
+
+        // --- west wall: safety shower + eyewash, fire extinguisher, first-aid box
+        var green = M("SafetyGreen", new Color(0.1f, 0.6f, 0.32f), smooth: 0.5f);
+        var shower = Group("SafetyShower", d, new Vector3(-3.8f, 0, 1.2f));
+        Cyl("Riser", shower, new Vector3(-0.08f, 1.2f, 0), 0.05f, 2.4f, green);
+        Box("Arm", shower, new Vector3(0.12f, 2.4f, 0), new Vector3(0.45f, 0.05f, 0.05f), green);
+        Cyl("Head", shower, new Vector3(0.32f, 2.32f, 0), 0.3f, 0.08f, green);
+        Box("PullRod", shower, new Vector3(0.32f, 2.0f, 0), new Vector3(0.015f, 0.6f, 0.015f), metal);
+        Box("PullHandle", shower, new Vector3(0.32f, 1.68f, 0), new Vector3(0.18f, 0.04f, 0.04f), green);
+        Box("BowlArm", shower, new Vector3(0.05f, 1.0f, 0), new Vector3(0.25f, 0.04f, 0.04f), green);
+        Cyl("Bowl", shower, new Vector3(0.25f, 1.02f, 0), 0.32f, 0.07f, M("EyewashYellow", new Color(0.98f, 0.8f, 0.1f)));
+        Box("FloorMark", shower, new Vector3(0.25f, 0.003f, 0), new Vector3(0.9f, 0.006f, 0.9f), M("SafetyGreenFloor", new Color(0.1f, 0.6f, 0.32f, 0.5f), transparent: true));
+
+        var ext = Group("FireExtinguisher", d, new Vector3(-3.86f, 0, -0.7f));
+        var red = M("ExtinguisherRed", new Color(0.75f, 0.08f, 0.06f), smooth: 0.7f);
+        Box("Bracket", ext, new Vector3(-0.08f, 0.75f, 0), new Vector3(0.03f, 0.2f, 0.14f), metal);
+        Cyl("Body", ext, new Vector3(0.02f, 0.6f, 0), 0.17f, 0.52f, red);
+        Cyl("Valve", ext, new Vector3(0.02f, 0.9f, 0), 0.06f, 0.08f, M("Black", new Color(0.08f, 0.08f, 0.08f)));
+        Box("Hose", ext, new Vector3(0.1f, 0.72f, 0.06f), new Vector3(0.02f, 0.3f, 0.02f), M("Black", new Color(0.08f, 0.08f, 0.08f)));
+        Box("Sign", ext, new Vector3(-0.1f, 1.3f, 0), new Vector3(0.01f, 0.3f, 0.3f), red);
+        Label("SignText", ext, "FIRE", new Vector3(-0.09f, 1.3f, 0), Quaternion.Euler(0, -90f, 0), 0.6f, Color.white);
+
+        var aid = Group("FirstAidBox", d, new Vector3(-3.9f, 1.45f, 2.7f));
+        Box("Box", aid, Vector3.zero, new Vector3(0.14f, 0.42f, 0.5f), green);
+        Box("CrossV", aid, new Vector3(0.072f, 0, 0), new Vector3(0.01f, 0.24f, 0.07f), M("PaperWhite", Color.white));
+        Box("CrossH", aid, new Vector3(0.072f, 0, 0), new Vector3(0.01f, 0.07f, 0.24f), M("PaperWhite", Color.white));
+
+        // --- east wall: lab coats and goggles, flammables cabinet
+        var coats = Group("CoatHooks", d, new Vector3(3.9f, 0, 2.6f));
+        Box("Board", coats, new Vector3(0.06f, 1.45f, 0), new Vector3(0.02f, 0.9f, 1.3f), M("CounterWood", new Color(0.62f, 0.47f, 0.32f), smooth: 0.35f));
+        Box("Rail", coats, new Vector3(0, 1.75f, 0), new Vector3(0.04f, 0.04f, 1.1f), metal);
+        var coat = M("LabCoat", new Color(0.96f, 0.96f, 0.96f));
+        var cuff = M("CoatBlue", new Color(0.3f, 0.5f, 0.8f));
+        for (int i = 0; i < 3; i++)
+        {
+            float z = -0.4f + i * 0.4f;
+            Box("Coat", coats, new Vector3(-0.1f, 1.3f, z), new Vector3(0.16f, 0.85f, 0.34f), coat);
+            Box("Collar", coats, new Vector3(-0.1f, 1.7f, z), new Vector3(0.18f, 0.06f, 0.22f), cuff);
+            Box("Placket", coats, new Vector3(-0.181f, 1.3f, z), new Vector3(0.004f, 0.8f, 0.02f), cuff);
+        }
+        Box("GogglesShelf", coats, new Vector3(-0.12f, 1.0f, 0.95f), new Vector3(0.24f, 0.02f, 0.4f), M("ShelfWhite", new Color(0.88f, 0.88f, 0.86f)));
+        Model("SafetyGlasses", "Goggles1", coats, new Vector3(-0.12f, 1.01f, 0.85f), new Vector3(0.16f, 0.06f, 0.16f), new Vector3(0, -90f, 0), 0.6f);
+        Model("SafetyGlasses", "Goggles2", coats, new Vector3(-0.12f, 1.01f, 1.05f), new Vector3(0.16f, 0.06f, 0.16f), new Vector3(0, -80f, 0), 0.6f);
+
+        var cab = Group("FlammablesCabinet", d, new Vector3(3.72f, 0, -0.6f));
+        var yellow = M("CabinetYellow", new Color(0.98f, 0.75f, 0.05f), metallic: 0.2f, smooth: 0.5f);
+        Box("Body", cab, new Vector3(0, 0.6f, 0), new Vector3(0.5f, 1.2f, 1.0f), yellow);
+        Box("Seam", cab, new Vector3(-0.252f, 0.6f, 0), new Vector3(0.006f, 1.1f, 0.012f), M("TapeBlack", Color.black));
+        Box("HandleL", cab, new Vector3(-0.27f, 0.65f, -0.06f), new Vector3(0.03f, 0.18f, 0.025f), metal);
+        Box("HandleR", cab, new Vector3(-0.27f, 0.65f, 0.06f), new Vector3(0.03f, 0.18f, 0.025f), metal);
+        Box("Label", cab, new Vector3(-0.252f, 1.0f, 0), new Vector3(0.006f, 0.12f, 0.6f), M("TapeBlack", Color.black));
+        Label("LabelText", cab, "FLAMMABLE", new Vector3(-0.258f, 1.0f, 0), Quaternion.Euler(0, 90f, 0), 0.55f, new Color(0.98f, 0.75f, 0.05f));
+
+        // --- south wall (behind the start): lockers and a coffee corner, where drinks belong
+        var lockers = Group("Lockers", d, new Vector3(-2.2f, 0, -3.75f));
+        var grey = M("LockerGrey", new Color(0.62f, 0.66f, 0.7f), metallic: 0.3f, smooth: 0.45f);
+        for (int i = 0; i < 4; i++)
+        {
+            float x = -0.66f + i * 0.44f;
+            Box("Locker", lockers, new Vector3(x, 0.95f, 0), new Vector3(0.42f, 1.9f, 0.45f), grey);
+            for (int v = 0; v < 3; v++)
+            {
+                var vent = Box("Vent", lockers, new Vector3(x, 1.65f - v * 0.04f, 0.226f), new Vector3(0.22f, 0.012f, 0.004f), M("Black", new Color(0.08f, 0.08f, 0.08f)));
+                Object.DestroyImmediate(vent.GetComponent<Collider>());
+            }
+            var h = Box("Handle", lockers, new Vector3(x + 0.14f, 1.05f, 0.235f), new Vector3(0.02f, 0.12f, 0.02f), metal);
+            Object.DestroyImmediate(h.GetComponent<Collider>());
+        }
+        var corner = Group("CoffeeCorner", d, new Vector3(1.5f, 0, -3.7f));
+        Box("Counter", corner, new Vector3(0, 0.45f, 0), new Vector3(1.2f, 0.9f, 0.55f), M("CounterWood", new Color(0.62f, 0.47f, 0.32f), smooth: 0.35f));
+        Box("Machine", corner, new Vector3(-0.3f, 1.08f, 0.05f), new Vector3(0.28f, 0.36f, 0.3f), M("CoffeeMachine", new Color(0.12f, 0.12f, 0.14f), metallic: 0.3f, smooth: 0.6f));
+        var cups = Group("Cups", corner, new Vector3(0.2f, 0.9f, 0));
+        Model("CoffeeCup", "Cup1", cups, Vector3.zero, new Vector3(0.09f, 0.13f, 0.09f), Vector3.zero);
+        Model("CoffeeCup", "Cup2", cups, new Vector3(0.14f, 0, 0.05f), new Vector3(0.09f, 0.13f, 0.09f), new Vector3(0, 40f, 0));
+        foreach (var c in cups.GetComponentsInChildren<Collider>()) Object.DestroyImmediate(c);
     }
 
     // ===================================================================== scene 3: end

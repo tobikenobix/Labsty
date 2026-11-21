@@ -67,7 +67,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488393
-    m_Localized: "Risolti <b>{0}/{1}</b>     <color={2}>X comandi  \xB7  Y termina</color>"
+    m_Localized: "Risolti <b>{0}/{1}</b>     <color={2}>X nascondi  \xB7  Y termina</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488394
@@ -151,25 +151,12 @@ MonoBehaviour:
     m_Localized: Ottimo! Levetta avanti per teletrasportarsi, sx/dx per ruotare.
     m_Metadata:
       m_Items: []
-  - m_Id: 4457488411
-    m_Localized: "Selezionato! In laboratorio, cos\xEC si apre una domanda di sicurezza."
-    m_Metadata:
-      m_Items: []
   - m_Id: 4457488412
     m_Localized: Ci siamo. Prema Avvia lab quando vuole.
     m_Metadata:
       m_Items: []
   - m_Id: 4457488413
     m_Localized: Fatto
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488414
-    m_Localized: '<b>Si teletrasporti</b> sull''anello luminoso: spinga una levetta
-      in avanti, punti l''arco sull''anello, rilasci.'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488415
-    m_Localized: "<b>Selezioni</b> la tazza di caff\xE8: la punti e prema il grilletto."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488416
@@ -198,16 +185,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4457488422
     m_Localized: Scegli i pericoli
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488423
-    m_Localized: PROVA DI 60 SECONDI
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488424
-    m_Localized: "In laboratorio: trovi ogni pericolo e scelga l'azione pi\xF9 sicura.
-      Risposta giusta = pericolo eliminato. Risposta sbagliata = registrata come
-      errore."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488425
@@ -250,20 +227,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4457488434
     m_Localized: "Laboratorio BSL-1 \xB7 {0} pericoli nascosti \xB7 7 minuti"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488435
-    m_Localized: Il controller
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488436
-    m_Localized: 'Prema il <b><color={0}>GRILLETTO</color></b> per selezionare.
-
-      <b>Levetta
-      avanti</b> teletrasporto   <b>sx/dx</b> rotazione
-
-      <b>A</b> conferma  
-      <b>B</b> chiudi   <b>X</b> comandi'
     m_Metadata:
       m_Items: []
   - m_Id: 4457488437
@@ -552,6 +515,200 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4461682700
     m_Localized: Lavandino
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469552152576
+    m_Localized: <b>Grilletto</b>  selezionare
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232960
+    m_Localized: <b>Grip</b>  ispezionare
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232961
+    m_Localized: "<b>Levetta</b>  teletrasporto \xB7 rotazione"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232962
+    m_Localized: inviare
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232963
+    m_Localized: chiudere
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232964
+    m_Localized: "attivit\xE0"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232965
+    m_Localized: terminare
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232966
+    m_Localized: "inviare \xB7 avvia lab"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232967
+    m_Localized: "TUTORIAL  \xB7  5 PASSI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232968
+    m_Localized: <b>Si teletrasporti</b> sull'anello luminoso
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232969
+    m_Localized: <b>Ruoti</b> sul posto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232970
+    m_Localized: "<b>Ispezioni</b> la tazza di caff\xE8"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232971
+    m_Localized: <b>Risponda</b> alla domanda di prova
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232972
+    m_Localized: "<b>Nasconda e mostri</b> il pannello attivit\xE0"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232973
+    m_Localized: Spinga una levetta in avanti, punti l'arco sull'anello a terra e
+      rilasci.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232974
+    m_Localized: "Sposti una levetta a sinistra o a destra per ruotare di 45\xB0.
+      Tirandola indietro si gira del tutto."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232975
+    m_Localized: Punti la tazza sul piedistallo e prema il grilletto.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232976
+    m_Localized: 'Scelga una risposta con il grilletto, poi prema A. Giusta: spunta
+      verde. Sbagliata: croce rossa.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232977
+    m_Localized: "Prema X sul controller sinistro per nascondere il pannello attivit\xE0,
+      poi di nuovo X per mostrarlo."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232978
+    m_Localized: Tutto pronto. Prema {0} oppure A.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232979
+    m_Localized: TUTORIAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232980
+    m_Localized: '{0} / {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232981
+    m_Localized: passi fatti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232982
+    m_Localized: "<color={0}>X nascondi  \xB7  A avvia lab</color>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232983
+    m_Localized: "Prova: tazza di caff\xE8 in laboratorio"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232984
+    m_Localized: Domanda di prova  /  senza punteggio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232985
+    m_Localized: "Qualcuno ha lasciato una tazza di caff\xE8 sul banco. Qual \xE8
+      l'azione pi\xF9 sicura?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232986
+    m_Localized: "Finire in fretta il caff\xE8 cos\xEC non c'\xE8 pi\xF9."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232987
+    m_Localized: 'Portarla fuori dal laboratorio: cibo e bevande non vi sono ammessi.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232988
+    m_Localized: Spostarla sul bordo del banco, lontano dai campioni.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232989
+    m_Localized: 'Non sicuro: cibo e bevande non sono mai ammessi in laboratorio.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232990
+    m_Localized: Giusto! In laboratorio una risposta giusta elimina il pericolo.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232991
+    m_Localized: Bene! Tirando indietro la levetta si gira del tutto.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232992
+    m_Localized: "Ecco il pannello attivit\xE0. In laboratorio mostra il tempo e
+      la lista."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232993
+    m_Localized: Come funziona l'ispezione
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232994
+    m_Localized: <b>Trovi i pericoli.</b> Sono nascosti nel laboratorio. Ha 7 minuti.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232995
+    m_Localized: "<b>Scelga l'azione pi\xF9 sicura.</b> Il grilletto sceglie, A invia."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232996
+    m_Localized: "<b>Risposta giusta:</b> spunta verde. Il pericolo \xE8 eliminato."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232997
+    m_Localized: <b>Risposta sbagliata:</b> croce rossa, registrata come errore.
+      Scelga di nuovo.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232998
+    m_Localized: <b>Una prima risposta pericolosa</b> comporta una revisione di sicurezza.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232999
+    m_Localized: "<b>Contorno blu:</b> gi\xE0 ispezionato."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640233000
+    m_Localized: 'Punteggio: 3 punti per pericolo trovato, 7 per prima risposta giusta.
+      Y per terminare prima.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640233001
+    m_Localized: 'ATTENZIONE
+
+      <size=60%>Sostanze chimiche in uso</size>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640233002
+    m_Localized: Vietato mangiare e bere in laboratorio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640233003
+    m_Localized: Obbligo di camice e occhiali protettivi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640233004
+    m_Localized: Lavaocchi di emergenza
     m_Metadata:
       m_Items: []
   references:

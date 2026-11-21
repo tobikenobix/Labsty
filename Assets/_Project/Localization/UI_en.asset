@@ -66,7 +66,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488393
-    m_Localized: "Resolved <b>{0}/{1}</b>     <color={2}>X controls  \xB7  Y finish</color>"
+    m_Localized: "Resolved <b>{0}/{1}</b>     <color={2}>X hide  \xB7  Y finish</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488394
@@ -150,25 +150,12 @@ MonoBehaviour:
     m_Localized: Nice! Stick forward teleports, left/right turns.
     m_Metadata:
       m_Items: []
-  - m_Id: 4457488411
-    m_Localized: Selected! In the lab, this opens a safety question.
-    m_Metadata:
-      m_Items: []
   - m_Id: 4457488412
     m_Localized: You've got it. Press Start Lab when ready.
     m_Metadata:
       m_Items: []
   - m_Id: 4457488413
     m_Localized: Done
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488414
-    m_Localized: '<b>Teleport</b> onto the glowing ring: push a stick forward, aim
-      the arc at the ring, release.'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488415
-    m_Localized: '<b>Select</b> the coffee cup: point at it and pull the trigger.'
     m_Metadata:
       m_Items: []
   - m_Id: 4457488416
@@ -197,15 +184,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4457488422
     m_Localized: Choose hazards
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488423
-    m_Localized: 60-SECOND WARM-UP
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488424
-    m_Localized: 'In the lab: find each hazard, choose the safest action. Right answer
-      = hazard fixed. Wrong answer = logged as a mistake.'
     m_Metadata:
       m_Items: []
   - m_Id: 4457488425
@@ -246,20 +224,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4457488434
     m_Localized: "BSL-1 laboratory \xB7 {0} hidden hazards \xB7 7 minutes"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488435
-    m_Localized: Your controller
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488436
-    m_Localized: 'Pull the <b><color={0}>TRIGGER</color></b> to select.
-
-      <b>Stick
-      forward</b> teleport   <b>left/right</b> turn
-
-      <b>A</b> confirm   <b>B</b>
-      close   <b>X</b> controls'
     m_Metadata:
       m_Items: []
   - m_Id: 4457488437
@@ -548,6 +512,199 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4461682700
     m_Localized: Sink
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469552152576
+    m_Localized: <b>Trigger</b>  select
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232960
+    m_Localized: <b>Grip</b>  inspect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232961
+    m_Localized: "<b>Stick</b>  teleport \xB7 turn"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232962
+    m_Localized: submit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232963
+    m_Localized: close
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232964
+    m_Localized: task panel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232965
+    m_Localized: finish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232966
+    m_Localized: "submit \xB7 start lab"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232967
+    m_Localized: "TUTORIAL  \xB7  5 STEPS"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232968
+    m_Localized: <b>Teleport</b> onto the glowing ring
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232969
+    m_Localized: <b>Turn</b> on the spot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232970
+    m_Localized: <b>Inspect</b> the coffee cup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232971
+    m_Localized: <b>Answer</b> the practice question
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232972
+    m_Localized: <b>Hide and show</b> your task panel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232973
+    m_Localized: Push either stick forward, aim the arc at the ring on the floor,
+      then let go.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232974
+    m_Localized: "Flick a stick left or right to turn 45\xB0. Pull it back to turn
+      around."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232975
+    m_Localized: Point at the cup on the pedestal and pull the trigger.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232976
+    m_Localized: Pick an answer with the trigger, then press A. Right answers get
+      a green check, wrong ones a red cross.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232977
+    m_Localized: Press X on the left controller to hide the task panel, then X again
+      to bring it back.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232978
+    m_Localized: All set. Press {0} or A.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232979
+    m_Localized: TUTORIAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232980
+    m_Localized: '{0} / {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232981
+    m_Localized: steps done
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232982
+    m_Localized: "<color={0}>X hide  \xB7  A start lab</color>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232983
+    m_Localized: 'Practice: coffee cup in the lab'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232984
+    m_Localized: Practice question  /  not scored
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232985
+    m_Localized: Someone left a coffee cup on the lab bench. What is the safest action?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232986
+    m_Localized: Finish the coffee quickly so it is gone.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232987
+    m_Localized: 'Take it out of the lab: food and drink never belong there.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232988
+    m_Localized: Move it to the edge of the bench, away from the samples.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232989
+    m_Localized: 'Not safe: food and drink are never allowed in the lab.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232990
+    m_Localized: Correct! In the lab, a right answer resolves the hazard.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232991
+    m_Localized: Nice turn! Pull the stick back to turn around.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232992
+    m_Localized: That's your task panel. In the lab it shows the timer and the checklist.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232993
+    m_Localized: How the inspection works
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232994
+    m_Localized: <b>Find the hazards.</b> They are hidden around the lab. You have
+      7 minutes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232995
+    m_Localized: <b>Choose the safest action.</b> The trigger picks an answer, A
+      submits it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232996
+    m_Localized: <b>Right answer:</b> a green check. The hazard counts as resolved.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232997
+    m_Localized: <b>Wrong answer:</b> a red cross, logged as a mistake. Choose again.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232998
+    m_Localized: <b>A dangerous first answer</b> is flagged for a safety review.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232999
+    m_Localized: <b>Blue outline:</b> you have already inspected it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640233000
+    m_Localized: 'Score: 3 points per hazard found, 7 per correct first answer. Press
+      Y to finish early.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640233001
+    m_Localized: 'CAUTION
+
+      <size=60%>Chemicals in use</size>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640233002
+    m_Localized: No food or drink in the lab
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640233003
+    m_Localized: Lab coat and safety glasses required
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640233004
+    m_Localized: Emergency eyewash
     m_Metadata:
       m_Items: []
   references:

@@ -24,7 +24,8 @@ namespace ChemLab
 
     /// <summary>
     /// Scene 2 game loop. The 7-minute countdown starts when the lab loads.
-    /// Click hazard -> 4-option panel. Correct: chime + hazard disappears. Wrong: buzz + one-line feedback, logged as a mistake.
+    /// Click hazard -> 4-option panel. Correct: chime + green check over the hazard. Wrong: buzz + one-line feedback + red cross,
+    /// logged as a mistake. Every inspected object keeps an outline, so the player can see what they have already checked.
     /// The run ends when all hazards are resolved, the timer hits 0, or the player finishes early (Y / Menu).
     /// Scoring: 3 points per hazard found + 7 per FIRST answer correct (= 100), plus pass / retraining / safety-review rules.
     /// </summary>
@@ -113,6 +114,7 @@ namespace ChemLab
             if (item.kind != ChemLabInspectable.Kind.Hazard)
             {
                 falseClicks++;
+                item.SetMark(ChemLabInspectable.Mark.Checked);
                 ui.Toast(string.IsNullOrEmpty(item.displayName) ? L10n.T("lab.looksOk") : L10n.T("lab.itemOk", L10n.TOr("decoy." + item.displayName, item.displayName)));
                 return;
             }
@@ -122,6 +124,7 @@ namespace ChemLab
             if (rec.solved) return;
 
             if (!rec.detected) { rec.detected = true; rec.detectedAt = Elapsed; }   // detection counted once
+            item.SetMark(ChemLabInspectable.Mark.Checked);
             if (rec.questionShownAt < 0) rec.questionShownAt = Elapsed;
             Current = rec;
             CurrentObject = item;
@@ -176,6 +179,7 @@ namespace ChemLab
             {
                 rec.wrongAnswers++;   // logged as a mistake
                 ChemLabAudio.Wrong(opt != null && opt.critical);
+                CurrentObject.SetMark(ChemLabInspectable.Mark.Wrong);
                 ui.ShowWrong(rec, key, opt != null && opt.critical);
                 CurrentSelection = null;
             }

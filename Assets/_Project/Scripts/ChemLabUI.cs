@@ -9,8 +9,9 @@ using K = ChemLab.ChemLabUIKit;
 namespace ChemLab
 {
     /// <summary>
-    /// Scene 2 UI: wrist tablet (category checklist + countdown), the reusable 4-option hazard panel,
-    /// toasts, finish prompt and start/end banners. Everything is generated with ChemLabUIKit.
+    /// Scene 2 UI: the task panel on the left controller (category checklist + countdown; X shows / hides it together
+    /// with the button labels on both controllers), the 4-option hazard panel, toasts, finish prompt and start/end
+    /// banners. Everything is generated with ChemLabUIKit.
     /// </summary>
     public class ChemLabUI : MonoBehaviour
     {
@@ -21,19 +22,8 @@ namespace ChemLab
 
         ChemLabSession S => ChemLabSession.Instance;
 
-        // question panel
-        Canvas question;
-        TextMeshProUGUI qTitle, qMeta, qText, qFeedback;
-        readonly Opt[] qOpt = new Opt[4];
-        Button qSubmit;
-        HazardRecord qRec;
-        readonly Dictionary<string, bool> qStruck = new Dictionary<string, bool>();   // ruled-out key -> was it dangerous
-
-        /// <summary>One answer row: a ruled line with a sign disc (key letter) and the option text.</summary>
-        class Opt
-        {
-            public Button btn; public Image bg, outline, disc, rim, slash; public TextMeshProUGUI key, text; public GameObject tag;
-        }
+        ChemLabQuestionPanel question;
+        ChemLabControllerLabels labels;
 
         // message panel
         Canvas msg; TextMeshProUGUI msgTitle, msgBody; Button msgBtn1, msgBtn2; System.Action msgAct1, msgAct2;
@@ -46,18 +36,30 @@ namespace ChemLab
         readonly List<(string cat, TextMeshProUGUI count, K.Bar bar)> tabRows = new List<(string, TextMeshProUGUI, K.Bar)>();
         Canvas station;
 
-        public bool QuestionOpen => question != null && question.gameObject.activeSelf;
+        public bool QuestionOpen => question != null && question.IsOpen;
         public bool ModalOpen => QuestionOpen || (msg != null && msg.gameObject.activeSelf);
 
         void Awake()
         {
-            BuildQuestion();
+            question = new ChemLabQuestionPanel(transform, k => S.SelectOption(k), () => S.SubmitCurrent(), () => S.CloseQuestion());
             BuildMessage();
             BuildToast();
             BuildHelp();
             BuildTablet();
             BuildStation();
             K.MouseModeEnabled += AttachTablet;
+            labels = ChemLabControllerLabels.Create(
+                new ChemLabControllerLabels.Item(false, "Button_B", "B", L10n.T("lbl.close")),
+                new ChemLabControllerLabels.Item(false, "Button_A", "A", L10n.T("lbl.submit")),
+                new ChemLabControllerLabels.Item(false, "ThumbStick", null, L10n.T("lbl.stick")),
+                new ChemLabControllerLabels.Item(false, "Trigger", null, L10n.T("lbl.trigger")),
+                new ChemLabControllerLabels.Item(false, "Bumper", null, L10n.T("lbl.grip")),
+                new ChemLabControllerLabels.Item(true, "Button_B", "Y", L10n.T("lbl.finish")),
+                new ChemLabControllerLabels.Item(true, "Button_A", "X", L10n.T("lbl.panel")),
+                new ChemLabControllerLabels.Item(true, "ThumbStick", null, L10n.T("lbl.stick")),
+                new ChemLabControllerLabels.Item(true, "Trigger", null, L10n.T("lbl.trigger")),
+                new ChemLabControllerLabels.Item(true, "Bumper", null, L10n.T("lbl.grip")));
+            labels.Visible = false;
         }
 
         void OnDestroy() => K.MouseModeEnabled -= AttachTablet;
@@ -74,7 +76,7 @@ namespace ChemLab
                 hudSecond = (int)S.Remaining;
                 UpdateHud();
             }
-            K.KeepInView(question.transform, 0.95f, -0.05f);
+            K.KeepInView(question.canvas.transform, 0.95f, -0.05f);
             K.KeepInView(msg.transform, 1.15f, 0f);
         }
 
@@ -83,7 +85,7 @@ namespace ChemLab
         public void ShowRunStarted(float seconds)
         {
             if (tabRows.Count == 0) BuildTabletRows();
-            tablet.gameObject.SetActive(true);
+            SetTaskPanel(true);
             station.gameObject.SetActive(true);
             UpdateHud();
             Toast(L10n.T("lab.started", K.Mmss(seconds), S.HazardCount), 3.5f, K.Accent);
@@ -91,90 +93,19 @@ namespace ChemLab
 
         public void ShowRunEnded(string title)
         {
-            tablet.gameObject.SetActive(false);
+            SetTaskPanel(false);
             station.gameObject.SetActive(false);
-            help.gameObject.SetActive(false);
             ShowMessage(title, L10n.T("lab.calculating"), null, null);
         }
 
-        public void ShowQuestion(HazardRecord rec, Vector3 hazardPos)
-        {
-            qRec = rec;
-            qStruck.Clear();
-            qTitle.text = rec.data.title;
-            qMeta.text = $"{rec.data.hudCategory}  /  {rec.data.area}  /  {rec.data.difficulty}";
-            qText.text = rec.q.question;
-            for (int i = 0; i < 4; i++)
-            {
-                bool has = i < rec.q.options.Length;
-                qOpt[i].btn.gameObject.SetActive(has);
-                if (!has) continue;
-                qOpt[i].key.text = rec.q.options[i].key;
-                qOpt[i].text.text = rec.q.options[i].text;
-                PaintOption(i, null);
-            }
-            qFeedback.text = $"<color={K.Hex(K.TextDim)}>{L10n.T("q.hint")}</color>";
-            SetSubmit(null);
-            K.PlaceInFront(question.transform, 0.95f, -0.05f, hazardPos);
-            question.gameObject.SetActive(true);
-        }
+        public void ShowQuestion(HazardRecord rec, Vector3 hazardPos) =>
+            question.Show(rec.data.title, $"{rec.data.hudCategory}  /  {rec.data.area}  /  {rec.data.difficulty}", rec.q, hazardPos);
 
-        public void HighlightOption(string key)
-        {
-            if (qRec == null) return;
-            for (int i = 0; i < qRec.q.options.Length; i++) PaintOption(i, key);
-            SetSubmit(key);
-        }
+        public void HighlightOption(string key) => question.Highlight(key);
 
-        public void ShowWrong(HazardRecord rec, string key, bool critical)
-        {
-            qStruck[key] = critical;
-            for (int i = 0; i < rec.q.options.Length; i++) PaintOption(i, null);
-            qFeedback.text = $"<color={K.Hex(K.Bad)}><b>{rec.data.wrongFeedback}</b></color> " +
-                             (critical ? L10n.T("q.wrongCritical") : L10n.T("q.wrong"));
-            SetSubmit(null);
-        }
+        public void ShowWrong(HazardRecord rec, string key, bool critical) => question.ShowWrong(key, critical, rec.data.wrongFeedback);
 
-        /// <summary>
-        /// Sign grammar per row: plain rim = open, blue mandatory disc = your pick,
-        /// red prohibition ring + struck text = ruled out (plus a DANGEROUS plate when it was a critical choice).
-        /// </summary>
-        void PaintOption(int i, string selectedKey)
-        {
-            var o = qOpt[i];
-            string k = qRec.q.options[i].key;
-            bool struck = qStruck.TryGetValue(k, out bool dangerous);
-            bool sel = !struck && k == selectedKey;
-            o.btn.interactable = !struck;
-            o.bg.color = sel ? K.SelectFill : K.Bg;
-            o.outline.gameObject.SetActive(sel);
-            o.disc.color = sel ? K.Accent : Color.white;
-            o.rim.gameObject.SetActive(!sel && !struck);
-            o.slash.gameObject.SetActive(struck);
-            o.key.color = sel ? Color.white : K.Text;
-            o.text.color = struck ? K.TextDim : K.Text;
-            o.text.fontStyle = struck ? FontStyles.Strikethrough : FontStyles.Normal;
-            o.tag.SetActive(struck && dangerous);
-            float cut = o.tag.activeSelf ? 186f : 0f;   // make room for the DANGEROUS plate
-            o.text.rectTransform.sizeDelta = new Vector2(OptTextW - cut, 92f);
-            o.text.rectTransform.anchoredPosition = new Vector2(OptTextX - cut / 2f, 0);
-        }
-
-        void SetSubmit(string key)
-        {
-            qSubmit.interactable = key != null;
-            K.SetButtonColor(qSubmit, key != null ? K.Ok : K.SurfaceHi);
-            K.ButtonLabel(qSubmit).text = key != null ? L10n.T("q.submitKey", key) : L10n.T("q.submit");
-            var ink = key != null ? Color.white : K.TextDim;
-            foreach (var g in qSubmit.GetComponentsInChildren<Graphic>(true))
-                if (g != qSubmit.targetGraphic) g.color = ink;
-        }
-
-        public void CloseQuestion()
-        {
-            question.gameObject.SetActive(false);
-            qRec = null;
-        }
+        public void CloseQuestion() => question.Close();
 
         public void ShowFinishPrompt()
         {
@@ -206,13 +137,26 @@ namespace ChemLab
             toastCo = StartCoroutine(HideAfter(toast.gameObject, seconds));
         }
 
+        /// <summary>X (H on the keyboard): show / hide the task panel and the controller button labels.</summary>
         public void ToggleHelp()
         {
-            if (help.gameObject.activeSelf) { help.gameObject.SetActive(false); return; }
-            var body = help.transform.Find("Body")?.GetComponent<TextMeshProUGUI>();
-            if (body != null) body.text = ControlsText;
-            K.PlaceInFront(help.transform, 1.0f, 0f);
-            help.gameObject.SetActive(true);
+            if (S == null || (S.phase != Phase.Running && S.phase != Phase.FinishPrompt)) return;
+            SetTaskPanel(!tablet.gameObject.activeSelf);
+        }
+
+        void SetTaskPanel(bool on)
+        {
+            tablet.gameObject.SetActive(on);
+            labels.Visible = on;
+            // no controllers to label in desktop mode: the keyboard card comes and goes with the panel instead
+            bool card = on && ChemLabControls.DesktopMode;
+            if (card && !help.gameObject.activeSelf)
+            {
+                var body = help.transform.Find("Body")?.GetComponent<TextMeshProUGUI>();
+                if (body != null) body.text = ControlsText;
+                K.PlaceInFront(help.transform, 1.0f, 0f);
+            }
+            help.gameObject.SetActive(card);
         }
 
         public void UpdateHud()
@@ -235,57 +179,6 @@ namespace ChemLab
         }
 
         // ================= builders =================
-
-        const float OptTextX = 46f, OptTextW = 804f;   // option text column: right of the 68-unit disc to the row's right padding
-
-        void BuildQuestion()
-        {
-            var size = new Vector2(1000, 880);
-            question = K.Panel(transform, "Panel_Question", size, accentLine: false);
-            var t = question.transform;
-
-            // yellow warning band naming the hazard
-            K.Band(t, size, 150f, K.Warn);
-            K.WarningSign(t, new Vector2(-404, 365), 112f);
-            qTitle = K.Label(t, "Title", "", new Vector2(74, 384), new Vector2(772, 58), 46, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
-            K.FitOneLine(qTitle, 28);   // long translated titles shrink instead of wrapping out of the band
-            qMeta = K.FitOneLine(K.Label(t, "Meta", "", new Vector2(74, 332), new Vector2(772, 36), 28, K.Text, TextAlignmentOptions.Left), 22);
-
-            qText = K.Label(t, "Question", "", new Vector2(0, 222), new Vector2(920, 84), 31, K.Text, TextAlignmentOptions.TopLeft);
-
-            K.Img(t, "RuleTop", new Vector2(0, 160), new Vector2(920, 2), K.Rule).raycastTarget = false;
-            for (int i = 0; i < 4; i++)
-            {
-                int idx = i;
-                float y = 160 - 49 - i * 98;
-                var o = qOpt[i] = new Opt();
-                o.bg = K.Img(t, "Option" + i, new Vector2(0, y), new Vector2(920, 94), K.Bg, K.Rounded);
-                o.bg.pixelsPerUnitMultiplier = 1.5f;
-                o.btn = o.bg.gameObject.AddComponent<Button>();
-                K.Tint(o.btn);
-                o.btn.onClick.AddListener(() => { if (qRec != null && idx < qRec.q.options.Length) S.SelectOption(qRec.q.options[idx].key); });
-                o.btn.onClick.AddListener(() => ChemLabAudio.Click());
-                o.outline = K.Outline(o.bg.transform, new Vector2(920, 94), K.Accent, 1.5f);
-
-                var discPos = new Vector2(-414, 0);
-                o.disc = K.Img(o.bg.transform, "Disc", discPos, new Vector2(68, 68), Color.white, K.Circle);
-                o.rim = K.Img(o.bg.transform, "Rim", discPos, new Vector2(68, 68), K.Text, K.Ring);
-                o.key = K.Label(o.bg.transform, "Key", "", discPos + new Vector2(0, -1), new Vector2(68, 68), 34, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
-                o.slash = K.Img(o.bg.transform, "Prohibited", discPos, new Vector2(68, 68), K.Bad, K.Prohibition);
-                o.disc.raycastTarget = o.rim.raycastTarget = o.slash.raycastTarget = false;
-
-                o.text = K.Label(o.bg.transform, "Text", "", new Vector2(OptTextX, 0), new Vector2(OptTextW, 92), 28, K.Text, TextAlignmentOptions.MidlineLeft);
-                o.text.enableAutoSizing = true; o.text.fontSizeMin = 22; o.text.fontSizeMax = 28;
-                o.tag = K.Chip(o.bg.transform, "Dangerous", L10n.T("q.dangerous"), new Vector2(363, 0), new Vector2(170, 46), K.Bad, Color.white).transform.parent.gameObject;
-                K.Img(t, "Rule" + i, new Vector2(0, y - 49), new Vector2(920, 2), K.Rule).raycastTarget = false;
-            }
-
-            qFeedback = K.Label(t, "Feedback", "", new Vector2(0, -288), new Vector2(920, 84), 28, K.Text, TextAlignmentOptions.TopLeft);
-            qFeedback.enableAutoSizing = true; qFeedback.fontSizeMin = 22; qFeedback.fontSizeMax = 28;   // three lines fit at 22
-            K.Button(t, "Close", L10n.T("common.close"), new Vector2(-235, -385), new Vector2(430, 70), K.Style.Ghost, () => S.CloseQuestion(), key: "B");
-            qSubmit = K.Button(t, "Submit", L10n.T("q.submit"), new Vector2(235, -385), new Vector2(430, 70), K.Style.Primary, () => S.SubmitCurrent(), key: "A");
-            question.gameObject.SetActive(false);
-        }
 
         void BuildMessage()
         {
@@ -362,23 +255,7 @@ namespace ChemLab
             }
         }
 
-        void AttachTablet()
-        {
-            if (tablet == null) return;
-            if (leftHandAnchor != null && !K.MouseMode)
-            {
-                tablet.transform.SetParent(leftHandAnchor, false);
-                tablet.transform.localPosition = new Vector3(0f, 0.13f, 0.07f);   // raised along the tilt so the larger tablet clears the controller
-                tablet.transform.localRotation = Quaternion.Euler(45f, 0f, 0f);
-            }
-            else if (Camera.main != null)
-            {
-                tablet.transform.SetParent(Camera.main.transform, false);
-                tablet.transform.localPosition = new Vector3(-0.28f, -0.14f, 0.65f);
-                tablet.transform.localRotation = Quaternion.identity;
-                tablet.transform.localScale = Vector3.one * 0.00045f;
-            }
-        }
+        void AttachTablet() { if (tablet != null) K.AttachTablet(tablet.transform, leftHandAnchor); }
 
         void BuildStation()
         {

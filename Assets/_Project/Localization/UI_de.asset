@@ -67,7 +67,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488393
-    m_Localized: "Behoben <b>{0}/{1}</b>     <color={2}>X Steuerung  \xB7  Y beenden</color>"
+    m_Localized: "Behoben <b>{0}/{1}</b>     <color={2}>X ausblenden  \xB7  Y beenden</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488394
@@ -143,26 +143,12 @@ MonoBehaviour:
     m_Localized: Sehr gut! Stick nach vorn teleportiert, links/rechts dreht.
     m_Metadata:
       m_Items: []
-  - m_Id: 4457488411
-    m_Localized: "Ausgew\xE4hlt! Im Labor \xF6ffnet das eine Sicherheitsfrage."
-    m_Metadata:
-      m_Items: []
   - m_Id: 4457488412
     m_Localized: "Alles klar. Dr\xFCcken Sie Labor starten, sobald Sie bereit sind."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488413
     m_Localized: Erledigt
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488414
-    m_Localized: "<b>Teleportieren</b> Sie sich auf den leuchtenden Ring: Stick nach
-      vorn dr\xFCcken, Bogen auf den Ring richten, loslassen."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488415
-    m_Localized: "<b>W\xE4hlen</b> Sie die Kaffeetasse aus: darauf zeigen und den
-      Trigger ziehen."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488416
@@ -191,16 +177,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4457488422
     m_Localized: "Gefahren w\xE4hlen"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488423
-    m_Localized: "60 SEKUNDEN AUFW\xC4RMEN"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488424
-    m_Localized: "Im Labor: Finden Sie jede Gefahr und w\xE4hlen Sie die sicherste
-      Ma\xDFnahme. Richtige Antwort = Gefahr behoben. Falsche Antwort = als Fehler
-      erfasst."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488425
@@ -243,16 +219,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4457488434
     m_Localized: "BSL-1-Labor \xB7 {0} versteckte Gefahren \xB7 7 Minuten"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488435
-    m_Localized: Ihr Controller
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4457488436
-    m_Localized: "Ziehen Sie den <b><color={0}>TRIGGER</color></b> zum Ausw\xE4hlen.\n<b>Stick
-      nach vorn</b> teleportieren   <b>links/rechts</b> drehen\n<b>A</b> best\xE4tigen  
-      <b>B</b> schlie\xDFen   <b>X</b> Steuerung"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488437
@@ -543,6 +509,201 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4461682700
     m_Localized: "Sp\xFClbecken"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469552152576
+    m_Localized: "<b>Trigger</b>  ausw\xE4hlen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232960
+    m_Localized: "<b>Griff</b>  pr\xFCfen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232961
+    m_Localized: "<b>Stick</b>  teleportieren \xB7 drehen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232962
+    m_Localized: absenden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232963
+    m_Localized: "schlie\xDFen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232964
+    m_Localized: Aufgaben
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232965
+    m_Localized: beenden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232966
+    m_Localized: "absenden \xB7 Labor starten"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232967
+    m_Localized: "EINF\xDCHRUNG  \xB7  5 SCHRITTE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232968
+    m_Localized: <b>Teleportieren</b> Sie sich auf den leuchtenden Ring
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232969
+    m_Localized: <b>Drehen</b> Sie sich auf der Stelle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232970
+    m_Localized: "<b>Pr\xFCfen</b> Sie die Kaffeetasse"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232971
+    m_Localized: "<b>Beantworten</b> Sie die \xDCbungsfrage"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232972
+    m_Localized: Aufgabenanzeige <b>aus- und einblenden</b>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232973
+    m_Localized: "Einen Stick nach vorn dr\xFCcken, den Bogen auf den Ring am Boden
+      richten und loslassen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232974
+    m_Localized: "Stick kurz nach links oder rechts: 45\xB0 drehen. Nach hinten ziehen:
+      umdrehen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232975
+    m_Localized: Zeigen Sie auf die Tasse auf dem Sockel und ziehen Sie den Trigger.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232976
+    m_Localized: "Antwort mit dem Trigger w\xE4hlen, dann A dr\xFCcken. Richtig:
+      gr\xFCner Haken. Falsch: rotes Kreuz."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232977
+    m_Localized: "Dr\xFCcken Sie X am linken Controller, um die Aufgabenanzeige auszublenden,
+      und erneut X, um sie zur\xFCckzuholen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232978
+    m_Localized: "Alles bereit. Dr\xFCcken Sie {0} oder A."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232979
+    m_Localized: "EINF\xDCHRUNG"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232980
+    m_Localized: '{0} / {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232981
+    m_Localized: Schritte erledigt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232982
+    m_Localized: "<color={0}>X ausblenden  \xB7  A Labor starten</color>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232983
+    m_Localized: "\xDCbung: Kaffeetasse im Labor"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232984
+    m_Localized: "\xDCbungsfrage  /  ohne Wertung"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232985
+    m_Localized: "Jemand hat eine Kaffeetasse auf dem Labortisch stehen lassen. Was
+      ist die sicherste Ma\xDFnahme?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232986
+    m_Localized: Den Kaffee schnell austrinken, damit er weg ist.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232987
+    m_Localized: "Aus dem Labor bringen: Essen und Trinken geh\xF6ren nie dorthin."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232988
+    m_Localized: An den Rand des Tisches schieben, weg von den Proben.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232989
+    m_Localized: 'Nicht sicher: Essen und Trinken sind im Labor nie erlaubt.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232990
+    m_Localized: Richtig! Im Labor ist die Gefahr damit behoben.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232991
+    m_Localized: "Gut gedreht! Stick zur\xFCckziehen dreht Sie ganz um."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232992
+    m_Localized: Das ist Ihre Aufgabenanzeige. Im Labor zeigt sie Zeit und Checkliste.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232993
+    m_Localized: "So l\xE4uft die Inspektion ab"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232994
+    m_Localized: <b>Finden Sie die Gefahren.</b> Sie sind im Labor versteckt. Sie
+      haben 7 Minuten.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232995
+    m_Localized: "<b>W\xE4hlen Sie die sicherste Ma\xDFnahme.</b> Trigger w\xE4hlt
+      eine Antwort, A sendet sie ab."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232996
+    m_Localized: "<b>Richtige Antwort:</b> gr\xFCner Haken. Die Gefahr gilt als behoben."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232997
+    m_Localized: "<b>Falsche Antwort:</b> rotes Kreuz, als Fehler erfasst. W\xE4hlen
+      Sie erneut."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232998
+    m_Localized: "<b>Eine gef\xE4hrliche erste Antwort</b> f\xFChrt zu einer Sicherheitspr\xFCfung."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640232999
+    m_Localized: "<b>Blauer Umriss:</b> bereits gepr\xFCft."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640233000
+    m_Localized: 'Punkte: 3 pro gefundener Gefahr, 7 pro richtiger erster Antwort.
+      Mit Y vorzeitig beenden.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640233001
+    m_Localized: 'VORSICHT
+
+      <size=60%>Chemikalien in Gebrauch</size>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640233002
+    m_Localized: Essen und Trinken im Labor verboten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640233003
+    m_Localized: Laborkittel und Schutzbrille tragen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10469640233004
+    m_Localized: Notfall-Augendusche
     m_Metadata:
       m_Items: []
   references:
