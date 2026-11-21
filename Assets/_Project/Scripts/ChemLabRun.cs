@@ -128,14 +128,17 @@ namespace ChemLab
             csv.AppendLine("session_id,hazards_found,hazards_missed,wrong_answers,completion_time,score,outcome");
             csv.AppendLine(string.Join(",", sessionId, found.Count, missed.Count, wrong, F(r.duration), r.score, r.outcome));
 
+            LastJsonPath = LastCsvPath = null;   // the end screen shows "exported" only for a path set after a successful write
             try
             {
                 var dir = Path.Combine(Application.persistentDataPath, "ChemLabSessions");
                 Directory.CreateDirectory(dir);
-                LastJsonPath = Path.Combine(dir, sessionId + ".json");
-                LastCsvPath = Path.Combine(dir, sessionId + ".csv");
-                File.WriteAllText(LastJsonPath, sb.ToString());
-                File.WriteAllText(LastCsvPath, csv.ToString());
+                var json = Path.Combine(dir, sessionId + ".json");
+                var csvPath = Path.Combine(dir, sessionId + ".csv");
+                File.WriteAllText(json, sb.ToString());
+                File.WriteAllText(csvPath, csv.ToString());
+                LastJsonPath = json;
+                LastCsvPath = csvPath;
                 r.savedPath = LastJsonPath;
                 Debug.Log("[ChemLab] Run exported: " + LastJsonPath + " and .csv\n" + sb);
             }
