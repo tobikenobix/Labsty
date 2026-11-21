@@ -27,6 +27,7 @@ namespace ChemLab
         public static readonly Color AccentBlue = Accent;
         public static readonly Color SelectFill = Rgb("#E3EBF5");
         public static readonly Color Ok = Rgb("#237F52");          // safety green: safe / go
+        public static readonly Color OkFill = Rgb("#E3F1E8");      // row fill behind a green check (the Ok twin of SelectFill)
         public static readonly Color Warn = Rgb("#F9A800");        // safety yellow: fields only, never text on the plate
         public static readonly Color Bad = Rgb("#A52019");         // safety red: prohibited / dangerous
         public static readonly Color Text = Rgb("#141414");
@@ -66,7 +67,7 @@ namespace ChemLab
             Mathf.Min(Mathf.Abs((p - C128).magnitude - 56f) - 7f, SegDist(p, C128 + new Vector2(-39.6f, 39.6f), C128 + new Vector2(39.6f, -39.6f)) - 6f)));
         public static Sprite Check => Get(ref check, () => Bake(64, 64, p => Mathf.Min(SegDist(p, new Vector2(16, 33), new Vector2(27, 21)), SegDist(p, new Vector2(27, 21), new Vector2(48, 44))) - 4f));
         public static Sprite CrossMark => Get(ref cross, () => Bake(64, 64, p => Mathf.Min(SegDist(p, new Vector2(19, 19), new Vector2(45, 45)), SegDist(p, new Vector2(19, 45), new Vector2(45, 19))) - 4.5f));
-        static Sprite Exclaim => Get(ref exclaim, () => Bake(32, 96, p => Mathf.Min(SegDist(p, new Vector2(16, 84), new Vector2(16, 38)) - 6f, (p - new Vector2(16, 14)).magnitude - 7f)));
+        public static Sprite Exclaim => Get(ref exclaim, () => Bake(32, 96, p => Mathf.Min(SegDist(p, new Vector2(16, 84), new Vector2(16, 38)) - 6f, (p - new Vector2(16, 14)).magnitude - 7f)));
         static Sprite TriFill => Get(ref triFill, () => Bake(128, 112, SdWarningTriangle));
         static Sprite TriBorder => Get(ref triBorder, () => Bake(128, 112, p => Mathf.Abs(SdWarningTriangle(p) + 5.5f) - 5.5f));
 
@@ -269,7 +270,7 @@ namespace ChemLab
         public enum Style { Primary, Secondary, Ghost, Danger }
 
         /// <summary>
-        /// Primary = green (go), Secondary = blue, Danger = red, Ghost = outlined plate. Optional `key` draws the
+        /// Primary = green (go), Secondary = blue, Danger = red, Ghost = plate with a soft rim. Optional `key` draws the
         /// controller button ("A", "B") as a sign rim at the left end.
         /// </summary>
         public static Button Button(Transform parent, string name, string label, Vector2 pos, Vector2 size, Style style, UnityAction onClick,
@@ -283,7 +284,7 @@ namespace ChemLab
             if (onClick != null) b.onClick.AddListener(onClick);
             b.onClick.AddListener(() => ChemLabAudio.Click());
             var textCol = style == Style.Ghost ? Text : Color.white;
-            if (style == Style.Ghost) Outline(img.transform, size, Text, 2f);
+            if (style == Style.Ghost) Outline(img.transform, size, Stroke, 2f);   // a soft rim: secondary actions stay quiet
             float inset = key != null ? 70f : 0f;
             if (key != null) KeyDisc(img.transform, key, new Vector2(-size.x / 2f + 24f + 20f, 0), 40f, textCol);
             Label(img.transform, "Label", label, new Vector2(inset / 2f, 0), size - new Vector2(40 + inset, 8), fontSize, textCol, align, FontStyles.Bold);

@@ -79,6 +79,9 @@ namespace ChemLab
             K.KeepInView(question.canvas.transform, 0.95f, -0.05f);
             K.KeepInView(msg.transform, 1.0f, 0f);
             if (toast.gameObject.activeSelf && (QuestionOpen || msg.gameObject.activeSelf)) toast.gameObject.SetActive(false);   // no toast over an open plate
+            // desktop keyboard card steps aside while a question plate is in front (one plate at a time)
+            bool card = tablet.gameObject.activeSelf && ChemLabControls.DesktopMode && !QuestionOpen;
+            if (card != help.gameObject.activeSelf) ShowHelpCard(card);
         }
 
         // ================= API used by ChemLabSession =================
@@ -108,6 +111,11 @@ namespace ChemLab
         public void HighlightOption(string key) => question.Highlight(key);
 
         public void ShowWrong(HazardRecord rec, string key, bool critical) => question.ShowWrong(key, critical, rec.data.wrongFeedback);
+
+        public void ShowCorrect(HazardRecord rec, string key) => question.ShowCorrect(key, rec.Explanation);
+
+        /// <summary>Close the plate after its correct-answer hold, unless B already closed it.</summary>
+        public void CloseResolved() { if (question.Resolved) question.Close(); }
 
         public void CloseQuestion() => question.Close();
 
@@ -155,14 +163,18 @@ namespace ChemLab
             tablet.gameObject.SetActive(on);
             labels.Visible = on;
             // no controllers to label in desktop mode: the keyboard card comes and goes with the panel instead
-            bool card = on && ChemLabControls.DesktopMode;
-            if (card && !help.gameObject.activeSelf)
+            ShowHelpCard(on && ChemLabControls.DesktopMode && !QuestionOpen);
+        }
+
+        void ShowHelpCard(bool on)
+        {
+            if (on && !help.gameObject.activeSelf)
             {
                 var body = help.transform.Find("Body")?.GetComponent<TextMeshProUGUI>();
                 if (body != null) body.text = ControlsText;
                 K.PlaceInFront(help.transform, 1.0f, 0f);
             }
-            help.gameObject.SetActive(card);
+            help.gameObject.SetActive(on);
         }
 
         public void UpdateHud()

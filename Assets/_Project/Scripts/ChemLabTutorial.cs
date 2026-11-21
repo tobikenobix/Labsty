@@ -130,7 +130,7 @@ namespace ChemLab
             cur++;
             if (cur == Turn) turnYaw = Yaw;
             ChemLabAudio.Button();
-            Toast(toastText, K.Ok);
+            if (toastText != null) Toast(toastText, K.Ok);
             RefreshStep();
         }
 
@@ -208,12 +208,14 @@ namespace ChemLab
             if (sel == q.correct)
             {
                 // the spill step is about seeing a dangerous answer, so the right one waits until that has happened
-                if (openStep == Spill && !sawDanger) { sel = null; practice.Highlight(null); practice.ShowNote(L10n.T("tut.spillFirst")); return; }   // on the plate, not a toast over it
+                // said on the plate, not in a toast that would land on it
+                if (openStep == Spill && !sawDanger) { sel = null; practice.Highlight(null); practice.ShowNote(L10n.T("tut.spillFirst")); return; }
                 ChemLabAudio.Correct();
-                practice.Close();
+                practice.ShowCorrect(sel, L10n.T("tut.toastCorrect"));
                 open.Fix();
                 open = null;
-                Complete(openStep, L10n.T("tut.toastCorrect"));
+                sel = null;
+                StartCoroutine(CompleteAfterHold(openStep));
             }
             else
             {
@@ -223,6 +225,14 @@ namespace ChemLab
                 practice.ShowWrong(sel, opt.critical, L10n.T(openStep == Acid ? "tut.acidWrong" : "tut.spillWrong"));
                 sel = null;
             }
+        }
+
+        /// <summary>The plate holds its check first; the step's toast-free completion and card move wait until it is gone.</summary>
+        IEnumerator CompleteAfterHold(int step)
+        {
+            yield return new WaitForSeconds(ChemLabQuestionPanel.ResolvedHold);
+            if (practice.Resolved) practice.Close();
+            Complete(step, null);   // the plate already said it was right
         }
 
         void ClosePractice()

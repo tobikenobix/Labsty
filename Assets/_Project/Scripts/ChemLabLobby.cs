@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -126,8 +125,9 @@ namespace ChemLab
         {
             void Paint(Button b, bool on)
             {
-                K.SetButtonColor(b, on ? K.Accent : K.SurfaceHi);
+                K.SetButtonColor(b, on ? K.Accent : K.Bg);
                 K.ButtonLabel(b).color = on ? Color.white : K.Text;
+                b.transform.Find("Outline").gameObject.SetActive(!on);
             }
             for (int i = 0; i < 4; i++) Paint(langBtns[i], Langs[i] == ChemLabRun.Language);
             for (int i = 0; i < 2; i++) Paint(handBtns[i], (i == 1) == ChemLabRun.LeftHanded);
@@ -139,7 +139,7 @@ namespace ChemLab
         void BuildMain()
         {
             main = K.Panel(transform, "Panel_Lobby", new Vector2(1100, 600), MainScale);
-            K.Label(main.transform, "Kicker", L10n.T("lobby.kicker"), new Vector2(0, 235), new Vector2(980, 40), 24, K.Accent, TextAlignmentOptions.Left, FontStyles.Bold);
+            K.FitOneLine(K.Label(main.transform, "Credit", L10n.T("lobby.kicker"), new Vector2(0, 235), new Vector2(980, 40), 24, K.TextDim, TextAlignmentOptions.Left), 20);
             K.Label(main.transform, "Title", L10n.T("lobby.title"), new Vector2(0, 175), new Vector2(980, 80), 62, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
             sub = K.Label(main.transform, "Sub", "", new Vector2(0, 118), new Vector2(980, 40), 28, K.TextDim, TextAlignmentOptions.Left);
 
@@ -163,7 +163,7 @@ namespace ChemLab
             K.FitOneLine(K.ButtonLabel(choose), 20);
 
             K.Img(main.transform, "Rule", new Vector2(0, -68), new Vector2(980, 2), K.Rule).raycastTarget = false;
-            var next = K.Label(main.transform, "Next", L10n.T("lobby.next"), new Vector2(0, -120), new Vector2(980, 76), 28, K.Accent, TextAlignmentOptions.MidlineLeft);
+            var next = K.Label(main.transform, "Next", L10n.T("lobby.next"), new Vector2(0, -120), new Vector2(980, 76), 28, K.Text, TextAlignmentOptions.MidlineLeft);
             next.enableAutoSizing = true; next.fontSizeMin = 22; next.fontSizeMax = 28;
             K.Button(main.transform, "StartLab", L10n.T("lobby.start"), new Vector2(0, -225), new Vector2(980, 84), K.Style.Primary, StartLab, 36);
 
@@ -251,8 +251,8 @@ namespace ChemLab
                 string d = ((i + 1) % 10).ToString();   // 1 2 3 4 5 / 6 7 8 9 0
                 K.Button(t, "Digit_" + d, d, new Vector2(-392 + (i % 5) * 196, 15 - (i / 5) * 128), new Vector2(180, 112), K.Style.Ghost, () => TypeDigit(d), 52);
             }
-            K.Button(t, "Delete", L10n.T("lobby.idDelete"), new Vector2(-245, -245), new Vector2(490, 84), K.Style.Ghost, DeleteDigit, 30);
-            K.Button(t, "Close", L10n.T("common.close"), new Vector2(245, -245), new Vector2(490, 84), K.Style.Ghost, CloseIdPad, 30, key: "B");
+            K.Button(t, "Delete", L10n.T("lobby.idDelete"), new Vector2(-250, -245), new Vector2(480, 84), K.Style.Ghost, DeleteDigit, 30);
+            K.Button(t, "Close", L10n.T("common.close"), new Vector2(250, -245), new Vector2(480, 84), K.Style.Ghost, CloseIdPad, 30, key: "B");
             idGo = K.Button(t, "Confirm", L10n.T("lobby.idConfirm"), new Vector2(0, -375), new Vector2(980, 84), K.Style.Primary, StartLab, 36, key: "A");
             idPad.gameObject.SetActive(false);
         }
@@ -310,7 +310,7 @@ namespace ChemLab
         {
             if (!ChemLabRun.DisabledHazards.Remove(id))
             {
-                if (allHazards.Count(h => !ChemLabRun.DisabledHazards.Contains(h.id)) <= 1) { perRunCaption.text = $"<color={K.Hex(K.Bad)}>{L10n.T("hz.lastOn")}</color>"; return; }   // said on the panel, not in a toast over it
+                if (allHazards.Count(h => !ChemLabRun.DisabledHazards.Contains(h.id)) <= 1) { perRunCaption.text = $"<color={K.Hex(K.Bad)}><b>{L10n.T("hz.lastOn")}</b></color>"; return; }
                 ChemLabRun.DisabledHazards.Add(id);
             }
             ChemLabRun.SaveHazardSettings();
@@ -390,7 +390,7 @@ namespace ChemLab
             K.KeyDisc(Row(1, "tch.answer"), "A", icon, 66f, K.Accent);
             K.SignDisc(Row(2, "tch.right"), "Icon", icon, 70f, K.Ok, check: true);
             K.SignDisc(Row(3, "tch.wrong"), "Icon", icon, 70f, K.Bad, check: false, cross: true);
-            K.Chip(Row(4, "tch.critical"), "Icon", L10n.T("q.dangerous"), icon + new Vector2(-2, 0), new Vector2(128, 44), K.Bad, Color.white);   // ends just left of the text column (-240)
+            K.Chip(Row(4, "tch.critical"), "Icon", L10n.T("q.dangerous"), icon + new Vector2(2, 0), new Vector2(100, 40), K.Bad, Color.white);   // -353..-253: inside the plate margin, left of the text column (-240)
             var o = Row(5, "tch.outline");
             var sample = K.Img(o, "Icon", icon, new Vector2(64, 64), K.SurfaceHi, K.Rounded);
             sample.pixelsPerUnitMultiplier = 2f;
