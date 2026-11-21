@@ -49,6 +49,7 @@ namespace ChemLab
             allHazards = LabConfig.Load().hazards;
             BuildMain();
             BuildPosters();
+            BuildWallLogo();
             BuildHazards();
             BuildIdPad();
             var labels = new List<ChemLabControllerLabels.Item>
@@ -165,8 +166,13 @@ namespace ChemLab
         void BuildMain()
         {
             main = K.Panel(transform, "Panel_Lobby", new Vector2(1100, 600), MainScale);
-            K.FitOneLine(K.Label(main.transform, "Credit", L10n.T("lobby.kicker"), new Vector2(0, 235), new Vector2(980, 40), 24, K.TextDim, TextAlignmentOptions.Left), 20);
-            K.Label(main.transform, "Title", L10n.T("lobby.title"), new Vector2(0, 175), new Vector2(980, 80), 62, K.Text, TextAlignmentOptions.Left, FontStyles.Bold);
+            // the Labsty logo heads the plate in place of a title (72 high, left edge on the text column)
+            var logo = Resources.Load<Sprite>("ChemLab/LabstyLogo");
+            if (logo != null)
+            {
+                float w = 72f * logo.rect.width / logo.rect.height;
+                K.Img(main.transform, "Logo", new Vector2(-490 + w / 2f, 194), new Vector2(w, 72), Color.white, logo).raycastTarget = false;
+            }
             sub = K.Label(main.transform, "Sub", "", new Vector2(0, 118), new Vector2(980, 40), 28, K.TextDim, TextAlignmentOptions.Left);
 
             K.Label(main.transform, "LangTitle", L10n.T("lobby.language"), new Vector2(0, 50), new Vector2(980, 34), 22, K.TextDim, TextAlignmentOptions.Left, FontStyles.Bold);
@@ -423,6 +429,20 @@ namespace ChemLab
                 cap.enableAutoSizing = true; cap.fontSizeMin = 32; cap.fontSizeMax = 52;
                 p.transform.SetPositionAndRotation(posterAnchors[i].position, posterAnchors[i].rotation);
             }
+        }
+
+        /// <summary>The Labsty logo, 1.6 m wide, on the north wall above the light wall, in place of the "LAB SAFETY TRAINING" lettering.</summary>
+        static void BuildWallLogo()
+        {
+            var brand = GameObject.Find("Environment/Brand");
+            var logo = Resources.Load<Sprite>("ChemLab/LabstyLogo");
+            if (brand == null || logo == null) return;
+            brand.SetActive(false);
+            var sr = new GameObject("WallLogo").AddComponent<SpriteRenderer>();
+            sr.sprite = logo;
+            var p = brand.transform.position;
+            sr.transform.SetPositionAndRotation(new Vector3(p.x, 2.8f, p.z), brand.transform.rotation);   // between the light wall (top 2.6 m) and the ceiling (3.0 m)
+            sr.transform.localScale = Vector3.one * (1.6f / logo.bounds.size.x);
         }
 
         /// <summary>A stylised Quest controller drawn with UI shapes, trigger highlighted.</summary>
