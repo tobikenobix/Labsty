@@ -45,8 +45,9 @@ namespace ChemLab
             else { BuildReportCard(); BuildLeaderboard(); BuildExplanations(); }
         }
 
-        void OnEnable() { ChemLabControls.Confirm += PlayAgain; ChemLabControls.Back += HideExplanations; ChemLabControls.BlockInspect = null; }
-        void OnDisable() { ChemLabControls.Confirm -= PlayAgain; ChemLabControls.Back -= HideExplanations; }
+        // No A binding here: A submits answers in the lab, so a reflex press would throw away the report. Ray-click the button.
+        void OnEnable() { ChemLabControls.Back += HideExplanations; ChemLabControls.BlockInspect = null; }
+        void OnDisable() { ChemLabControls.Back -= HideExplanations; }
 
         void PlayAgain() => Load(ChemLabRun.LabScene);
         void Lobby() => Load(ChemLabRun.LobbyScene);
