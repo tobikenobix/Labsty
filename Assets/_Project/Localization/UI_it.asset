@@ -727,6 +727,26 @@ MonoBehaviour:
     m_Localized: POSIZIONARSI QUI
     m_Metadata:
       m_Items: []
+  - m_Id: 174458764517376
+    m_Localized: ID STUDENTE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458898735104
+    m_Localized: Inserisca il suo ID studente
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929408
+    m_Localized: Solo cifre. Serve al docente per trovare i suoi risultati.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929409
+    m_Localized: Cancella
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929410
+    m_Localized: Conferma e inizia
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

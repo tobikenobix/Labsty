@@ -687,6 +687,26 @@ MonoBehaviour:
     m_Key: sign.walkHere
     m_Metadata:
       m_Items: []
+  - m_Id: 174458764517376
+    m_Key: lobby.idKicker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458898735104
+    m_Key: lobby.idTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929408
+    m_Key: lobby.idHint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929409
+    m_Key: lobby.idDelete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929410
+    m_Key: lobby.idConfirm
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

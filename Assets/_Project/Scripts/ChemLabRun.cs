@@ -16,8 +16,18 @@ namespace ChemLab
         public const string EndScene = "ChemLab_End";
 
         public static string Language => L10n.Code;   // the selected locale is the single source
-        public static string StudentId = "student_001";
-        public static int Attempt = 0;
+        public static string StudentId = "";   // typed on the lobby keypad; "no_id" when the lab scene is started directly
+        public static int Attempt;             // runs by this StudentId on this headset, this one included
+
+        /// <summary>Counts a new run for the current student (kept in PlayerPrefs, so it survives app restarts).</summary>
+        public static void BeginAttempt()
+        {
+            if (string.IsNullOrEmpty(StudentId)) StudentId = "no_id";
+            string key = "chemlab.attempts." + StudentId;
+            Attempt = PlayerPrefs.GetInt(key, 0) + 1;
+            PlayerPrefs.SetInt(key, Attempt);
+            PlayerPrefs.Save();
+        }
 
         // filled by the lab when the run ends, read by the end screen
         public static ChemLabResult LastResult;

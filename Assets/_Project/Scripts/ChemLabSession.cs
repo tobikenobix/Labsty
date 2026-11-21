@@ -65,7 +65,7 @@ namespace ChemLab
             foreach (var i in FindObjectsByType<ChemLabInspectable>(FindObjectsSortMode.None))
                 if (i.kind == ChemLabInspectable.Kind.Hazard && active.All(h => h.id != i.hazardId)) i.FixInstant();
             sessionId = "session_" + DateTime.Now.ToString("yyyyMMdd_HHmmss");
-            ChemLabRun.Attempt++;
+            ChemLabRun.BeginAttempt();
         }
 
         void OnEnable()

@@ -723,6 +723,26 @@ MonoBehaviour:
     m_Localized: HIERHER GEHEN
     m_Metadata:
       m_Items: []
+  - m_Id: 174458764517376
+    m_Localized: STUDIERENDEN-ID
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458898735104
+    m_Localized: Studierenden-ID eingeben
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929408
+    m_Localized: Nur Ziffern. Damit findet Ihre Lehrperson Ihre Ergebnisse.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929409
+    m_Localized: "L\xF6schen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929410
+    m_Localized: "Best\xE4tigen und starten"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

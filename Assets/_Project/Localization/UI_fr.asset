@@ -723,6 +723,26 @@ MonoBehaviour:
     m_Localized: PLACEZ-VOUS ICI
     m_Metadata:
       m_Items: []
+  - m_Id: 174458764517376
+    m_Localized: "IDENTIFIANT \xC9TUDIANT"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458898735104
+    m_Localized: Saisissez votre identifiant
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929408
+    m_Localized: "Chiffres uniquement. Il permet de retrouver vos r\xE9sultats."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929409
+    m_Localized: Effacer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929410
+    m_Localized: Confirmer et commencer
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

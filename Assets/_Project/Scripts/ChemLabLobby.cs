@@ -15,7 +15,7 @@ namespace ChemLab
     /// Start Lab), a teaching panel on how the inspection works, safety posters, and the task panel on the left
     /// controller with button labels on both controllers, as in the lab. Tutorial: teleport onto the ring, turn,
     /// inspect the coffee cup, answer its practice question (check / cross marks as in the lab), hide and show the
-    /// task panel with X. Steps can be done in any order; Start Lab works at any time.
+    /// task panel with X. Steps can be done in any order; Start Lab works at any time and first asks for the student ID on a keypad.
     /// </summary>
     public class ChemLabLobby : MonoBehaviour
     {
@@ -26,15 +26,16 @@ namespace ChemLab
         [Tooltip("Wall posters, in order: chemicals warning, no food or drink, lab coat and glasses, eyewash.")]
         public Transform[] posterAnchors;
 
-        Canvas main, teaching, toast, hazards, tablet;
-        TextMeshProUGUI toastText, sub, perRunCaption, hint, tabCount, tabStep;
+        Canvas main, teaching, toast, hazards, tablet, idPad;
+        TextMeshProUGUI toastText, sub, perRunCaption, hint, tabCount, tabStep, idText;
         K.Bar tabBar;
         HazardData[] allHazards;
         readonly List<(string id, RectTransform sign, TextMeshProUGUI title, TextMeshProUGUI off, Image critical, bool mandatory)> hzRows =
             new List<(string, RectTransform, TextMeshProUGUI, TextMeshProUGUI, Image, bool)>();
         readonly Button[] countBtns = new Button[10];
         bool HazardsOpen => hazards != null && hazards.gameObject.activeSelf;
-        Button startBtn;
+        bool IdOpen => idPad != null && idPad.gameObject.activeSelf;
+        Button startBtn, idGo;
         readonly Button[] langBtns = new Button[4];
         static readonly string[] Langs = { "DE", "FR", "IT", "EN" };
         Coroutine toastCo;
@@ -57,6 +58,7 @@ namespace ChemLab
 
         void Awake()
         {
+            ChemLabRun.StudentId = "";   // every lobby visit asks again, so the next student never inherits an ID
             allHazards = LabConfig.Load().hazards;
             BuildMain();
             BuildTeaching();
@@ -64,6 +66,7 @@ namespace ChemLab
             BuildToast();
             BuildHazards();
             BuildTablet();
+            BuildIdPad();
             practice = new ChemLabQuestionPanel(transform, SelectPractice, SubmitPractice, ClosePractice);
             practiceQ = new QuestionData
             {
@@ -212,12 +215,16 @@ namespace ChemLab
         void Back()
         {
             if (practice.IsOpen) ClosePractice();
+            else if (IdOpen) CloseIdPad();
             else CloseHazards();
         }
 
         void StartLab()
         {
             if (HazardsOpen || practice.IsOpen) return;   // A doesn't start the lab from behind another panel
+            if (!IdOpen) { OpenIdPad(); return; }   // Start Lab asks for the student ID first
+            if (idDraft.Length == 0) return;
+            ChemLabRun.StudentId = idDraft;
             if (Application.CanStreamedLevelBeLoaded(ChemLabRun.LabScene)) SceneManager.LoadScene(ChemLabRun.LabScene);
             else Debug.LogWarning("[ChemLab] Lab scene not in Build Settings. Run Chemistry Lab > Build All Scenes.");
         }
@@ -361,6 +368,76 @@ namespace ChemLab
             K.Button(t, "SwitchAllOn", L10n.T("hz.allOn"), new Vector2(-335, -458), new Vector2(330, 72), K.Style.Ghost, SwitchAllHazardsOn);
             K.Button(t, "Close", L10n.T("common.close"), new Vector2(335, -458), new Vector2(330, 72), K.Style.Ghost, CloseHazards, key: "B");
             hazards.gameObject.SetActive(false);
+        }
+
+        // ================= student id keypad =================
+
+        const int MaxIdDigits = 12;
+        string idDraft = "";
+
+        /// <summary>
+        /// "Enter your student ID" plate (same size as the start panel, which it replaces while open): a read-out,
+        /// digits 1-0 in two rows, Delete, Close (B) and Confirm and start (A). Opened by Start Lab.
+        /// </summary>
+        void BuildIdPad()
+        {
+            var size = new Vector2(1100, 900);
+            idPad = K.Panel(transform, "Panel_StudentId", size);
+            var t = idPad.transform;
+            K.Label(t, "Kicker", L10n.T("lobby.idKicker"), new Vector2(0, 385), new Vector2(980, 40), 24, K.Accent, TextAlignmentOptions.Left, FontStyles.Bold);
+            K.FitOneLine(K.Label(t, "Title", L10n.T("lobby.idTitle"), new Vector2(0, 325), new Vector2(980, 80), 56, K.Text, TextAlignmentOptions.Left, FontStyles.Bold), 40);
+            K.FitOneLine(K.Label(t, "Hint", L10n.T("lobby.idHint"), new Vector2(0, 258), new Vector2(980, 40), 28, K.TextDim, TextAlignmentOptions.Left), 22);
+
+            var box = K.Img(t, "Display", new Vector2(0, 160), new Vector2(980, 110), K.Bg, K.Rounded);
+            box.raycastTarget = false;
+            K.Outline(box.transform, new Vector2(980, 110), K.Accent, 1.5f);
+            idText = K.Label(box.transform, "Digits", "", Vector2.zero, new Vector2(920, 100), 64, K.Text, TextAlignmentOptions.MidlineLeft, FontStyles.Bold);
+            idText.characterSpacing = 12f;
+
+            for (int i = 0; i < 10; i++)
+            {
+                string d = ((i + 1) % 10).ToString();   // 1 2 3 4 5 / 6 7 8 9 0
+                K.Button(t, "Digit_" + d, d, new Vector2(-392 + (i % 5) * 196, 15 - (i / 5) * 128), new Vector2(180, 112), K.Style.Ghost, () => TypeDigit(d), 52);
+            }
+            K.Button(t, "Delete", L10n.T("lobby.idDelete"), new Vector2(-245, -245), new Vector2(490, 84), K.Style.Ghost, DeleteDigit, 30);
+            K.Button(t, "Close", L10n.T("common.close"), new Vector2(245, -245), new Vector2(490, 84), K.Style.Ghost, CloseIdPad, 30, key: "B");
+            idGo = K.Button(t, "Confirm", L10n.T("lobby.idConfirm"), new Vector2(0, -375), new Vector2(980, 84), K.Style.Primary, StartLab, 36, key: "A");
+            idPad.gameObject.SetActive(false);
+        }
+
+        void OpenIdPad()
+        {
+            idDraft = "";
+            RefreshId();
+            idPad.transform.SetPositionAndRotation(main.transform.position, main.transform.rotation);
+            main.gameObject.SetActive(false);
+            idPad.gameObject.SetActive(true);
+        }
+
+        void CloseIdPad()
+        {
+            if (!IdOpen) return;
+            idPad.gameObject.SetActive(false);
+            main.gameObject.SetActive(true);
+        }
+
+        void TypeDigit(string d)
+        {
+            if (idDraft.Length < MaxIdDigits) idDraft += d;
+            RefreshId();
+        }
+
+        void DeleteDigit()
+        {
+            if (idDraft.Length > 0) idDraft = idDraft.Substring(0, idDraft.Length - 1);
+            RefreshId();
+        }
+
+        void RefreshId()
+        {
+            idText.text = idDraft.Length > 0 ? idDraft + $"<color={K.Hex(K.Accent)}>_</color>" : $"<color={K.Hex(K.TextDim)}>_</color>";
+            idGo.interactable = idDraft.Length > 0;
+            K.SetButtonColor(idGo, idDraft.Length > 0 ? K.Ok : K.SurfaceHi);
         }
 
         void OpenHazards()

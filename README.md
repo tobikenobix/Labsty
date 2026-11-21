@@ -74,7 +74,7 @@ JSON, one object per run:
 
 | Field | Meaning |
 |---|---|
-| `sessionId`, `studentId`, `attempt` | Run identity. `studentId` is currently always `student_001`, `attempt` restarts at 0 with the app |
+| `sessionId`, `studentId`, `attempt` | Run identity. `studentId` is the number the student typed on the lobby keypad (`no_id` if the lab scene was started directly); `attempt` counts that ID's runs on this headset, starting at 1 |
 | `language`, `mode` | `EN`/`DE`/`FR`/`IT`; `mode` is always `assessment` |
 | `completion_time`, `timed_out` | Seconds from lab start to the end; true when the timer ran out |
 | `hazardsInRun`, `hazards_found`, `hazards_missed` | How many hazards were in this run, and the ids found and missed |
