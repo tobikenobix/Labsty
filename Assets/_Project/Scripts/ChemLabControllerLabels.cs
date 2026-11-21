@@ -18,7 +18,12 @@ namespace ChemLab
         {
             public readonly bool left; public readonly string part, key, text;
             /// <param name="key">Button letter drawn in a sign rim ("A"), or null for named controls (text says it).</param>
-            public Item(bool left, string part, string key, string text) { this.left = left; this.part = part; this.key = key; this.text = text; }
+            /// <param name="left">For the right-handed layout; left-handed mode puts the label on the other controller
+            /// (KeyDisc swaps the letter).</param>
+            public Item(bool left, string part, string key, string text)
+            {
+                this.left = left != ChemLabRun.LeftHanded; this.part = part; this.key = key; this.text = text;
+            }
         }
 
         class Tag { public Transform ctrl, plate; public Renderer part; public LineRenderer line; public float side, dy; }

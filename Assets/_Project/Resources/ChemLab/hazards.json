@@ -29,6 +29,7 @@
           "id": "Q1",
           "question": "What should you do about the cart blocking the emergency exit?",
           "correct": "B",
+          "explanation": "Moving the cart just enough to pass, or putting a sign on it, still leaves the escape route narrowed. Only storage leaves the exit fully usable in an evacuation.",
           "options": [
             {
               "key": "A",
@@ -56,6 +57,7 @@
           "id": "Q2",
           "question": "How can you confirm the emergency exit is safe to use?",
           "correct": "D",
+          "explanation": "An exit is only usable if the whole path to safety is clear, not just the door itself.",
           "options": [
             {
               "key": "A",
@@ -83,6 +85,7 @@
           "id": "Q3",
           "question": "The team needs the cart again in ten minutes. What should you do?",
           "correct": "A",
+          "explanation": "An emergency can happen in those ten minutes too, so the cart never waits in front of the exit.",
           "options": [
             {
               "key": "A",
@@ -127,6 +130,7 @@
           "id": "Q1",
           "question": "You notice a coffee cup beside active lab equipment. What should you do?",
           "correct": "C",
+          "explanation": "Drinks near lab equipment can pick up chemical residue and be swallowed. Drink only outside the lab.",
           "options": [
             {
               "key": "A",
@@ -154,6 +158,7 @@
           "id": "Q2",
           "question": "A colleague wants coffee during a long experiment. What should you suggest?",
           "correct": "A",
+          "explanation": "A spill-proof cup or a closed lid is still a drink in the lab. A short break outside the lab is the safe way to drink.",
           "options": [
             {
               "key": "A",
@@ -181,6 +186,7 @@
           "id": "Q3",
           "question": "Why is a closed coffee cup still a safety concern in the laboratory?",
           "correct": "D",
+          "explanation": "Hands and cup surfaces pick up residue in the lab, so even a closed cup carries it to your mouth.",
           "options": [
             {
               "key": "A",
@@ -225,6 +231,7 @@
           "id": "Q1",
           "question": "Several cardboard boxes are leaning dangerously. What should you do?",
           "correct": "A",
+          "explanation": "Taping or straightening the stack still leaves heavy boxes at height. Lower, stable storage removes the fall hazard.",
           "options": [
             {
               "key": "A",
@@ -252,6 +259,7 @@
           "id": "Q2",
           "question": "What is the main danger of the unstable boxes?",
           "correct": "C",
+          "explanation": "A falling stack can injure people in the walkway and block it.",
           "options": [
             {
               "key": "A",
@@ -279,6 +287,7 @@
           "id": "Q3",
           "question": "How should deliveries be stored to prevent this problem?",
           "correct": "B",
+          "explanation": "Shelving rated for the load, used within its height limits, keeps stacks from becoming unstable in the first place.",
           "options": [
             {
               "key": "A",
@@ -323,6 +332,7 @@
           "id": "Q1",
           "question": "Where should the lab coat be stored after use?",
           "correct": "D",
+          "explanation": "A designated hook keeps possible contamination away from seats and clean areas.",
           "options": [
             {
               "key": "A",
@@ -350,6 +360,7 @@
           "id": "Q2",
           "question": "What should you do if the lab coat may be contaminated?",
           "correct": "B",
+          "explanation": "Shaking it out or wearing it again spreads the contamination. A contaminated coat goes through the lab's collection or decontamination procedure.",
           "options": [
             {
               "key": "A",
@@ -377,6 +388,7 @@
           "id": "Q3",
           "question": "Why should lab coats not be left on shared chairs?",
           "correct": "C",
+          "explanation": "Chairs are shared and touched with bare skin, so residue on a coat passes to other people.",
           "options": [
             {
               "key": "A",
@@ -421,6 +433,7 @@
           "id": "Q1",
           "question": "Used lab gloves are in the domestic waste bin. What should you do?",
           "correct": "B",
+          "explanation": "Gloves used in the lab may carry chemical residue, so they belong in the lab waste stream.",
           "options": [
             {
               "key": "A",
@@ -448,6 +461,7 @@
           "id": "Q2",
           "question": "You are unsure whether an item requires special waste handling. What should you do?",
           "correct": "D",
+          "explanation": "Guessing can put hazardous waste in the wrong bin. Check the waste instructions or ask trained staff.",
           "options": [
             {
               "key": "A",
@@ -475,6 +489,7 @@
           "id": "Q3",
           "question": "Which item can normally go into domestic waste?",
           "correct": "A",
+          "explanation": "Only items that never entered lab work, like a clean wrapper from the break room, count as domestic waste.",
           "options": [
             {
               "key": "A",
@@ -519,6 +534,7 @@
           "id": "Q1",
           "question": "You find a bottle containing an unknown clear liquid. What should you do?",
           "correct": "C",
+          "explanation": "An unknown liquid could be anything. Keep it closed and out of use so no one smells, uses or pours it away.",
           "options": [
             {
               "key": "A",
@@ -546,6 +562,7 @@
           "id": "Q2",
           "question": "A colleague says the liquid must be water because it is clear. What should you do?",
           "correct": "B",
+          "explanation": "Many hazardous liquids are clear and odourless. Looks, or a test in the sink, never identify a chemical.",
           "options": [
             {
               "key": "A",
@@ -573,6 +590,7 @@
           "id": "Q3",
           "question": "What must happen before this bottle returns to normal chemical storage?",
           "correct": "D",
+          "explanation": "A bottle goes back into storage only once it is identified and correctly labelled.",
           "options": [
             {
               "key": "A",
@@ -617,6 +635,7 @@
           "id": "Q1",
           "question": "You see safety glasses and headphones beside an active workstation. What should you do?",
           "correct": "A",
+          "explanation": "Safety eyewear protects against splashes, and without headphones you can hear alarms and colleagues.",
           "options": [
             {
               "key": "A",
@@ -644,6 +663,7 @@
           "id": "Q2",
           "question": "You already wear prescription glasses. What is the appropriate eye protection?",
           "correct": "C",
+          "explanation": "Ordinary glasses, however thick, are not rated for impact or splashes. Use prescription safety glasses or over-glasses.",
           "options": [
             {
               "key": "A",
@@ -671,6 +691,7 @@
           "id": "Q3",
           "question": "Why should headphones be removed during active laboratory work?",
           "correct": "B",
+          "explanation": "Headphones can mask fire alarms and warnings shouted by colleagues.",
           "options": [
             {
               "key": "A",
@@ -715,6 +736,7 @@
           "id": "Q1",
           "question": "You discover a power cable with exposed wires. What should you do?",
           "correct": "D",
+          "explanation": "Exposed wires can cause shocks or fire. Isolate the power and tag the device so no one uses it until it is repaired.",
           "options": [
             {
               "key": "A",
@@ -742,6 +764,7 @@
           "id": "Q2",
           "question": "Several high-power devices are connected to one adapter. What should you do?",
           "correct": "A",
+          "explanation": "Adding adapters or switching devices on one by one does not fix an overloaded circuit. Qualified staff can check the load.",
           "options": [
             {
               "key": "A",
@@ -770,6 +793,7 @@
           "id": "Q3",
           "question": "When can equipment with a previously damaged cable be used again?",
           "correct": "C",
+          "explanation": "Only a repair and approval by qualified personnel make the equipment safe to use again.",
           "options": [
             {
               "key": "A",
@@ -814,6 +838,7 @@
           "id": "Q1",
           "question": "Bottles are blocking access to the first-aid cabinet. What should you do?",
           "correct": "B",
+          "explanation": "In an emergency every second counts, so the first-aid cabinet must be reachable immediately.",
           "options": [
             {
               "key": "A",
@@ -841,6 +866,7 @@
           "id": "Q2",
           "question": "You notice that several essential first-aid supplies are missing. What should you do?",
           "correct": "D",
+          "explanation": "Report missing supplies so they are restocked before someone needs them.",
           "options": [
             {
               "key": "A",
@@ -868,6 +894,7 @@
           "id": "Q3",
           "question": "What should be checked during a routine first-aid inspection?",
           "correct": "A",
+          "explanation": "A routine check covers access, completeness, and whether supplies are in date and usable.",
           "options": [
             {
               "key": "A",
@@ -912,6 +939,7 @@
           "id": "Q1",
           "question": "A corrosive acid bottle is stored on a high shelf. Where should it be kept?",
           "correct": "C",
+          "explanation": "Stored low, a corrosive cannot fall from height, and secondary containment holds any leak.",
           "options": [
             {
               "key": "A",
@@ -939,6 +967,7 @@
           "id": "Q2",
           "question": "How should corrosive acids and incompatible chemicals be organized?",
           "correct": "A",
+          "explanation": "Incompatible chemicals stored together can react if one leaks. Separate them by compatibility, not by bottle size or colour.",
           "options": [
             {
               "key": "A",
@@ -966,6 +995,7 @@
           "id": "Q3",
           "question": "Why is storing HCl above head height beside incompatible chemicals dangerous?",
           "correct": "B",
+          "explanation": "A bottle falling from above head height can splash acid onto the face and eyes, and react with what it lands on.",
           "options": [
             {
               "key": "A",

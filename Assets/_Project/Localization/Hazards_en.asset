@@ -1000,6 +1000,155 @@ MonoBehaviour:
     m_Localized: The arrangement may appear disorganized during safety inspections.
     m_Metadata:
       m_Items: []
+  - m_Id: 177914296393728
+    m_Localized: Moving the cart just enough to pass, or putting a sign on it, still
+      leaves the escape route narrowed. Only storage leaves the exit fully usable
+      in an evacuation.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914380279808
+    m_Localized: An exit is only usable if the whole path to safety is clear, not
+      just the door itself.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914380279809
+    m_Localized: An emergency can happen in those ten minutes too, so the cart never
+      waits in front of the exit.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914380279810
+    m_Localized: Drinks near lab equipment can pick up chemical residue and be swallowed.
+      Drink only outside the lab.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668416
+    m_Localized: A spill-proof cup or a closed lid is still a drink in the lab. A
+      short break outside the lab is the safe way to drink.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668417
+    m_Localized: Hands and cup surfaces pick up residue in the lab, so even a closed
+      cup carries it to your mouth.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668418
+    m_Localized: Taping or straightening the stack still leaves heavy boxes at height.
+      Lower, stable storage removes the fall hazard.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668419
+    m_Localized: A falling stack can injure people in the walkway and block it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668420
+    m_Localized: Shelving rated for the load, used within its height limits, keeps
+      stacks from becoming unstable in the first place.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668421
+    m_Localized: A designated hook keeps possible contamination away from seats and
+      clean areas.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668422
+    m_Localized: Shaking it out or wearing it again spreads the contamination. A
+      contaminated coat goes through the lab's collection or decontamination procedure.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668423
+    m_Localized: Chairs are shared and touched with bare skin, so residue on a coat
+      passes to other people.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668424
+    m_Localized: Gloves used in the lab may carry chemical residue, so they belong
+      in the lab waste stream.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668425
+    m_Localized: Guessing can put hazardous waste in the wrong bin. Check the waste
+      instructions or ask trained staff.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668426
+    m_Localized: Only items that never entered lab work, like a clean wrapper from
+      the break room, count as domestic waste.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668427
+    m_Localized: An unknown liquid could be anything. Keep it closed and out of use
+      so no one smells, uses or pours it away.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668428
+    m_Localized: Many hazardous liquids are clear and odourless. Looks, or a test
+      in the sink, never identify a chemical.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668429
+    m_Localized: A bottle goes back into storage only once it is identified and correctly
+      labelled.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668430
+    m_Localized: Safety eyewear protects against splashes, and without headphones
+      you can hear alarms and colleagues.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668431
+    m_Localized: Ordinary glasses, however thick, are not rated for impact or splashes.
+      Use prescription safety glasses or over-glasses.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668432
+    m_Localized: Headphones can mask fire alarms and warnings shouted by colleagues.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668433
+    m_Localized: Exposed wires can cause shocks or fire. Isolate the power and tag
+      the device so no one uses it until it is repaired.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668434
+    m_Localized: Adding adapters or switching devices on one by one does not fix
+      an overloaded circuit. Qualified staff can check the load.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668435
+    m_Localized: Only a repair and approval by qualified personnel make the equipment
+      safe to use again.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668436
+    m_Localized: In an emergency every second counts, so the first-aid cabinet must
+      be reachable immediately.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668437
+    m_Localized: Report missing supplies so they are restocked before someone needs
+      them.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668438
+    m_Localized: A routine check covers access, completeness, and whether supplies
+      are in date and usable.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668439
+    m_Localized: Stored low, a corrosive cannot fall from height, and secondary containment
+      holds any leak.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668440
+    m_Localized: Incompatible chemicals stored together can react if one leaks. Separate
+      them by compatibility, not by bottle size or colour.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668441
+    m_Localized: A bottle falling from above head height can splash acid onto the
+      face and eyes, and react with what it lands on.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

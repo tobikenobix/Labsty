@@ -201,8 +201,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488430
-    m_Localized: "Critique pour la s\xE9curit\xE9 : bonne r\xE9ponse obligatoire
-      pour r\xE9ussir."
+    m_Localized: "Critique : toujours pr\xE9sent, bonne r\xE9ponse obligatoire pour
+      r\xE9ussir."
     m_Metadata:
       m_Items: []
   - m_Id: 4457488431
@@ -345,7 +345,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488467
-    m_Localized: Rejouer  (A)
+    m_Localized: Rejouer
     m_Metadata:
       m_Items: []
   - m_Id: 4457488468
@@ -427,11 +427,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488486
-    m_Localized: "Classement de B\xE2le"
+    m_Localized: "Classement de d\xE9monstration"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488487
-    m_Localized: "Cette semaine \xB7 Inspection de s\xE9curit\xE9 du labo"
+    m_Localized: "Noms et scores fictifs, pas de vrais r\xE9sultats"
     m_Metadata:
       m_Items: []
   - m_Id: 4457488488
@@ -704,6 +704,80 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 10469640233004
     m_Localized: Douche oculaire d'urgence
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170661547859968
+    m_Localized: "Rien \xE0 signaler. {0} fausses alertes : d\xE9sormais, chacune
+      co\xFBte 1 point."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170661610774528
+    m_Localized: '{0} / {1} points (-{2} pour fausses alertes)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 171324625379328
+    m_Localized: "S\xC9LECTIONNEZ-MOI"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 171324663128064
+    m_Localized: PLACEZ-VOUS ICI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458764517376
+    m_Localized: "IDENTIFIANT \xC9TUDIANT"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458898735104
+    m_Localized: Saisissez votre identifiant
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929408
+    m_Localized: "Chiffres uniquement. Il permet de retrouver vos r\xE9sultats."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929409
+    m_Localized: Effacer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929410
+    m_Localized: Confirmer et commencer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657316245504
+    m_Localized: MAIN DOMINANTE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965760
+    m_Localized: Droite
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965761
+    m_Localized: Gauche
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965762
+    m_Localized: "Appuyez sur A (manette droite) pour masquer le panneau des t\xE2ches,
+      puis de nouveau sur A pour le r\xE9afficher."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335206719488
+    m_Localized: "D\xE9tails"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799872
+    m_Localized: "R\xE9sultat"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799873
+    m_Localized: "Conditions de r\xE9ussite et probl\xE8mes"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799874
+    m_Localized: "Pr\xE9c\xE9dent"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799875
+    m_Localized: Suivant
     m_Metadata:
       m_Items: []
   references:

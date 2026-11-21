@@ -1052,6 +1052,160 @@ MonoBehaviour:
       di sicurezza.
     m_Metadata:
       m_Items: []
+  - m_Id: 177914296393728
+    m_Localized: Spostare il carrello quanto basta per passare, o metterci un cartello,
+      lascia la via di fuga ristretta. Solo il deposito lascia l'uscita pienamente
+      utilizzabile durante un'evacuazione.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914380279808
+    m_Localized: "Un'uscita \xE8 utilizzabile solo se \xE8 libero tutto il percorso
+      verso la salvezza, non soltanto la porta."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914380279809
+    m_Localized: "Un'emergenza pu\xF2 verificarsi anche in quei dieci minuti, quindi
+      il carrello non resta mai davanti all'uscita."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914380279810
+    m_Localized: Le bevande vicino alle apparecchiature possono raccogliere residui
+      chimici che poi vengono ingeriti. Beva solo fuori dal laboratorio.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668416
+    m_Localized: "Una tazza antigoccia o un coperchio chiuso restano pur sempre una
+      bevanda in laboratorio. Il modo sicuro di bere \xE8 una breve pausa fuori dal
+      laboratorio."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668417
+    m_Localized: Mani e superficie della tazza raccolgono residui in laboratorio,
+      quindi anche una tazza chiusa li porta alla bocca.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668418
+    m_Localized: Fissare con nastro o raddrizzare la pila lascia comunque scatole
+      pesanti in alto. Solo una sistemazione bassa e stabile elimina il rischio di
+      caduta.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668419
+    m_Localized: "Una pila che cade pu\xF2 ferire chi passa e bloccare il passaggio."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668420
+    m_Localized: Scaffali adatti al carico, usati entro i limiti di altezza, impediscono
+      fin dall'inizio che le pile diventino instabili.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668421
+    m_Localized: Un gancio dedicato tiene l'eventuale contaminazione lontana dai
+      sedili e dalle zone pulite.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668422
+    m_Localized: Scuoterlo o indossarlo di nuovo diffonde la contaminazione. Un camice
+      contaminato segue la procedura di raccolta o di decontaminazione del laboratorio.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668423
+    m_Localized: Le sedie sono condivise e toccate a pelle nuda, quindi i residui
+      di un camice passano ad altre persone.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668424
+    m_Localized: I guanti usati in laboratorio possono portare residui chimici, quindi
+      vanno nei rifiuti di laboratorio.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668425
+    m_Localized: "Andare a intuito pu\xF2 far finire rifiuti pericolosi nel contenitore
+      sbagliato. Controlli le istruzioni sui rifiuti o chieda al personale formato."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668426
+    m_Localized: "Solo ci\xF2 che non \xE8 mai entrato nel lavoro di laboratorio,
+      come un involucro pulito della sala pausa, \xE8 rifiuto domestico."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668427
+    m_Localized: "Un liquido sconosciuto pu\xF2 essere qualsiasi cosa. Lo tenga chiuso
+      e fuori uso, cos\xEC che nessuno lo annusi, lo usi o lo versi via."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668428
+    m_Localized: Molti liquidi pericolosi sono trasparenti e inodori. L'aspetto,
+      o una prova nel lavandino, non identifica mai una sostanza chimica.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668429
+    m_Localized: "Una bottiglia torna in magazzino solo dopo che il contenuto \xE8
+      stato identificato ed \xE8 etichettata correttamente."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668430
+    m_Localized: "Gli occhiali di sicurezza proteggono dagli schizzi e senza cuffie
+      pu\xF2 sentire allarmi e colleghi."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668431
+    m_Localized: Gli occhiali normali, per quanto spessi, non sono certificati contro
+      urti e schizzi. Usi occhiali di sicurezza graduati o sovraocchiali.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668432
+    m_Localized: Le cuffie possono coprire gli allarmi antincendio e gli avvisi gridati
+      dai colleghi.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668433
+    m_Localized: "I fili scoperti possono causare scosse o incendi. Isoli l'alimentazione
+      e contrassegni l'apparecchio, cos\xEC che nessuno lo usi prima della riparazione."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668434
+    m_Localized: "Aggiungere adattatori o accendere gli apparecchi uno alla volta
+      non risolve un circuito sovraccarico. Il personale qualificato pu\xF2 verificare
+      il carico."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668435
+    m_Localized: Solo una riparazione e un'approvazione da parte di personale qualificato
+      rendono l'apparecchio di nuovo sicuro.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668436
+    m_Localized: In un'emergenza ogni secondo conta, quindi l'armadietto di primo
+      soccorso deve essere raggiungibile subito.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668437
+    m_Localized: "Segnali il materiale mancante, cos\xEC che venga reintegrato prima
+      che qualcuno ne abbia bisogno."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668438
+    m_Localized: "Un controllo di routine riguarda l'accesso, la completezza e se
+      il materiale \xE8 ancora valido e utilizzabile."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668439
+    m_Localized: "Conservato in basso, un corrosivo non pu\xF2 cadere dall'alto e
+      la vasca di contenimento trattiene qualsiasi perdita."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668440
+    m_Localized: "Sostanze incompatibili conservate insieme possono reagire se una
+      perde. Le separi in base alla compatibilit\xE0, non alla dimensione o al colore
+      della bottiglia."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668441
+    m_Localized: "Una bottiglia che cade da sopra la testa pu\xF2 schizzare acido
+      su viso e occhi e reagire con ci\xF2 su cui cade."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

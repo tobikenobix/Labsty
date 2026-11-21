@@ -77,7 +77,7 @@ namespace ChemLab
                 UpdateHud();
             }
             K.KeepInView(question.canvas.transform, 0.95f, -0.05f);
-            K.KeepInView(msg.transform, 1.15f, 0f);
+            K.KeepInView(msg.transform, 1.0f, 0f);
         }
 
         // ================= API used by ChemLabSession =================
@@ -98,8 +98,11 @@ namespace ChemLab
             ShowMessage(title, L10n.T("lab.calculating"), null, null);
         }
 
-        public void ShowQuestion(HazardRecord rec, Vector3 hazardPos) =>
-            question.Show(rec.data.title, $"{rec.data.hudCategory}  /  {rec.data.area}  /  {rec.data.difficulty}", rec.q, hazardPos);
+        public void ShowQuestion(HazardRecord rec, Vector3 hazardPos)
+        {
+            question.Show(rec.data.title, $"{rec.data.hudCategory}  /  {rec.data.area}  /  {rec.data.difficulty}", rec.q, hazardPos, rec.shownOrder);
+            rec.shownOrder = question.Order;   // reopening the same hazard keeps its option order
+        }
 
         public void HighlightOption(string key) => question.Highlight(key);
 
@@ -182,7 +185,7 @@ namespace ChemLab
 
         void BuildMessage()
         {
-            msg = K.Panel(transform, "Panel_Message", new Vector2(900, 460));
+            msg = K.Panel(transform, "Panel_Message", new Vector2(900, 460), 0.00112f);   // 27-unit body at 1.0 m: ~0.9 deg x-height
             msgTitle = K.Label(msg.transform, "Title", "", new Vector2(0, 150), new Vector2(820, 70), 44, K.Text, TextAlignmentOptions.Center, FontStyles.Bold);
             msgBody = K.Label(msg.transform, "Body", "", new Vector2(0, 30), new Vector2(800, 160), 27, K.TextDim, TextAlignmentOptions.Center);
             msgBtn1 = K.Button(msg.transform, "Btn1", "", new Vector2(-200, -150), new Vector2(360, 80), K.Style.Ghost, () => msgAct1?.Invoke());
@@ -198,7 +201,7 @@ namespace ChemLab
             msgBtn2.gameObject.SetActive(b2 != null);
             if (b1 != null) { K.ButtonLabel(msgBtn1).text = b1; msgAct1 = a1; }
             if (b2 != null) { K.ButtonLabel(msgBtn2).text = b2; msgAct2 = a2; }
-            K.PlaceInFront(msg.transform, 1.15f, 0f);
+            K.PlaceInFront(msg.transform, 1.0f, 0f);
             msg.gameObject.SetActive(true);
         }
 

@@ -169,12 +169,13 @@ public static class ChemLabSceneBuilder
         var game = new GameObject("ChemLab Lobby");
         var lobby = game.AddComponent<ChemLabLobby>();
         lobby.leftHandAnchor = leftHand;
-        // ~1.25 m from the start spot (was ~1.6 m): text cap height 0.51-0.68 deg -> ~0.67-0.9 deg
-        lobby.mainPanelAnchor = Anchor("MainPanelAnchor", new Vector3(-0.45f, 1.5f, -1.25f), start);
-        lobby.teachingPanelAnchor = Anchor("TeachingPanelAnchor", new Vector3(0.85f, 1.45f, -1.35f), start);
-        // kiosk stands under both panels (main: 900 tall, teaching: 960 tall, both at 0.001 scale)
-        Stand(env, lobby.mainPanelAnchor, 1.5f - 0.45f);
-        Stand(env, lobby.teachingPanelAnchor, 1.45f - 0.48f);
+        // 1.05 m / 1.10 m from the start spot, and the lobby draws these panels 1.15x / 1.2x larger: 28-unit body
+        // text gets an x-height of ~0.92 deg, above Meta's 0.9 deg minimum (was 0.68 / 0.62 deg at 1.24 / 1.35 m)
+        lobby.mainPanelAnchor = Anchor("MainPanelAnchor", new Vector3(-0.38f, 1.5f, -1.42f), start);
+        lobby.teachingPanelAnchor = Anchor("TeachingPanelAnchor", new Vector3(0.69f, 1.45f, -1.55f), start);
+        // kiosk stands under both panels, ending at their lower edge (main: 900 x 0.00115 tall, teaching: 960 x 0.0012)
+        Stand(env, lobby.mainPanelAnchor, 1.5f - 0.52f);
+        Stand(env, lobby.teachingPanelAnchor, 1.45f - 0.58f);
         // wall posters face into the room (anchor forward points into the wall)
         lobby.posterAnchors = new[]
         {
@@ -349,8 +350,8 @@ public static class ChemLabSceneBuilder
         Systems(start, 0f);
         var game = new GameObject("ChemLab End Screen");
         var end = game.AddComponent<ChemLabEndScreen>();
-        // ~1.35-1.45 m from the start spot (was ~2.0 m): report text ~0.55 deg -> ~0.8 deg
-        end.resultsAnchor = Anchor("ResultsAnchor", new Vector3(-0.35f, 1.5f, -1.1f), start);
+        // report card 1.10 m from the start spot, drawn at 0.00118 scale by the end screen: 28-unit text ~0.92 deg
+        end.resultsAnchor = Anchor("ResultsAnchor", new Vector3(-0.29f, 1.5f, -1.34f), start);
         end.leaderboardAnchor = Anchor("LeaderboardAnchor", new Vector3(1.05f, 1.5f, -1.45f), start);
         game.AddComponent<ChemLabControls>();
         EditorSceneManager.SaveScene(scene, EndPath);

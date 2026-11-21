@@ -9,14 +9,14 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// The teammate's lab is ~2,000 separate meshes, so the lab scene issued ~2,300 draw calls per eye pass.
 /// When the ChemistryLab scene is built (and when it enters Play Mode in the Editor) this merges the lab's
-/// renderers per material and per 4 m floor cell into one mesh each. Colliders are left untouched.
+/// renderers per material and per 12 m floor cell into one mesh each. Colliders are left untouched.
 /// Runs on the processed copy of the scene only: ChemistryLab.unity and the lab prefab are never modified.
 /// </summary>
 class ChemLabMergeStatic : IProcessSceneWithReport
 {
     const string SceneName = "ChemistryLab";
     const string EnvName = "Lab Environment (teammate)";
-    const float Cell = 4f;   // ponytail: coarse grid keeps some frustum culling; smaller cells = more draws, better culling
+    const float Cell = 12f;  // ponytail: floor is ~245 draws at 0° (100 lab materials + ~120 unmerged props); below that needs fewer materials, not a bigger cell
 
     public int callbackOrder => 0;
 
@@ -49,7 +49,7 @@ class ChemLabMergeStatic : IProcessSceneWithReport
             var mesh = new Mesh { name = $"Merged_{g.Key.Item1.name}_{g.Key.Item2}_{g.Key.Item3}" };
             long verts = combine.Sum(ci => (long)ci.mesh.vertexCount);
             if (verts > 65535) mesh.indexFormat = IndexFormat.UInt32;
-            mesh.CombineMeshes(combine, true, true);   // ponytail: stays CPU-readable (~+20 MB RAM in the player); fine on Quest 3
+            mesh.CombineMeshes(combine, true, true);   // readable here; ChemLabReleaseMeshData drops the CPU copy in the player
             if (mesh.vertexCount != verts)
             {
                 // Source meshes are Read/Write off. Their data is available when the scene is built or opened in the
@@ -71,6 +71,7 @@ class ChemLabMergeStatic : IProcessSceneWithReport
             mr.receiveShadows = list[0].receiveShadows;
             foreach (var r in list) Object.DestroyImmediate(r);
         }
+        root.gameObject.AddComponent<ChemLab.ChemLabReleaseMeshData>();
         Debug.Log($"[ChemLab] Merged lab meshes: {before} renderers -> {after} ({groups.Count} material/cell groups).");
     }
 }

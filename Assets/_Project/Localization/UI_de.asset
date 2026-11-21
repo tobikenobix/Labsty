@@ -201,7 +201,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488430
-    m_Localized: 'Sicherheitskritisch: muss zum Bestehen richtig beantwortet werden.'
+    m_Localized: 'Sicherheitskritisch: immer dabei, zum Bestehen richtig beantworten.'
     m_Metadata:
       m_Items: []
   - m_Id: 4457488431
@@ -345,7 +345,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488467
-    m_Localized: Erneut spielen  (A)
+    m_Localized: Erneut spielen
     m_Metadata:
       m_Items: []
   - m_Id: 4457488468
@@ -428,11 +428,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488486
-    m_Localized: Bestenliste Basel
+    m_Localized: Beispiel-Bestenliste
     m_Metadata:
       m_Items: []
   - m_Id: 4457488487
-    m_Localized: "Diese Woche \xB7 Labor-Sicherheitsinspektion"
+    m_Localized: Beispielnamen und -punkte, keine echten Ergebnisse
     m_Metadata:
       m_Items: []
   - m_Id: 4457488488
@@ -704,6 +704,80 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 10469640233004
     m_Localized: Notfall-Augendusche
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170661547859968
+    m_Localized: 'Sieht gut aus. Das war der {0}. Fehlalarm: ab jetzt kostet jeder
+      1 Punkt.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170661610774528
+    m_Localized: "{0} / {1} Punkte (-{2} f\xFCr Fehlalarme)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 171324625379328
+    m_Localized: "AUSW\xC4HLEN"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 171324663128064
+    m_Localized: HIERHER GEHEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458764517376
+    m_Localized: STUDIERENDEN-ID
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458898735104
+    m_Localized: Studierenden-ID eingeben
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929408
+    m_Localized: Nur Ziffern. Damit findet Ihre Lehrperson Ihre Ergebnisse.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929409
+    m_Localized: "L\xF6schen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929410
+    m_Localized: "Best\xE4tigen und starten"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657316245504
+    m_Localized: DOMINANTE HAND
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965760
+    m_Localized: Rechts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965761
+    m_Localized: Links
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965762
+    m_Localized: "Dr\xFCcken Sie A am rechten Controller, um die Aufgabenanzeige
+      auszublenden, und erneut A, um sie zur\xFCckzuholen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335206719488
+    m_Localized: Details
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799872
+    m_Localized: Ergebnis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799873
+    m_Localized: Bestehensbedingungen und Probleme
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799874
+    m_Localized: "Zur\xFCck"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799875
+    m_Localized: Weiter
     m_Metadata:
       m_Items: []
   references:

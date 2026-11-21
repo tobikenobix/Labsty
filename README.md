@@ -58,6 +58,39 @@ PRISM stations built from the same pattern:
 
 Logging: one CSV per session at `Application.persistentDataPath/logs`, on the Quest under `Android/data/de.tum.xrhackathon.starter/files/logs`. Columns: timestamp, time since start, event, step, object, head position and yaw, session, participant, condition. Pull the files with Meta Quest Developer Hub (File Manager) or `adb pull`.
 
+## ChemLab score files
+
+Every finished lab run writes three files named after the session, `session_yyyyMMdd_HHmmss.json`, `_hazards.csv` and `_summary.csv`, to `Application.persistentDataPath/ChemLabSessions`. On the Quest that is `/sdcard/Android/data/de.tum.xrhackathon.starter/files/ChemLabSessions`. A run that is left before the end screen writes nothing. If writing fails, the end screen shows no "Exported" line and the error is in the log.
+
+Pull all runs with the headset connected over USB:
+
+```
+adb pull /sdcard/Android/data/de.tum.xrhackathon.starter/files/ChemLabSessions ./sessions
+```
+
+Meta Quest Developer Hub (File Manager) works too. The folder changes if the package name in Player Settings changes.
+
+JSON, one object per run:
+
+| Field | Meaning |
+|---|---|
+| `sessionId`, `studentId`, `attempt` | Run identity. `studentId` is the number the student typed on the lobby keypad (`no_id` if the lab scene was started directly); `attempt` counts that ID's runs on this headset, starting at 1 |
+| `language`, `mode` | `EN`/`DE`/`FR`/`IT`; `mode` is always `assessment` |
+| `completion_time`, `timed_out` | Seconds from lab start to the end; true when the timer ran out |
+| `hazardsInRun`, `hazards_found`, `hazards_missed` | How many hazards were in this run, and the ids found and missed |
+| `wrong_answers`, `falsePositiveClicks`, `falseClickPenalty` | All wrong submissions; clicks on objects that are not hazards; detection points lost to them (1 per false click after the third) |
+| `score`, `detectionPoints`, `decisionPoints` | Points per hazard found plus points per first answer correct (weights in the lab config); `score` is the percentage of the points this run offered |
+| `outcome` | `Pass`, `RetrainingRequired` or `SafetyReviewRequired` |
+| `minimumScoreAchieved` … `safetyReviewRequired` | The pass conditions behind the outcome |
+| `hazards[]` | One entry per hazard: `id`, `questionId`, `category`, `status`, `mandatoryCritical`, `detected`, `detectedAt`, `selectedOption` (first answer), `correctOption`, `optionOrder` (the keys in the shuffled order the student saw them; rows are lettered A-D by position, the option fields keep the keys from hazards.json), `isCorrect`, `responseTimeSeconds`, `wrongAnswers`, `resolved`, `criticalError` |
+
+CSV, two flat tables so the files of many runs can be concatenated (header once):
+
+- `_hazards.csv`, one row per hazard: `session_id, student_id, attempt, hazard_id, question_id, category, detected, detected_at, first_answer, correct_answer, first_attempt_correct, wrong_answers, resolved, critical_error, response_time`
+- `_summary.csv`, one row per run: `session_id, student_id, attempt, language, hazards_in_run, hazards_found, hazards_missed, wrong_answers, false_clicks, false_click_penalty, completion_time, timed_out, score, outcome`
+
+Times are seconds with one decimal and a dot. Fields that contain a comma or quote are quoted as in RFC 4180.
+
 ## First build in ten steps
 
 1. Install Unity Hub, sign in, install the Unity version above with Android Build Support, OpenJDK, Android SDK and NDK Tools.

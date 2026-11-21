@@ -1064,6 +1064,164 @@ MonoBehaviour:
       wirken."
     m_Metadata:
       m_Items: []
+  - m_Id: 177914296393728
+    m_Localized: "Den Wagen nur so weit zu schieben, dass man vorbeikommt, oder ein
+      Schild daran anzubringen, l\xE4sst den Fluchtweg verengt. Nur im Lager ist
+      der Ausgang bei einer Evakuierung voll nutzbar."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914380279808
+    m_Localized: "Ein Ausgang ist nur nutzbar, wenn der gesamte Weg ins Freie frei
+      ist, nicht nur die T\xFCr selbst."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914380279809
+    m_Localized: Auch in diesen zehn Minuten kann ein Notfall eintreten, deshalb
+      wartet der Wagen nie vor dem Ausgang.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914380279810
+    m_Localized: "Getr\xE4nke in der N\xE4he von Laborger\xE4ten k\xF6nnen Chemikalienr\xFCckst\xE4nde
+      aufnehmen, die man dann schluckt. Trinken Sie nur au\xDFerhalb des Labors."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668416
+    m_Localized: "Auch ein auslaufsicherer Becher oder ein geschlossener Deckel bleibt
+      ein Getr\xE4nk im Labor. Sicher trinkt man in einer kurzen Pause au\xDFerhalb
+      des Labors."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668417
+    m_Localized: "H\xE4nde und Becheroberfl\xE4chen nehmen im Labor R\xFCckst\xE4nde
+      auf, sodass auch ein geschlossener Becher sie zum Mund bringt."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668418
+    m_Localized: "Ein verklebter oder gerade ger\xFCckter Stapel l\xE4sst schwere
+      Kartons weiterhin in der H\xF6he. Erst eine niedrige, stabile Lagerung beseitigt
+      die Absturzgefahr."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668419
+    m_Localized: "Ein umst\xFCrzender Stapel kann Personen auf dem Gehweg verletzen
+      und ihn blockieren."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668420
+    m_Localized: "Regale, die f\xFCr die Last ausgelegt sind und innerhalb ihrer
+      H\xF6hengrenzen genutzt werden, verhindern instabile Stapel von vornherein."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668421
+    m_Localized: "Ein vorgesehener Haken h\xE4lt m\xF6gliche Kontamination von Sitzen
+      und sauberen Bereichen fern."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668422
+    m_Localized: "Aussch\xFCtteln oder erneutes Tragen verteilt die Kontamination.
+      Ein kontaminierter Kittel durchl\xE4uft das Sammel- oder Dekontaminationsverfahren
+      des Labors."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668423
+    m_Localized: "St\xFChle werden gemeinsam genutzt und mit blo\xDFer Haut ber\xFChrt,
+      so gelangen R\xFCckst\xE4nde vom Kittel zu anderen Personen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668424
+    m_Localized: "Im Labor getragene Handschuhe k\xF6nnen Chemikalienr\xFCckst\xE4nde
+      tragen und geh\xF6ren deshalb in den Laborabfall."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668425
+    m_Localized: "Raten kann gef\xE4hrlichen Abfall in den falschen Beh\xE4lter bringen.
+      Pr\xFCfen Sie die Abfallanweisungen oder fragen Sie geschultes Personal."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668426
+    m_Localized: "Nur Dinge, die nie mit Laborarbeit in Ber\xFChrung kamen, wie eine
+      saubere Verpackung aus dem Pausenraum, sind Hausm\xFCll."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668427
+    m_Localized: "Eine unbekannte Fl\xFCssigkeit kann alles sein. Halten Sie sie
+      verschlossen und au\xDFer Gebrauch, damit niemand daran riecht, sie benutzt
+      oder weggie\xDFt."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668428
+    m_Localized: "Viele gef\xE4hrliche Fl\xFCssigkeiten sind klar und geruchlos.
+      Aussehen oder ein Test im Ausguss identifizieren nie eine Chemikalie."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668429
+    m_Localized: "Eine Flasche kommt erst ins Lager zur\xFCck, wenn ihr Inhalt identifiziert
+      und sie korrekt beschriftet ist."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668430
+    m_Localized: "Eine Schutzbrille sch\xFCtzt vor Spritzern, und ohne Kopfh\xF6rer
+      h\xF6ren Sie Alarme und andere Personen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668431
+    m_Localized: "Normale Brillen sind, egal wie dick, nicht f\xFCr Schl\xE4ge oder
+      Spritzer ausgelegt. Verwenden Sie eine Schutzbrille mit Korrektur oder eine
+      \xDCberbrille."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668432
+    m_Localized: "Kopfh\xF6rer k\xF6nnen Feueralarme und Warnrufe anderer Personen
+      \xFCberdecken."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668433
+    m_Localized: "Freiliegende Dr\xE4hte k\xF6nnen Stromschl\xE4ge oder Br\xE4nde
+      verursachen. Trennen Sie die Stromversorgung und kennzeichnen Sie das Ger\xE4t,
+      damit es bis zur Reparatur niemand benutzt."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668434
+    m_Localized: "Weitere Adapter oder das Einschalten der Ger\xE4te nacheinander
+      beheben keinen \xFCberlasteten Stromkreis. Fachpersonal kann die Last pr\xFCfen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668435
+    m_Localized: "Erst eine Reparatur und Freigabe durch Fachpersonal macht das Ger\xE4t
+      wieder sicher nutzbar."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668436
+    m_Localized: "Im Notfall z\xE4hlt jede Sekunde, deshalb muss der Erste-Hilfe-Schrank
+      sofort erreichbar sein."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668437
+    m_Localized: "Melden Sie fehlendes Material, damit es aufgef\xFCllt ist, bevor
+      jemand es braucht."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668438
+    m_Localized: "Eine Routinekontrolle umfasst Zugang, Vollst\xE4ndigkeit und ob
+      das Material noch haltbar und brauchbar ist."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668439
+    m_Localized: "Unten gelagert kann ein \xE4tzender Stoff nicht aus der H\xF6he
+      fallen, und die Auffangwanne h\xE4lt jedes Leck zur\xFCck."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668440
+    m_Localized: "Unvertr\xE4gliche Chemikalien k\xF6nnen zusammen gelagert reagieren,
+      wenn eine ausl\xE4uft. Trennen Sie sie nach Vertr\xE4glichkeit, nicht nach
+      Flaschengr\xF6\xDFe oder Farbe."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177914388668441
+    m_Localized: "Eine Flasche, die aus Kopfh\xF6he f\xE4llt, kann S\xE4ure in Gesicht
+      und Augen spritzen und mit dem reagieren, worauf sie f\xE4llt."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

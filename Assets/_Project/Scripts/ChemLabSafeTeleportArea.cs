@@ -20,6 +20,8 @@ namespace ChemLab
         static readonly Color BlockedCol = new Color(1f, 0.25f, 0.2f, 0.45f);
         Transform marker;
         Material markerMat;
+        Vector3 lastHit = Vector3.positiveInfinity, lastSpot;   // marker cache: re-run FindFreeSpot only when the hit moves > 2 cm
+        bool lastFree;
 
         protected override void Awake()
         {
@@ -46,9 +48,13 @@ namespace ChemLab
             foreach (var i in interactorsHovering)
             {
                 if (!(i is XRRayInteractor ray) || !ray.TryGetCurrent3DRaycastHit(out var hit) || !colliders.Contains(hit.collider)) continue;
-                bool free = FindFreeSpot(hit.point, out var spot);   // same check the real teleport uses
-                marker.position = (free ? spot : hit.point) + Vector3.up * 0.01f;
-                markerMat.color = free ? FreeCol : BlockedCol;
+                if ((hit.point - lastHit).sqrMagnitude > 0.0004f)
+                {
+                    lastHit = hit.point;
+                    lastFree = FindFreeSpot(hit.point, out lastSpot);   // same check the real teleport uses (that one is never cached)
+                }
+                marker.position = (lastFree ? lastSpot : hit.point) + Vector3.up * 0.01f;
+                markerMat.color = lastFree ? FreeCol : BlockedCol;
                 show = true;
                 break;
             }

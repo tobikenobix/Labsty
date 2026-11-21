@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine.Localization.Settings;
 
 namespace ChemLab
@@ -11,9 +12,29 @@ namespace ChemLab
     {
         public const string UiTable = "UI", HazardTable = "Hazards";
 
-        /// <summary>UI text in the selected language; args fill {0}, {1}... (string.Format rules).</summary>
-        public static string T(string key, params object[] args) =>
-            LocalizationSettings.StringDatabase.GetLocalizedString(UiTable, key, args);
+        /// <summary>
+        /// UI text in the selected language; args fill {0}, {1}... (string.Format rules). Left-handed mode uses a
+        /// "key.lh" entry when the table has one, else swaps the controller letters in the texts that name them.
+        /// </summary>
+        public static string T(string key, params object[] args)
+        {
+            if (ChemLabRun.LeftHanded)
+            {
+                if (Lookup(UiTable, key + ".lh") != null) return Get(key + ".lh", args);
+                if (ButtonTexts.Contains(key)) return ChemLabRun.SwapButtons(Get(key, args));
+            }
+            return Get(key, args);
+        }
+
+        static string Get(string key, object[] args) => LocalizationSettings.StringDatabase.GetLocalizedString(UiTable, key, args);
+
+        // ponytail: the UI texts that name controller buttons (A/B/X/Y), checked in all four languages. A new text that
+        // names a button goes here, or gets its own "key.lh" entry when it also says which controller (see tut.h5.lh).
+        static readonly HashSet<string> ButtonTexts = new HashSet<string>
+        {
+            "q.hint", "tab.footer", "help.vr", "station.body", "lobby.startReady", "end.closeB",
+            "tut.h4", "tut.hDone", "tut.footer", "tch.answer", "tch.score",
+        };
 
         /// <summary>UI text, or `fallback` when the table has no such key (e.g. decoy names added to a scene later).</summary>
         public static string TOr(string key, string fallback) => Lookup(UiTable, key) ?? fallback;

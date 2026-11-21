@@ -207,7 +207,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488430
-    m_Localized: 'Safety-critical: must be answered correctly to pass.'
+    m_Localized: 'Safety-critical: always in the run and must be answered correctly.'
     m_Metadata:
       m_Items: []
   - m_Id: 4457488431
@@ -352,7 +352,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488467
-    m_Localized: Play again  (A)
+    m_Localized: Play again
     m_Metadata:
       m_Items: []
   - m_Id: 4457488468
@@ -431,11 +431,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488486
-    m_Localized: Basel Leaderboard
+    m_Localized: Demo leaderboard
     m_Metadata:
       m_Items: []
   - m_Id: 4457488487
-    m_Localized: "This week \xB7 Lab Safety Inspection"
+    m_Localized: Sample names and scores, not real results
     m_Metadata:
       m_Items: []
   - m_Id: 4457488488
@@ -705,6 +705,80 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 10469640233004
     m_Localized: Emergency eyewash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170661547859968
+    m_Localized: 'Looks OK. That''s {0} false alarms: from now on, each one costs
+      1 point.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170661610774528
+    m_Localized: '{0} / {1} points (-{2} for false alarms)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 171324625379328
+    m_Localized: SELECT ME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 171324663128064
+    m_Localized: WALK HERE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458764517376
+    m_Localized: STUDENT ID
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458898735104
+    m_Localized: Enter your student ID
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929408
+    m_Localized: Digits only. Your teacher uses it to find your results.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929409
+    m_Localized: Delete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929410
+    m_Localized: Confirm and start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657316245504
+    m_Localized: DOMINANT HAND
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965760
+    m_Localized: Right
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965761
+    m_Localized: Left
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965762
+    m_Localized: Press A on the right controller to hide the task panel, then A again
+      to bring it back.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335206719488
+    m_Localized: Details
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799872
+    m_Localized: Result
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799873
+    m_Localized: Pass conditions and issues
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799874
+    m_Localized: Previous
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799875
+    m_Localized: Next
     m_Metadata:
       m_Items: []
   references:

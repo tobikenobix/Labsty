@@ -209,8 +209,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488430
-    m_Localized: 'Critico per la sicurezza: per superare la prova serve la risposta
-      corretta.'
+    m_Localized: 'Critico: sempre presente, serve la risposta corretta per superare.'
     m_Metadata:
       m_Items: []
   - m_Id: 4457488431
@@ -355,7 +354,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488467
-    m_Localized: Gioca ancora  (A)
+    m_Localized: Gioca ancora
     m_Metadata:
       m_Items: []
   - m_Id: 4457488468
@@ -434,11 +433,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4457488486
-    m_Localized: Classifica di Basilea
+    m_Localized: Classifica dimostrativa
     m_Metadata:
       m_Items: []
   - m_Id: 4457488487
-    m_Localized: "Questa settimana \xB7 Ispezione di sicurezza"
+    m_Localized: Nomi e punteggi di esempio, non risultati reali
     m_Metadata:
       m_Items: []
   - m_Id: 4457488488
@@ -709,6 +708,80 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 10469640233004
     m_Localized: Lavaocchi di emergenza
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170661547859968
+    m_Localized: 'Sembra a posto. {0} falsi allarmi: d''ora in poi ognuno costa 1
+      punto.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 170661610774528
+    m_Localized: '{0} / {1} punti (-{2} per falsi allarmi)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 171324625379328
+    m_Localized: SELEZIONARE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 171324663128064
+    m_Localized: POSIZIONARSI QUI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458764517376
+    m_Localized: ID STUDENTE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458898735104
+    m_Localized: Inserisca il suo ID studente
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929408
+    m_Localized: Solo cifre. Serve al docente per trovare i suoi risultati.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929409
+    m_Localized: Cancella
+    m_Metadata:
+      m_Items: []
+  - m_Id: 174458902929410
+    m_Localized: Conferma e inizia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657316245504
+    m_Localized: MANO DOMINANTE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965760
+    m_Localized: Destra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965761
+    m_Localized: Sinistra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 175657374965762
+    m_Localized: "Prema A sul controller destro per nascondere il pannello attivit\xE0,
+      poi di nuovo A per mostrarlo."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335206719488
+    m_Localized: Dettagli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799872
+    m_Localized: Risultato
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799873
+    m_Localized: Condizioni per superare e problemi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799874
+    m_Localized: Precedente
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180335294799875
+    m_Localized: Successivo
     m_Metadata:
       m_Items: []
   references:
